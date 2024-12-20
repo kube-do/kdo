@@ -5,7 +5,7 @@ nav_order: 1
 ---
 
 
-# kube-do
+# KDO
 
 *KDO*平台基于云原生技术构建的容器云平台
 

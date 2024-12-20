@@ -23,7 +23,6 @@ kdo DevOps 提供了以下功能：
 
 kdo CI/CD 是基于 [Tekton](https://tekton.dev/docs/) 的 CI/CD 工具，它可以帮助用户快速的从源码构建应用，同时支持多种语言和框架。无需编写复杂的 Pipeline，只需要简单的配置即可。
 
-
 ## kdo DevOps介绍
 
 **kdo** DevOps平台是一个支持多租户，多集群，多环境的DevOps平台，用户能够在不了解复杂基础设施的情况下，操作并维护应用程序。而运维人员将会是这个平台的管理员，他们将会负责管理整个平台的运行。
@@ -42,3 +41,5 @@ kdo DevOps平台有应用项目，应用环境，应用三层模型
 ### 应用
    
 ![应用概述](imgs/repository.png)
+
+{: .fs-6 .fw-300 }

@@ -1,9 +1,7 @@
 ---
-title: 观测中心
-description: 介绍观测中心面板的功能和使用。
-keywords:
-- 观测中心
-- observation center
+title: 仪表盘
+parent: 可观测
+nav_order: 1
 ---
 
 
