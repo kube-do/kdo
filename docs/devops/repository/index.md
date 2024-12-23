@@ -20,5 +20,7 @@ kdo 支持对接 Git 代码仓库，从源代码仓库直接创建组件，目�
 
 ### 创建应用
 
+![创建应用](imgs/createApplication.gif)
 
 ### 管理分支流水线
+![管理分支流水线](imgs/manageBranch.gif)
