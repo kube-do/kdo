@@ -1,13 +1,10 @@
 ---
-title: Pipeline 插件概述
-description: Pipeline 插件概述
-keywords:
-- GitLab Pipeline 插件概述
-- GitLab Pipeline 插件
-- GitLab Pipeline Plugin
+title: Pipeline流水线
+parent: DevOps
+nav_order: 2
 ---
 
-Pipeline 应用是基于 [插件体系](#) 扩展实现的，通过插件化的方式，可以实现对 Rainbond 构建体系的扩展，该应用插件提供了:
+Pipeline 应用是基于扩展实现的，通过插件化的方式，可以实现对 Rainbond 构建体系的扩展，该应用插件提供了:
 
 * 编译构建，定义构建步骤
 * 代码检查，基于 SonarQube 的代码检查
