@@ -1,4 +1,5 @@
 ---
+parent: 原生 Kubernetes 指南
 title: YAML 转换与创建
 description: 本文档介绍 YAML 的识别策略和如何通过上传 YAML 文件创建组件。
 keywords:

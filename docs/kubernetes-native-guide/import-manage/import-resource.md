@@ -1,5 +1,6 @@
 ---
 title: 导入已有资源
+parent: 原生 Kubernetes 指南
 description: 导入 Kubernetes 命名空间下的已有资源到 Rainbond 中管理。
 keywords:
 - 导入 Kubernetes 已有资源

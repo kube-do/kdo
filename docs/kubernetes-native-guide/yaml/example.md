@@ -1,4 +1,5 @@
 ---
+parent: 原生 Kubernetes 指南
 title: 使用 Yaml 部署 Wordpress 和 Mysql
 description: 如何通过原生 K8s 可用的 Yaml 文件在 Rainbond 上部署一个 Wordpress 示例。
 keywords:

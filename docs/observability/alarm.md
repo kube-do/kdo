@@ -1,4 +1,5 @@
 ---
+parent: 可观测
 title: 监控报警
 description: 介绍如何配置报警策略。
 keywords:

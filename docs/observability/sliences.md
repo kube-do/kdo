@@ -1,4 +1,5 @@
 ---
+parent: 可观测
 title: 观测中心
 description: 介绍观测中心面板的功能和使用。
 keywords:

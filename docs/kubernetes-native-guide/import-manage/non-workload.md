@@ -1,4 +1,5 @@
 ---
+parent: 原生 Kubernetes 指南
 title: 非 Workload 类资源管理
 description: 直接通过编写yaml创建k8s资源
 ---

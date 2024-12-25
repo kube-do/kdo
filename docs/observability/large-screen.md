@@ -1,4 +1,5 @@
 ---
+parent: 可观测
 title: 监控大屏
 description: 介绍监控大屏相关的监测项和使用。
 keywords:
