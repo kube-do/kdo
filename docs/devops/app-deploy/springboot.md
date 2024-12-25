@@ -1,5 +1,6 @@
 ---
 title: Java SpringBoot 项目部署
+parent: 部署应用
 description: 在 Rainbond 中部署 SpringBoot 项目
 keywords:
 - Rainbond 部署 SpringBoot 项目

@@ -1,5 +1,6 @@
 ---
 title: Golang 项目部署
+parent: 部署应用
 description: 在 Rainbond 上通过源代码部署 Golang 项目
 ---
 

@@ -1,4 +1,5 @@
 ---
+parent: 部署应用
 title: SonarQube 静态扫描
 description: 利用 SonarScanner 静态扫描 Rainbond 上的 Maven 项目
 keywords:

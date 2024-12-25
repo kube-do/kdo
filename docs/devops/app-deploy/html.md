@@ -1,5 +1,6 @@
 ---
 title: 静态HTML
+parent: 部署应用
 description: 在 Rainbond 上通过源代码部署静态HTML项目
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: 部署应用
+parent: DevOps
+nav_order: 2
 description: 在 Rainbond 上部署应用
 keywords:
 - 在 Rainbond 上部署应用

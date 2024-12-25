@@ -1,4 +1,5 @@
 ---
+parent: 部署应用
 title: GitLab CI 使用
 description: 在 Rainbond 中使用 GitLab CI 部署应用
 keywords:

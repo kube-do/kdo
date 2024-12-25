@@ -1,5 +1,6 @@
 ---
 title: 第三方服务部署
+parent: 部署应用
 description: 讲解Rainbond支持第三方服务的创建方式和流程
 ---
 

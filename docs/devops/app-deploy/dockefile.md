@@ -1,5 +1,6 @@
 ---
 title: Dockerfile
+parent: 部署应用
 description: 在 Rainbond 上通过 Dockerfile 部署应用
 ---
 
