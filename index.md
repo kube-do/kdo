@@ -4,22 +4,6 @@ layout: home
 nav_order: 1
 ---
 
-
-<button class="btn js-toggle-dark-mode">切换主题</button>
-<script>
-const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
-
-jtd.addEvent(toggleDarkMode, 'click', function(){
-  if (jtd.getTheme() === 'dark') {
-    jtd.setTheme('light');
-    toggleDarkMode.textContent = 'Preview dark color scheme';
-  } else {
-    jtd.setTheme('dark');
-    toggleDarkMode.textContent = 'Return to the light side';
-  }
-});
-</script>
-
 # KDO
 *KDO*平台基于云原生技术构建的容器云平台
 
@@ -71,6 +55,23 @@ kdo平台的操作界面分为管理员和开发者，只有集群管理员可�
 ### 管理员界面
 管理员界面能够管理整个平台的所有资源，需要对平台的底层有一定熟悉，主要给运维人员管理。
 ![管理员界面](imgs/admin-start.gif)
+
+
+<button class="btn js-toggle-dark-mode">切换主题</button>
+
+<script>
+const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
+
+jtd.addEvent(toggleDarkMode, 'click', function(){
+  if (jtd.getTheme() === 'dark') {
+    jtd.setTheme('light');
+    toggleDarkMode.textContent = 'Preview dark color scheme';
+  } else {
+    jtd.setTheme('dark');
+    toggleDarkMode.textContent = 'Return to the light side';
+  }
+});
+</script>
 
 
 
