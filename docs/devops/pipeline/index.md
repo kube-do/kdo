@@ -1,6 +1,6 @@
 ---
 title: 流水线
-parent: devops
+parent: DevOps
 description: 
 keywords:
 ---

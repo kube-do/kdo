@@ -1,6 +1,6 @@
 ---
 title: tekton介绍
-parent: devops
+parent: DevOps
 description: 
 keywords:
 ---
