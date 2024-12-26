@@ -40,5 +40,5 @@ kdo 支持对接 Git 代码仓库，从源代码仓库直接创建组件，目�
 | YAML  | 这个应用的YAML定义文件。          |
 
 #### 管理分支流水线
-
+- kdo的流水线是基于tekton，
 ![管理分支流水线](imgs/manageBranch.gif)
