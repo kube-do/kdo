@@ -37,7 +37,6 @@ kdo DevOps平台有应用项目，应用环境，应用三层模型
  kdo的应用环境是对应kubernetes的命名空间，对应方式是: 项目名-环境名。比如，项目名是abc,环境名是dev，那这个环境对应的命名空间就是abc-dev
 ![应用环境](imgs/appEnv.png)
  应用环境里面主要包括当前环境的概述，包括资源使用情况，监控告警，事件（event）
-
 ### 应用
    
 ![应用概述](imgs/repository.png)
