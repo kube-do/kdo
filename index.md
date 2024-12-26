@@ -4,12 +4,11 @@ layout: home
 nav_order: 1
 ---
 
-# KDO
-*KDO*平台基于云原生技术构建的容器云平台
+## KDO 是什么
 
-## kdo 是什么
-
-kdo 核心100%开源，Serverless体验，不需要懂 Kubernetes 也能轻松管理容器化应用，可以从传统模式平滑无缝过渡到 Kubernetes，适合私有部署的一体化应用管理平台。
+- KDO 核心100%开源，Serverless体验，不需要懂 Kubernetes 也能轻松管理容器化应用，可以从传统模式平滑无缝过渡到 Kubernetes，适合私有部署的一体化应用管理平台。
+- KDO 底层可以对接各类私有云、公有云、Kubernetes 等基础设施，在基础设施之上，支持了用户管理、多租户、多集群管理、多云迁移等，以应用为中心分配和管理资源，实现了应用级多云管理。
+- KDO 对应用整体进行了包装和抽象，定义出了应用抽象模型。该模型包含应用运行所需的全部运行定义，与底层技术和概念隔离。开发者可以基于该模型实现能力的复用和共享，如组件一键发布、安装、升级等。
 
 ### 亮点
 
@@ -33,16 +32,6 @@ kdo 核心100%开源，Serverless体验，不需要懂 Kubernetes 也能轻松�
 
 4. **复杂应用一键交付客户环境:**  复杂应用发布成应用模版，当客户环境可以联网，对接客户环境一键安装运行，当客户环境不能联网，导出离线应用模版，到客户环境导入并一键安装运行。
 
-## 架构
-
-KDO 底层可以对接各类私有云、公有云、Kubernetes 等基础设施，在基础设施之上，支持了用户管理、多租户、多集群管理、多云迁移等，以应用为中心分配和管理资源，实现了应用级多云管理。
-
-对于开发者而言，不需要关注底层资源和概念。KDO 提供了一个开箱即用的平台，支持管理应用的全生命周期，包括开发、架构、交付和运维等阶段。
-
-同时 KDO 对应用整体进行了包装和抽象，定义出了应用抽象模型。该模型包含应用运行所需的全部运行定义，与底层技术和概念隔离。开发者可以基于该模型实现能力的复用和共享，如组件一键发布、安装、升级等。
-
-
-
 
 ## 操作界面
 
@@ -65,10 +54,10 @@ const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
 jtd.addEvent(toggleDarkMode, 'click', function(){
   if (jtd.getTheme() === 'dark') {
     jtd.setTheme('light');
-    toggleDarkMode.textContent = 'Preview dark color scheme';
+    toggleDarkMode.textContent = '切换到黑色主题';
   } else {
     jtd.setTheme('dark');
-    toggleDarkMode.textContent = 'Return to the light side';
+    toggleDarkMode.textContent = '切换到白色主题';
   }
 });
 </script>
