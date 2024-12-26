@@ -1,5 +1,5 @@
 ---
-title: 云原生存储
+title: 存储
 nav_order: 4
 ---
 
