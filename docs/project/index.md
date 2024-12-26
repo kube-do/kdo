@@ -3,8 +3,7 @@ title: 项目管理
 nav_order: 3
 ---
 
-1. TOC
-   {:toc}
+{:toc}
 
 ## 创建项目
 
