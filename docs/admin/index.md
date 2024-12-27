@@ -1,4 +1,4 @@
 ---
-title: 管理员界面
+title: 管理员页面
 nav_order: 5
 ---
