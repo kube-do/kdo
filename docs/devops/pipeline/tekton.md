@@ -9,7 +9,7 @@ keywords:
 
 Tekton 是一个强大、灵活的构建 CI/CD 流水线系统的开源框架，允许开发者构建、测试和发布应用。Tekton 是云原生的，通过定义 CRD ，让用户快速灵活定义流水线。
 
-![tekton介绍](imgs/tekton.jpg)
+![](imgs/tekton.jpg)
 
 ### 使用 tekton 的好处
 - 可定制的：Tekton实体是完全可定制的，从而具有高度的灵活性。平台工程师可以定义非常详细的构建基目录，以供开发人员在各种情况下使用
