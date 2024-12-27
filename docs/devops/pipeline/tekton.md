@@ -11,6 +11,9 @@ Tekton 是一个强大、灵活的构建 CI/CD 流水线系统的开源框架，
 
 ![](imgs/tekton.jpg)
 
+![](https://static.goodrain.com/docs/5.10/micro-service/example/blade/blade-depend.png)
+
+
 ### 使用 tekton 的好处
 - 可定制的：Tekton实体是完全可定制的，从而具有高度的灵活性。平台工程师可以定义非常详细的构建基目录，以供开发人员在各种情况下使用
 - 可重复使用的：Tekton实体是完全可移植的，因此一旦定义，组织内的任何人都可以使用给定的管道并重用其构造块。这使开发人员可以快速构建复杂的管道，而无需“重新发明轮子”。
