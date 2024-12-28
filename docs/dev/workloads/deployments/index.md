@@ -10,6 +10,8 @@ nav_order: 3
 ## 介绍
 
 {: .note }
-通过组件拓扑，可以通过图形化的方式对组件管理，包括修改配置，直接访问应用URL，查看监控数据等。
+无状态应用（Deployment）用于管理运行一个应用负载的一组容器组，通常适用于不需要保持状态的负载，比如：Web服务，微服务。
+[更多信息](https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/deployment)
+
 
 ![](imgs/topology.gif)

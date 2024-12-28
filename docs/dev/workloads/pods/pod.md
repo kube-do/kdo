@@ -1,7 +1,6 @@
 ---
-title: 容器组
+title: Pod
 parent: 工作负载
-nav_order: 3
 ---
 
 1. TOC
