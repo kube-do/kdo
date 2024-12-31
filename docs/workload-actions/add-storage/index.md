@@ -3,6 +3,10 @@ title: 添加存储
 parent: 工作负载操作
 ---
 
+1. TOC
+{:toc}
+
+
 ## 介绍
 - 在 Kubernetes 中，HorizontalPodAutoscaler(HPA)自动更新工作负载资源 （例如 Deployment 或者 StatefulSet）， 目的是自动扩缩工作负载以满足需求。
 - 水平扩缩意味着对增加的负载的响应是部署更多的 Pod。
