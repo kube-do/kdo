@@ -1,5 +1,5 @@
 ---
-title: 容器组水平自动扩缩(HPA)
+title: 添加存储
 parent: 工作负载操作
 ---
 
@@ -9,11 +9,7 @@ parent: 工作负载操作
 - 水平 Pod 自动扩缩不适用于无法扩缩的对象（例如：DaemonSet。）
 - 在 Kubernetes 控制平面内运行的水平 Pod 自动扩缩控制器会定期调整其目标（例如：Deployment）的所需规模，以匹配观察到的指标， 例如，平均 CPU 利用率、平均内存利用率或你指定的任何其他自定义指标。
 
-![](imgs/hpa.png)
 
 ## 添加容器组水平自动扩缩(HPA)
 
-![](imgs/add-hpa.png)
-
-
-## 编辑容器组水平自动扩缩(HPA)
+![](imgs/add-storage.png)

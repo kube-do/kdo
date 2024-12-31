@@ -20,7 +20,7 @@ Kubernetes 提供了多种探针：
 如果一个容器的存活探针失败多次，kubelet 将重启该容器。
 存活探针不会等待就绪探针成功。 如果你想在执行存活探针前等待，你可以定义 initialDelaySeconds，或者使用启动探针。
 
-###  就绪探针
+### 就绪探针
 就绪探针决定何时容器准备好开始接受流量。 这种探针在等待应用执行耗时的初始任务时非常有用，例如建立网络连接、加载文件和预热缓存。
 如果就绪探针返回的状态为失败，Kubernetes 会将该 Pod 从所有对应服务的端点中移除。
 就绪探针在容器的整个生命期内持续运行。
@@ -30,7 +30,7 @@ Kubernetes 提供了多种探针：
 如果配置了这类探针，它会禁用存活检测和就绪检测，直到启动探针成功为止。
 这类探针仅在启动时执行，不像存活探针和就绪探针那样周期性地运行。
 
-
+![](imgs/edit-health-checks.png)
 
 ## 配置探针
 
@@ -52,7 +52,7 @@ Probe 有很多配置字段，可以使用这些字段精确地控制启动、�
 - 失败阈值(failureThreshold)：探针连续失败了 failureThreshold 次之后， Kubernetes 认为总体上检查已失败：容器状态未就绪、不健康、不活跃。 默认值为 3，最小值为 1。 对于启动探针或存活探针而言，如果至少有 failureThreshold 个探针已失败， Kubernetes 会将容器视为不健康并为这个特定的容器触发重启操作。 kubelet 遵循该容器的 terminationGracePeriodSeconds 设置。 对于失败的就绪探针，kubelet 继续运行检查失败的容器，并继续运行更多探针； 因为检查失败，kubelet 将 Pod 的 Ready 状况设置为 false。
 - terminationGracePeriodSeconds：为 kubelet 配置从为失败的容器触发终止操作到强制容器运行时停止该容器之前等待的宽限时长。 默认值是继承 Pod 级别的 terminationGracePeriodSeconds 值（如果不设置则为 30 秒），最小值为 1。 更多细节请参见探针级别 terminationGracePeriodSeconds。
 
-![](imgs/edit-health-checks.png)
+
 
 
 
