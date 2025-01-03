@@ -9,20 +9,10 @@ nav_order: 2
 
 ## 介绍
 {: .note }
-计划任务(CronJob)创建基于时隔重复调度的 Job。
-CronJob 用于执行排期操作，例如备份、生成报告等。 一个 CronJob 对象就像 Unix 系统上的 crontab（cron table）文件中的一行。 它用 Cron 格式进行编写， 并周期性地在给定的调度时间执行 Job
+路由(Ingress)概念允许你通过 Kubernetes API 定义的规则将流量映射到不同后端。路由使用一种能感知协议配置的机制来解析 URI、主机名称、路径等 Web 概念， 让你的 HTTP（或 HTTPS）网络服务可被访问。
+[更多资料](https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress/)
+![](imgs/ingress.png)
 
 
-Cron 时间表语法
-.spec.schedule 字段是必需的。该字段的值遵循 Cron 语法：
-```
-# ┌───────────── 分钟 (0 - 59)
-# │ ┌───────────── 小时 (0 - 23)
-# │ │ ┌───────────── 月的某天 (1 - 31)
-# │ │ │ ┌───────────── 月份 (1 - 12)
-# │ │ │ │ ┌───────────── 周的某天 (0 - 6)（周日到周六）或者是 sun，mon，tue，web，thu，fri，sat
-# │ │ │ │ │
-# │ │ │ │ │
-# * * * * *
-```
-例如 0 3 * * 1 表示此任务计划于每周一凌晨 3 点运行。
+## 编辑路由
+![](imgs/edit-ingress.png)

@@ -12,6 +12,7 @@ nav_order: 5
 计划任务(CronJob)创建基于时隔重复调度的 Job。
 CronJob 用于执行排期操作，例如备份、生成报告等。 一个 CronJob 对象就像 Unix 系统上的 crontab（cron table）文件中的一行。 它用 Cron 格式进行编写， 并周期性地在给定的调度时间执行 Job
 
+![](imgs/cronjob.png)
 
 Cron 时间表语法
 .spec.schedule 字段是必需的。该字段的值遵循 Cron 语法：
@@ -25,4 +26,5 @@ Cron 时间表语法
 # │ │ │ │ │
 # * * * * *
 ```
+
 例如 0 3 * * 1 表示此任务计划于每周一凌晨 3 点运行。

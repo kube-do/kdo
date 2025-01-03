@@ -9,20 +9,8 @@ nav_order: 3
 
 ## 介绍
 {: .note }
-计划任务(CronJob)创建基于时隔重复调度的 Job。
-CronJob 用于执行排期操作，例如备份、生成报告等。 一个 CronJob 对象就像 Unix 系统上的 crontab（cron table）文件中的一行。 它用 Cron 格式进行编写， 并周期性地在给定的调度时间执行 Job
+表达的是用户对存储的请求。概念上与 Pod 类似。 Pod 会耗用节点资源，而 PVC 申领会耗用 PV 资源。Pod 可以请求特定数量的资源（CPU 和内存）。同样 PVC 申领也可以请求特定的大小和访问模式 （例如，可以挂载为 ReadWriteOnce、ReadOnlyMany、ReadWriteMany 或 ReadWriteOncePod， 请参阅访问模式）。
 
+尽管 PersistentVolumeClaim 允许用户消耗抽象的存储资源， 常见的情况是针对不同的问题用户需要的是具有不同属性（如，性能）的 PersistentVolume 卷。 集群管理员需要能够提供不同性质的 PersistentVolume， 并且这些 PV 卷之间的差别不仅限于卷大小和访问模式，同时又不能将卷是如何实现的这些细节暴露给用户
+[更多资料](https://kubernetes.io/zh-cn/docs/concepts/storage/persistent-volumes/)
 
-Cron 时间表语法
-.spec.schedule 字段是必需的。该字段的值遵循 Cron 语法：
-```
-# ┌───────────── 分钟 (0 - 59)
-# │ ┌───────────── 小时 (0 - 23)
-# │ │ ┌───────────── 月的某天 (1 - 31)
-# │ │ │ ┌───────────── 月份 (1 - 12)
-# │ │ │ │ ┌───────────── 周的某天 (0 - 6)（周日到周六）或者是 sun，mon，tue，web，thu，fri，sat
-# │ │ │ │ │
-# │ │ │ │ │
-# * * * * *
-```
-例如 0 3 * * 1 表示此任务计划于每周一凌晨 3 点运行。
