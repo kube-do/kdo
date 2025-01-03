@@ -7,7 +7,8 @@ parent: 配置管理
 {:toc}
 
 ## 介绍
-配置映射(ConfigMap) 是一种 API 对象，用来将非机密性的数据保存到键值对中。使用时， Pod 可以将其用作环境变量、命令行参数或者存储卷中的配置文件。
+{: .note }
+配置映射(ConfigMap) 是一种 API 对象，用来将非机密性的数据保存到键值对中。使用时， 容器组可以将其用作环境变量、命令行参数或者存储卷中的配置文件。
 ConfigMap 将你的环境配置信息和容器镜像解耦，便于应用配置的修改。
 
 ![](imgs/configmaps.png)
@@ -25,6 +26,7 @@ ConfigMap 将你的环境配置信息和容器镜像解耦，便于应用配置�
 
 
 ## 使用配置映射
+{: .note }
 配置映射(ConfigMap)可以作为数据卷挂载。ConfigMap 也可被系统的其他组件使用， 而不一定直接暴露给 Pod。例如，ConfigMap 可以保存系统中其他组件要使用的配置数据。
 ConfigMap 最常见的用法是为同一命名空间里某 Pod 中运行的容器执行配置。 你也可以单独使用 ConfigMap。
 ![](imgs/add-configmap-to-workload.png)

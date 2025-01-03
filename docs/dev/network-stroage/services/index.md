@@ -1,5 +1,5 @@
 ---
-title: 服务
+title: 服务(Services)
 parent: 网络存储
 nav_order: 1
 ---
@@ -21,4 +21,5 @@ Kubernetes Service 类型允许指定你所需要的 Service 类型。
 - **NodePort** 通过每个节点上的 IP 和静态端口（NodePort）公开 Service。 为了让 Service 可通过节点端口访问，Kubernetes 会为 Service 配置集群 IP 地址， 相当于你请求了 type: ClusterIP 的 Service。
 - **LoadBalancer** 使用云平台的负载均衡器向外部公开 Service。Kubernetes 不直接提供负载均衡组件； 你必须提供一个，或者将你的 Kubernetes 集群与某个云平台集成。
 - **ExternalName**  将服务映射到 externalName 字段的内容（例如，映射到主机名 api.foo.bar.example）。 该映射将集群的 DNS 服务器配置为返回具有该外部主机名值的 CNAME 记录。 集群不会为之创建任何类型代理。
+
 ![](imgs/editService.png)

@@ -1,5 +1,5 @@
 ---
-title: 有状态应用
+title: 有状态应用(Statefulsets)
 parent: 工作负载
 nav_order: 4
 ---
