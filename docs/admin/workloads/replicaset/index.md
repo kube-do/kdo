@@ -1,6 +1,6 @@
 ---
 title: 副本集(ReplicaSet)
-parent: 管理员界面
+parent: 工作负载(管理员)
 nav_order: 2
 ---
 
@@ -11,7 +11,9 @@ nav_order: 2
 
 {: .note }
 守护进程集(DaemonSet) 确保全部（或者某些）节点上运行一个 Pod 的副本。 当有节点加入集群时， 也会为他们新增一个 Pod 。 当有节点从集群移除时，这些 Pod 也会被回收。删除 DaemonSet 将会删除它创建的所有 Pod。
+
 ![](imgs/daemonsets.png)
+
 ## 典型用法：
 1. 在每个节点上运行集群守护进程
 2. 在每个节点上运行日志收集守护进程

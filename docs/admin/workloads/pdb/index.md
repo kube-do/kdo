@@ -1,6 +1,6 @@
 ---
 title: 容器组中断预算(PDB)
-parent: 管理员界面
+parent: 工作负载(管理员)
 nav_order: 3
 ---
 
@@ -12,5 +12,6 @@ nav_order: 3
 {: .note }
 
 ![](imgs/daemonsets.png)
+
 ## 典型用法：
 
