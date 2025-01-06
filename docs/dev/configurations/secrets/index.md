@@ -13,3 +13,9 @@ parent: 配置管理
 保密字典 类似于配置映射(ConfigMap)但专门用于保存机密数据。
 
 ![](imgs/secrets.png)
+
+
+## 日常操作
+
+{: .note }
+保密字典的操作基本和配置映射(configmap)一样，编辑和挂载可以查看[配置映射](../configmaps)。

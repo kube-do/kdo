@@ -5,7 +5,7 @@ nav_order: 2
 ---
 
 ##  概述
-KDO的流水线是基于Tekton， Tekton 是一个强大、灵活的构建 CI/CD 流水线系统的开源框架，允许开发者构建、测试和发布应用。Tekton 是云原生的，通过定义 CRD ，让用户快速灵活定义流水线。
+KDO的流水线是基于[Tekton](https://tekton.dev/)， Tekton 是一个强大、灵活的构建 CI/CD 流水线系统的开源框架，允许开发者构建、测试和发布应用。Tekton 是云原生的，通过定义 CRD ，让用户快速灵活定义流水线。
 
 ![](imgs/tekton.jpg)
 
