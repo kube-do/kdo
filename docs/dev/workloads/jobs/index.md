@@ -1,5 +1,5 @@
 ---
-title: 任务(Jobs)
+title: 任务(Job)
 parent: 工作负载
 nav_order: 6
 ---

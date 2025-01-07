@@ -1,5 +1,5 @@
 ---
-title: 守护进程集(DaemonSets)
+title: 守护进程集(DaemonSet)
 parent: 工作负载(管理员)
 nav_order: 1
 ---

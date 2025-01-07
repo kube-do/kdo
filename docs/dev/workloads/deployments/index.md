@@ -1,5 +1,5 @@
 ---
-title: 无状态应用(Deployments)
+title: 无状态应用(Deployment)
 parent: 工作负载
 nav_order: 3
 ---

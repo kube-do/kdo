@@ -1,5 +1,5 @@
 ---
-title: 路由(Ingresses)
+title: 路由(Ingress)
 parent: 网络存储
 nav_order: 2
 ---

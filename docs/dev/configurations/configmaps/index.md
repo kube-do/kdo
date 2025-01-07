@@ -1,5 +1,5 @@
 ---
-title: 配置映射(ConfigMaps)
+title: 配置映射(ConfigMap)
 parent: 配置管理
 ---
 

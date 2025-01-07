@@ -1,5 +1,5 @@
 ---
-title: 保密字典(Secrets)
+title: 保密字典(Secret)
 parent: 配置管理
 ---
 

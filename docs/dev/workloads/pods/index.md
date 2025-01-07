@@ -1,5 +1,5 @@
 ---
-title: 容器组(Pods)
+title: 容器组(Pod)
 parent: 工作负载
 nav_order: 2
 ---

@@ -10,13 +10,20 @@ nav_order: 2
 ## 介绍
 
 {: .note }
-守护进程集(DaemonSet) 确保全部（或者某些）节点上运行一个 Pod 的副本。 当有节点加入集群时， 也会为他们新增一个 Pod 。 当有节点从集群移除时，这些 Pod 也会被回收。删除 DaemonSet 将会删除它创建的所有 Pod。
+ReplicaSet是kubernetes中的一种副本控制器，简称rs，主要作用是控制由其管理的pod，使pod副本的数量始终维持在预设的个数。它的主要作用就是保证一定数量的Pod能够在集群中正常运行，它会持续监听这些Pod的运行状态，在Pod发生故障时重启pod，pod数量减少时重新运行新的 Pod副本。
+官方推荐不要直接使用ReplicaSet，用Deployments取而代之，Deployments是比ReplicaSet更高级的概念，它会管理ReplicaSet并提供很多其它有用的特性，最重要的是Deployments支持声明式更新，声明式更新的好处是不会丢失历史变更。
+所以Deployment控制器不直接管理Pod对象，而是由 Deployment 管理ReplicaSet，再由ReplicaSet负责管理Pod对象。
+[更多信息](https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/replicaset/)
 
-![](imgs/daemonsets.png)
+![](imgs/replicasets.png)
 
-## 典型用法：
-1. 在每个节点上运行集群守护进程
-2. 在每个节点上运行日志收集守护进程
-3. 在每个节点上运行监控守护进程
-一种简单的用法是为每种类型的守护进程在所有的节点上都启动一个 DaemonSet。 一个稍微复杂的用法是为同一种守护进程部署多个 DaemonSet；每个具有不同的标志， 并且对不同硬件类型具有不同的内存、CPU 要求。
+## 工作原理
+Replicaset核心作用在于用户创建指定数量的pod副本，并确保pod副本一直处于满足用户期望的数量， 起到多退少补的作用，并且还具有自动扩容缩容等制。
+Replicaset控制器主要由三个部分组成：
+1. 用户期望的pod副本数：用来定义由这个控制器管控的pod副本有几个 
+2. 标签选择器：选定哪些pod是自己管理的，如果通过标签选择器选到的pod副本数量少于我们指定的数量，需要用到下面的组件 
+3. pod资源模板：如果集群中现存的pod数量不够我们定义的副本中期望的数量怎么办，需要新建pod，这就需要pod模板，新建的pod是基于模板来创建的。
+
+
+
 

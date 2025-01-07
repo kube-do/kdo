@@ -1,5 +1,5 @@
 ---
-title: 存储卷
+title: 存储卷(PVC)
 parent: 网络存储
 nav_order: 3
 ---

@@ -1,5 +1,5 @@
 ---
-title: 计划任务(Cronjobs)
+title: 计划任务(Cronjob)
 parent: 工作负载
 nav_order: 5
 ---
