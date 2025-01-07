@@ -1,5 +1,5 @@
 ---
-title: 用户
+title: 用户(User)
 parent: 用户管理
 nav_order: 1
 ---
