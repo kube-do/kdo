@@ -1,6 +1,6 @@
 ---
 title: 节点
-parent: 用户管理
+parent: 管理
 nav_order: 1
 ---
 

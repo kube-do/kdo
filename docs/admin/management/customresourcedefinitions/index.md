@@ -1,7 +1,7 @@
 ---
 title: 限制范围
-parent: 用户管理
-nav_order: 5
+parent: 管理
+nav_order: 6
 ---
 
 1. TOC

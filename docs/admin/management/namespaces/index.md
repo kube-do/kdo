@@ -1,6 +1,6 @@
 ---
 title: 命名空间
-parent: 用户管理
+parent: 管理
 nav_order: 2
 ---
 
