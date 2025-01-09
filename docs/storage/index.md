@@ -16,9 +16,9 @@ nav_order: 4
 ![pvcs.png](imgs/pvcs.png)
 
 ## 存储概念
-1. **持久性卷卷 (PersistentVolume PV):** 持久性卷卷 是集群中的一块网络存储，它由管理员设置或通过动态供应自动创建。PV 是一个集群资源，独立于任何单个 Pod 的生命周期存在。PV 可以基于[多种后端存储](#持久性卷类型)提供，例如 NFS、iSCSI、云提供商的存储服务（如 AWS EBS、GCE PD）等。
+1. **持久性卷 (PersistentVolume PV):** 持久性卷卷 是集群中的一块网络存储，它由管理员设置或通过动态供应自动创建。PV 是一个集群资源，独立于任何单个 Pod 的生命周期存在。PV 可以基于[多种后端存储](#持久性卷类型)提供，例如 NFS、iSCSI、云提供商的存储服务（如 AWS EBS、GCE PD）等。
 PV 定义了存储的详细信息，比如大小、访问模式（ReadWriteOnce, ReadOnlyMany, ReadWriteMany）、回收策略（Retain, Recycle, Delete）等。PV 是静态配置的，即一旦创建就具有固定的属性。
-2. **持久性卷卷声明 (PersistentVolumeClaim PVC):** 持久性卷卷声明 是用户对存储资源的请求。开发人员不需要关心底层存储的具体实现细节，只需要声明他们需要多少存储空间以及所需的访问模式。Kubernetes 集群会根据 PVC 的要求去寻找合适的 PV 进行绑定。
+2. **持久性卷声明 (PersistentVolumeClaim PVC):** 持久性卷卷声明 是用户对存储资源的请求。开发人员不需要关心底层存储的具体实现细节，只需要声明他们需要多少存储空间以及所需的访问模式。Kubernetes 集群会根据 PVC 的要求去寻找合适的 PV 进行绑定。
 3. **存储类(StorageClass SC):** 提供了一种方式来描述不同类型的存储 "类别" 或者说存储 "级别"。它主要用于动态供应持久性卷声明(PV)，并且允许用户根据需要选择合适的存储选项。通过 StorageClass，集群管理员可以定义多种存储类型，并为每种类型设置不同的参数和策略
 
 ## 持久性卷类型
