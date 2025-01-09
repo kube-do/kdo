@@ -4,7 +4,7 @@ nav_order: 4
 ---
 
 1. TOC
-   {:toc}
+{:toc}
 
 ## 介绍
 
@@ -46,13 +46,16 @@ Kubernetes 存储卷（Volume）是容器持久化数据的一种方式，允许
 
 ### 添加存储卷声明
 
-点击添加存储，选择存储类型，存储名称、[访问模式](#存储访问模式)、存储大小等信息，点击确定即可。
+点击添加存储，选择存储类型，存储名称、[访问模式](#访问模式)、存储大小等信息，点击确定即可。
 ![create-pvc.gif](imgs/create-pvc.gif)
 
+### 存储卷声明扩容
+
+PVC扩容允许用户增加分配给应用程序的存储空间，而无需重新创建 PVC 或者关联的容器组
+![expansion-pvc.gif](imgs/expansion-pvc.gif)
 
 
-
-## 存储访问模式
+## 访问模式
 
 {: .note }
 Kubernetes 中的存储访问模式（Access Modes）定义了 PersistentVolume (PV) 或者通过 PersistentVolumeClaim (PVC) 请求的存储卷可以如何被 Pod 访问。不同的访问模式适用于不同类型的存储后端，并且不是所有的存储系统都支持所有访问模式。
@@ -63,7 +66,7 @@ Kubernetes 中的存储访问模式（Access Modes）定义了 PersistentVolume 
 2. **ReadOnlyMany (ROX):** 表示该卷可以被多个节点以只读方式挂载。 适合用于共享只读数据集，如配置文件或静态内容。 
 3. **ReadWriteMany (RWX):** 允许多个节点同时对同一个卷进行读写操作。 支持这种模式的存储解决方案较少，通常包括某些网络文件系统（NFS）、分布式文件系统（GlusterFS, CephFS）等。
 
-## 访问模式使用场景
+### 访问模式使用场景
 1. **单个实例的应用程序:** 如果你的应用只需要一个副本，并且需要持久化数据，那么 ReadWriteOnce 是最常用的选择。
 2. **多副本读取应用:** 如果应用程序有多个副本并且它们只需要读取相同的数据，则可以选择 ReadOnlyMany。
 3. **多副本读写应用:** 对于那些要求多个Pod副本能够同时读写同一份数据的应用，你需要使用 ReadWriteMany 模式。然而，请注意并不是所有的云服务提供商或存储解决方案都支持 RWX。
