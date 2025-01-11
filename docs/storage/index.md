@@ -56,6 +56,11 @@ PVC扩容允许用户增加分配给应用程序的存储空间，而无需重�
 如果要从现有的工作负载(无状态应用、有状态应用) 卸载(umount)已经工作挂载的持久性卷声明(PVC)，需要到对应工作负载的页面操作。
 ![umount-pvc.gif](imgs/umount-pvc.gif)
 
+### 删除持久性卷声明(PVC)
+当确定PVC已经被从工作负载中卸载后，就可以把PVC删除了。
+![delete-pvc.png](imgs/delete-pvc.png)
+
+
 ## 访问模式
 
 {: .note }
