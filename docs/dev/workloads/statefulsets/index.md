@@ -14,6 +14,7 @@ Kubernetes 有`状态应用(Statefulset)` 是一种工作负载 API 对象，它
 与 [无状态应用(Deployment)](../deployments) 不同的是，`有状态应用(Statefulset)` 为每个 `容器组(Pod)` 提供了稳定的、唯一的网络标识符，并且保证有序的、优雅的部署和缩放。
 这意味着当你创建一个 `有状态应用(Statefulset)` 来管理一组 `容器组(Pod)` 时，每个 容器组(Pod) 都会有一个持久的身份，即使它被重新调度到集群中的其他节点上。
 使用`状态应用(Statefulset)`的典型场景包括数据库（如 MySQL、PostgreSQL）、缓存系统（如 Redis 集群）和其他需要持久存储和稳定网络标识的应用程序。
+
 ![statefulset-architecture.webp](imgs/statefulset-architecture.webp)
 
 ## 关键特性
@@ -42,6 +43,14 @@ Kubernetes 有`状态应用(Statefulset)` 是一种工作负载 API 对象，它
 ## 访问有状态应用
 
 {: .note }
-有状态应用的访问页面或基本和无状态应用一样，可以参考[访问无状态应用](../deployments#访问无状态应用)
+有状态应用的访问页面基本和无状态应用一样，可以参考[访问无状态应用](../deployments#访问无状态应用)
 
 ![statefulset.png](imgs/statefulset.png)
+
+
+## 操作有状态应用
+
+{: .note }
+操作有状态应用基本也和无状态应用一样，只是有些不适合有状态应用菜单没有显示，可以参考[操作无状态应用](../deployments#操作无状态应用)
+
+![](imgs/actions.png)
