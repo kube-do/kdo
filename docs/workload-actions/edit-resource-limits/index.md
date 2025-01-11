@@ -7,6 +7,7 @@ parent: 工作负载操作
 {:toc}
 
 ## 介绍
+{: .note }
 为了实现 K8s 集群中资源的有效调度和充分利用， K8s 采用要求(requests)和限制(limits)两种限制类型来对资源进行容器粒度的分配。
 每一个容器都可以独立地设定相应的requests和limits。这 2 个参数是通过每个容器 containerSpec 的 resources 字段进行设置的。
 一般来说，在调度的时候requests比较重要，在运行时limits比较重要。
