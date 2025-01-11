@@ -19,10 +19,10 @@ Kubernetes 有`状态应用(Statefulset)` 是一种工作负载 API 对象，它
 
 ## 关键特性
 1. **稳定的网络身份:** 每个 Pod 在 StatefulSet 中都有一个基于其序号的固定名称（例如，web-0、web-1），这个名称在 Pod 整个生命周期中保持不变，即使 Pod 被删除和重建。
-2. **持久存储:** 通常与 StatefulSet 一起使用的是 PersistentVolume(PV) 和 PersistentVolumeClaim(PVC)。当 StatefulSet 创建 Pod 时，这些卷声明会被绑定到特定的持久卷，确保数据可以在 Pod 重启或重新调度后仍然存在。
-3. **有序部署和扩展:** StatefulSet 确保按顺序创建 Pod，并且只有在前一个 Pod 成功启动并运行之后才会继续下一个。同样，在缩放过程中，Pod 按照逆序终止。
-4. **有序地滚动更新:** StatefulSet 支持滚动更新，但与 Deployments 不同，它按照反向顺序进行更新（从最后一个 Pod 开始），并且在确认每个新版本的 Pod 正常运行之前不会继续更新下一个。
-5. **无头服务(Headless Service):** 通常会为 StatefulSet 创建一个特殊的无头服务（Headless Service），用于命名和发现 Pod。由于 StatefulSet 的 Pod 拥有稳定的身份，所以它们可以通过这个服务来访问彼此。
+2. **持久存储:** 通常与 状态应用(Statefulset) 一起使用的是 PersistentVolume(PV) 和 PersistentVolumeClaim(PVC)。当 StatefulSet 创建 Pod 时，这些卷声明会被绑定到特定的持久卷，确保数据可以在 Pod 重启或重新调度后仍然存在。
+3. **有序部署和扩展:** 状态应用(Statefulset) 确保按顺序创建 Pod，并且只有在前一个 Pod 成功启动并运行之后才会继续下一个。同样，在缩放过程中，Pod 按照逆序终止。
+4. **有序地滚动更新:** 状态应用(Statefulset) 支持滚动更新，但与 Deployments 不同，它按照反向顺序进行更新（从最后一个 Pod 开始），并且在确认每个新版本的 Pod 正常运行之前不会继续更新下一个。
+5. **无头服务(Headless Service):** 通常会为 状态应用(Statefulset) 创建一个特殊的无头服务（Headless Service），用于命名和发现 Pod。由于 StatefulSet 的 Pod 拥有稳定的身份，所以它们可以通过这个服务来访问彼此。
 
 
 ## 有状态列表

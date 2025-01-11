@@ -29,7 +29,7 @@ PDB 应该根据实际业务需求和系统架构合理设计，以平衡可靠�
 
 ## 配置方式
 PDB 可以通过以下两种方式之一来定义：
-1. **minAvailable:** 指定最小可用 Pod 数量或百分比。
-2. **maxUnavailable:** 指定最大不可用 Pod 数量或百分比。
+1. **minAvailable(最小可用):** 指定最小可用 Pod 数量或百分比。
+2. **maxUnavailable(最大不可用):** 指定最大不可用 Pod 数量或百分比。
 
 ![edit-pdb.png](imgs/edit-pdb.png)

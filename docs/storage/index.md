@@ -43,16 +43,18 @@ Kubernetes 持久性卷（Volume）是容器持久化数据的一种方式，允
 {: .note }
 对应用户来说，大部分的操作都基于持久性卷声明(PVC)，其他PV和SC基本都自动化操作。
 
-### 添加持久性卷声明
-
+### 添加持久性卷声明(PVC)
 点击添加存储，选择存储类型，存储名称、[访问模式](#访问模式)、存储大小等信息，点击确定即可。
 ![create-pvc.gif](imgs/create-pvc.gif)
 
-### 持久性卷声明扩容
-
+### 持久性卷声明(PVC)扩容
 PVC扩容允许用户增加分配给应用程序的存储空间，而无需重新创建 PVC 或者关联的容器组
 ![expansion-pvc.gif](imgs/expansion-pvc.gif)
 
+
+### 从工作负载中卸载(umount)持久性卷声明(PVC)
+如果要从现有的工作负载(无状态应用、有状态应用) 卸载(umount)已经工作挂载的持久性卷声明(PVC)，需要到对应工作负载的页面操作。
+![umount-pvc.gif](imgs/umount-pvc.gif)
 
 ## 访问模式
 
@@ -60,11 +62,10 @@ PVC扩容允许用户增加分配给应用程序的存储空间，而无需重�
 Kubernetes 中的存储访问模式（Access Modes）定义了 PersistentVolume (PV) 或者通过 PersistentVolumeClaim (PVC) 请求的持久性卷可以如何被 Pod 访问。
 不同的访问模式适用于不同类型的存储后端，并且不是所有的存储系统都支持所有访问模式。
 
-
 ### Kubernetes主要访问模式
 1. **ReadWriteOnce (RWO):** 这是最常见地访问模式，表示该卷可以被单个节点以读写的方式挂载。 适用于大多数类型的存储，例如 AWS EBS、GCE PD 等。
 2. **ReadOnlyMany (ROX):** 表示该卷可以被多个节点以只读方式挂载。 适合用于共享只读数据集，如配置文件或静态内容。 
-3. **ReadWriteMany (RWX):** 允许多个节点同时对同一个卷进行读写操作。 支持这种模式的存储解决方案较少，通常包括某些网络文件系统（NFS）、分布式文件系统（GlusterFS, CephFS）等。
+3. **ReadWriteMany (RWX):** 允许多个节点同时对同一个卷进行读写操作。 通常包括某些网络文件系统（NFS）、分布式文件系统（GlusterFS, CephFS）等。
 
 ### 访问模式使用场景
 1. **单个实例的应用程序:** 如果你的应用只需要一个副本，并且需要持久化数据，那么 ReadWriteOnce 是最常用的选择。
