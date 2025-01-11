@@ -15,5 +15,5 @@ nav_order: 6
 2. [指标](../../dev/workloads/pods)
 3. [警报](../../dev/workloads/deployments)
 4. [静默](../../dev/workloads/statefulsets)
-5. [事件](daemonsets)
-6. [日志](replicaset)
+5. [事件](../../observability/events)
+6. [日志](../../observability/logging)
