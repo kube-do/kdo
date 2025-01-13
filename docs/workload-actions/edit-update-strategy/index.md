@@ -26,11 +26,11 @@ parent: 工作负载操作
 
 ### 滚动更新更新策略
 
-**最大不可用(maxUnavailable):** 定义了在更新过程中最多可以有多少个`容器组(Pod)`是不可用的。
-**最大浪涌(maxSurge):** 定义了在更新过程中超过期望副本数量的最大额外`容器组(Pod)`数量。
+- **最大不可用(maxUnavailable):** 定义了在更新过程中最多可以有多少个`容器组(Pod)`是不可用的。
+- **最大激增(maxSurge):** 定义了在更新过程中超过期望副本数量的最大额外`容器组(Pod)`数量。
 
 {: .note }
-默认情况下，Deployment 使用 RollingUpdate 策略，其中 maxUnavailable 设置为 25% 或 1（取较大者），而 maxSurge 也设置为 25% 或 1（取较大者）。
+默认情况下，无状态应用(Deployment) 使用 RollingUpdate 策略，其中 最大不可用(maxUnavailable) 设置为 25% 或 1（取较大者），而 最大激增(maxSurge) 也设置为 25% 或 1（取较大者）。
 这意味着，在任何给定时间，最多有 25% 的旧版本 `容器组(Pod)` 可能不可用，并且可能会创建多达 25% 的新版本 `容器组(Pod)` 来超出预期的副本数。
 
 ![](imgs/edit-update-strategy.png)
