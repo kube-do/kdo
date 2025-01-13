@@ -59,3 +59,18 @@ Kubernetes 启动时会创建四个初始名字空间：
 | 创建            | 命名空间的创建时间                                                                                                                                              |
 
 ## 命名空间详情
+
+### 命名空间概述
+![](imgs/namespace.png)
+
+
+### 命名空间工作负载
+![](imgs/namespace-topology.png)
+
+
+### 命名空间访问控制
+![](imgs/namespace-access.png)
+
+
+### 命名空间角色绑定
+![](imgs/namespace-roles.png)
