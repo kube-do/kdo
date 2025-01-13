@@ -10,5 +10,5 @@ nav_order: 2
 
 ## 管理员应用管理菜单
 1. [Helm应用](../../dev/applications/helm)
-2. [OperatorHub](../../dev/workloads/pods)
-3. [安装的 Operators](../../dev/workloads/deployments)
+2. [OperatorHub](operator-hub)
+3. [安装的 Operators](operators)
