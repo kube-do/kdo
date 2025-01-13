@@ -13,6 +13,8 @@ nav_order: 1
 Kubernetes Operator 是一种专门用于扩展 Kubernetes API 的方法，它允许您为特定应用程序定义、部署和管理复杂的有状态应用。
 Operator 是通过编写自定义资源（Custom Resource Definitions, CRD）来实现的，这些自定义资源可以看作是 Kubernetes API 的扩展，它们描述了您的应用程序的状态和行为。
 
+![operator-arch.png](imgs/operator-arch.png)
+
 ### Operator的特点
 1. **定制化:** 每个 Operator 都是为特定的应用程序或一组相关服务设计的。例如，数据库、监控系统、CI/CD 系统等都可以有自己的 Operator。
 2. **领域知识:** Operator 包含了对所管理应用程序的深入理解，包括如何安装、配置、升级以及处理故障。这意味着 Operator 可以执行复杂的操作，如备份恢复、滚动更新等，而无需人工干预。
@@ -23,5 +25,21 @@ Operator 是通过编写自定义资源（Custom Resource Definitions, CRD）来
 7. **版本控制与升级:** Operator 支持对应用程序及其组件进行版本控制，并且可以安全地执行滚动更新，以最小化停机时间。
 8. **社区和生态系统:** 随着 Operator 的普及，已经形成了一个活跃的社区和丰富的生态系统，其中包含了许多现成的 Operator，可以直接应用于各种应用场景中。
 
-## 服务类型
+## OperatorHub介绍
+
+{: .note }
+OperatorHub用于管理用户的operator，支持安装与部署operator。平台提供公开Operator和私有的Operator，公开的可直接安装，无需购买/上传； 私有的Operator支持上传，用户可根据实际的需要在在资产开放平台购买私有的Operator。
+KDO平台通过 OLM（OperatorLifecycleManager）插件管理 operator，OLM作为Operator Framework的一部分，可以帮助用户进行Operator的自动安装，升级及其生命周期的管理。
+
+![operator-hub.png](imgs/operator-hub.png)
+
+### 创建Operator
+
+{: .note }
+创建Operator应用和创建[Helm应用](../../../dev/applications/helm)的流程类型，查找需要的Operator，选择`频道`和`版本`即可，一般Operator都是安装在operators这个命名空间(namespace)。
+
+{: .warning }
+有一部分Operator需要安装到特定的命名空间(namespace)，具体查看说明文档。
+
+![install-operator.gif](imgs/install-operator.gif)
 
