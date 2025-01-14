@@ -8,6 +8,7 @@ nav_order: 3
 {:toc}
 
 ## 介绍
+
 {: .note }
 应用日志可以让你了解应用内部的运行状况。日志对调试问题和监控集群活动非常有用。 
 大部分现代化应用都有某种日志记录机制。同样地，容器引擎也被设计成支持日志记录。
@@ -15,11 +16,13 @@ nav_order: 3
 
 
 ## kdo日志平台(Grafana Loki)
+
 {: .note }
 kdo的日志平台采用基于[Grafana Loki](https://grafana.com/docs/loki/latest/), 它是由 Grafana Labs 开发的一个开源的日志聚合系统，它被设计为易于操作且成本效益高。
 通过标签（label）来索引日志流，而不是对日志内容本身进行索引，这使得它的索引非常小。日志数据本身则被压缩成大块(chunk)存储，从而降低了存储成本。
 
 ###  Grafana Loki架构
+
 {: .note }
 现在，让我们看看 Grafana Loki Logging 是如何工作的。该图显示了 Grafana Loki 如何收集、存储、查询和可视化日志。
 
@@ -35,8 +38,10 @@ kdo的日志平台采用基于[Grafana Loki](https://grafana.com/docs/loki/lates
 7. 通过将 Loki 添加到 Grafana，您可以可视化查询的日志或使用 LogCLI 从 CLI 查询日志。
 
 ### Grafana Loki 组件
+
 {: .note }
 Grafana Loki 包含很多组件，promtail, distributor, ingester, querier, ruler, query frontend, Grafana
+
 1. **Promtail:** 
 Promtail 是充当 Loki 的日志代理（agent）的重要组件。它的功能是从系统中收集每个日志，标记它，然后将其发送给 Loki。Loki 从本地日志文件和系统日志中收集日志。 您必须在要收集日志的每个系统中安装 Promtail，同样，如果您在 Kubernetes 上使用 Loki，则必须在每个节点中部署 Promtail 作为守护进程集（Daemonset）。
 

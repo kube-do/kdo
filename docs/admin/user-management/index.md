@@ -9,5 +9,5 @@ nav_order: 7
 1. [用户](users)
 2. [组](groups)
 3. [服务账号](serviceaccounts)
-4. [角色](../../rbac##role和clusterrole管理)
+4. [角色](../../rbac#role和clusterrole管理)
 5. [角色绑定](../../rbac#rolebinding和clusterrolebinding管理)
