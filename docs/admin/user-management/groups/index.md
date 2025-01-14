@@ -1,5 +1,5 @@
 ---
-title: 组
+title: 组(Group)
 parent: 用户管理
 nav_order: 2
 ---
