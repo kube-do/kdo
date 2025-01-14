@@ -74,11 +74,11 @@ RBAC在Kubernetes中主要由四个关键组件构成：Role、ClusterRole、Rol
 4. **ClusterRoleBinding:** 用于将ClusterRole绑定到一个或多个用户、服务账户或用户组，控制这些实体对集群范围内资源的访问。
 
 
-## 用户管理(User)
+## 用户管理
 
-## 组管理(Group)
+## 组管理
 
-## 服务账号(ServiceAccount)
+## 服务账号
 
 
 ## Role和ClusterRole管理
