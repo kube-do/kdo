@@ -76,10 +76,39 @@ RBAC在Kubernetes中主要由四个关键组件构成：Role、ClusterRole、Rol
 
 ## 用户管理
 
+{: .note }
+在 Kubernetes 中，用户的概念主要体现在访问控制和认证上。
+Kubernetes 本身并不直接管理用户账户；相反，它依赖外部的认证机制来验证用户身份，并通过 RBAC（基于角色的访问控制）等系统来授权用户可以执行的操作。
+
+![users.png](imgs/users.png)
+
 ## 组管理
+
+{: .note }
+在 Kubernetes 中，用户组（Groups）并不是直接由 Kubernetes 管理的实体，而是通过外部认证服务或机制来定义和管理。当用户试图访问 Kubernetes API 时，认证插件负责验证用户的身份，并且可以将用户映射到一个或多个组中。
+然后，Kubernetes 的 RBAC 或其他授权模块可以根据这些组来决定允许或拒绝特定用户的请求。
+
+![groups.png](imgs/groups.png)
+
+### 用户组的作用
+
+{: .note }
+用户组的主要作用是简化权限管理。你可以为一组用户分配相同的权限，而不需要单独为每个用户配置权限。
+例如，你可能有一个开发团队，所有成员都需要对某些命名空间有读写权限。在这种情况下，你可以创建一个包含所有开发者的组，并为该组分配适当的权限。
+
 
 ## 服务账号
 
+{: .note }
+服务账号(ServiceAccount)是在 Kubernetes 中一种用于非人类用户的账号，在 Kubernetes 集群中提供不同的身份标识。 应用 Pod、系统组件以及集群内外的实体可以使用特定 ServiceAccount 的凭据来将自己标识为该 ServiceAccount。 这种身份可用于许多场景，包括向 API 服务器进行身份认证或实现基于身份的安全策略。
+服务账号以 ServiceAccount 对象的形式存在于 API 服务器中。
+
+### 服务账号具有以下属性：
+1. **名字空间限定:** 每个服务账号都与一个 Kubernetes 名字空间绑定。 每个名字空间在创建时，会获得一个名为 default 的 ServiceAccount。
+2. **轻量级:** 服务账号存在于集群中，并在 Kubernetes API 中定义。你可以快速创建服务账号以支持特定任务。
+3. **可移植性:** 复杂的容器化工作负载的配置包中可能包括针对系统组件的服务账号定义。 服务账号的轻量级性质和名字空间作用域的身份使得这类配置可移植。
+
+![](imgs/serviceaccounts.png)
 
 ## Role和ClusterRole管理
 
@@ -97,8 +126,8 @@ Kubernetes RBAC 的角色(Role)或 集群角色(ClusterRole) 中包含一组代�
 ![](imgs/roles.png)
 
 ### 角色说明
-![](imgs/role.png)
 
+![](imgs/role.png)
 
 
 ## RoleBinding和ClusterRoleBinding管理 
