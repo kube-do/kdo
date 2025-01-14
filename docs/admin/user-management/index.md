@@ -6,8 +6,8 @@ nav_order: 7
 
 
 ## 管理员用户管理菜单
-1. [用户](users)
-2. [组](groups)
-3. [服务账号](serviceaccounts)
+1. [用户](../../rbac#用户管理(user))
+2. [组](../../rbac#用户管理(group))
+3. [服务账号](../../rbac#服务账号(serviceaccount))
 4. [角色](../../rbac#role和clusterrole管理)
 5. [角色绑定](../../rbac#rolebinding和clusterrolebinding管理)
