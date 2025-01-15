@@ -4,6 +4,14 @@ KubeSphere 将 前端 与 后端 分开，实现了面向云原生的设计，�
 Architecture
 
 组件列表
+
+
+
+| 角色         | 名字               | 功能说明 |
+|:-----------|:-----------------|------|
+| 容器编排       | Kubernetes       |      |
+| 容器运行时(CRI) | Containerd或CRI-O |      |
+
 后端组件	功能说明
 ks-apiserver	整个集群管理的 API 接口和集群内部各个模块之间通信的枢纽，以及集群安全控制。
 ks-console	提供 KubeSphere 的控制台服务。
