@@ -21,5 +21,6 @@ kdo平台的很多组件都是通过CRD来实现的。
 
 {: .note }
 由于很多资源没有在kdo平台的菜单里面，比如用于监控的`PrometheusRule`，我们就可以CRD找到，进行增加、删除、修改等操作。
+
 ![crd.png](imgs/crd.png)
 

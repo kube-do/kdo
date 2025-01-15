@@ -23,9 +23,6 @@ kdo的日志平台采用基于[Grafana Loki](https://grafana.com/docs/loki/lates
 
 ###  Grafana Loki架构
 
-{: .note }
-现在，让我们看看 Grafana Loki Logging 是如何工作的。该图显示了 Grafana Loki 如何收集、存储、查询和可视化日志。
-
 ![loki.webp](imgs/loki.webp)
 
 1. 在 Grafana Loki 中，agent 负责从文件、容器、pod、应用程序和系统日志中收集日志。

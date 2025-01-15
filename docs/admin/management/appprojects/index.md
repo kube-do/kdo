@@ -1,5 +1,5 @@
 ---
-title: 应用项目
+title: 应用项目(AppProject)
 parent: 管理
 nav_order: 3
 ---

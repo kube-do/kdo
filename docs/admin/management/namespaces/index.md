@@ -1,5 +1,5 @@
 ---
-title: 命名空间
+title: 命名空间(Namespace)
 parent: 管理
 nav_order: 2
 ---
@@ -16,6 +16,7 @@ nav_order: 2
 ![kubernetes-namespaces.png](imgs/kubernetes-namespaces.png)
 
 ### 默认名字空间
+
 {: .note }
 Kubernetes 启动时会创建四个初始名字空间：
 
@@ -26,7 +27,7 @@ Kubernetes 启动时会创建四个初始名字空间：
 
 ### 命名空间感知命令
 使用 kubectl 命令时，你可以通过 -n 或 --namespace 参数来指定操作的命名空间。如果不指定，它将会作用于默认命名空间。
-你可以使用 kubectl config set-context --current --namespace=<namespace_name> 来更改当前上下文的命名空间。
+你可以使用`kubectl config set-context --current --namespace=<namespace_name>`来更改当前上下文的命名空间。
 
 ### 生命周期
 当命名空间被创建后，它可以容纳各种类型的资源。当命名空间被删除时，它内部的所有资源也会被删除。
@@ -38,7 +39,7 @@ Kubernetes 启动时会创建四个初始名字空间：
 
 ### 名字空间和DNS
 当你创建一个服务时， Kubernetes 会创建一个相应的 DNS 条目。
-该条目的形式是 <服务名称>.<名字空间名称>.svc.cluster.local，这意味着如果容器只使用 <服务名称>，它将被解析到本地名字空间的服务。
+该条目的形式是` <服务名称>.<名字空间名称>.svc.cluster.local`，这意味着如果容器只使用 <服务名称>，它将被解析到本地名字空间的服务。
 这对于跨多个名字空间（如开发、测试和生产） 使用相同的配置非常有用。如果你希望跨名字空间访问，则需要使用完全限定域名（FQDN）
 
 

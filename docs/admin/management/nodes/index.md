@@ -1,5 +1,5 @@
 ---
-title: 节点
+title: 节点(Node)
 parent: 管理
 nav_order: 1
 ---
