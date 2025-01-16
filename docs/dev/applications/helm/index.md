@@ -11,8 +11,8 @@ nav_order: 4
 ## 介绍
 
 {: .note }
-很多人都使用过Ubuntu下的ap-get或者CentOS下的yum, 这两者都是Linux系统下的包管理工具。采用apt-get/yum,应用开发者可以管理应用包之间的依赖关系，发布应用。
-用户则可以以简单的方式查找、安装、升级、卸载应用程序，Helm可以非常方便的部署一些组件，比如：MySQL, Redis, Kafka这些。
+很多人都使用过Ubuntu下的`apt-get`或者CentOS下的`yum`, 这两者都是Linux系统下的包管理工具。采用apt-get/yum，应用开发者可以管理应用包之间的依赖关系，发布应用。
+用户则可以以简单的方式查找、安装、升级、卸载应用程序，Helm可以非常方便的部署一些组件，比如：MySQL、Redis，Kafka这些应用。
 下面是 Helm 的架构图。
 
 ![Helm 架构图](imgs/helm-chart.png)
@@ -32,6 +32,6 @@ nav_order: 4
 ## 管理Helm应用
 
 {: .note }
-点击对应Helm应用，可以更新或者删除Helm应用，也可以查看Helm应用的信息。
+点击对应Helm应用，可以更新或者删除Helm应用，也可以查看当前Helm应用的信息，包括：版本，安装时间等，还可以查看历史版本，可以选择回滚。
 
 ![](imgs/manageHelm.gif)

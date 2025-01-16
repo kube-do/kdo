@@ -16,7 +16,7 @@ nav_order: 4
 
 ## 存储概念
 1. **持久性卷 (PersistentVolume PV):** 持久性卷卷 是集群中的一块网络存储，它由管理员设置或通过动态供应自动创建。PV 是一个集群资源，独立于任何单个 Pod 的生命周期存在。PV 可以基于[多种后端存储](#持久性卷类型)提供，例如 NFS、iSCSI、云提供商的存储服务（如 AWS EBS、GCE PD）等。
-PV 定义了存储的详细信息，比如大小、[访问模式(ReadWriteOnce, ReadOnlyMany, ReadWriteMany)](#访问模式)、[回收策略(Retain,  Delete)](#回收策略)等。PV 是静态配置的，即一旦创建就具有固定的属性。
+PV 定义了存储的详细信息，比如大小、[访问模式](#访问模式)(ReadWriteOnce, ReadOnlyMany, ReadWriteMany)、[回收策略](#回收策略)(Retain,  Delete)等。PV 是静态配置的，即一旦创建就具有固定的属性。
 2. **持久性卷声明 (PersistentVolumeClaim PVC):** 持久性卷卷声明 是用户对存储资源的请求。开发人员不需要关心底层存储的具体实现细节，只需要声明他们需要多少存储空间以及所需的访问模式。Kubernetes 集群会根据 PVC 的要求去寻找合适的 PV 进行绑定。
 3. **存储类(StorageClass SC):** 提供了一种方式来描述不同类型的存储 "类别" 或者说存储 "级别"。它主要用于动态供应持久性卷声明(PV)，并且允许用户根据需要选择合适的存储选项。通过 StorageClass，集群管理员可以定义多种存储类型，并为每种类型设置不同的参数和策略
 
@@ -95,7 +95,7 @@ Kubernetes 中的存储访问模式（Access Modes）定义了 PersistentVolume 
 ## 卷快照
 
 {: .note }
-Kubernetes 卷快照（Volume Snapshots）功能允许用户创建现有 PersistentVolumeClaim (PVC) 的快照，从而可以在不中断服务的情况下备份数据。这为数据保护、灾难恢复以及开发和测试环境的创建提供了极大的便利。从 Kubernetes 1.17 版本开始，卷快照成为了一个稳定的功能。
+Kubernetes 卷快照（Volume Snapshots）功能允许用户创建现有 PersistentVolumeClaim (PVC) 的快照，从而可以在不中断服务的情况下备份数据。这为数据保护、灾难恢复以及开发和测试环境的创建提供了极大的便利。
 
 ### 卷快照资源
 
@@ -104,7 +104,7 @@ Kubernetes 卷快照（Volume Snapshots）功能允许用户创建现有 Persist
 
 1. **卷快照(VolumeSnapshot)**: 这个资源表示一个 PVC 在某个时间点的状态快照。
 ![](imgs/snapshotss.png)
-2. **卷快照类(VolumeSnapshotClass)**: 是 Kubernetes 中用于定义卷快照（Volume Snapshot）行为的资源。它类似于 StorageClass，为用户提供了一种方式来配置和管理不同类型的卷快照。每个 VolumeSnapshotClass 都关联了一个特定的存储后端，并且可以包含有关如何创建和管理该类型快照的参数。
+2. **卷快照类(VolumeSnapshotClass)**: 是 Kubernetes 中用于定义卷快照(Volume Snapshot)行为的资源。它类似于 StorageClass，为用户提供了一种方式来配置和管理不同类型的卷快照。每个 VolumeSnapshotClass 都关联了一个特定的存储后端，并且可以包含有关如何创建和管理该类型快照的参数。
 ![](imgs/volume-snapshot-class.png)
 3. **卷快照类型(VolumeSnapshotContent)**: 类似于 PV 和 PVC 的关系，它是 VolumeSnapshot 的底层实现，通常由系统自动生成或由管理员手动创建。
 ![](imgs/volume-snapshot-content.png)
