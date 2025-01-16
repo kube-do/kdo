@@ -20,30 +20,39 @@ nav_order: 2
 
 ## 详情
 
-{: .note }
-在详情模块，可以查看当前环境的基本信息，包括名字、标签、描述等信息，点击查看所有可以获取这个环境更多信息。
+在详情子页面，可以查看当前环境的基本信息，包括名字、标签、描述等信息，点击查看所有可以获取这个环境更多信息。
 
 ![detail.png](imgs/detail.png)
 
 ## 库存
 
+在库存子页面，可以获取当前环境内的各类资源，包括: [容器组](../../workloads/pods)、[无状态](../../workloads/deployments)、[有状态](../../workloads/statefulsets)、
+[配置映射](../../configurations/configmaps)、[服务](../../network-stroage/services)、[持久化声明](../../network-stroage/persistent-volume-claims)等。点击对应的资源链接，可以直接跳转资源页面。
 
 ![inventory.png](imgs/inventory.png)
 
 ## 状态
 
 
+在状态子页面，可能当前环境是否正常，应用有没有异常告警，点击告警`查看详情`链接，可以查看告警的详情。
+
 ![status.png](imgs/status.png)
 
 ## 使用率
+
+在使用率子页面，可以当前环境的资源使用情况，可以选择时间段，点击进去可以查看详情。
 
 ![utilization.png](imgs/utilization.png)
 
 ## 资源配额
 
+如果管理员设置了[资源配额](../../../admin/management/resourcequotas)，可以查看当资源的使用情况，如果资源不足，可以联系管理员进行扩容。
+
 ![resource-quotas.png](imgs/resource-quotas.png)
 
 ## 事件
+
+可以查看这个环境内所有资源的事件。关于事件，请访问[更多信息](../../../observability/events)。
 
 ![events.png](imgs/events.png)
 
