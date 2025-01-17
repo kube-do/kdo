@@ -4,6 +4,9 @@ parent: 应用管理
 nav_order: 2
 ---
 
+1. TOC
+{:toc}
+
 ##  概述
 
 {: .note }
@@ -308,12 +311,11 @@ spec:
               echo "----------"
 
               DEPLOYMENT_NAME="spring-boot-docker-ls-test"
-
+              
               APP_NAME="spring-boot-docker"
-
+              
               NAMESPACE="cc-dev"
-
-
+              
               if kubectl get deployment $DEPLOYMENT_NAME -n $NAMESPACE
               >/dev/null 2>&1; 
 
@@ -366,8 +368,14 @@ spec:
 
 ### 和标准流水线的区别
 
-嵌入流水线和标准流水线的主要区别，标准流水线的参数(Params)和工作区(Workspaces)默认需要手动输入，嵌入流水线可以通过平台从应用信息里面自动生成，实现了流水线的自动化。
+`嵌入流水线`和`标准流水线`的主要区别，标准流水线的参数(Params)和工作区(Workspaces)默认需要手动输入，嵌入流水线可以通过平台从应用信息里面自动生成，实现了流水线的自动化。
 
 ### 编辑嵌入流水线
+
+{: .note }
+在分支流水线选择对应的分支，扩展后就只能编辑嵌入流水线流水线了。
+![](imgs/select-branch.png)
+嵌入流水线的编辑有两种方式：流水线运行构建器(图形化)、YAML视图。 一般情况都是采用图形化的来编辑。
+
 
 ![edit-pipeline.png](imgs/edit-pipeline.png)
