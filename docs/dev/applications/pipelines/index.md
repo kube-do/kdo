@@ -86,12 +86,6 @@ Tekton 资源对象是构成 Tekton Pipelines 的核心组件，它们定义了 
 kdo平台使用流水线主要通过两种方式： **标准流水线**、**嵌入流水线**，下面分别进行说明。
 
 
-## 流水线组成
-
-
-一个标准的流水线(Pipeline)主要有以下几部分构成： [任务](#task)、[参数](#params)、[工作区](#workspaces)，通过这些资源的组合，形成一个可以运行的流水线。
-
-
 ## 标准流水线
 
 {: .note }
@@ -160,10 +154,6 @@ spec:
       params:
         - name: IMAGE
           value: $(params.image-full-path-with-tag)
-        - name: TLSVERIFY
-          value: 'false'
-        - name: STORAGE_DRIVER
-          value: vfs
       runAfter:
         - maven
       taskRef:
@@ -211,10 +201,6 @@ apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
   name: spring-boot-docker-dev-ls-test
-  annotations:
-    pipelinesascode.tekton.dev/on-event: '[push]'
-    pipelinesascode.tekton.dev/on-target-branch: '[ls__.test]'
-    pipelinesascode.tekton.dev/max-keep-runs: '1'
   namespace: cc
 spec:
   params:
@@ -222,10 +208,6 @@ spec:
       value: '{{ repo_url }}'
     - name: revision
       value: '{{ revision }}'
-    - name: namespace
-      value: '{{target_namespace}}'
-    - name: image_tag
-      value: '{{image_tag}}'
   pipelineSpec:
     tasks:
       - name: fetch-repository
@@ -252,26 +234,6 @@ spec:
               - '-DskipTests'
               - clean
               - package
-          - name: MAVEN_MIRROR_URL
-            value: 'https://maven.aliyun.com/nexus/content/groups/public'
-          - name: SERVER_USER
-            value: ''
-          - name: SERVER_PASSWORD
-            value: ''
-          - name: PROXY_USER
-            value: ''
-          - name: PROXY_PASSWORD
-            value: ''
-          - name: PROXY_PORT
-            value: ''
-          - name: PROXY_HOST
-            value: ''
-          - name: PROXY_NON_PROXY_HOSTS
-            value: ''
-          - name: PROXY_PROTOCOL
-            value: http
-          - name: CONTEXT_DIR
-            value: .
         runAfter:
           - fetch-repository
         taskRef:
@@ -288,10 +250,6 @@ spec:
         params:
           - name: IMAGE
             value: 'hub-k8s.kube-do.cn/cc-dev/spring-boot-docker:$(params.image_tag)'
-          - name: TLSVERIFY
-            value: 'false'
-          - name: STORAGE_DRIVER
-            value: vfs
           - name: DOCKERFILE
             value: docker/Dockerfile
         runAfter:
@@ -308,28 +266,7 @@ spec:
         params:
           - name: script
             value: >
-              echo "----------"
-
-              DEPLOYMENT_NAME="spring-boot-docker-ls-test"
-              
-              APP_NAME="spring-boot-docker"
-              
-              NAMESPACE="cc-dev"
-              
-              if kubectl get deployment $DEPLOYMENT_NAME -n $NAMESPACE
-              >/dev/null 2>&1; 
-
-              then
-                echo "Deployment $DEPLOYMENT_NAME exists in namespace $NAMESPACE"
-                kubectl create -f kubernetes/deploy-dev-ls-test.yaml -n $NAMESPACE
-                kubectl set image deployment/$DEPLOYMENT_NAME $APP_NAME=hub-k8s.xsyxsc.cn/cc-dev/spring-boot-docker:$(params.image_tag) -n $NAMESPACE
-              else
-                echo "Deployment $DEPLOYMENT_NAME does not exist in namespace $NAMESPACE"
-                kubectl create -f kubernetes/deploy-dev-ls-test.yaml -n $NAMESPACE
-                kubectl set image deployment/$DEPLOYMENT_NAME $APP_NAME=hub-k8s.xsyxsc.cn/cc-dev/spring-boot-docker:$(params.image_tag) -n $NAMESPACE
-              fi              
-
-              echo "----------"
+              kubectl set image deployment/$DEPLOYMENT_NAME $APP_NAME=hub-k8s.xsyxsc.cn/cc-dev/spring-boot-docker:$(params.image_tag) -n $NAMESPACE
         runAfter:
           - buildah
         taskRef:
@@ -342,28 +279,16 @@ spec:
             workspace: workspace
         status:
           reason: Skipped
-    finally: []
   workspaces:
     - name: workspace
-      volumeClaimTemplate:
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          storageClassName: nfs-client
-          volumeMode: Filesystem
-          resources:
-            requests:
-              storage: 1Gi
+      persistentVolumeClaim:
+        claimName: workspace
     - name: maven-repo
       persistentVolumeClaim:
         claimName: maven-repo
     - name: dockerconfig-ws
       secret:
         secretName: registry
-    - name: basic-auth
-      secret:
-        secretName: '{{ git_auth_secret }}'
-
 ```
 
 ### 和标准流水线的区别
@@ -377,5 +302,7 @@ spec:
 ![](imgs/select-branch.png)
 嵌入流水线的编辑有两种方式：流水线运行构建器(图形化)、YAML视图。 一般情况都是采用图形化的来编辑。
 
+在**流水线运行构建器**的页面，主要有三部分： [任务](#task)、[参数](#params)、[工作区](#workspaces)，其中`工作区`和`参数`主要用于传递信息。`任务`可以通过图形化拖拽各种`任务模板`实现任务的编辑。
+![edit-tasks.gif](imgs/edit-tasks.gif)
 
-![edit-pipeline.png](imgs/edit-pipeline.png)
+
