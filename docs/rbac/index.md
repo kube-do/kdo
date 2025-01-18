@@ -1,5 +1,5 @@
 ---
-title: Kubernetes权限管理
+title: 权限管理
 nav_order: 4
 ---
 
@@ -9,8 +9,8 @@ nav_order: 4
 ## 介绍
 
 {: .note }
-API Server作为Kubernetes集群系统的网关，是访问及管理资源对象的唯一入口，其余所有需要访问集群资源的组件，包括kube-controller-manager、kube-scheduler、kubelet和kube-proxy等集群基础组件、CoreDNS等集群的附加组件以及此前使用的kubectl命令等都要经由此网关进行集群访问和管理。
-API Server会对每一次的访问请求进行合法性检验，包括用户身份鉴别、操作权限验证以及操作是否符合全局规范的约束等。
+kdo平台的权限管理完全是基于Kubernetes RBAC的访问控制
+
 
 
 ## Kubernetes的访问控制

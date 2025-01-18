@@ -1,20 +1,20 @@
 ---
 title: 多环境持续交付
-description: 本节将会介绍如何在 Rainbond 上实现多环境持续交付
+description: 本节将会介绍如何在 kdo 上实现多环境持续交付
 parent: 持续交付
 keywords:
 - 多环境
 - 持续交付
 ---
 
-## Rainbond 上多环境交付流程图
+## kdo 上多环境交付流程图
 
-如下图所示，我们以后台管理系统为例，利用 Rainbond 应用模版实现多云多环境的持续交付，通常需要以下流程。
+如下图所示，我们以后台管理系统为例，利用 kdo 应用模版实现多云多环境的持续交付，通常需要以下流程。
 
 <!-- ![multi-env-delivery](https://grstatic.oss-cn-shanghai.aliyuncs.com/docs/5.10/delivery/multi-env-delivery.jpg) -->
 ![](https://static.goodrain.com/docs/5.11/delivery/continuous/source-code/multi-env-delivery.png)
 
-1. 通过 Rainbond 对接多集群，可以对接私有云、公有云等。
+1. 通过 kdo 对接多集群，可以对接私有云、公有云等。
 
 2. 当开发者开发的应用测试通过后，发布到本地应用市场，最后通过应用市场中的应用模版实现各个公有云环境的应用部署。
 
@@ -22,11 +22,11 @@ keywords:
 
 ### 准备工作
 
-1. 拥有一套 Rainbond 集群，参考[快速安装](/docs/quick-start/quick-install)。
+1. 拥有一套 kdo 集群，参考[快速安装](/docs/quick-start/quick-install)。
 
-### Rainbond 对接多集群
+### kdo 对接多集群
 
-1. 在完成 Rainbond 控制台的安装后，进入 Rainbond 控制台`平台管理->集群->添加集群`，按照指引在公有云或私有云的服务器上安装 Rainbond 集群端，可添加并对接多个集群。多集群对接后效果图:point_down:
+1. 在完成 kdo 控制台的安装后，进入 kdo 控制台`平台管理->集群->添加集群`，按照指引在公有云或私有云的服务器上安装 kdo 集群端，可添加并对接多个集群。多集群对接后效果图:point_down:
 
 <img src="https://pic.imgdb.cn/item/61a5d0802ab3f51d91d5afc2.png" alt="image-20211118142459214"  />
 
@@ -40,7 +40,7 @@ keywords:
 
 1. 首先可以在`测试-内网`团队内，参考[基于源代码创建组件](/docs/devops/app-deploy/)，根据你的代码语言部署你的各个业务模块。
 
-2. 各个业务部署完成后，参考[微服务架构指南](/docs/micro-service/overview)进行服务编排，此时你就得到了一个在 Rainbond 上完整运行的应用。
+2. 各个业务部署完成后，参考[微服务架构指南](/docs/micro-service/overview)进行服务编排，此时你就得到了一个在 kdo 上完整运行的应用。
 
 ### 制作应用模版
 
