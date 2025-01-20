@@ -29,7 +29,7 @@ nav_order: 2
 | 菜单   | 说明                                                           |
 |:-----|:-------------------------------------------------------------|
 | 名称   | 这个资源对象的名字                                                    |
-| 路由类型 | 路由类型(ingressclass) 资源用于定义和区分不同类型的路由控制器，现在默认使用的是nginx-ingress |
+| 路由类型 | 路由类型(IngressClass) 资源用于定义和区分不同类型的路由控制器，现在默认使用的是nginx-ingress |
 | 主机名  | 应用的域名，要确保已经设置了DNS，把域名指向了路由控制器的IP                             |
 | 路径   | 应用的根路径，一般为`/`                                                |
 | 服务   | 要对外暴露的服务                                                     |
@@ -42,5 +42,5 @@ nav_order: 2
 ![](imgs/edit-ingress.png)
 
 {: .note }
-在图形化界面只能进行一些基础的配置，需要更多高级特性，需要手动编辑YAML配置，请参考[路由高级特性](https://www.w3ccoo.com/nginx/nginx_ingress_annotations.html)
+在图形化界面只能进行一些基础的配置，需要更多高级特性，需要手动编辑路由的YAML配置(主要是通过编辑路由资源的注解)，请参考[路由高级特性](https://www.w3ccoo.com/nginx/nginx_ingress_annotations.html)。
 
