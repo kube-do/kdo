@@ -9,7 +9,7 @@ nav_order: 4
 ## 介绍
 
 {: .note }
-kdo平台的权限管理完全是基于Kubernetes RBAC的访问控制
+kdo平台的权限管理是完全基于Kubernetes RBAC的访问控制，所以这部分主要针对Kubernetes的访问控制进行说明。
 
 
 
@@ -38,7 +38,7 @@ API Server接收到访问请求时，它将调用认证插件尝试提取如下�
 {: .note }
 成功通过身份认证后的操作请求还需要转交给授权插件进行许可权限检查，以确保其拥有执行相应的操作的许可。主要支持使用四类内建的授权
 
-1. **Node:** 一种特殊的授权模块，基于 节点(Node) 上运行的 容器组(Pod) 为 Kubelet 授权
+1. **Node:** 一种特殊的授权模块，基于 [节点(Node)](../admin/management/nodes) 上运行的 容器组(Pod) 为 Kubelet 授权
 2. **ABAC:** 基于属性的访问控制
 3. **RBAC:** 基于角色的访问控制，这是现在主要的授权方式
 4. **Webhook:** HTTP 请求回调，通过一个 web 应用鉴定是否有权限进行某项操作
@@ -59,8 +59,8 @@ RBAC是Kubernetes中一个核心的授权策略，通过它，管理员可以实
    `User`：用户，这是有外部独立服务进行管理的。
    `Group`：组，这是用来关联多个账户的，集群中有一些默认创建的组，比如cluster-admin。
    `ServiceAccount`：服务账号，通过Kubernetes API 来管理的一些用户账号，和 namespace 进行关联的，适用于集群内部运行的应用程序，需要通过 API 来完成权限认证，所以在集群内部进行权限操作，都需要使用到 ServiceAccount。
-2. **API Resource**，也就是请求对应的访问目标。在 Kubernetes 集群中也就是各类资源，Pod，Deployment等；
-3. **Verbs**，对应为请求对象资源可以进行哪些操作，包括但不限于"get", "list", "watch", "create", "update", "patch", "delete","deletecollection"等。
+2. **API Resource**，也就是请求对应的访问目标。在 Kubernetes 集群中也就是各类资源比如Pod、Deployment等；
+3. **Verbs**，对应为请求对象资源可以进行哪些操作，包括但不限于"get"，"list", "watch", "create", "update", "patch", "delete","deletecollection"等。
 
 
 ### Kubernetes RBAC的四个关键组件
@@ -139,8 +139,8 @@ Kubernetes RBAC 的角色(Role)或 集群角色(ClusterRole) 中包含一组代�
 
 ### RoleBinding/ClusterRoleBinding区别
 
-1. 角色绑定(RoleBinding) 在指定的名字空间中执行授权，而 集群角色绑定(ClusterRoleBinding) 在集群范围执行授权。
-2. 一个 角色绑定(RoleBinding) 可以引用同一的名字空间中的任何 Role。 或者，一个 角色绑定(RoleBinding) 可以引用某 集群角色(ClusterRole) 并将该 集群角色(ClusterRole) 绑定到 角色绑定(RoleBinding) 所在的名字空间。 
+1. 角色绑定(RoleBinding)在指定的名字空间中执行授权，而 集群角色绑定(ClusterRoleBinding) 在集群范围执行授权。
+2. 一个 角色绑定(RoleBinding)可以引用同一的名字空间中的任何 Role。 或者，一个 角色绑定(RoleBinding) 可以引用某 集群角色(ClusterRole) 并将该 集群角色(ClusterRole) 绑定到 角色绑定(RoleBinding) 所在的名字空间。 
 3. 如果你希望将某 集群角色(ClusterRole) 绑定到集群中所有名字空间，你要使用 集群角色绑定(ClusterRoleBinding)。 角色绑定(RoleBinding) 或 集群角色绑定(ClusterRoleBinding) 对象的名称必须是合法的路径分段名称。
 
 ![](imgs/rolebindings.png)
