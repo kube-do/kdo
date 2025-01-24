@@ -14,7 +14,8 @@ https://cloud.tencent.com/developer/article/2449812
 不同的团队规模、项目复杂度和发布频率都可能需要不同的分支策略。
 常见的 Git 分支策略包括 [Git Flow](#1-git-flow)、[GitHub Flow](#2-github-flow) 和 [Trunk Based Development (主干开发)](#3-trunk-based-development-主干开发)。
 本文将深入分析这些分支策略的优缺点，并探讨如何根据团队规模和项目需求选择合适的工作流程。
-同时，我们将提供相应的代码示例和最佳实践，帮助团队避免常见的协作问题。
+我们还通过kdo平台和对应的Git 分支策略进行结，同时，我们将提供相应的代码示例和最佳实践，帮助团队避免常见的协作问题。
+
 
 ##  一、Git 分支策略概述
 
@@ -32,6 +33,7 @@ Git Flow 是 Vincent Driessen 于 2010 年提出的分支模型。它基于两�
 - hotfix 分支：用于紧急修复生产环境的问题，直接从 master 创建并最终合并回 master 和 develop。
 
 **Git Flow 流程图：**
+
 ```mermaid
 graph LR
     A[Master Branch] -- Hotfix Branch --> C[Develop Branch]
@@ -76,7 +78,7 @@ GitHub Flow 是 GitHub 提出的轻量化分支模型，主要适用于需要持
 **GitHub Flow 的特点：**
 - 只有一个长期分支，即 `main` 分支。
 - 所有功能和修复都通过创建分支进行开发，并通过 Pull Request 进行代码审查和合并。
-- 功能完成并通过测试后，直接合并回 main 分支并自动部署。
+- 功能完成并通过测试后，直接合并回 `main` 分支并自动部署。
 <div align=center>
 <img src="imgs/github-flow.png"  alt=""/>
 </div>
@@ -113,10 +115,10 @@ git branch -d new-feature
 - 适合 CI/CD 集成度高的项目，但对于大团队可能略显简单。
 
 ### 3. Trunk Based Development (主干开发)
-Trunk Based Development 是一种更为简单、激进的分支策略，开发人员尽量将所有代码直接提交到 main（或 trunk）分支，避免长期的分支开发。开发人员通过频繁的小规模提交和自动化测试确保代码质量。
+Trunk Based Development 是一种更为简单、激进的分支策略，开发人员尽量将所有代码直接提交到 `main`（或 `trunk`）分支，避免长期的分支开发。开发人员通过频繁的小规模提交和自动化测试确保代码质量。
 
 **Trunk Based Development 的特点：**
-- 代码频繁提交到 main 分支。
+- 代码频繁提交到 `main` 分支。
 - 短期开发分支（如 feature 分支）存在时间非常短，通常只存在几小时到几天。
 - 需要强大的自动化测试体系和严格的代码审查流程。
 
@@ -149,6 +151,7 @@ git branch -d short-feature
 **缺点：**
 - 对代码质量和自动化测试要求极高，适合经验丰富的团队。
 - 如果没有良好的测试和审查机制，容易引入问题。
+
 <div align=center>
 <img src="imgs/trunk-based-flow.png"  alt=""/>
 </div>
@@ -207,24 +210,25 @@ git branch -d short-lived-feature
 
 为了确保频繁提交的代码不会引入错误，团队应构建强大的自动化测试体系。在每次提交代码时，自动化测试应该立即运行。Jenkins、CircleCI 等持续集成工具可以帮助团队实现这一点。
 
-代码语言：yaml
-复制
+```yaml
 # 示例 Jenkinsfile 配置
 pipeline {
-agent any
-stages {
-stage('Build') {
-steps {
-sh 'make build'
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'make build'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'make test'
+            }
+        }
+    }
 }
-}
-stage('Test') {
-steps {
-sh 'make test'
-}
-}
-}
-}
+```
+
 在这种开发模式下，任何失败的测试都应该立即修复，避免问题积累。
 
 <div align=center>
@@ -272,7 +276,7 @@ git push origin short-feature
 代码审查不应阻碍频繁集成，而是确保在小范围内对代码进行有效验证。
 
 ### 5. 持续交付
-Trunk Based Development 的一个核心思想是尽量保持主分支始终可部署。因此，团队应搭建自动化部署管道，在合并到 main 分支后，立即部署到测试或生产环境。
+Trunk Based Development 的一个核心思想是尽量保持主分支始终可部署。因此，团队应搭建自动化部署管道，在合并到 `main` 分支后，立即部署到测试或生产环境。
 
 以下是基于 GitLab CI 的持续交付配置示例：
 
@@ -324,7 +328,7 @@ git branch -d feature/user-authentication
 ```
 
 #### 2. 严格的发布流程
-Git Flow 的一个核心优势在于 release 分支。通过在发布前创建 release 分支，团队可以专注于修复 bug 和测试，而不再添加新的功能，从而确保发布的稳定性。
+Git Flow 的一个核心优势在于 `release` 分支。通过在发布前创建 `release` 分支，团队可以专注于修复 bug 和测试，而不再添加新的功能，从而确保发布的稳定性。
 
 ```shell
 # 从 develop 创建 release 分支
@@ -404,7 +408,7 @@ pipeline {
 GitHub Flow 是一个轻量化的流程，适合频繁发布的小型团队。虽然流程简单，但也有一些关键的最佳实践可以帮助团队最大化利用这一策略。
 
 ### 1. 保持 `main` 分支的清洁
-   GitHub Flow 的核心是保持 main 分支始终可发布。因此，团队应确保 main 分支上的代码质量，并在每次合并前通过代码审查与自动化测试来确保稳定性。
+GitHub Flow 的核心是保持 `main` 分支始终可发布。因此，团队应确保 `main` 分支上的代码质量，并在每次合并前通过代码审查与自动化测试来确保稳定性。
 
 ```shell
 # 在本地更新 main 分支
@@ -417,8 +421,7 @@ git pull origin main
 ### 2. 小步快跑
 GitHub Flow 倡导通过小步提交和频繁合并来保持项目的快速迭代。团队应避免大型功能一次性开发完成后再合并，而是应将功能拆分为多个小任务，分别开发并逐步合并。
 
-代码语言：bash
-复制
+
 ```shell
 # 开发小功能分支
 git checkout -b feature/small-task
@@ -431,8 +434,7 @@ git merge feature/small-task
 ### 3. Pull Request 的高效使用
 在 GitHub Flow 中，所有代码的变更都应通过 Pull Request 进行合并。Pull Request 不仅是代码审查的工具，也是团队沟通和协作的重要方式。
 
-代码语言：bash
-复制
+
 ```shell
 # 创建 Pull Request 并请求代码审查
 git push origin feature/new-feature

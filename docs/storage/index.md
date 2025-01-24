@@ -39,7 +39,7 @@ Kubernetes 支持多种类型的持久性卷，以适应不同的使用场景和
 5. **其他云提供商特定的卷类型:** 比如 AWS EBS、GCE PD、Azure Disk 等等，这些是由云服务提供商提供的持久化存储解决方案。
 6. **CSI (Container Storage Interface):** 这是一个标准接口，用来让存储供应商创建自己的插件，从而可以更容易地集成新的存储系统。
 7. **Local:** 允许将本地磁盘直接用作持久卷，适合性能要求高的应用，但同样会引入可用性和调度问题。
-8. **NFS (Network File System):** 可以通过 NFS 协议将远程服务器上的共享文件夹挂载为 Pod 的一部分。
+8. **NFS (Network File System):** 可以通过 NFS 协议将远程服务器上的共享文件夹挂载为 Pod 的一部分。kdo平台默认会提供这种存储卷。
 9. **CephFS, Glusterfs, iSCSI, RBD (Ceph Block Device), VsphereVolume 等等:** 这些都是企业级存储解决方案，适用于不同规模和需求的企业环境。
 
 
