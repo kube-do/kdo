@@ -14,7 +14,7 @@ https://cloud.tencent.com/developer/article/2449812
 不同的团队规模、项目复杂度和发布频率都可能需要不同的分支策略。
 常见的 Git 分支策略包括 [Git Flow](#1-git-flow)、[GitHub Flow](#2-github-flow) 和 [Trunk Based Development (主干开发)](#3-trunk-based-development-主干开发)。
 本文将深入分析这些分支策略的优缺点，并探讨如何根据团队规模和项目需求选择合适的工作流程。
-我们还通过kdo平台和对应的Git 分支策略进行结，同时，我们将提供相应的代码示例和最佳实践，帮助团队避免常见的协作问题。
+我们还通过kdo平台和对应的 Git 分支策略进行结，同时，我们将提供相应的代码示例和最佳实践，帮助团队避免常见的协作问题。
 
 
 ##  一、Git 分支策略概述
@@ -24,13 +24,13 @@ https://cloud.tencent.com/developer/article/2449812
 Git Flow 是 Vincent Driessen 于 2010 年提出的分支模型。它基于两个长期分支（`master` 和 `develop`），并引入了多个短期分支用于不同的开发任务。
 
 **主要分支：**
-- master：生产环境的主分支，始终保持可发布的状态。
-- develop：开发分支，所有新功能的开发都会在此分支进行。
+- `master`：生产环境的主分支，始终保持可发布的状态。
+- `develop`：开发分支，所有新功能的开发都会在此分支进行。
 
 **短期分支：**
-- feature 分支：用于开发新功能，通常从 develop 分支创建，完成后合并回 develop。
-- release 分支：在发布前创建的分支，主要用于准备发布版本，进行最后的测试和修复。
-- hotfix 分支：用于紧急修复生产环境的问题，直接从 master 创建并最终合并回 master 和 develop。
+- `feature` 分支：用于开发新功能，通常从 `develop` 分支创建，完成后合并回 `develop`。
+- `release` 分支：在发布前创建的分支，主要用于准备发布版本，进行最后的测试和修复。
+- `hotfix` 分支：用于紧急修复生产环境的问题，直接从 `master` 创建并最终合并回 `master` 和 `develop`。
 
 **Git Flow 流程图：**
 
@@ -119,7 +119,7 @@ Trunk Based Development 是一种更为简单、激进的分支策略，开发�
 
 **Trunk Based Development 的特点：**
 - 代码频繁提交到 `main` 分支。
-- 短期开发分支（如 feature 分支）存在时间非常短，通常只存在几小时到几天。
+- 短期开发分支（如 `feature` 分支）存在时间非常短，通常只存在几小时到几天。
 - 需要强大的自动化测试体系和严格的代码审查流程。
 
 **示例代码：**
@@ -176,13 +176,15 @@ git branch -d short-feature
 1. **持续集成：** 无论选择哪种分支策略，持续集成（CI）都是保证代码质量的关键。建议在每次提交代码时自动运行测试。
 2. **代码审查：** 通过 Pull Request 进行代码审查可以减少错误和提升代码质量，特别是在多人协作开发时。
 3. **自动化部署：** 对于使用 `GitHub Flow` 或 `Trunk Based Development` 的团队，自动化部署可以大大减少发布风险。
+
 <div align=center>
 <img src="imgs/git-flow.png"  alt=""/>
 </div>
 
 
 ## 四、Trunk Based Development 的最佳实践
-虽然 Trunk Based Development 是一种相对简单的分支策略，但它依赖于高效的流程和工具支持。下面介绍一些具体的最佳实践，帮助团队在采用该策略时确保代码质量和开发速度。
+虽然 Trunk Based Development 是一种相对简单的分支策略，但它依赖于高效的流程和工具支持。
+下面介绍一些具体的最佳实践，帮助团队在采用该策略时确保代码质量和开发速度。
 
 ### 1. 频繁集成和快速提交
 
@@ -239,9 +241,6 @@ pipeline {
 
 为了避免未完成的功能影响生产环境，Trunk Based Development 鼓励使用特性开关（Feature Toggles）。通过这种技术，开发人员可以将未完成的代码合并到主干，但不影响用户体验。
 
-代码语言：python代码运行次数：0
-复制
-
 ```python
 # 示例特性开关代码
 def new_feature_enabled():
@@ -257,8 +256,6 @@ def main_logic():
 # export NEW_FEATURE_FLAG=true
 ```
 
-# 设置环境变量以启用或禁用新功能
-# export NEW_FEATURE_FLAG=true
 通过控制特性开关，团队可以在不破坏现有功能的前提下快速发布新代码。
 
 ### 4. 代码审查
@@ -311,7 +308,7 @@ deploy:
 Git Flow 的分支管理较为复杂，但它在处理大型项目和有明确发布周期的项目中非常有效。以下是 Git Flow 中一些行之有效的实践方法，帮助团队优化开发流程。
 
 ### 1. 合理使用 `feature` 分支
-在 Git Flow 中，feature 分支用于新功能开发，分支命名应清晰、易于识别。团队可以使用带有功能描述的分支名称，并在开发结束后及时删除以保持代码库的整洁。
+在 Git Flow 中，`feature` 分支用于新功能开发，分支命名应清晰、易于识别。团队可以使用带有功能描述的分支名称，并在开发结束后及时删除以保持代码库的整洁。
 
 ```shell
 # 创建 feature 分支，命名清晰
@@ -374,7 +371,7 @@ git branch -d hotfix/critical-bugfix
 这种紧急修复策略保证了项目的灵活性，确保团队能迅速响应生产问题。
 
 ### 4. 自动化测试和持续集成
-无论是 Git Flow 还是其他分支策略，自动化测试和持续集成都非常重要。在 Git Flow 中，可以为 develop 分支设置自动化测试，确保功能开发期间代码的稳定性，同时为 release 和 master 分支设置严格的测试与部署管道。
+无论是 Git Flow 还是其他分支策略，自动化测试和持续集成都非常重要。在 Git Flow 中，可以为 `develop` 分支设置自动化测试，确保功能开发期间代码的稳定性，同时为 `release` 和 `master` 分支设置严格的测试与部署流水线。
 
 ```yaml
 # Jenkinsfile 示例
@@ -444,7 +441,7 @@ git push origin feature/new-feature
 通过 Pull Request，团队可以保持代码库的高质量，同时确保每个成员都了解最新的代码变更。
 
 ### 4. 自动化部署
-由于 GitHub Flow 通常用于持续集成和持续交付，自动化部署是一个关键环节。团队可以通过 CI/CD 管道在每次合并到 main 分支时自动部署新版本。
+由于 GitHub Flow 通常用于持续集成和持续交付，自动化部署是一个关键环节。团队可以通过 CI/CD 管道在每次合并到 `main` 分支时自动部署新版本。
 
 ```yaml
 # GitLab CI 配置
