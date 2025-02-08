@@ -31,8 +31,6 @@ spec:
   hosts:
     - {name: node32, address: 10.255.1.32, internalAddress: 10.255.1.32, port: 22, user: root, password: "password"}
   roleGroups:
-    ha:
-    - node32
     etcd:
     - node32
     control-plane:
@@ -74,9 +72,11 @@ spec:
 ### Kubernetes多节点模式
 
 
-### containerd配置文件
+### Containerd配置文件
 
-```editorconfig
+containerd的配置文件默认是`/etc/containerd/config.toml`这个文件，如果节点已经配置了containerd，需要参考以下这个配置文件。
+
+```yaml
 version = 2
 root = "/var/lib/containerd"
 state = "/run/containerd"
@@ -96,7 +96,7 @@ state = "/run/containerd"
       SystemdCgroup = true
   [plugins."io.containerd.grpc.v1.cri"]
     max_concurrent_downloads = 200
-    sandbox_image = "registry.cn-beijing.aliyuncs.com/kubesphereio/pause:3.9"
+    sandbox_image = "registry.cn-beijing.aliyuncs.com/kubesphereio/pause:3.10"
     [plugins."io.containerd.grpc.v1.cri".cni]
       bin_dir = "/opt/cni/bin"
       conf_dir = "/etc/cni/net.d"
@@ -107,6 +107,6 @@ state = "/run/containerd"
         [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
           endpoint = ["https://docker.rainbond.cc", "https://registry-1.docker.io"]
 
-        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."10.255.1.31:30002"]
-          endpoint = ["http://10.255.1.31:30002"]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."10.255.1.32:30002"]
+          endpoint = ["http://10.255.1.32:30002"]
 ```
