@@ -8,7 +8,11 @@ parent: 在Linux平台安装
 
 
 ## 安装KeyCloak
-kdo平台是基于KeyCloak进行oidc认证的，所以需要安装KeyCloak，安装KeyCloak是通过Helm命令行进行安装的。
+
+{: .note }
+由于kdo平台和Kubernetes都是基于OIDC认证的，如果没有现存的OIDC认证平台，就需要安装KeyCloak。
+安装KeyCloak是通过Helm命令行自动安装的，安装前确认对应的环境变量已经设置正确。
+[关于KeyCloak](https://www.keycloak.org/)
 
 ```shell
 # 1. 定义环境变量
@@ -32,7 +36,7 @@ echo "/data/nfs *(rw,sync,no_root_squash,no_all_squash)" >> /etc/exports
 systemctl restart nfs-server && systemctl enable nfs-server
 
 
-# 如果已经有nfs server，把nfs.server和nfs.path改为对应的nfs参数
+# 创建默认的storageclass, 如果已经有nfs服务器，需要把nfs.server和nfs.path改为对应的nfs服务器的参数
 helm install nfs-subdir-external-provisioner oci://quay.io/kubedocharts/nfs-subdir-external-provisioner \
     --namespace kubedo-system \
     --create-namespace \
@@ -66,7 +70,7 @@ kubectl get pod -n kubedo-system
 #keycloak-postgresql-0                              1/1     Running   0             36s
 
 
-# 4. 更新ssl证书,这里使用kubernetes的ca证书作为ca
+# 4. 创建新的ssl证书，这里使用kubernetes的ca证书作为ca，便于管理维护。
 openssl req -newkey rsa:2048 -nodes -keyout tls.key -subj "/C=CN/ST=Hunan/L=ChangSha/O=kubedo/OU=kdo/CN=*.$defaultDomain/emailAddress=$kcUser@$defaultDomain" -out tls.csr  && \
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:*.$defaultDomain,IP:$nodeIP") \
 -days 3650 -in tls.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out tls.crt
@@ -79,7 +83,7 @@ kubectl delete secret -n kubedo-system keycloak-crt && kubectl create secret tls
 ## 设置KeyCloak
 key安装完成后，需要对其进行设置，主要进行以下操作:
 1. 创建realm kdo
-2. 添加client-scopes openid和groups，这是oidc协议必要的
+2. 添加client-scopes openid和groups，这是OIDC协议必需的
 3. 在realm kdoc创建client kdo
 4. 添加默认集群管理员kdo并设置密码
 5. 添加普通用户dev1和dev2并设置密码
@@ -131,8 +135,6 @@ kcadm.sh create users -s username=dev1 -r kdo -s email=dev1@kube-do.cn -s emailV
 kcadm.sh create users -s username=dev2 -r kdo -s email=dev2@kube-do.cn -s emailVerified=true -s enabled=true  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 kcadm.sh set-password --username dev1 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 kcadm.sh set-password --username dev2 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
-
-
 ```
 
 ## KeyCloak Web页面设置
@@ -140,7 +142,6 @@ kcadm.sh set-password --username dev2 -r kdo --new-password $devPass  --server h
 用户(`$kcUser`)和密码(`$kcPass`)是上面的设置环境变量，比如上面设置的是：admin/1MKok8eCvp 。
 
 ![update-client-scopes.gif](imgs/update-client-scopes.gif)
-
 这样KeyCloak设置好了
 
 
