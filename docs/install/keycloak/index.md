@@ -7,7 +7,7 @@ parent: 在Linux平台安装
 {:toc}
 
 
-### 3. 安装KeyCloak
+## 安装KeyCloak
 kdo平台是基于KeyCloak进行oidc认证的，所以需要安装KeyCloak，安装KeyCloak是通过Helm命令行进行安装的。
 
 ```shell
@@ -41,8 +41,9 @@ helm install nfs-subdir-external-provisioner oci://quay.io/kubedocharts/nfs-subd
     --set nfs.server=$nodeIP \
     --set nfs.path=/data/nfs
 
+
+kubectl get pod -n kubedo-system 
 # 确认nfs provisioner已经启动
-#[root@node31 etcd]# kubectl get pod -n kubedo-system 
 #NAME                                               READY   STATUS    RESTARTS   AGE
 #nfs-subdir-external-provisioner-788b59d4c9-q7mt7   1/1     Running   0          10s
 
@@ -57,10 +58,9 @@ helm install keycloak  oci://quay.io/kubedocharts/keycloak \
      --set service.type=NodePort \
      --set service.nodePorts.https=30443
      
+
+kubectl get pod -n kubedo-system
 # 检查keycloak的pod是否正常运行，确认keycloak-0已经ready，根据镜像拉取时间，大约需要3~5分钟。
-
-
-#[root@node31 ~]# kubectl get pod -n kubedo-system
 #NAME                                               READY   STATUS    RESTARTS      AGE
 #keycloak-0                                         1/1     Running   0             36s
 #keycloak-postgresql-0                              1/1     Running   0             36s
@@ -76,7 +76,7 @@ kubectl delete secret -n kubedo-system keycloak-crt && kubectl create secret tls
 ```
 
 
-### 4. 设置KeyCloak
+## 设置KeyCloak
 key安装完成后，需要对其进行设置，主要进行以下操作:
 1. 创建realm kdo
 2. 添加client-scopes openid和groups，这是oidc协议必要的
@@ -135,6 +135,7 @@ kcadm.sh set-password --username dev2 -r kdo --new-password $devPass  --server h
 
 ```
 
+## KeyCloak Web页面设置
 通过命令行设置后，还需要通过web访问keycloak设置一下。访问地址`https://$nodeIP:30443`，比如这个节点的IP是10.255.1.31，那就访问`https://10.255.1.31:30443`。
 用户(`$kcUser`)和密码(`$kcPass`)是上面的设置环境变量，比如上面设置的是：admin/1MKok8eCvp 。
 
@@ -143,5 +144,5 @@ kcadm.sh set-password --username dev2 -r kdo --new-password $devPass  --server h
 这样KeyCloak设置好了
 
 
-### 继续安装kdo平台组件
+## 继续安装kdo平台组件
 KeyCloak设置好后，就可以继续[安装kdo平台组件](../kdo)。

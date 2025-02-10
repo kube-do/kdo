@@ -7,19 +7,25 @@ parent: 在Linux平台安装
 1. TOC
 {:toc}
 
-如果现在只安装了操作系统，
-
-
-## 安装Kubernetes
-
-我们通过[KubeKey](https://www.kubesphere.io/zh/docs/v3.3/installing-on-linux/introduction/kubekey/)安装Kubernetes平台
-安装时需要先设置环境变量**export KKZONE=cn**，这样拉取镜像就会从国内镜像仓库拉取，不然镜像会从docker.io拉取，这样就无法拉取镜像导致安装失败。
-设置好配置文件后 运行./kk create cluster -f config.yaml即可。
+{: .note }
+我们是通过[KubeKey](https://www.kubesphere.io/zh/docs/v3.3/installing-on-linux/introduction/kubekey/)安装Kubernetes平台，
+安装时需要先设置环境变量**export KKZONE=cn**，这样拉取镜像就会从国内镜像仓库拉取，不然镜像会从docker.io拉取，造成无法拉取镜像导致安装失败。
+设置好配置文件后 运行`./kk create cluster -f config.yaml`即可。
 更多信息参考[KubeKey官方文档](https://www.kubesphere.io/zh/docs/v3.3/installing-on-linux/introduction/intro/)
 
 
 
-### Kubernetes单节点模式
+## 下载KubeKey
+
+以确保您从正确的区域下载 KubeKey，运行以下命令来下载 KubeKey：
+```shell
+export KKZONE=cn
+curl -sfL https://get-kk.kubesphere.io | VERSION=v3.0.7 sh -
+```
+
+
+
+## Kubernetes单节点模式
 
 如果只有一个节点，通过参照下面这个配置文件进行安装，比如这个节点IP是**10.255.1.32**，在APIServer参数和镜像仓库参数要结合实际情况进行配置。
 
@@ -68,13 +74,13 @@ spec:
     privateRegistry: ""
     namespaceOverride: ""
     # docker.io仓库的镜像地址，这个地址经常需要更新
-    registryMirrors: ["https://docker.rainbond.cc"]
+    registryMirrors: ["https://docker.1ms.run"]
     # 这里默认采用内置的镜像仓库，如果已经有认证的harbor镜像仓库，这里可以不需要配置
     insecureRegistries: ["10.255.1.32:30002"]
   addons: []
 ```
 
-### Kubernetes多节点模式
+## Kubernetes多节点模式
 
 如果有多个节点，通过参照下面这个配置文件进行安装。
 
@@ -112,6 +118,7 @@ spec:
     clusterName: cluster.local
     autoRenewCerts: true
     containerManager: containerd
+    # 节点子网大小
     nodeCidrMaskSize: 25
     apiserverArgs:
       # kubenretes采用oidc的认证方式，apiserverArgs必须要配置好oidc参数，这里默认配置kdo平台内置的keycloak, 
@@ -136,13 +143,15 @@ spec:
   registry:
     privateRegistry: ""
     namespaceOverride: ""
-    registryMirrors: ["https://docker.rainbond.cc"]
+    # docker.io仓库的镜像地址，这个地址经常需要更新
+    registryMirrors: ["https://docker.1ms.run"]
+    # 这里默认采用内置的镜像仓库，如果已经有认证的harbor镜像仓库，这里可以不需要配置
     insecureRegistries: ["10.255.1.31:30002"]
   addons: []
 ```
 
 
-### Containerd配置文件
+## Containerd配置文件
 
 containerd的配置文件默认是`/etc/containerd/config.toml`这个文件，如果节点已经配置了containerd，需要参考以下这个配置文件。
 
@@ -168,10 +177,10 @@ state = "/run/containerd"
       conf_template = ""
     [plugins."io.containerd.grpc.v1.cri".registry]
       [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
-        # docker.io仓库的国内加速地址，，和kubernetes安装配置文件一致
+        # docker.io仓库的国内加速地址，，和kubernetes安装配置文件一致。
         [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
-          endpoint = ["https://docker.rainbond.cc", "https://registry-1.docker.io"]
-        # 自建镜像仓库，和kubernetes安装配置文件一致
+          endpoint = ["https://docker.1ms.run", "https://registry-1.docker.io"]
+        # 自建镜像仓库，和kubernetes安装配置文件一致，如果已经有认证的harbor镜像仓库，这里可以不需要配置。
         [plugins."io.containerd.grpc.v1.cri".registry.mirrors."10.255.1.32:30002"]
           endpoint = ["http://10.255.1.32:30002"]
 ```
