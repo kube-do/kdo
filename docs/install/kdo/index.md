@@ -1,6 +1,6 @@
 ---
 title: 安装kdo组件
-parent: 安装平台
+parent: 在Linux平台安装
 ---
 
 1. TOC

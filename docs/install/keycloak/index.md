@@ -1,6 +1,6 @@
 ---
 title: OIDC认证组件KeyCloak安装
-parent: 安装平台
+parent: 在Linux平台安装
 ---
 
 1. TOC
