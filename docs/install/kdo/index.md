@@ -32,6 +32,8 @@ chmod +x kdo-install.sh
 
 
 ## 运行安装脚本
+
+### 安装前检查
 ![](imgs/install-help.png)
 这个脚本自动化安装脚化，一般只需要两个参数就可以运行了，节点IP和默认域名后缀，如果采用的内置KeyCloak作为认证平台，
 这两个参数需要和[安装KeyCloak](../keycloak#安装keycloak)的保持一致。
@@ -44,6 +46,14 @@ export OIDC_CLIENT_SECRET=kubedo
 export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 ```
 
+### 开始安装
+由于nodeIP和defaultDomain已经在环境变量设置过，可以直接获取，也可以手动输入这两个参数
+![](imgs/start-install.png)
 
+### 中途确认
+由于安装的组件比较多，有些组件需要等其他组件初始化完成后才能继续安装，这里另外打开一个Terminal，
+在Master节点运行 kubectl get pod -A 确认所有Pod已经正常运行（ready）
+![](imgs/wait-install.png)
 
-
+### 安装完成后，根据提示确认console已经启动，就可以访问平台了。
+![](imgs/after-install.png)
