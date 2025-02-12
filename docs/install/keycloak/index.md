@@ -25,12 +25,14 @@ export nodeIP=10.255.1.31
 #kdo集群的默认域名后缀
 export defaultDomain=kube-do.bb
 
+```
 
+```shell
 
 # 2. 安装nfs
-# 如果没有nfs server，需要手动安装一个
+# 如果没有nfs server，需要手动安装一个， Almalinux/CentOS运行以下命令， 如果Ubuntu需要运行 apt install nfs-kernel-server -y
+  
 dnf install nfs-utils -y
-
 mkdir -p /data/nfs
 echo "/data/nfs *(rw,sync,no_root_squash,no_all_squash)" >> /etc/exports
 systemctl restart nfs-server && systemctl enable nfs-server

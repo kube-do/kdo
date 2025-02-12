@@ -47,7 +47,7 @@ Tekton 资源对象是构成 Tekton Pipelines 的核心组件，它们定义了 
 ![](imgs/tekton.jpg)
 
 ### Task
-**任务(Task)** 是执行具体工作单元的基本构建块。它定义了一组按顺序执行的步骤（Steps），每个步骤都是一个容器操作。可以接受参数 (params) 和输出结果 (results)。支持声明工作区 (workspaces) 以便于数据共享。步骤之间可以互相传递数据。 
+**任务(Task)** 是执行具体工作单元的基本构建块。它定义了一组按顺序执行的步骤（Steps），每个步骤都是一个容器操作。可以接受参数 ([params](#params)) 和输出结果 (results)。支持声明工作区 ([workspaces](#workspaces)) 以便于数据共享。步骤之间可以互相传递数据。 
 
 ### ClusterTask
 **集群任务(ClusterTask)** 与普通 Task 类似，但是 ClusterTask 是集群范围内的资源，可以在整个 Kubernetes 集群中使用。 ClusterTask 不局限于某个命名空间，适用于跨命名空间的任务定义。

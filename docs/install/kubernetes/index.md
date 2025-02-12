@@ -121,7 +121,7 @@ spec:
     # 节点子网大小
     nodeCidrMaskSize: 25
     apiserverArgs:
-      # kubenretes采用oidc的认证方式，apiserverArgs必须要配置好oidc参数，这里默认配置kdo平台内置的keycloak, 
+      # kubenretes采用oidc的认证方式，apiserver Args必须要配置好oidc参数，这里默认配置kdo平台内置的keycloak, 
       # 如果已经有oidc认证平台，需要修改对应参数，查看文档https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication/#openid-connect-tokens
       - oidc-client-id=kdo
       - oidc-groups-claim=groups
@@ -143,7 +143,7 @@ spec:
   registry:
     privateRegistry: ""
     namespaceOverride: ""
-    # docker.io仓库的镜像地址，这个地址经常需要更新
+    # docker.io仓库的国内镜像地址，这个地址经常需要更新
     registryMirrors: ["https://docker.1ms.run"]
     # 这里默认采用内置的镜像仓库，如果已经有认证的harbor镜像仓库，这里可以不需要配置
     insecureRegistries: ["10.255.1.31:30002"]
@@ -184,3 +184,5 @@ state = "/run/containerd"
         [plugins."io.containerd.grpc.v1.cri".registry.mirrors."10.255.1.32:30002"]
           endpoint = ["http://10.255.1.32:30002"]
 ```
+
+安装好Kubernetes后，如果没有现存的OIDC认证平台，就可以去[安装OIDC认证组件KeyCloak](../keycloak#安装keycloak)了。
