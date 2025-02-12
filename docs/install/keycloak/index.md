@@ -1,5 +1,5 @@
 ---
-title: OIDC认证组件KeyCloak安装
+title: 安装OIDC认证平台KeyCloak
 parent: 在Linux平台安装
 ---
 
@@ -20,9 +20,9 @@ parent: 在Linux平台安装
 export kcUser=admin
 #KeyCloak管理员的密码
 export kcPass=1MKok8eCvp
-#kdo安装节点Master的IP,如果有多个Master，就指定第一个
+#kdo安装节点Master的IP,如果有多个Master，就指定第一个，这个和安装kdo组件时节点IP要保持一致
 export nodeIP=10.255.1.31
-#kdo集群的默认域名后缀
+#kdo集群的默认域名后缀，，这个和安装kdo组件时的保持一致
 export defaultDomain=kube-do.bb
 
 ```
@@ -30,7 +30,8 @@ export defaultDomain=kube-do.bb
 ```shell
 
 # 2. 安装nfs
-# 如果没有nfs server，需要手动安装一个， Almalinux/CentOS运行以下命令， 如果Ubuntu需要运行 apt install nfs-kernel-server -y
+# 如果没有nfs server，需要手动安装一个， Almalinux/CentOS运行以下命令，
+# 如果Ubuntu需要运行 apt install nfs-kernel-server -y
   
 dnf install nfs-utils -y
 mkdir -p /data/nfs
@@ -38,7 +39,8 @@ echo "/data/nfs *(rw,sync,no_root_squash,no_all_squash)" >> /etc/exports
 systemctl restart nfs-server && systemctl enable nfs-server
 
 
-# 创建默认的storageclass, 如果已经有nfs服务器，需要把nfs.server和nfs.path改为对应的nfs服务器的参数
+# 创建默认的storageclass, 如果已经有nfs服务器，
+# 需要把nfs.server和nfs.path改为对应的nfs服务器的参数
 helm install nfs-subdir-external-provisioner oci://quay.io/kubedocharts/nfs-subdir-external-provisioner \
     --namespace kubedo-system \
     --create-namespace \
@@ -66,7 +68,8 @@ helm install keycloak  oci://quay.io/kubedocharts/keycloak \
      
 
 kubectl get pod -n kubedo-system
-# 检查keycloak的pod是否正常运行，确认keycloak-0已经ready，根据镜像拉取时间，大约需要3~5分钟。
+# 检查keycloak的pod是否正常运行，确认keycloak-0已经ready，
+# 根据镜像拉取时间，大约需要3~5分钟。
 #NAME                                               READY   STATUS    RESTARTS      AGE
 #keycloak-0                                         1/1     Running   0             36s
 #keycloak-postgresql-0                              1/1     Running   0             36s
