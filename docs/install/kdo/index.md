@@ -55,5 +55,6 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 在Master节点运行 kubectl get pod -A 确认所有Pod已经正常运行（ready）
 ![](imgs/wait-install.png)
 
-### 安装完成后，根据提示确认console已经启动，就可以访问平台了。
+### 安装验证 
+安装完成后，根据提示确认console已经启动，就可以访问平台了。
 ![](imgs/after-install.png)
