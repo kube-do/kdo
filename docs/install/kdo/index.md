@@ -33,15 +33,17 @@ chmod +x kdo-install.sh
 这个脚本自动化安装脚化，一般只需要两个参数就可以运行了，节点IP和默认域名后缀，如果采用的内置KeyCloak作为认证平台，
 这两个参数需要和[安装KeyCloak](../keycloak#安装keycloak)的保持一致。
 ```shell
-# 根据环境变量运行
+# 根据环境变量运行，nodeIP和defaultDomain这两个环境在安装KeyCloak已经设置过
 ./kdo-install.sh $nodeIP $defaultDomain
 # 直接添加参数运行
 ./kdo-install.sh 10.22.1.20 abc.com
 ```
 
-如果是其他的OIDC认证平台，需要手动修改这个`kdo-install.sh`脚本，把OIDC对应环境变量修改为对应OIDC认证平台的信息。
-
+如果是其他的OIDC认证平台，需要通过`vim`手动修改这个`kdo-install.sh`脚本，把OIDC对应环境变量修改为对应OIDC认证平台的信息。
+![](imgs/setup-oidc.png)
 ```shell
+vim kdo-install.sh
+#如果是其他OIDC平台，需要设置这些环境变量
 export OIDC_CLIENT_ID=kdo
 export OIDC_CLIENT_SECRET=kubedo
 export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
