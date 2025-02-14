@@ -19,15 +19,12 @@ kdo组件的安装主要分为两个步骤：
 ```shell
 #下载安装脚本
 wget https://gitee.com/kube-do/docs/releases/download/latest/install.zip
-
 # 解压文件
 unzip -x install.zip
-
 # 进入安装目录
 cd install
-
 # 设置安装脚本为可执行 
-chmod +x kdo-install.sh  
+chmod +x kdo-install.sh
 ```
 
 
