@@ -19,10 +19,8 @@ kdo组件的安装主要分为两个步骤：
 ```shell
 #下载安装脚本
 wget https://gitee.com/kube-do/docs/releases/download/latest/install.zip
-# 解压文件
-unzip -x install.zip
-# 进入安装目录
-cd install
+# 解压文件,进入安装目录
+unzip -x install.zip && cd install
 # 设置安装脚本为可执行 
 chmod +x kdo-install.sh
 ```
@@ -34,6 +32,12 @@ chmod +x kdo-install.sh
 ![](imgs/install-help.png)
 这个脚本自动化安装脚化，一般只需要两个参数就可以运行了，节点IP和默认域名后缀，如果采用的内置KeyCloak作为认证平台，
 这两个参数需要和[安装KeyCloak](../keycloak#安装keycloak)的保持一致。
+```shell
+# 根据环境变量运行
+./kdo-install.sh $nodeIP $defaultDomain
+# 直接添加参数运行
+./kdo-install.sh 10.22.1.20 abc.com
+```
 
 如果是其他的OIDC认证平台，需要手动修改这个`kdo-install.sh`脚本，把OIDC对应环境变量修改为对应OIDC认证平台的信息。
 
