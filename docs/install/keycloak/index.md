@@ -28,7 +28,6 @@ export defaultDomain=kube-do.bb
 ```
 
 ```shell
-
 # 2. 安装nfs
 # 如果没有nfs server，需要手动安装一个， Almalinux/CentOS运行以下命令，
 # 如果Ubuntu需要运行sudo apt install nfs-kernel-server -y
@@ -88,7 +87,7 @@ kubectl delete secret -n kubedo-system keycloak-crt && kubectl create secret tls
 key安装完成后，需要对其进行设置，主要进行以下操作:
 1. 创建realm kdo
 2. 添加client-scopes openid和groups，这是OIDC协议必需的
-3. 在realm kdoc创建client kdo
+3. 在realm kdo创建client kdo
 4. 添加默认集群管理员kdo并设置密码
 5. 添加普通用户dev1和dev2并设置密码
 
@@ -112,7 +111,7 @@ export devPass=kubedo
 #***注意，由于kcadm.sh脚本机制问题，以下这些命令只能一条一条执行***
 # 1. 创建realm kdo
 kcadm.sh create realms -s realm=kdo -s enabled=true --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
-# 调整session超时时间，比如会频繁登出
+# 调整session超时时间，不然会频繁登出
 kcadm.sh update realms/kdo -s 'ssoSessionIdleTimeout=86400' -s 'accessTokenLifespan=43200' --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 # 2. 添加client-scopes openid和groups，这是oidc协议必要的
 # 添加client-scopes openid
