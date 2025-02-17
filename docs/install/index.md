@@ -34,20 +34,18 @@ nav_order: 8
 
 {: .note }
 通过vim打开/etc/kubernetes/manifests/kube-apiserver.yaml这个文件，在`spec->containers->command`添加对应的oidc的参数。
-假如是采用内置的KeyCloak OIDC认证平台，可以参照以下内容，只需要改`oidc-issuer-url`这个参数，把${NodeIP}改为对应节点IP，比如节点是10.128.0.100
 如果是其他OIDC Provider，可以根据其提供的参数进行修改。
 
 ```shell
 vim /etc/kubernetes/manifests/kube-apiserver.yaml
 ```
-
-### 修改前
+### 修改API Server参数
 
 ```yaml 
 spec:
   containers:
   - command:
-    # 在末尾添加以下参数，
+    # 在末尾添加以下参数，如果已经存在，需要修改这些参数
     - --oidc-ca-file=/etc/kubernetes/pki/ca.crt
     - --oidc-client-id=kdo
     - --oidc-groups-claim=groups
@@ -56,20 +54,6 @@ spec:
     - --oidc-username-prefix=-
 ```
 
-### 修改后
-
-```yaml 
-spec:
-  containers:
-  - command:
-    # 在末尾添加以下参数，
-    - --oidc-ca-file=/etc/kubernetes/pki/ca.crt
-    - --oidc-client-id=kdo
-    - --oidc-groups-claim=groups
-    - --oidc-issuer-url=https://10.255.0.100:30443/realms/kdo
-    - --oidc-username-claim=email
-    - --oidc-username-prefix=-
-```
 
 {: .warning }
 如果有多个Master节点，那每个Master节点都需要更改。
