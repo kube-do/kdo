@@ -44,8 +44,8 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 这个脚本自动化安装脚化，一般只需要两个参数就可以运行了，节点IP和默认域名后缀，如果采用的内置KeyCloak作为认证平台，
 这两个参数需要和[安装KeyCloak](../keycloak#安装keycloak)的保持一致。
 ```shell
-# 根据环境变量运行，nodeIP和defaultDomain这两个环境在安装KeyCloak已经设置过
-./kdo-install.sh $nodeIP $defaultDomain
+# 根据环境变量运行，NODE_IP和DEFAULT_DOMAIN这两个环境在安装KeyCloak已经设置过
+./kdo-install.sh $NODE_IP $DEFAULT_DOMAIN
 # 直接添加参数运行
 ./kdo-install.sh 10.22.1.20 abc.com
 ```
@@ -60,5 +60,5 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 
 
 ### 安装验证 
-安装完成后，根据提示确认console已经启动，就可以访问平台了。
+安装完成后，根据提示确认console已经启动，就可以访问平台了,默认访问地址是`http://$NODE_IP:30080`。
 ![](imgs/after-install.png)
