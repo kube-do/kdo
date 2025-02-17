@@ -17,7 +17,7 @@ parent: 在Linux平台安装
 
 ###  1. 定义环境变量
 ```shell
-#KeyCloak管理员的用户
+#KeyCloak管理员的用户，这个会和kdo平台的保持一致
 export KC_USER=kdo
 #KeyCloak管理员的密码
 export KC_PASS=1MKok8eCvp
@@ -55,7 +55,7 @@ kubectl get pod -n kubedo-system
 ```
 
 
-## # 3. 通过Helm安装 keycloak
+### 3. 通过Helm安装 keycloak
 ```shell
 helm install keycloak  oci://quay.io/kubedocharts/keycloak \
      --version 15.1.4 --namespace kubedo-system \
@@ -75,8 +75,9 @@ kubectl get pod -n kubedo-system
 #keycloak-postgresql-0                              1/1     Running   0             36s
 ```
 
-### 4. 创建新的ssl证书，这里使用kubernetes的ca证书作为ca，便于管理维护。
+### 4. 创建新的ssl证书，替换原来的证书
 ```shell
+# 这里使用kubernetes的ca证书作为ca，便于管理维护。
 openssl req -newkey rsa:2048 -nodes -keyout tls.key -subj "/C=CN/ST=Hunan/L=ChangSha/O=kubedo/OU=kdo/CN=*.$DEFAULT_DOMAIN/emailAddress=$KC_USER@$DEFAULT_DOMAIN" -out tls.csr  && \
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:*.$DEFAULT_DOMAIN,IP:$NODE_IP") \
 -days 3650 -in tls.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out tls.crt
@@ -87,7 +88,7 @@ kubectl delete secret -n kubedo-system keycloak-crt && kubectl create secret tls
 
 
 ## 设置KeyCloak
-key安装完成后，需要对其进行设置，主要进行以下操作:
+KeyCloak安装完成后，需要对其进行设置，主要进行以下操作：
 1. 创建realm kdo
 2. 添加client-scopes openid和groups，这是OIDC协议必需的
 3. 在realm kdo创建client kdo
