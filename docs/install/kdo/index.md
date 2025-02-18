@@ -60,5 +60,8 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 
 
 ### 安装验证 
-安装完成后，根据提示确认console已经启动，就可以访问平台了,默认访问地址是`http://$NODE_IP:30080`。
 ![](imgs/after-install.png)
+1. 安装完成后，根据提示确认console已经启动，就可以访问平台了, kdo平台默认访问地址是`http://$NODE_IP:30080`
+2. 如果需要增加/修改/删除用户和组，则访问KeyCloak进行操作，KeyCloak默认的访问地址是`https://$NODE_IP:30443`
+
+
