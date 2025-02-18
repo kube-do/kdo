@@ -20,7 +20,7 @@ parent: 在Linux平台安装
 以确保您从正确的区域下载 KubeKey，运行以下命令来下载 KubeKey：
 ```shell
 export KKZONE=cn
-curl -sfL https://get-kk.kubesphere.io | VERSION=v3.0.7 sh -
+curl -sfL https://get-kk.kubesphere.io | VERSION=v3.1.7 sh -
 ```
 
 
@@ -185,4 +185,4 @@ state = "/run/containerd"
           endpoint = ["http://10.255.1.32:30002"]
 ```
 
-安装好Kubernetes后，如果没有现存的OIDC认证平台，就可以去[安装OIDC认证组件KeyCloak](../keycloak#安装keycloak)了。
+安装好Kubernetes后，如果没有现存的OIDC认证平台，就可以去[安装OIDC认证组件KeyCloak](../keycloak)了。

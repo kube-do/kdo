@@ -33,12 +33,13 @@ nav_order: 8
 ## 根据OIDC平台设置Kubernetes
 
 {: .note }
-通过vim打开/etc/kubernetes/manifests/kube-apiserver.yaml这个文件，在`spec->containers->command`添加对应的oidc的参数。
+通过vim打开`/etc/kubernetes/manifests/kube-apiserver.yaml`这个文件，在`spec->containers->command`添加对应的oidc的参数。
 如果是其他OIDC Provider，可以根据其提供的参数进行修改。
-
 ```shell
 vim /etc/kubernetes/manifests/kube-apiserver.yaml
 ```
+
+![](imgs/update-apiserver.png)
 ### 修改API Server参数
 
 ```yaml 

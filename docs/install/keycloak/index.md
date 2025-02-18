@@ -17,11 +17,11 @@ parent: 在Linux平台安装
 
 ###  1. 定义环境变量
 ```shell
-#KeyCloak管理员的用户，这个会和kdo平台的保持一致
+#KeyCloak平台的管理员用户，这个会和kdo平台的保持一致
 export KC_USER=kdo
-#KeyCloak管理员的密码
+#KeyCloak平台的管理员的密码，这个会和kdo平台的保持一致
 export KC_PASS=1MKok8eCvp
-#kdo安装节点Master的IP,如果有多个Master，就指定第一个，这个和安装kdo组件时节点IP要保持一致
+#kdo安装节点Master的IP，如果有多个Master，就指定第一个，这个和安装kdo组件时节点IP要保持一致
 export NODE_IP=10.255.1.31
 #kdo集群的默认域名后缀，这个和安装kdo组件时的保持一致
 export DEFAULT_DOMAIN=kube-do.dev
@@ -78,10 +78,9 @@ kubectl get pod -n kubedo-system
 
 ### 4. 创建新的ssl证书，替换原来的证书
 ```shell
-# 这里使用kubernetes的ca证书作为ca，便于管理维护。
+# 这里使用kubernetes apiserver的ca证书作为ca，便于管理维护。
 openssl req -newkey rsa:2048 -nodes -keyout tls.key -subj "/C=CN/ST=Hunan/L=ChangSha/O=kubedo/OU=kdo/CN=*.$DEFAULT_DOMAIN/emailAddress=$KC_USER@$DEFAULT_DOMAIN" -out tls.csr  && \
-openssl x509 -req -extfile <(printf "subjectAltName=DNS:*.$DEFAULT_DOMAIN,IP:$NODE_IP") \
--days 3650 -in tls.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out tls.crt
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:*.$DEFAULT_DOMAIN,IP:$NODE_IP") -days 3650 -in tls.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out tls.crt
 
 # 替换原来的证书，并且重启keycloak
 kubectl delete secret -n kubedo-system keycloak-crt && kubectl create secret tls -n kubedo-system keycloak-crt --cert=./tls.crt --key=./tls.key  && kubectl rollout restart statefulset -n kubedo-system keycloak
@@ -105,7 +104,7 @@ kubectl get pod -n kubedo-system
 #keycloak-0                                         1/1     Running   0             36s
 #keycloak-postgresql-0                              1/1     Running   0             36s
 
-# 在master节点执行
+# 在master节点执行，需要进入keycloak容器里面进行执行
 kubectl exec -it  -n kubedo-system keycloak-0 -- bash
 
 # 进行容器后设置环境变量
@@ -117,12 +116,12 @@ export devPass=kubedo
 kcadm.sh create realms -s realm=kdo -s enabled=true --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 # 调整session超时时间，不然会频繁登出
 kcadm.sh update realms/kdo -s 'ssoSessionIdleTimeout=86400' -s 'accessTokenLifespan=43200' --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+
 # 2. 添加client-scopes openid和groups，这是oidc协议必要的
 # 添加client-scopes openid
 kcadm.sh create client-scopes -r kdo \
 -b '{"name":"openid","protocol":"openid-connect","attributes":{"include.in.token.scope":"true","display.on.consent.screen":"true","consent.screen.text":"openid","claim.name":"openid"}}'  \
 --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
-
 # 添加client-scopes groups
 kcadm.sh create client-scopes -r kdo \
 -b '{"name":"groups","protocol":"openid-connect","attributes":{"include.in.token.scope":"true","display.on.consent.screen":"true","consent.screen.text":"groups","claim.name":"groups"}}'  \
@@ -131,7 +130,7 @@ kcadm.sh create client-scopes -r kdo \
 # 3. 创建client kdo 在realm kdo
 kcadm.sh create clients -r kdo -s clientId=kdo -s secret=kubedo -s 'redirectUris=["*"]' -s implicitFlowEnabled=true --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 
-# 4. 添加默认集群管理员kdo并设置密码
+# 4. 添加默认集群管理员kdo并设置密码，kdo的密码和KeyCloak管理员的密码保持一致
 kcadm.sh create users -s username=kdo -r kdo -s email=kdo@kube-do.dev -s emailVerified=true -s enabled=true  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 kcadm.sh set-password  --username kdo -r kdo --new-password $KEYCLOAK_ADMIN_PASSWORD --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 
