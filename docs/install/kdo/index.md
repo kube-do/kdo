@@ -1,5 +1,5 @@
 ---
-title: 安装kdo组件
+title: 安装kdo平台
 parent: 在Linux平台安装
 ---
 
@@ -9,8 +9,10 @@ parent: 在Linux平台安装
 
 
 {: .note }
-kdo组件的安装主要分为两个步骤：
-
+kdo平台的安装主要分为两个步骤：
+1. 下载安装脚本
+2. 安装前检查
+3. 运行安装脚本
 
 ## 下载安装脚本
 首先下载kdo安装脚本到Kubernetes的Master节点，linux平台可以通过wget或curl下载。
@@ -36,7 +38,7 @@ export OIDC_CLIENT_SECRET=kubedo
 export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 ```
 
-## 开始安装
+## 运行安装脚本
 ![](imgs/install-help.png)
 这个脚本自动化安装脚化，一般只需要两个参数就可以运行了，节点IP（注意，这个IP必须能被客户端访问到）和默认域名后缀，如果采用的内置KeyCloak作为认证平台，
 这两个参数需要和[安装KeyCloak](../keycloak#安装keycloak)的保持一致。
@@ -49,14 +51,14 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 这里由于nodeIP和defaultDomain已经在环境变量设置过，可以直接获取，也可以手动输入这两个参数。
 ![](imgs/start-install.png)
 
-## 中途确认
+### 中途确认
 ![](imgs/wait-install.png)
 由于安装的组件比较多，有些组件需要等其他组件初始化完成后才能继续安装，这里另外打开一个Terminal，
 在Master节点运行 `kubectl get pod -A`确认所有Pod已经正常运行（ready）
 ![all-pods-ready.png](imgs/all-pods-ready.png)
 
 
-## 安装验证 
+### 安装验证 
 ![](imgs/after-install.png)
 1. 安装完成后，运行`kubectl get pod -n kubedo-system`，根据提示确认console组件已经启动，就可以访问平台了, kdo平台默认访问地址是`http://$NODE_IP:30080`
 ![](imgs/console-is-ready.png)
