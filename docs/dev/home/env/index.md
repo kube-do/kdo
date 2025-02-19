@@ -12,7 +12,7 @@ nav_order: 2
 ## 介绍
 
 {: .note }
-在kdo平台，开发者页面的**环境**资源是对应Kubernetes的[命名空间](../../../admin/management/namespaces)资源。
+在kdo平台，开发者页面的**应用环境**是对应Kubernetes的[命名空间](../../../admin/management/namespaces)。
 在**环境概览**页面，可以对当前项目的当前环境有个整体认识，主要有六个页面：[详情(1)](#详情)、[库存(2)](#库存)、[状态(3)](#状态)、[使用率(4)](#使用率)、[资源配额(5)](#资源配额)、[事件(6)](#事件)。
 点击对应链接可以直接访问对应的资源。
 
@@ -20,14 +20,14 @@ nav_order: 2
 
 ## 详情
 
-在详情子页面，可以查看当前环境的基本信息，包括名字、标签、描述等信息，点击查看所有可以获取这个环境更多信息。
+在详情子页面，可以查看当前环境的基本信息，包括名字、标签、描述等信息。点击查看所有会获取这个环境更多信息。
 
 ![detail.png](imgs/detail.png)
 
 ## 库存
 
 在库存子页面，可以获取当前环境内的各类资源，包括: [容器组](../../workloads/pods)、[无状态](../../workloads/deployments)、[有状态](../../workloads/statefulsets)、
-[配置映射](../../configurations/configmaps)、[服务](../../network-stroage/services)、[持久化声明](../../network-stroage/persistent-volume-claims)等。点击对应的资源链接，可以直接跳转资源页面。
+[配置映射](../../configurations/configmaps)、[服务](../../network-stroage/services)、[持久化声明](../../network-stroage/persistent-volume-claims)等。点击对应的资源链接，可以直接跳转资源类型页面。
 
 ![inventory.png](imgs/inventory.png)
 
@@ -40,7 +40,7 @@ nav_order: 2
 
 ## 使用率
 
-在使用率子页面，可以当前环境的资源使用情况，可以选择时间段，点击进去可以查看详情。
+在使用率子页面，获取环境的资源使用情况。可以选择不同时间段，点击进去可以查看详情。
 
 ![utilization.png](imgs/utilization.png)
 

@@ -38,7 +38,7 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 
 ## 开始安装
 ![](imgs/install-help.png)
-这个脚本自动化安装脚化，一般只需要两个参数就可以运行了，节点IP和默认域名后缀，如果采用的内置KeyCloak作为认证平台，
+这个脚本自动化安装脚化，一般只需要两个参数就可以运行了，节点IP（注意，这个IP必须能被客户端访问到）和默认域名后缀，如果采用的内置KeyCloak作为认证平台，
 这两个参数需要和[安装KeyCloak](../keycloak#安装keycloak)的保持一致。
 ```shell
 # 根据环境变量运行，NODE_IP和DEFAULT_DOMAIN这两个环境在安装KeyCloak已经设置过
@@ -58,7 +58,8 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 
 ## 安装验证 
 ![](imgs/after-install.png)
-1. 安装完成后，运行`kubectl get pod -n kubedo-system`根据提示确认console组件已经启动，就可以访问平台了, kdo平台默认访问地址是`http://$NODE_IP:30080`
-2. 如果需要增加/修改/删除用户和组，则访问KeyCloak进行操作，KeyCloak默认的访问地址是`https://$NODE_IP:30443`
+1. 安装完成后，运行`kubectl get pod -n kubedo-system`，根据提示确认console组件已经启动，就可以访问平台了, kdo平台默认访问地址是`http://$NODE_IP:30080`
+![](imgs/console-is-ready.png)
+2. 如果需要增加/修改/删除用户和组，则访问KeyCloak平台进行操作，KeyCloak平台默认的访问地址是`https://$NODE_IP:30443`，用户和密码和kdo平台管理员用户和密码是一样的
 
 

@@ -22,6 +22,7 @@ export KC_USER=kdo
 #KeyCloak平台的管理员的密码，这个会和kdo平台的保持一致
 export KC_PASS=1MKok8eCvp
 #kdo安装节点Master的IP，如果有多个Master，就指定第一个，这个和安装kdo组件时节点IP要保持一致
+#****注意，这个IP必须能被客户端访问到****
 export NODE_IP=10.255.1.31
 #kdo集群的默认域名后缀，这个和安装kdo组件时的保持一致
 export DEFAULT_DOMAIN=kube-do.dev
