@@ -8,11 +8,11 @@ parent: 在Linux平台安装
 {:toc}
 
 
-{: .note }
-kdo平台的安装主要分为两个步骤：
-1. 下载安装脚本
-2. 安装前检查
-3. 运行安装脚本
+## 安装步骤
+kdo平台的安装主要分为三个步骤：
+1. **下载安装脚本**
+2. **安装前检查**
+3. **运行安装脚本**
 
 ## 下载安装脚本
 首先下载kdo安装脚本到Kubernetes的Master节点，linux平台可以通过wget或curl下载。
@@ -48,7 +48,7 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 # 直接添加参数运行
 ./kdo-install.sh 10.22.1.20 abc.com
 ```
-这里由于nodeIP和defaultDomain已经在环境变量设置过，可以直接获取，也可以手动输入这两个参数。
+这里由于NODE_IP和DEFAULT_DOMAIN已经在环境变量设置过，可以直接获取，当然也可以手动输入这两个参数。
 ![](imgs/start-install.png)
 
 ### 中途确认

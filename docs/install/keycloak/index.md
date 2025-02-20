@@ -10,7 +10,7 @@ parent: 在Linux平台安装
 ## 安装KeyCloak
 
 {: .note }
-由于kdo平台和Kubernetes都是基于OIDC认证的，如果没有现存的OIDC认证平台，就需要安装KeyCloak。
+由于kdo平台和Kubernetes都是基于OIDC协议进行用户认证管理得到，如果没有现存的OIDC认证平台，就需要安装KeyCloak。
 安装KeyCloak是通过Helm命令行自动安装的，安装前确认对应的环境变量已经设置正确。
 [关于KeyCloak](https://www.keycloak.org/)
 
