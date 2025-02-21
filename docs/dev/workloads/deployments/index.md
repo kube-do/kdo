@@ -10,7 +10,7 @@ nav_order: 3
 ## 介绍
 
 {: .note }
-无状态应用（Deployment）用于管理运行一个应用负载的一组容器组，通常适用于不需要保持状态的负载，比如：Web服务，微服务。
+无状态应用（Deployment）用于管理和运行一组容器组，适用于不需要保持持久状态的负载。这种部署方式非常适合如Web服务和微服务等应用场景。
 [更多信息](https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/deployment)
 
 ## 无状态列表

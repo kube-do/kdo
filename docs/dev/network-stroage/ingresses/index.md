@@ -42,5 +42,7 @@ nav_order: 2
 ![](imgs/edit-ingress.png)
 
 {: .note }
-在图形化界面只能进行一些基础的配置，需要更多高级特性，需要手动编辑路由的YAML配置(主要是通过编辑路由资源的注解)，请参考[路由高级特性](https://www.w3ccoo.com/nginx/nginx_ingress_annotations.html)。
+在图形化界面中，用户只能进行一些基础的配置。若需使用更多高级特性，则需要手动编辑路由的YAML配置文件，主要是通过修改路由资源的注解来实现。
+这种方式允许用户根据具体需求定制路由规则，解锁更复杂的配置选项和功能，如细粒度的流量管理、定制化的负载均衡策略以及更高级的安全设置等。
+请参考[路由高级特性](https://www.w3ccoo.com/nginx/nginx_ingress_annotations.html)。
 
