@@ -9,14 +9,15 @@ nav_order: 8
 
 
 {: .note }
-对于在 Linux 上的安装，kdo平台既可以部署在云端，也可以部署在本地环境中，例如 AWS EC2、Azure VM 和裸机等。
-安装kdo平台有两种模式，一种是只Linux操作系统，没有Kubernetes集群，需要先安装Kubernetes集群后再安装kdo平台 。
-另外一种有现存的Kubernetes集群，只需要安装kdo平台。
+对于Linux环境下的安装，KDO平台既支持云端部署也支持本地部署，包括虚拟机和物理服务器等多种形式。
+安装KDO平台有两种主要模式：
+无现有Kubernetes集群的情况：如果您的环境中没有现成的Kubernetes集群，首先需要在Linux操作系统上安装Kubernetes集群。完成这一步骤后，再进行KDO平台的安装。这种方式适合希望从零开始构建整个云原生基础设施的用户。
+已有Kubernetes集群的情况：如果您已经有了一套运行中的Kubernetes集群，则可以直接在其上安装KDO平台。这种方式简化了部署流程，使得您能够迅速利用现有的资源来管理和扩展应用
 
 
 ## 在现存的Linux操作系统安装kdo平台
 
-要在现存的Linux操作系统(操作系统建议使用AlmaLinux9或Ubuntu22.04以上，旧版本操作系统的内核比较旧，有些特性可能不支持)安装kdo平台，主要分为以下三个部分：
+要在现有的Linux操作系统上安装KDO平台，推荐使用AlmaLinux 9或Ubuntu 22.04及以上版本。旧版本的操作系统由于内核较老，可能无法支持某些新特性。主要分为以下三个部分：
 
 1. [安装Kubernetes集群](./kubernetes)
 2. [安装OIDC平台KeyCloak](./keycloak)
