@@ -1,5 +1,5 @@
 ---
-title: 安装kdo平台
+title: 安装KDO平台
 parent: 在Linux平台安装
 ---
 
