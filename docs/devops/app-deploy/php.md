@@ -1,7 +1,7 @@
 ---
 title: PHP 项目部署
 parent: 部署应用
-description: 在 Rainbond 上通过源代码部署 PHP 项目
+description: 在 KDO 上通过源代码部署 PHP 项目
 ---
 
 ## 概述
@@ -39,7 +39,7 @@ composer update --ignore-platform-reqs
 
 #### PHP 5.6
 
-在 Rainbond 上自动启用以下内置扩展(此列表不包括默认情况下 PHP 启用的扩展，例如 [DOM](http://php.net/manual/book.dom)，[JSON](http://php.net/manual/book.json)，[PCRE](http://php.net/manual/book.pcre) 或 [PDO](http://php.net/manual/book.pdo)):
+在 KDO 上自动启用以下内置扩展(此列表不包括默认情况下 PHP 启用的扩展，例如 [DOM](http://php.net/manual/book.dom)，[JSON](http://php.net/manual/book.json)，[PCRE](http://php.net/manual/book.pcre) 或 [PDO](http://php.net/manual/book.pdo)):
 
 - [Bzip2](http://php.net/manual/book.bzip2)
 - [cURL](http://php.net/manual/book.curl)
@@ -98,7 +98,7 @@ composer update --ignore-platform-reqs
 
 #### PHP 7.0
 
-在 Rainbond 上自动启用以下内置扩展(此列表不包括默认情况下 PHP 启用的扩展，例如 [DOM](http://php.net/manual/book.dom)，[JSON](http://php.net/manual/book.json)，[PCRE](http://php.net/manual/book.pcre) 或 [PDO](http://php.net/manual/book.pdo)):
+在 KDO 上自动启用以下内置扩展(此列表不包括默认情况下 PHP 启用的扩展，例如 [DOM](http://php.net/manual/book.dom)，[JSON](http://php.net/manual/book.json)，[PCRE](http://php.net/manual/book.pcre) 或 [PDO](http://php.net/manual/book.pdo)):
 
 - [Bzip2](http://php.net/manual/book.bzip2)
 - [cURL](http://php.net/manual/book.curl)
@@ -155,7 +155,7 @@ composer update --ignore-platform-reqs
 
 #### PHP 7.1
 
-在 Rainbond 上自动启用以下内置扩展(此列表不包括默认情况下 PHP 启用的扩展，例如 [DOM](http://php.net/manual/book.dom)，[JSON](http://php.net/manual/book.json)，[PCRE](http://php.net/manual/book.pcre) 或 [PDO](http://php.net/manual/book.pdo)):
+在 KDO 上自动启用以下内置扩展(此列表不包括默认情况下 PHP 启用的扩展，例如 [DOM](http://php.net/manual/book.dom)，[JSON](http://php.net/manual/book.json)，[PCRE](http://php.net/manual/book.pcre) 或 [PDO](http://php.net/manual/book.pdo)):
 
 - [Bzip2](http://php.net/manual/book.bzip2)
 - [cURL](http://php.net/manual/book.curl)

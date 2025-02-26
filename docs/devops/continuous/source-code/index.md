@@ -29,7 +29,7 @@ keywords:
 
 2. 项目源代码拥有三个分支，dev、test、master。
 
-3. [创建项目](../../project-manage/project#创建项目)时，选择`开发环境`、`测试环境`、`生产环境`三个环境。
+3. [创建项目](/docs/devops/project-manage/project#创建项目)时，选择`开发环境`、`测试环境`、`生产环境`三个环境。
 
 4. [创建应用](/docs/dev/applications/repository#创建应用)时，在`自动分支流水线`选项中把源代码分支和环境环境进行对应。
 

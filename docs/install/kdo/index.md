@@ -15,7 +15,7 @@ kdo平台的安装主要分为三个步骤：
 3. **运行安装脚本**
 
 ## 下载安装脚本
-首先下载kdo安装脚本到Kubernetes的Master节点，linux平台可以通过wget或curl下载。
+首先下载KDO安装脚本到Kubernetes的Master节点，linux平台可以通过`wget`或`curl`下载。
 [kdo平台安装脚本](https://gitee.com/kube-do/docs/releases/download/latest/install.zip)
 
 ```shell
@@ -28,7 +28,8 @@ chmod +x kdo-install.sh
 ```
 
 ## 安装前检查
-如果是其他的OIDC认证平台，需要通过`vim`手动修改这个`kdo-install.sh`脚本，把OIDC对应环境变量修改为对应OIDC认证平台的信息，这里需要[Kubernetes的ODIC参数](../index.md#根据oidc平台设置kubernetes)保持一致。
+如果是其他的OIDC认证平台，需要通过`vim`手动修改这个`kdo-install.sh`脚本，把OIDC对应环境变量修改为对应OIDC认证平台的信息，
+这里需要[Kubernetes的ODIC参数](../index.md#根据oidc平台设置kubernetes)保持一致。
 ![](imgs/setup-oidc.png)
 ```shell
 vim kdo-install.sh
@@ -40,8 +41,8 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 
 ## 运行安装脚本
 ![](imgs/install-help.png)
-这个脚本自动化安装脚化，一般只需要两个参数就可以运行了，节点IP（注意，这个IP必须能被客户端访问到）和默认域名后缀，如果采用的内置KeyCloak作为认证平台，
-这两个参数需要和[安装KeyCloak](../keycloak#安装keycloak)的保持一致。
+这个脚本自动化安装脚化，一般只需要两个参数就可以运行了，节点IP（注意，这个IP必须能被客户端访问到）和默认域名后缀。
+如果采用的内置KeyCloak作为认证平台， 这两个参数需要和[安装KeyCloak](../keycloak#安装keycloak)的保持一致。
 ```shell
 # 根据环境变量运行，NODE_IP和DEFAULT_DOMAIN这两个环境在安装KeyCloak已经设置过
 ./kdo-install.sh $NODE_IP $DEFAULT_DOMAIN
@@ -53,14 +54,14 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 
 ### 中途确认
 ![](imgs/wait-install.png)
-由于安装的组件比较多，有些组件需要等其他组件初始化完成后才能继续安装，这里另外打开一个Terminal，
+由于安装的组件比较多，有些组件需要等其他组件初始化完成后才能继续安装，这里另外打开一个Linux Terminal，
 在Master节点运行 `kubectl get pod -A`确认所有Pod已经正常运行（ready）
 ![all-pods-ready.png](imgs/all-pods-ready.png)
 
 
 ### 安装验证 
 ![](imgs/after-install.png)
-1. 安装完成后，运行`kubectl get pod -n kubedo-system`，根据提示确认console组件已经启动，就可以访问平台了, kdo平台默认访问地址是`http://$NODE_IP:30080`
+1. 安装完成后，运行`kubectl get pod -n kubedo-system`，根据提示确认console组件已经启动，就可以访问平台了, KDO平台默认访问地址是`http://$NODE_IP:30080`
 ![](imgs/console-is-ready.png)
 2. 如果需要增加/修改/删除用户和组，则访问KeyCloak平台进行操作，KeyCloak平台默认的访问地址是`https://$NODE_IP:30443`，用户和密码和kdo平台管理员用户和密码是一样的
 

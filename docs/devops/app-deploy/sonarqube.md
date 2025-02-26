@@ -1,7 +1,7 @@
 ---
 parent: 部署应用
 title: SonarQube 静态扫描
-description: 利用 SonarScanner 静态扫描 Rainbond 上的 Maven 项目
+description: 利用 SonarScanner 静态扫描 KDO 上的 Maven 项目
 keywords:
 - SonarQube 代码静态扫描
 - 代码静态扫描
@@ -9,7 +9,7 @@ keywords:
 
 对代码进行静态扫描是一种非常常见的代码质量保证手段，这种扫描不仅仅可以检查到代码中的缺陷，应用各种业界最佳实践，也可以检查出安全方面的漏洞，给予项目代码全方位的提升。在各种代码扫描方案之中，SonarQube 最为人熟知，应用最为广泛。各种持续集成方案都有自己的方式融入 SonarQube 进行代码的静态扫描工作。
 
-今天介绍一种基于 SonarScanner 在 Rainbond 源码构建过程中，对 Java Maven 项目进行静态扫描的方法。
+今天介绍一种基于 SonarScanner 在 KDO 源码构建过程中，对 Java Maven 项目进行静态扫描的方法。
 
 
 
@@ -29,34 +29,34 @@ mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
 
 ## 融入持续集成链条
 
-了解 SonarScanner for Maven 的工作方式之后，我们就可以尝试将代码扫描这个过程，融入到 Rainbond 的自动化持续集成链条之中。**我们希望最终达成的效果，是在代码提交后自动触发项目的构建，在构建过程中进行代码的扫描分析，并生成相应的报告。**
+了解 SonarScanner for Maven 的工作方式之后，我们就可以尝试将代码扫描这个过程，融入到 KDO 的自动化持续集成链条之中。**我们希望最终达成的效果，是在代码提交后自动触发项目的构建，在构建过程中进行代码的扫描分析，并生成相应的报告。**
 
 ![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-1.png)
 
 整个流程可以概括为如下几个阶段：
 
 1. 开发人员向代码仓库提交代码，触发整个持续集成链条。
-2. 代码仓库利用 Webhook 调用 Rainbond 的 Openapi 接口，触发对应的服务组件构建自身。
-3. Rainbond 自动构建对应服务组件的同时，触发 SonarScanner 扫描工作，并将扫描结果发送给 SonarQube 服务。
+2. 代码仓库利用 Webhook 调用 KDO 的 Openapi 接口，触发对应的服务组件构建自身。
+3. KDO 自动构建对应服务组件的同时，触发 SonarScanner 扫描工作，并将扫描结果发送给 SonarQube 服务。
 4. SonarQube 服务分析扫描结果，生成代码检测报告。
 5. 开发人员读取代码检测报告，获悉改进点。
 6. 开发人员根据报告完善代码，并再次提交，回到步骤1，形成持续集成的闭环。
 
-接下来，将会从实际操作的角度出发，基于 Rainbond 一点点实现上述持续集成链条。
+接下来，将会从实际操作的角度出发，基于 KDO 一点点实现上述持续集成链条。
 
 
 
 ### 前提条件
 
-本文中介绍的包括了代码扫描的持续集成链条，都是基于 Rainbond 云原生管理平台实现的。所以需要用户自行准备可用的 Rainbond 环境，该环境需要连接公网，为使用开源应用商店做准备。
+本文中介绍的包括了代码扫描的持续集成链条，都是基于 KDO 云原生管理平台实现的。所以需要用户自行准备可用的 KDO 环境，该环境需要连接公网，为使用开源应用商店做准备。
 
 
 
 ### 搭建 SonarQube
 
-除了 Rainbond 云原生应用管理平台，还需要准备代码仓库和 SonarQube 服务。前者我们选择使用 Gitlab ，而 SonarQube 服务则可以直接基于开源应用商店安装。目前开源应用商店提供了 8.9.9 （lts）版本的 SonarQube ，供用户一键安装。
+除了 KDO 云原生应用管理平台，还需要准备代码仓库和 SonarQube 服务。前者我们选择使用 Gitlab ，而 SonarQube 服务则可以直接基于开源应用商店安装。目前开源应用商店提供了 8.9.9 （lts）版本的 SonarQube ，供用户一键安装。
 
-用户只需要在 Rainbond 的应用市场界面选择开源应用商店，搜索 `sonarqube` 即可找到对应的安装入口：
+用户只需要在 KDO 的应用市场界面选择开源应用商店，搜索 `sonarqube` 即可找到对应的安装入口：
 
 ![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-2.png)
 
@@ -88,9 +88,9 @@ mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
 
 ### 从 Gitlab 构建 Maven 项目
 
-Rainbond 可以基于 Oauth2.0 与 Gitlab 代码仓库对接，可以非常方便的选择构建 Gitlab 中的项目，并自动配置代码自动构建。
+KDO 可以基于 Oauth2.0 与 Gitlab 代码仓库对接，可以非常方便的选择构建 Gitlab 中的项目，并自动配置代码自动构建。
 
-参阅文档：[Rainbond 与 Gitlab 的对接](https://www.rainbond.com/docs/use-manual/enterprise-manage/enterprise-settings/base/oauth2.0/)
+参阅文档：[KDO 与 Gitlab 的对接](https://www.rainbond.com/docs/use-manual/enterprise-manage/enterprise-settings/base/oauth2.0/)
 
 我所使用的 Gitlab 中已经存在一份标准的 Java Maven 项目代码。点击基于源码构建组件，选择对接好的 Gitlab，就可以搜索想要部署的项目了。
 
@@ -110,7 +110,7 @@ Rainbond 可以基于 Oauth2.0 与 Gitlab 代码仓库对接，可以非常方�
 
 SonarScanner 的一般性配置，包括 SonarQube 服务地址，以及  `AuthenticationToken`   都可以配置进 Settings.xml 全局配置，供 Java Maven 项目构建时使用。
 
-Rainbond 在针对 Java Maven 类型的项目进行构建时，提供入口配置全局生效的 Settings.xml 。在高级设置——部署属性中，可以点击 **管理Maven配置** 来编辑默认的 Settings.xml。此处我们已经提供了一份默认的配置，我们需要在 xml 格式下添加以下配置来定义 SonarQube 服务地址，以及  `AuthenticationToken`   。
+KDO 在针对 Java Maven 类型的项目进行构建时，提供入口配置全局生效的 Settings.xml 。在高级设置——部署属性中，可以点击 **管理Maven配置** 来编辑默认的 Settings.xml。此处我们已经提供了一份默认的配置，我们需要在 xml 格式下添加以下配置来定义 SonarQube 服务地址，以及  `AuthenticationToken`   。
 
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
@@ -189,11 +189,11 @@ clean verify sonar:sonar   -Dsonar.projectName=Maven-demo -Dsonar.projectKey=Mav
 
 ![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-11.png)
 
-Commit Message 中包含的 `@deploy` 是触发自动构建的关键字。有关 Rainbond 自动构建的详细信息，请参考文档 [Rainbond自动构建](https://www.rainbond.com/docs/use-manual/component-manage/build-source/auto_build)
+Commit Message 中包含的 `@deploy` 是触发自动构建的关键字。有关 KDO 自动构建的详细信息，请参考文档 [KDO自动构建](https://www.rainbond.com/docs/use-manual/component-manage/build-source/auto_build)
 
 等待项目自动构建完成，再次审查分析报告，来确定 Bug 是否得到了解决。
 
-回顾 Rainbond 中组件的操作记录，会发现手动构建与自动构建之间的区别。
+回顾 KDO 中组件的操作记录，会发现手动构建与自动构建之间的区别。
 
 ![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-12.png)
 

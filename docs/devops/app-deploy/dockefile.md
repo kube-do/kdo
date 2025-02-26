@@ -1,12 +1,12 @@
 ---
 title: Dockerfile
 parent: 部署应用
-description: 在 Rainbond 上通过 Dockerfile 部署应用
+description: 在 KDO 上通过 Dockerfile 部署应用
 ---
 
 ## 概述
 
-代码主目录下有 `Dockerfile` 文件，Rainbond 会识别代码语言类型为 **Dockerfile** 。
+代码主目录下有 `Dockerfile` 文件，KDO 会识别代码语言类型为 **Dockerfile** 。
 
 ### 编译原理
 
@@ -16,7 +16,7 @@ description: 在 Rainbond 上通过 Dockerfile 部署应用
 
 **Dockerfile** 是由一系列命令和参数构成的脚本，这些命令应用于基础镜像并最终创建一个新的镜像。
 
-Rainbond 在源码检测阶段会读取 [Dockerfile](https://docs.docker.com/engine/reference/builder/) 定义的如下参数：
+KDO 在源码检测阶段会读取 [Dockerfile](https://docs.docker.com/engine/reference/builder/) 定义的如下参数：
 
 | 参数类型 | 名称       | 说明                           |
 | -------- | ---------- | ------------------------------ |

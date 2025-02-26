@@ -1,12 +1,12 @@
 ---
 title: Golang 项目部署
 parent: 部署应用
-description: 在 Rainbond 上通过源代码部署 Golang 项目
+description: 在 KDO 上通过源代码部署 Golang 项目
 ---
 
 ## 概述
 
-当源代码根目录下存在 `go.mod` 文件，Rainbond 会将源代码识别为 `Golang` 项目。
+当源代码根目录下存在 `go.mod` 文件，KDO 会将源代码识别为 `Golang` 项目。
 
 ### 编译指定模块
 

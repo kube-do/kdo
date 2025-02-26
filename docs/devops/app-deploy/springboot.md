@@ -9,9 +9,6 @@ keywords:
 - Java Maven 项目部署
 ---
 
-import Bvideo from '/src/components/Bvideo';
-
-<Bvideo src="//player.bilibili.com/player.html?aid=820892498&bvid=BV1334y1f76U&cid=983036584&page=5" />
 
 ## 概述
 
