@@ -11,10 +11,10 @@ nav_order: 4
 ## 介绍
 
 {: .note }
-很多人都使用过Ubuntu下的`apt-get`或者CentOS下的`yum`, 这两者都是Linux系统下的包管理工具。采用apt-get/yum，应用开发者可以管理应用包之间的依赖关系，发布应用。
-Helm就是一个类似的工具，只不过它不是基于Linux操作系统，它是基于Kubernetes集群的应用包管理工具。
-用户则可以以简单的方式查找、安装、升级、卸载应用程序，Helm可以非常方便的部署一些组件，比如：MySQL、Redis，Kafka这些应用。
-下面是 Helm 的架构图。
+许多人熟悉在Ubuntu中使用apt-get或在CentOS下使用yum，这两者均为Linux系统中高效的包管理工具。通过apt-get或yum，应用开发者能够有效地处理应用包的依赖关系，并发布他们的应用。
+类似地，Helm也是一种包管理工具，但它并非针对Linux操作系统设计，而是专为Kubernetes集群打造的应用包管理器。
+借助Helm，用户可以采用一种更为简便的方法来查找、安装、升级以及卸载应用程序。它极大地简化了如MySQL、Redis和Kafka等组件的部署过程，使得向Kubernetes集群添加复杂应用变得更加直观和高效。
+接下来展示的是Helm的架构图，它将帮助您更好地理解这一工具的工作原理及其组成部分。
 
 ![Helm 架构图](imgs/helm-chart.png)
 

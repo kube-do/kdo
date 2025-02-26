@@ -28,7 +28,7 @@ chmod +x kdo-install.sh
 ```
 
 ## 安装前检查
-如果是其他的OIDC认证平台，需要通过`vim`手动修改这个`kdo-install.sh`脚本，把OIDC对应环境变量修改为对应OIDC认证平台的信息。
+如果是其他的OIDC认证平台，需要通过`vim`手动修改这个`kdo-install.sh`脚本，把OIDC对应环境变量修改为对应OIDC认证平台的信息，这里需要[Kubernetes的ODIC参数](../index.md#根据oidc平台设置kubernetes)保持一致。
 ![](imgs/setup-oidc.png)
 ```shell
 vim kdo-install.sh

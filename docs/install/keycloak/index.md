@@ -79,7 +79,7 @@ kubectl get pod -n kubedo-system
 
 ### 4. 创建新的ssl证书，替换原来的证书
 ```shell
-# 这里使用kubernetes apiserver的ca证书作为ca，便于管理维护。
+# 这里使用kubernetes apiserver的ca证书作为ca，便于管理维护，这里证书时间期限设置为10年。
 openssl req -newkey rsa:2048 -nodes -keyout tls.key -subj "/C=CN/ST=Hunan/L=ChangSha/O=kubedo/OU=kdo/CN=*.$DEFAULT_DOMAIN/emailAddress=$KC_USER@$DEFAULT_DOMAIN" -out tls.csr  && \
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:*.$DEFAULT_DOMAIN,IP:$NODE_IP") -days 3650 -in tls.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out tls.crt
 
@@ -144,7 +144,7 @@ kcadm.sh set-password --username dev2 -r kdo --new-password $devPass  --server h
 
 ## KeyCloak Web页面设置
 通过命令行设置后，还需要通过web访问keycloak设置一下。访问地址`https://$NODE_IP:30443`，比如这个节点的IP是10.255.1.31，那就访问`https://10.255.1.31:30443`。
-因为这个是自签证书，可能会有证书错误，忽略即可。用户(`$KC_USER`)和密码(`$KC_PASS`)是上面的设置环境变量，比如上面设置的是：kdo/1MKok8eCvp 。
+由于这是自签证书，可能会有证书错误，忽略即可。用户(`$KC_USER`)和密码(`$KC_PASS`)是上面的设置环境变量，比如上面设置的是：`kdo/1MKok8eCvp` 。
 
 ![update-client-scopes.gif](imgs/update-client-scopes.gif)
 这样KeyCloak就设置好了

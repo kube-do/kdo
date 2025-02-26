@@ -16,8 +16,8 @@ title: 命令行模式
 CloudShell 主要面向对 Kubernetes 有深入了解的开发者和运维人员，它通过命令行提供了高效的问题处理能力。
 用户不仅能够快速解决日常问题，还可以通过定制化脚本实现批量操作，从而大幅提升工作效率，让复杂任务变得简单而高效。
 
-### cloudshell命令行界面优势
-KDO Cloud Shell 是一种基于云的命令行界面（CLI），KDO Cloud Shell可以为用户提供一系列优势，主要包括：
+### CloudShell命令行界面优势
+KDO CloudShell 是一种基于云的命令行界面（CLI），KDO Cloud Shell可以为用户提供一系列优势，主要包括：
 1. **无需安装和配置：** 用户不需要在本地计算机上安装Kubernetes CLI工具(`kubectl、oc、helm、istioctl、tkn`等)或其他依赖项。这节省了设置环境的时间，特别是在需要快速访问集群进行管理和故障排查时。
 2. **随时随地访问：** 只要有浏览器和互联网连接，就可以从任何地方访问您的Kubernetes集群。这对于远程工作或处理紧急问题非常有用。
 3. **安全性高：** 由于Cloud Shell是直接与您的KDO账户集成的，因此它继承了KDO平台安全措施。这意味着您不需要担心密钥管理或SSH访问的问题。
@@ -26,15 +26,15 @@ KDO Cloud Shell 是一种基于云的命令行界面（CLI），KDO Cloud Shell�
 6. **便捷的多集群管理：** 对于管理多个Kubernetes集群的用户来说，Cloud Shell提供了一种简单的方法来切换不同的上下文，而无需重新配置本地环境。
 总的来说，KDO Cloud Shell为开发者和运维人员提供了便捷、高效且安全的方式来管理和操作Kubernetes集群，尤其适合那些希望减少本地环境配置复杂性的用户
 
-### 访问cloudshell命令行界面
-KDO Cloud Shell 集成在KDO的管理控制台中，点击KDO页面右上角的这个图标就可以访问
+### 访问CloudShell命令行界面
+KDO CloudShell 集成在KDO的管理控制台中，点击KDO页面右上角的这个图标就可以访问
 ![](img/open-terminal.png)
 如果是集群管理员，默认会创建`kubernetes-terminal`这个命名空间，其他用户可以选择对应[项目的命名空间](../devops/project-manage)
 ![](img/create-terminal.png)
 
 ### 日常操作
-开启 KDO Cloud Shell，您将获得与在 Kubernetes 集群的 Master 节点上操作相似的体验，但无需直接访问 Master 节点，操作更加便捷。
-此外，您还可以点击右上角的图标，轻松切换至全屏模式，享受更沉浸式的 Cloud Shell 操作体验。
+开启 KDO CloudShell，您将获得与在 Kubernetes 集群的 Master 节点上操作相似的体验，但无需直接访问 Master 节点，操作更加便捷。
+此外，您还可以点击右上角的图标，轻松切换至全屏模式，享受更沉浸式的 CloudShell 操作体验。
 ![cloudshell-operation.gif](img/cloudshell-operation.gif)
 
 ### 数据存储
@@ -55,8 +55,8 @@ LocalShell集成在KDO的管理控制台中，访问KDO页面右上角用户菜�
 ### 下载命令行工具
 ![local-shell.png](img/local-shell.png)
 打开页面，里面`Windows`、`Linux`、`Mac`各种操作系统的命令行工具，访问对应操作系统的链接，下载对应的命令行工具`oc`。
-确保有可执行的权限(linux/mac通过`chmod +x oc`设置，windows右键属性里设置)，放置到对应的目录（注意：这里需要用到管理员的权限）
-比如:Windows是`C:\Windows\System32\`,Linux和Mac是 `/usr/bin/` 。
+确保有可执行的权限(linux/mac通过`chmod +x oc`设置，windows右键属性里设置`解除锁定`)，放置到对应的目录（注意：这里需要用到管理员的权限）
+比如:Windows是`C:\Windows\System32\`，Linux和Mac是 `/usr/bin/` 。
 ![](img/windows-unlock.png)
 
 ### 操作localshell
