@@ -1,11 +1,8 @@
 ---
-title: kdo平台结合GitFlow进行应用开发
+title: KDO平台结合GitFlow进行应用开发
 parent: DevOps
 ---
 
-
-
-https://cloud.tencent.com/developer/article/2449812
 
 ## 介绍
 
