@@ -17,7 +17,7 @@ nav_order: 8
 
 ## 在现存的Linux操作系统安装kdo平台
 
-要在现有的Linux操作系统上安装KDO平台，推荐使用AlmaLinux 9或Ubuntu 22.04及以上版本。旧版本的操作系统由于内核较老，可能无法支持某些新特性。主要分为以下三个部分：
+要在现有的Linux操作系统上安装KDO平台，推荐使用REHL9(AlmaLinux 9/Rockey 9)或Ubuntu 22.04及以上版本。旧版本的操作系统由于内核较老，可能无法支持某些新特性。主要分为以下三个部分：
 
 1. [安装Kubernetes集群](./kubernetes)
 2. [安装OIDC平台KeyCloak](./keycloak)

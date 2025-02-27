@@ -78,11 +78,9 @@ kubectl get pod -n kubedo-system
 
 ### 4. 创建新的ssl证书，替换原来的证书
 ```shell
-# 这里使用kubernetes apiserver的ca证书作为ca，便于管理维护，这里证书时间期限设置为10年。
+# 这里使用kubernetes apiserver的ca证书作为ca，便于管理维护，这里证书时间期限设置为10年。创建好后，替换原来的证书，并且重启keycloak
 openssl req -newkey rsa:2048 -nodes -keyout tls.key -subj "/C=CN/ST=Hunan/L=ChangSha/O=kubedo/OU=kdo/CN=*.$DEFAULT_DOMAIN/emailAddress=$KC_USER@$DEFAULT_DOMAIN" -out tls.csr  && \
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:*.$DEFAULT_DOMAIN,IP:$NODE_IP") -days 3650 -in tls.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out tls.crt
-
-# 替换原来的证书，并且重启keycloak
 kubectl delete secret -n kubedo-system keycloak-crt && kubectl create secret tls -n kubedo-system keycloak-crt --cert=./tls.crt --key=./tls.key  && kubectl rollout restart statefulset -n kubedo-system keycloak
 ```
 
@@ -108,21 +106,17 @@ kubectl get pod -n kubedo-system
 kubectl exec -it  -n kubedo-system keycloak-0 -- bash
 
 # 进行容器后设置环境变量
-# 普通用户的密码，这里可以设置其他密码,平台超级管理员admin用户的密码和KeyCloak是一致的
+# 普通用户的密码，这里可以设置其他密码
 export devPass=Kdo#2025
 
-#***注意，由于kcadm.sh脚本机制问题，以下这些命令只能一条一条执行***
-# 1. 创建realm kdo
+# 1. 创建realm kdo，并且调整session超时时间，不然会频繁登出
 kcadm.sh create realms -s realm=kdo -s enabled=true --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
-# 调整session超时时间，不然会频繁登出
 kcadm.sh update realms/kdo -s 'ssoSessionIdleTimeout=86400' -s 'accessTokenLifespan=43200' --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 
 # 2. 添加client-scopes openid和groups，这是oidc协议必要的
-# 添加client-scopes openid
 kcadm.sh create client-scopes -r kdo \
 -b '{"name":"openid","protocol":"openid-connect","attributes":{"include.in.token.scope":"true","display.on.consent.screen":"true","consent.screen.text":"openid","claim.name":"openid"}}'  \
 --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
-# 添加client-scopes groups
 kcadm.sh create client-scopes -r kdo \
 -b '{"name":"groups","protocol":"openid-connect","attributes":{"include.in.token.scope":"true","display.on.consent.screen":"true","consent.screen.text":"groups","claim.name":"groups"}}'  \
 --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
@@ -130,7 +124,7 @@ kcadm.sh create client-scopes -r kdo \
 # 3. 创建client kdo 在realm kdo
 kcadm.sh create clients -r kdo -s clientId=kdo -s secret=kubedo -s 'redirectUris=["*"]' -s implicitFlowEnabled=true --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 
-# 4. 添加默认集群管理员kdo并设置密码，kdo的密码和KeyCloak管理员的密码保持一致
+# 4. 添加默认集群管理员kdo平台并设置密码，kdo平台的密码和KeyCloak管理员的密码保持一致
 kcadm.sh create users -s username=kdo -r kdo -s email=kdo@kube-do.dev -s emailVerified=true -s enabled=true  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 kcadm.sh set-password  --username kdo -r kdo --new-password $KEYCLOAK_ADMIN_PASSWORD --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 
@@ -142,7 +136,7 @@ kcadm.sh create users -s username=ops1 -r kdo -s email=ops1@kube-do.dev -s email
 kcadm.sh set-password --username pa1 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 kcadm.sh set-password --username dev1 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 kcadm.sh set-password --username qa1 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
-kcadm.sh set-password --username qa1 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+kcadm.sh set-password --username ops1 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 ```
 
 ## KeyCloak Web页面设置
