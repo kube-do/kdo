@@ -17,10 +17,10 @@ Keycloak的安装可以通过Helm命令行工具自动完成。在开始安装�
 
 ###  1. 定义环境变量
 ```shell
-# 环境变量KC_USER  KeyCloak平台的管理员用户，这个会和kdo平台的保持一致
-# 环境变量KC_PASS  KeyCloak平台的管理员的密码，这个会和kdo平台的保持一致
+# 环境变量KC_USER  KeyCloak平台的管理员用户，这个会和KDO平台的保持一致
+# 环境变量KC_PASS  KeyCloak平台的管理员的密码，这个会和KDO平台的保持一致
 # 环境变量NODE_IP  KeyCloak安装节点Master的IP，如果有多个Master，就指定第一个，这个和安装kdo组件时节点IP要保持一致（这个IP必须能被客户端访问到）
-# DEFAULT_DOMAIN  KDO平台应用的默认域名后缀，这个和安装kdo组件时的保持一致
+# 环境变量DEFAULT_DOMAIN  KDO平台应用的默认域名后缀，这个和安装kdo组件时的保持一致
 export KC_USER=kdo
 export KC_PASS=1MKok8eCvp
 export NODE_IP=10.255.1.31
@@ -109,7 +109,7 @@ kubectl exec -it  -n kubedo-system keycloak-0 -- bash
 
 # 进行容器后设置环境变量
 # 普通用户的密码，这里可以设置其他密码,平台超级管理员admin用户的密码和KeyCloak是一致的
-export devPass=kubedo
+export devPass=Kdo#2025
 
 #***注意，由于kcadm.sh脚本机制问题，以下这些命令只能一条一条执行***
 # 1. 创建realm kdo
@@ -134,11 +134,15 @@ kcadm.sh create clients -r kdo -s clientId=kdo -s secret=kubedo -s 'redirectUris
 kcadm.sh create users -s username=kdo -r kdo -s email=kdo@kube-do.dev -s emailVerified=true -s enabled=true  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 kcadm.sh set-password  --username kdo -r kdo --new-password $KEYCLOAK_ADMIN_PASSWORD --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 
-# 5. 添加普通用户dev1和dev2并设置密码
+# 5. 添加测试项目用户pa1,dev1,qa1,ops1，并设置密码为devPass
+kcadm.sh create users -s username=pa1 -r kdo -s email=pa1@kube-do.dev -s emailVerified=true -s enabled=true  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 kcadm.sh create users -s username=dev1 -r kdo -s email=dev1@kube-do.dev -s emailVerified=true -s enabled=true  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
-kcadm.sh create users -s username=dev2 -r kdo -s email=dev2@kube-do.dev -s emailVerified=true -s enabled=true  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+kcadm.sh create users -s username=qa1 -r kdo -s email=qa1@kube-do.dev -s emailVerified=true -s enabled=true  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+kcadm.sh create users -s username=ops1 -r kdo -s email=ops1@kube-do.dev -s emailVerified=true -s enabled=true  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+kcadm.sh set-password --username pa1 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 kcadm.sh set-password --username dev1 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
-kcadm.sh set-password --username dev2 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+kcadm.sh set-password --username qa1 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+kcadm.sh set-password --username qa1 -r kdo --new-password $devPass  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 ```
 
 ## KeyCloak Web页面设置
