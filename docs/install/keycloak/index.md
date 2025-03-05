@@ -141,7 +141,7 @@ kcadm.sh set-password --username ops1 -r kdo --new-password $devPass  --server h
 
 ## KeyCloak Web页面设置
 通过命令行设置后，还需要通过web访问keycloak设置一下。访问地址`https://$NODE_IP:30443`，比如这个节点的IP是10.255.1.31，那就访问`https://10.255.1.31:30443`。
-由于这是自签证书，可能会有证书错误，忽略即可。用户(`$KC_USER`)和密码(`$KC_PASS`)是上面的设置环境变量，比如上面设置的是：`admin/1MKok8eCvp` 。
+由于这是自签证书，可能会有证书错误，忽略即可。用户(`$KC_USER`)和密码(`$KC_PASS`)是上面的设置环境变量，比如上面设置的是：`admin/Kdo@Pass#2025` 。
 
 ![update-client-scopes.gif](imgs/update-client-scopes.gif)
 这样KeyCloak就设置好了

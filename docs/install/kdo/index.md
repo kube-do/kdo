@@ -63,8 +63,9 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 ![](imgs/console-is-ready.png)
 
 1. 安装完成后，运行`kubectl get pod -n kubedo-system`，根据提示确认console组件已经启动，就可以访问平台了, KDO平台默认访问地址是`http://$NODE_IP:30080`
-2. 已经创建默认的项目kdo, 里面有4个环境：`开发(dev)`、`测试(test)`、`预发(stage)`、`生产(prod)`。 如果是内置的KeyCloak平台，已经创建四个用户: 项目管理员： pa1，项目开发者: dev1，项目测试人员: qa1, 项目运维人员: ops1, 他们的默认密码都是: Kdo#2025
-   现在就可以通过这些用户来体验KDO平台了.
+2. 已经创建默认的项目kdo, 里面有4个环境：`开发(dev)`、`测试(test)`、`预发(stage)`、`生产(prod)`。 
+3. 如果是内置的KeyCloak平台，已经创建四个用户: 项目管理员： pa1，项目开发者: dev1，项目测试人员: qa1, 项目运维人员: ops1, 他们的默认密码都是: Kdo#2025
+   现在就可以通过这些用户来体验KDO平台了。
 
    
         
