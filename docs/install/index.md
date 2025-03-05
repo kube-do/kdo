@@ -55,9 +55,21 @@ spec:
     - --oidc-username-claim=email
     - --oidc-username-prefix=-
 ```
-
-
 {: .warning }
 如果有多个Master节点，那每个Master节点都需要更改。
 
 
+## 平台组件访问
+{: .note }
+由于KDO是由多个开源组件组成的，所以需要通过不同的方式访问不同的组件，这里列出了KDO平台各个组件的访问地址。
+KDO、KeyCloak、Harbor这些组件的控制台，是通过NODE_IP加端口访问，比如KDO平台控制台的默认访问地址是`http://$NODE_IP:30080`，
+Grafana这些组件的访问地址是域名访问，比如Grafana的默认访问地址是`http://grafana.${DEFAULT_DOMAIN}`，这些需要在`/etc/hosts`文件中(Windows是`C:\Windows\System32\drivers\etc\hosts`)添加域名解析，或者通过域名解析访问。
+
+假设这个KDO集群的NODE_IP是**10.22.1.20**，默认域名后缀是**kube-do.dev**，那么访问地址如下：
+
+| 控制台         | 功能                   | 默认访问地址                             | 默认用户密码              |     
+|:------------|:---------------------|:-----------------------------------|:--------------------|
+| KDO平台控制台    | KDO整体功能管理            | http://10.22.1.20:30080            | admin/Kdo@Pass#2025 |
+| KeyCloak控制台 | OIDC认证管理,用户管理        | https://10.22.1.20:30443 (需要HTTPS) | admin/Kdo@Pass#2025 |              
+| Harbor控制台   | 镜像仓库管理,一般不用操作        | http://10.22.1.20:30002            | admin/Kdo@Pass#2025 |              
+| Grafana控制台  | 告警管理，自定义监控,监控/日志高级功能 | http://grafana.kube-do.dev         | admin/Kdo@Pass#2025 |  
