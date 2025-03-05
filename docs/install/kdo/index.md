@@ -59,10 +59,24 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 ![all-pods-ready.png](imgs/all-pods-ready.png)
 
 
-### 安装验证 
-![](imgs/after-install.png)
-1. 安装完成后，运行`kubectl get pod -n kubedo-system`，根据提示确认console组件已经启动，就可以访问平台了, KDO平台默认访问地址是`http://$NODE_IP:30080`
+### 安装验证
 ![](imgs/console-is-ready.png)
-2. 如果需要增加/修改/删除用户和组，则访问KeyCloak平台进行操作，KeyCloak平台默认的访问地址是`https://$NODE_IP:30443`，用户和密码和kdo平台管理员用户和密码是一样的
 
+1. 安装完成后，运行`kubectl get pod -n kubedo-system`，根据提示确认console组件已经启动，就可以访问平台了, KDO平台默认访问地址是`http://$NODE_IP:30080`
+2. 已经创建默认的项目kdo, 里面有4个环境：`开发(dev)`、`测试(test)`、`预发(stage)`、`生产(prod)`。 如果是内置的KeyCloak平台，已经创建四个用户: 项目管理员： pa1，项目开发者: dev1，项目测试人员: qa1, 项目运维人员: ops1, 他们的默认密码都是: Kdo#2025
+   现在就可以通过这些用户来体验KDO平台了.
+
+   
+## 平台组件访问
+由于KDO是由多个开源组件组成的，所以需要通过不同的方式访问不同的组件，这里列出了KDO平台各个组件的访问地址。
+KDO、KeyCloak、Harbor这些组件的控制台，是通过NODE_IP加端口访问，比如KDO平台控制台的默认访问地址是`http://$NODE_IP:30080`，
+Grafana这些组件的访问地址是域名访问，比如Grafana的默认访问地址是`http://grafana.${DEFAULT_DOMAIN}`，这些需要在`/etc/hosts`文件中(Windows是`C:\Windows\System32\drivers\etc\hosts`)添加域名解析，或者通过域名解析访问。
+比如NODE_IP是**10.22.1.20**，默认域名后缀是**kube-do.dev**，那么访问地址如下：
+
+| 控制台         | 功能                   | 默认访问地址                             | 默认用户密码              |     
+|:------------|:---------------------|:-----------------------------------|:--------------------|
+| KDO平台控制台    | KDO整体功能管理            | http://10.22.1.20:30080            | admin/Kdo@Pass#2025 |
+| KeyCloak控制台 | OIDC认证管理,用户管理        | https://10.22.1.20:30443 (需要HTTPS) | admin/Kdo@Pass#2025 |              
+| Harbor控制台   | 镜像仓库管理,一般不用操作        | http://10.22.1.20:30002            | admin/Kdo@Pass#2025 |              
+| Grafana控制台  | 告警管理，自定义监控,监控/日志高级功能 | http://grafana.kube-do.dev         | admin/Kdo@Pass#2025 |          
 

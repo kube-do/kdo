@@ -39,8 +39,9 @@ kdo的日志平台采用基于[Grafana Loki](https://grafana.com/docs/loki/lates
 {: .note }
 Grafana Loki 包含很多组件，promtail, distributor, ingester, querier, ruler, query frontend, Grafana
 
-1. **Promtail:** 
-Promtail 是充当 Loki 的日志代理（agent）的重要组件。它的功能是从系统中收集每个日志，标记它，然后将其发送给 Loki。Loki 从本地日志文件和系统日志中收集日志。 您必须在要收集日志的每个系统中安装 Promtail，同样，如果您在 Kubernetes 上使用 Loki，则必须在每个节点中部署 Promtail 作为守护进程集（Daemonset）。
+1. **Promtail/Vector:** 
+Promtail/Vector 是充当 Loki 的日志代理（agent）的重要组件。它的功能是从系统中收集每个日志，标记它，然后将其发送给 Loki。Loki 从本地日志文件和系统日志中收集日志。 
+您必须在要收集日志的每个系统中安装 Promtail/Vector， KDO平台使用的是Vector，它与Promtail类似，但是它支持更多的日志格式，如JSON、XML、CSV等。
 
 2. **Distributor:** 
 Distributor 是一个无状态组件，负责处理和验证从日志代理（如 Promtail）接收的日志，并将日志分发到 ingester。
@@ -70,9 +71,7 @@ Grafana 使用查询语言 LogQL 与 Grafana 集成，我们也可以在 Grafana
 
 8. **Log Storage**
 Loki 存储日志数据，提高查询和接收日志的效率。它将日志数据压缩成块，根据时间进行组织，并为其提供标签和时间戳。然后，它以键值对格式为每个块创建一个索引，其中块时间戳和标签等。
-例如，将块的索引视为一本书的索引。
-Chunks 和 Index 可以存储在各种后端对象存储或文件系统中。
-一旦存储了块，它就会为数据创建一个保留期，并根据保留期自动删除。
+例如，将块的索引视为一本书的索引。 Chunks 和 Index 可以存储在各种后端对象存储或文件系统中。 一旦存储了块，它就会为数据创建一个保留期，并根据保留期自动删除。
 如果您使用文件系统作为存储，则块和索引的默认存储路径是 /var/lib/loki/chunks 和 /var/lib/loki/index。
 
 
