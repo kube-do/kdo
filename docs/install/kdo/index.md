@@ -47,7 +47,7 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 # 根据环境变量运行，NODE_IP和DEFAULT_DOMAIN这两个环境在安装KeyCloak已经设置过
 ./kdo-install.sh $NODE_IP $DEFAULT_DOMAIN
 # 直接添加参数运行
-./kdo-install.sh 10.22.1.20 abc.com
+./kdo-install.sh 10.22.1.20 kube-do.dev
 ```
 这里由于NODE_IP和DEFAULT_DOMAIN已经在环境变量设置过，可以直接获取，当然也可以手动输入这两个参数。
 ![](imgs/start-install.png)
@@ -68,10 +68,10 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 
    
 ## 平台组件访问
-由于KDO是由多个开源组件组成的，所以需要通过不同的方式访问不同的组件，这里列出了KDO平台各个组件的访问地址。
-KDO、KeyCloak、Harbor这些组件的控制台，是通过NODE_IP加端口访问，比如KDO平台控制台的默认访问地址是`http://$NODE_IP:30080`，
+由于KDO是由多个开源组件组成的，所以需要通过不同的方式访问不同的组件，这里列出了KDO平台各个组件的访问地址。 
+KDO、KeyCloak、Harbor这些组件的控制台，是通过NODE_IP加端口访问，比如KDO平台控制台的默认访问地址是`http://$NODE_IP:30080`， 
 Grafana这些组件的访问地址是域名访问，比如Grafana的默认访问地址是`http://grafana.${DEFAULT_DOMAIN}`，这些需要在`/etc/hosts`文件中(Windows是`C:\Windows\System32\drivers\etc\hosts`)添加域名解析，或者通过域名解析访问。
-比如NODE_IP是**10.22.1.20**，默认域名后缀是**kube-do.dev**，那么访问地址如下：
+假设这个KDO集群的NODE_IP是**10.22.1.20**，默认域名后缀是**kube-do.dev**，那么访问地址如下：
 
 | 控制台         | 功能                   | 默认访问地址                             | 默认用户密码              |     
 |:------------|:---------------------|:-----------------------------------|:--------------------|
