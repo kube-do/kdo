@@ -33,7 +33,7 @@ nav_order: 1
 ### 核心组件
 KDO Pipelines-as-Code的架构主要由以下组件构成：
 
-1. **Tekton Pipelines:** Tekton 是 KDO Pipelines-as-Code 的核心引擎，负责执行流水线任务。 它由以下主要组件组成：
+**Tekton Pipelines:** Tekton 是 KDO Pipelines-as-Code 的核心引擎，负责执行流水线任务。 它由以下主要组件组成：
 
 | 组件                | 说明            |
 |:------------------|:--------------|
@@ -41,34 +41,34 @@ KDO Pipelines-as-Code的架构主要由以下组件构成：
 | Tekton Webhook    | 监听事件并触发流水线    |
 | Task 和 Pipeline   | 定义具体的任务和流水线逻辑 |
 
-2. **Pipelines-as-Code Controller:** 这是 KDO Pipelines-as-Code 的核心组件，负责将代码仓库中的流水线定义（如 .tekton/ 目录下的 YAML 文件）转换为 Tekton 资源。
+ **Pipelines-as-Code Controller:** 这是 KDO Pipelines-as-Code 的核心组件，负责将代码仓库中的流水线定义（如 .tekton/ 目录下的 YAML 文件）转换为 Tekton 资源。
 它监听代码仓库的事件（如 Pull Request 或 Push），并根据事件触发流水线。
    
-3. **Git Provider 集成：** Pipelines-as-Code 支持与多种 Git 提供程序集成，例如 GitHub、GitLab、Bitbucket 等。
+**Git Provider 集成：** Pipelines-as-Code 支持与多种 Git 提供程序集成，例如 GitHub、GitLab、Bitbucket 等。
 它通过 Webhook 监听代码仓库的事件，并将事件传递给 Pipelines-as-Code Controller。
 
-4. **Kubernetes 集成：** Pipelines-as-Code 与 Kubernetes 深度集成，利用 Kubernetes 的 RBAC、命名空间、资源配额等特性。 
+**Kubernetes 集成：** Pipelines-as-Code 与 Kubernetes 深度集成，利用 Kubernetes 的 RBAC、命名空间、资源配额等特性。 
 流水线运行在 Kubernetes 的 Pod 中，使用 Kubernetes 的容器运行时和存储。
 
 ### 工作流程
 以下是 KDO Pipelines-as-Code 的典型工作流程：
 
-1. **代码推送或 Pull Request：**
+**代码推送或 Pull Request：**
 开发者向代码仓库推送更改或创建 Pull Request。 Git 提供程序（如 GitHub）通过 Webhook 将事件发送到 Pipelines-as-Code Controller。
 当然也可以手动点击触发流水线。
 
-2. **流水线定义解析：**
-Pipelines-as-Code Controller 从代码仓库中读取流水线定义文件（如 .tekton/pipeline.yaml、kubernetes/deployment.yaml、docker/Dockerfile 等，这些文件都通过Controller根据模板创建）。
+**流水线定义解析：**
+Pipelines-as-Code Controller 从代码仓库中读取流水线定义文件（如 .tekton/pipeline.yaml、kubernetes/deployment.yaml、docker/Dockerfile 等）。
 这些文件定义了流水线的分支、任务、步骤和参数，部署的集群和环境。
 
-3. **流水线触发：**
+**流水线触发：**
 Pipelines-as-Code  Controller 将流水线定义转换为 Tekton 资源（如 PipelineRun 和 TaskRun）。
 Tekton Controller 接收到这些资源后，开始在 Kubernetes 集群中调度和执行任务。
 
-4. **任务执行：**
+**任务执行：**
 Tekton 在 Kubernetes 集群中创建 Pod 来执行流水线任务。 每个任务可以包含多个步骤，每个步骤运行在一个容器中。
 
-5. **结果反馈：**
+**结果反馈：**
 流水线执行完成后，Pipelines-as-Code 将结果（如成功或失败）反馈到代码仓库。
 例如，在 GitHub 中，结果会显示在 Pull Request 的检查状态中。
 
@@ -91,22 +91,34 @@ v                           v                           v
 +-------------------+       +-------------------+       +-------------------+
 ```
 
-### 关键特性
-1. **声明式流水线定义：** 流水线通过 YAML 文件定义，存储在代码仓库中，便于版本控制和协作。
-2. **事件驱动：** 通过 Git 事件（如 Push 或 Pull Request）自动触发流水线。
-3. **多 Git 提供程序支持：** 支持 GitHub、GitLab、Gitee、Gitea、Bitbucket 等主流 Git 平台。
-4. **与 Kubernetes 深度集成：** 利用 Kubernetes 的容器化环境和资源管理能力。
-5. **可扩展性：** 通过 Tekton 的自定义任务和步骤，支持复杂的 CI/CD 场景。
+### 文件说明
+KDO 应用的文件都是在代码仓库中存储的，包括流水线定义文件、应用镜像配置文件、部署配置文件等。这些文件都通过KDO Controller根据模板创建。
 
+**应用定义文件** 在应用Git仓库主分支(比如`master/main`)的根目录下，有一个应用定义文件`devfile.yaml`。它定义了应用名、开发语言等信息，以及其他应用参数。
+
+**流水线定义文件：** 在应用Git仓库主分支(比如`master/main`)的`.tekton/`目录下，是流水线定义的核心文件，它定义了流水线的分支、任务、步骤和参数。
+每个环境分支的流水线对应一个yaml文件，命名是应用名-环境-分支，比如：`spring-boot-scheduler-dev-develop.yaml`表示应用名为spring-boot-scheduler，环境为dev，分支为develop。
+里面的内容就是一个嵌入流水线。关于嵌入流水线，可以参考[嵌入流水线](../pipelines#嵌入流水线)
+
+**应用镜像配置文件：** 在应用Git仓库分支(比如`develop/release`)的`docker/`目录下，它定义了应用的镜像的参数，一般就是Dockerfile，可以根据需要进行修改
+
+**部署配置文件：** 在应用Git仓库分支(比如`develop/release`)的`kubernetes/`目录下。
+它定义了部署参数，一般就是[无状态(Deployment)](/docs/dev/workloads/deployments)/[有状态(StatefulSet)](/docs/dev/workloads/statefulsets)和[服务(Service)](/docs/dev/network-stroage/services)等。
+
+
+
+### 关键特性
+**声明式流水线定义：** 流水线通过 YAML 文件定义，存储在代码仓库中，便于版本控制和协作。
+**事件驱动：** 通过 Git 事件（如 Push 或 Pull Request）自动触发流水线。
+**多 Git 提供程序支持：** 支持 GitHub、GitLab、Gitee、Gitea等主流 Git 平台。
+**与 Kubernetes 深度集成：** 利用 Kubernetes 的容器化环境和资源管理能力。
+**可扩展性：** 通过 Tekton 的自定义任务和步骤，支持复杂的 CI/CD 场景。
 
 
 ### 优势
 开发者友好：流水线定义与代码一起存储，开发者可以轻松管理和协作。
-
 自动化：通过 Git 事件自动触发流水线，减少手动操作。
-
 云原生：基于 Kubernetes 和 Tekton，完全容器化，适合现代云原生应用。
-
 可移植性：流水线定义与平台无关，可以在不同的 Kubernetes 集群中运行。
 
 
