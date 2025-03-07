@@ -7,18 +7,10 @@ nav_order: 1
 1. TOC
 {:toc}
 
-   
-## 介绍 
-在KDO平台里面，应用是满足用户某些需求的程序代码的集合，可以是某个解耦的微服务或是某个单体应用，所有功能都会围绕应用服务进行。
-通过[Pipelines as Code](#pipelines-as-code介绍)的方法，KDO对接 Git 代码仓库，直接从源代码仓库创建应用组件，目前 KDO 支持和`GitHub GitLab Gitee Gitea` 这四种Git仓库进行对接。
-只需`Git URL`和用户的`Token`就可以自动生成支持多环境和多分支的流水线，流水线支持**自动构建与自动部署**。
-
-![pipeline.png](imgs/pipeline.png)
-
 
 ## Pipelines as Code介绍
 `Pipelines as Code` 是一种实践方法，它将CI/CD（持续集成/持续部署）流水线的定义与源代码一同存储在版本控制系统中，如`GitHub`或`GitLab`。
-这种方法使用[Tekton PipelineRuns和Tasks](../pipelines#tekton的资源对象)来定义具体的CI/CD流程，并将其保存在一个文件里，该文件位于项目的源代码管理(SCM)系统中。
+这种方法使用[Tekton PipelineRuns和Tasks](../pipelines#tekton的资源对象)来定义具体的`CI/CD`流程，并将其保存在一个文件里，该文件位于项目的源代码管理(SCM)系统中。
 
 ![basic-devops.jpg](imgs/basic-devops.jpg)
 主要特点
@@ -90,18 +82,19 @@ v                           v                           v
 ```
 
 ## Pipelines-as-Code文件说明
-KDO 应用的文件都是在代码仓库中存储的，包括应用定义文件、流水线定义文件、应用镜像配置文件、部署配置文件等。这些文件都通过KDO Controller根据模板自动创建的。
+KDO Pipelines-as-Code相关的文件都是存储在应用代码仓库，其中包括`应用定义文件`、`流水线定义文件`、`应用镜像配置文件`、`部署配置文件`等。这些文件都通过KDO Controller根据模板自动创建的。
 
 **应用定义文件** 在应用Git仓库主分支(比如`master/main`)的根目录下，有一个应用定义文件`devfile.yaml`。它定义了应用名、开发语言等信息，以及其他应用参数。
 
 **流水线定义文件：** 在应用Git仓库主分支(比如`master/main`)的`.tekton/`目录下，是流水线定义的核心文件，它定义了流水线的分支、任务、步骤和参数。
-每个环境分支的流水线对应一个yaml文件，命名是应用名-环境-分支，比如：`spring-boot-scheduler-dev-develop.yaml`表示应用名为spring-boot-scheduler，环境为dev，分支为develop。
+每个环境分支的流水线对应一个yaml文件，命名是应用名-环境-分支，比如：`spring-boot-scheduler-dev-develop.yaml`表示应用名为`spring-boot-scheduler`，环境为`dev`，分支为`develop`。
 里面的内容就是一个嵌入流水线。关于嵌入流水线，可以参考[嵌入流水线](../pipelines#嵌入流水线)
 
 **应用镜像配置文件：** 在应用Git仓库分支(比如`develop/release`)的`docker/`目录下，它定义了应用的镜像的参数，一般就是Dockerfile，可以根据需要进行修改
 
 **部署配置文件：** 在应用Git仓库分支(比如`develop/release`)的`kubernetes/`目录下。
 它定义了部署参数，一般就是[无状态(Deployment)](/docs/dev/workloads/deployments)/[有状态(StatefulSet)](/docs/dev/workloads/statefulsets)和[服务(Service)](/docs/dev/network-stroage/services)等。
+
 
 
 
@@ -119,12 +112,12 @@ KDO 应用的文件都是在代码仓库中存储的，包括应用定义文件�
 应用创建完成以后，如果需要对应用进行管理，选择**应用管理 -> 应用**，点击对应的应用，有四个菜单。
 
 
-| 菜单    | 说明                                                                                  |
-|:------|:------------------------------------------------------------------------------------|
-| 详情    | 应用详情页面提供了全面的信息概览，包括应用的URL、开发语言、端口号等关键细节。用户能够快速访问和了解应用的基本配置与运行状态，方便进行进一步的开发、测试或运维操作。 |
-| 分支流水线 | 管理分支流水线功能允许您对应用在不同环境中的流水线进行精细化管理。                                                   |
-| 流水线运行 | 查看和管理流水线运行，包括运行过的流水线，可以选对应的进行流水线的回滚。                                                |
-| YAML  | 这个应用的YAML定义文件，一些不能在图形化编辑的功能，可以在这里编辑。                                                |
+| 菜单    | 说明                                       |
+|:------|:-----------------------------------------|
+| 详情    | 应用详情页面提供了全面的信息概览，包括应用的URL、开发语言、端口号等关键细节。 |
+| 分支流水线 | 管理分支流水线功能允许您对应用在不同环境中的流水线进行精细化管理。        |
+| 流水线运行 | 查看和管理流水线运行，包括运行过的流水线，可以选对应的进行流水线的回滚。     |
+| YAML  | 这个应用的YAML定义文件，一些不能在图形化编辑的功能，可以在这里编辑。     |
 
 
 ![应用信息](imgs/repositoryInfo.png)
