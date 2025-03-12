@@ -8,21 +8,28 @@ nav_order: 1
 {:toc}
 
 
+## 介绍
+应用是满足用户某些需求的程序代码的集合，可以是某个解耦的微服务或是某个单体应用，所有功能都会围绕应用服务进行。
+在KDO平台里面，标准的应用是指基于[Pipelines as Code](#pipelines-as-code介绍)方式创建的应用。
+
+通过[Pipelines as Code](#pipelines-as-code介绍)的方法，KDO对接 `Git` 代码仓库，直接从源代码仓库创建应用组件。
+目前 KDO 支持和`GitHub`、`GitLab`、`Gitee`、`Gitea` 这四种Git仓库进行对接。
+
+只需`Git URL`和用户的`Git Token`就可以自动生成支持**多环境和多分支**的流水线，流水线支持**自动构建与自动部署**，功能非常强大。
+![pipeline.png](imgs/application.png)
+
 ## Pipelines as Code介绍
 `Pipelines as Code` 是一种实践方法，它将CI/CD（持续集成/持续部署）流水线的定义与源代码一同存储在版本控制系统中，如`GitHub`或`GitLab`。
 这种方法使用[Tekton PipelineRuns和Tasks](../pipelines#tekton的资源对象)来定义具体的`CI/CD`流程，并将其保存在一个文件里，该文件位于项目的源代码管理(SCM)系统中。
 
 ![basic-devops.jpg](imgs/basic-devops.jpg)
-主要特点
+### 主要特点
 1. **集中化定义：** 通过在一个文件中定义`CI/CD`流程，使得整个团队可以更容易地理解和修改这些流程。
 2. **版本控制：** 因为流水线定义是作为代码存储的，所以它可以像其他任何代码一样被版本化、审查和协作处理。
 3. **自动化创建：** 这个文件能够自动为`Pull Request`或者分支推送创建相应的`CI/CD`流水线。
 4. **状态查看与执行控制：** 可以直接从`SCM`查看流水线的状态并控制其执行，而不需要切换到不同的系统进行操作。
 5. **增强协作：**  开发人员可以在同一个平台上同时处理应用程序代码和流水线定义，提高了工作效率。
 6. **变更追踪：** 每一次对流水线定义的更改都可以被记录下来，方便追踪和审核。
-
-
-
 
 ## Pipelines-as-Code核心组件
 KDO Pipelines-as-Code的架构主要由以下组件构成：

@@ -35,7 +35,7 @@ KDO平台通过 OLM（OperatorLifecycleManager）插件管理 operator，OLM作�
 ### 创建Operator
 
 {: .note }
-创建Operator应用和创建[Helm应用](../../../dev/applications/helm)的流程类型，查找需要的Operator，选择`频道`和`版本`即可，一般Operator都是安装在operators这个命名空间(namespace)。
+创建Operator应用和创建[Helm应用](../../../dev/applications/helm)的流程类型，查找需要的Operator，选择`频道`和`版本`即可，一般Operator都是安装在`operators`这个命名空间(namespace)。
 
 {: .warning }
 有一部分Operator需要安装到特定的命名空间(namespace)，具体查看说明文档。
