@@ -1,6 +1,7 @@
 ---
 title: 安装Kubernetes
 parent: 在Linux平台安装
+nav_order: 1
 ---
 
 
