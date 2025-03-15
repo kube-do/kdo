@@ -20,14 +20,13 @@ nav_order: 8
 要在现有的Linux操作系统上安装KDO平台，推荐使用REHL9(AlmaLinux 9/Rockey 9)或Ubuntu 22.04及以上版本。旧版本的操作系统由于内核较老，可能无法支持某些新特性。主要分为以下三个部分：
 
 1. [安装Kubernetes集群](./kubernetes)
-2. [安装OIDC平台KeyCloak](./keycloak)
-3. [安装kdo平台](./kdo)
+2. [安装kdo平台](./kdo)
 
 
 ## 在现存的Kubernetes集群上安装kdo平台
 
 如果已经有Kubernetes集群(v1.28以上)，只需要安装kdo平台，主要有两个部分：
-1. 先安装[OIDC平台KeyCloak](./keycloak)然后[根据OIDC平台设置Kubernetes](#根据oidc平台设置kubernetes)
+1. [根据OIDC平台设置Kubernetes](#根据oidc平台设置kubernetes)
 2. [安装kdo平台](./kdo)
 
 

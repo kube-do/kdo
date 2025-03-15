@@ -1,7 +1,4 @@
----
-title: 安装OIDC认证平台KeyCloak
-parent: 在Linux平台安装
----
+
 
 1. TOC
 {:toc}
@@ -11,7 +8,7 @@ parent: 在Linux平台安装
 
 {: .note }
 由于KDO平台和Kubernetes均基于OIDC（OpenID Connect）协议进行用户认证管理，因此在没有现成的OIDC认证平台的情况下，您需要安装Keycloak以支持这一功能。
-Keycloak的安装可以通过Helm命令行工具自动完成。在开始安装之前，请确保所有相关的环境变量已经正确设置。这一步骤对于保证Keycloak能够顺利部署以及后续与KDO平台和Kubernetes的集成至关重要。
+在开始安装之前，请确保所有相关的环境变量已经正确设置。这一步骤对于保证Keycloak能够顺利部署以及后续与KDO平台和Kubernetes的集成至关重要。
 [关于KeyCloak](https://www.keycloak.org/)
 
 
@@ -32,10 +29,20 @@ export DEFAULT_DOMAIN=kube-do.dev
 ```shell
 # 如果没有nfs server，需要手动安装一个， Almalinux/CentOS运行以下命令，
 # 如果Ubuntu需要运行sudo apt install nfs-kernel-server -y
-dnf install nfs-utils -y
-mkdir -p /data/nfs
-echo "/data/nfs *(rw,sync,no_root_squash,no_all_squash)" >> /etc/exports
-systemctl restart nfs-server && systemctl enable nfs-server
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [ "$ID" = "almalinux" ]; then
+        dnf install nfs-utils -y
+    elif [ "$ID" = "ubuntu" ]; then
+        apt install nfs-kernel-server -y
+    fi 
+    
+    mkdir -p /data/nfs
+    echo "/data/nfs *(rw,sync,no_root_squash,no_all_squash)" >> /etc/exports
+    systemctl restart nfs-server && systemctl enable nfs-server
+fi
+
+
 
 # 创建默认的storageclass, 如果已经有nfs服务器，
 # 需要把nfs.server和nfs.path改为对应的nfs服务器的参数
@@ -52,6 +59,12 @@ kubectl get pod -n kubedo-system
 # 确认nfs provisioner已经启动
 #NAME                                               READY   STATUS    RESTARTS   AGE
 #nfs-subdir-external-provisioner-788b59d4c9-q7mt7   1/1     Running   0          10s
+
+until kubectl get pod <pod-name> -o jsonpath='{.status.conditions[?(@.type=="Ready")].status}' | grep True; do
+    echo "Waiting for pod to be ready..."
+    sleep 5
+done
+echo "Pod is ready."
 ```
 
 
@@ -59,6 +72,7 @@ kubectl get pod -n kubedo-system
 ```shell
 helm install keycloak  oci://quay.io/kubedocharts/keycloak \
      --version 15.1.4 --namespace kubedo-system \
+     --set image.tag=21.1.1 \
      --set auth.adminUser=$KC_USER \
      --set auth.adminPassword=$KC_PASS \
      --set tls.enabled=true \
@@ -122,7 +136,12 @@ kcadm.sh create client-scopes -r kdo \
 --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 
 # 3. 创建client kdo 在realm kdo
-kcadm.sh create clients -r kdo -s clientId=kdo -s secret=kubedo -s 'redirectUris=["*"]' -s implicitFlowEnabled=true --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+kcadm.sh create clients -r kdo -s clientId=kdo1 -s secret=kubedo -s 'optionalClientScopes=["address","microprofile-jwt","offline_access","phone"]'  \
+-s 'defaultClientScopes=["acr","email","openid","groups","profile"]' -s 'redirectUris=["*"]' -s implicitFlowEnabled=true \
+--server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+
+kcadm.sh update clients/kdo1 -r kdo -s 'defaultClientScopes=["openid","groups"]' --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+
 
 # 4. 添加默认集群管理员kdo平台并设置密码，kdo平台的密码和KeyCloak管理员的密码保持一致
 kcadm.sh create users -s username=admin -r kdo -s email=admin@kube-do.dev -s emailVerified=true -s enabled=true  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD

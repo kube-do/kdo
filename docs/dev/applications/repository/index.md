@@ -88,8 +88,8 @@ v                           v                           v
 +-------------------+       +-------------------+       +-------------------+
 ```
 
-## Pipelines-as-Code文件说明
-KDO Pipelines-as-Code相关的文件都是存储在应用代码仓库，其中包括`应用定义文件`、`流水线定义文件`、`应用镜像配置文件`、`部署配置文件`等。这些文件都通过KDO Controller根据模板自动创建的。
+## KDO自动创建的文件
+KDO Pipelines-as-Code相关的文件都是存储在应用的代码仓库，其中包括`应用定义文件`、`流水线定义文件`、`应用镜像配置文件`、`部署配置文件`等。这些文件都通过KDO Controller根据模板**自动创建**的。
 
 **应用定义文件** 在应用Git仓库主分支(比如`master/main`)的根目录下，有一个应用定义文件`devfile.yaml`。它定义了应用名、开发语言等信息，以及其他应用参数。
 
@@ -101,8 +101,6 @@ KDO Pipelines-as-Code相关的文件都是存储在应用代码仓库，其中�
 
 **部署配置文件：** 在应用Git仓库分支(比如`develop/release`)的`kubernetes/`目录下。
 它定义了部署参数，一般就是[无状态(Deployment)](/docs/dev/workloads/deployments)/[有状态(StatefulSet)](/docs/dev/workloads/statefulsets)和[服务(Service)](/docs/dev/network-stroage/services)等。
-
-
 
 
 ## 创建应用
