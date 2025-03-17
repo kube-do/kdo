@@ -65,8 +65,8 @@ KDO、KeyCloak、Harbor这些组件的控制台，是通过NODE_IP加端口访�
 Grafana这些组件的访问地址是域名访问，比如Grafana的默认访问地址是`http://grafana.${DEFAULT_DOMAIN}`，这些需要在`/etc/hosts`文件中(Windows是`C:\Windows\System32\drivers\etc\hosts`)添加域名解析，或者通过域名解析访问。
 
 ### 默认项目
-KDO平台默认创建了项目kdo, 里面有4个环境：开发(dev)、测试(test)、预发(stage)、生产(prod)。
-如果是内置的KeyCloak平台，已经创建四个用户:项目管理员： pa1，项目开发者: dev1，项目测试人员: qa1, 项目运维人员: ops1, 他们的默认密码都是: Kdo#2025
+KDO平台默认创建了项目kdo, 里面有4个环境：`开发(dev)`、`测试(test)`、`预发(stage)`、`生产(prod)`。
+如果是内置的KeyCloak平台，已经创建四个用户：项目管理员： `pa1`，项目开发者: `dev1`，项目测试人员: `qa1`, 项目运维人员: `ops1`, 他们的默认密码都是: `Kdo#2025`
 现在可以在项目[kdo创建一个应用](/docs/dev/applications/repository#创建应用)来体验KDO平台了。
 
 假设这个KDO集群的NODE_IP是**10.22.1.20**，默认域名后缀是**kube-do.dev**，那么访问地址如下：

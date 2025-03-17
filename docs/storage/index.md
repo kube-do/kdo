@@ -40,7 +40,7 @@ Kubernetes 支持多种类型的持久性卷，以适应不同的使用场景和
 6. **CSI (Container Storage Interface):** 这是一个标准接口，用来让存储供应商创建自己的插件，从而可以更容易地集成新的存储系统。
 7. **Local:** 允许将本地磁盘直接用作持久卷，适合性能要求高的应用，但同样会引入可用性和调度问题。
 8. **NFS (Network File System):** 可以通过 NFS 协议将远程服务器上的共享文件夹挂载为 Pod 的一部分。kdo平台默认会提供这种存储卷。
-9. **CephFS, Glusterfs, iSCSI, RBD (Ceph Block Device), VsphereVolume 等等:** 这些都是企业级存储解决方案，适用于不同规模和需求的企业环境。
+9. **CephFS、Glusterfs、iSCSI、RBD (Ceph Block Device)、VsphereVolume 等等:** 这些都是企业级存储解决方案，适用于不同规模和需求的企业环境。
 
 
 ## 持久性卷声明(PVC)操作
@@ -60,7 +60,7 @@ PVC扩容允许用户增加分配给应用程序的存储空间，而无需重�
 
 
 ### 从工作负载中卸载(umount)持久性卷声明(PVC)
-如果要从现有的工作负载(无状态应用、有状态应用) 卸载(umount)已经工作挂载的持久性卷声明(PVC)，需要到对应工作负载的页面操作。
+如果要从现有的工作负载(无状态应用、有状态应用) 卸载(umount)已经工作挂载的持久性卷声明(PVC)，需要到对应工作负载的页面，点击挂载的持久性卷声明(PVC)，点击删除即可。
 ![umount-pvc.gif](imgs/umount-pvc.gif)
 
 ### 删除持久性卷声明(PVC)
