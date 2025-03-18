@@ -54,14 +54,8 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 这里由于NODE_IP和DEFAULT_DOMAIN已经在环境变量设置过，可以直接获取，当然也可以手动输入这两个参数。
 ![](imgs/start-install.png)
 
-### 中途确认
-![](imgs/wait-install.png)
-由于安装的组件比较多，有些组件需要等其他组件初始化完成后才能继续安装，这里另外打开一个Linux Terminal，
-在Master节点运行 `kubectl get pod -A`确认所有Pod已经正常运行（ready）
-![all-pods-ready.png](imgs/all-pods-ready.png)
 
-
-### 安装验证
+## 安装验证
 ![](imgs/console-is-ready.png)
 
 1. 安装完成后，运行`kubectl get pod -n kubedo-system`，根据提示确认console组件已经启动，就可以访问平台了, KDO平台默认访问地址是`http://$NODE_IP:30080`。

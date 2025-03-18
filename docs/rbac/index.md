@@ -64,7 +64,7 @@ RBAC是Kubernetes中一个核心的授权策略，通过它，管理员可以实
    `Group`：组，这是用来关联多个账户的，集群中有一些默认创建的组，比如cluster-admin。
    `ServiceAccount`：服务账号，通过Kubernetes API 来管理的一些用户账号，和 namespace 进行关联的，适用于集群内部运行的应用程序，需要通过 API 来完成权限认证，所以在集群内部进行权限操作，都需要使用到 ServiceAccount。
 2. **API Resource**，也就是请求对应的访问目标。在 Kubernetes 集群中也就是各类资源比如Pod、Deployment等；
-3. **Verbs**，对应为请求对象资源可以进行哪些操作，包括但不限于"get"，"list", "watch", "create", "update", "patch", "delete","deletecollection"等。
+3. **Verbs**，对应为请求对象资源可以进行哪些操作，包括但不限于`get`，`list`, `watch`, `create`, `update`, `patch`, `delete`,`deletecollection`等。
 
 
 ### Kubernetes RBAC的四个关键组件
