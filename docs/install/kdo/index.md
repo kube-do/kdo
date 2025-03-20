@@ -30,7 +30,7 @@ chmod +x kdo-install.sh
 
 ## 定制安装脚本
 1. 可以通过调整脚本的环境变量`KC_PASS`来修改管理员的密码，默认为`Kdo@Pass#2025`
-2. 如果是其他的OIDC认证平台，需要把OIDC对应环境变量修改为对应OIDC认证平台的信息，这里需要[Kubernetes的ODIC参数](../index.md#根据oidc平台设置kubernetes)保持一致。
+2. 如果是其他的OIDC认证平台，需要把OIDC对应环境变量修改为对应OIDC认证平台的信息，这里需要[Kubernetes的ODIC参数](/docs/install#根据oidc平台设置kubernetes)保持一致。
 ![](imgs/setup-oidc.png)
 
 ```shell

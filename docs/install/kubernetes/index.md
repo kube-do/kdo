@@ -187,4 +187,4 @@ state = "/run/containerd"
           endpoint = ["http://10.255.1.32:30002"]
 ```
 
-安装好Kubernetes后，如果没有现存的OIDC认证平台，就可以去[安装OIDC认证组件KeyCloak](../keycloak)了。
+安装好Kubernetes后，就可以去[安装KDO平台](../kdo)了。
