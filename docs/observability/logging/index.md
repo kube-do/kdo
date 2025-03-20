@@ -1,7 +1,7 @@
 ---
 title: 日志(Logging)
 parent: 观测平台
-nav_order: 3
+nav_order: 2
 ---
 
 1. TOC

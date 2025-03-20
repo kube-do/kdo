@@ -32,8 +32,8 @@ nav_order: 8
 ## 根据OIDC平台设置Kubernetes
 
 {: .note }
-通过vim打开`/etc/kubernetes/manifests/kube-apiserver.yaml`这个文件，在`spec->containers->command`添加对应的oidc的参数。
-如果是其他OIDC Provider，可以根据其提供的参数进行修改。
+通过vim打开`/etc/kubernetes/manifests/kube-apiserver.yaml`这个文件，在`spec->containers->command`添加对应的OIDC的参数。
+如果是其他OIDC Provider，可以根据其提供的参数进行修改，[更多信息](https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication/)。
 ```shell
 vim /etc/kubernetes/manifests/kube-apiserver.yaml
 ```
@@ -61,8 +61,8 @@ spec:
 
 {: .note }
 由于KDO是由多个开源组件组成的，所以需要通过不同的方式访问不同的组件，这里列出了KDO平台各个组件的访问地址。
-KDO、KeyCloak、Harbor这些组件的控制台，是通过NODE_IP加端口访问，比如KDO平台控制台的默认访问地址是`http://$NODE_IP:30080`，
-Grafana这些组件的访问地址是域名访问，比如Grafana的默认访问地址是`http://grafana.${DEFAULT_DOMAIN}`，这些需要在`/etc/hosts`文件中(Windows是`C:\Windows\System32\drivers\etc\hosts`)添加域名解析，或者通过域名解析访问。
+`KDO`、`KeyCloak`、`Harbor`这些组件的控制台，是通过NODE_IP加端口访问，比如KDO平台控制台的默认访问地址是`http://$NODE_IP:30080`，
+Grafana这些组件的访问地址是域名访问，比如`Grafana`的默认访问地址是`http://grafana.${DEFAULT_DOMAIN}`，这些需要在`/etc/hosts`文件中(Windows是`C:\Windows\System32\drivers\etc\hosts`)添加域名解析，或者通过域名解析访问。
 
 ### 默认项目
 KDO平台默认创建了项目kdo, 里面有4个环境：`开发(dev)`、`测试(test)`、`预发(stage)`、`生产(prod)`。
@@ -72,9 +72,9 @@ KDO平台默认创建了项目kdo, 里面有4个环境：`开发(dev)`、`测试
 假设这个KDO集群的NODE_IP是**10.22.1.20**，默认域名后缀是**kube-do.dev**，那么访问地址如下：
 
 
-| 控制台                                                  | 功能                   | 默认访问地址                                                            | 默认用户密码                                               |     
-|:-----------------------------------------------------|:---------------------|:------------------------------------------------------------------|:-----------------------------------------------------|
-| KDO平台控制台 [管理员页面介绍](/docs/admin) [开发者页面介绍](/docs/dev) | KDO整体功能管理            | `http://${NODE_IP}:30080` 比如： http://10.22.1.20:30080             | 管理员账号：admin/Kdo@Pass#2025 ， 开发者账号：pa1/Kdo#2025       |
-| KeyCloak控制台                                          | OIDC认证管理、用户管理        | `https://${NODE_IP}:30443` 比如： https://10.22.1.20:30443 (需要HTTPS) | 管理员账号：admin/Kdo@Pass#2025                            |              
-| Harbor控制台                                            | 镜像仓库管理，一般不用操作        | `http://${NODE_IP}:30002`比如： http://10.22.1.20:30002              | 管理员账号：admin/Kdo@Pass#2025                            |              
-| [Grafana控制台](/docs/observability/monitoring/grafana) | 告警管理、自定义监控、监控/日志高级功能 | `http://grafana.${DEFAULT_DOMAIN}` 比如： http://grafana.kube-do.dev | admin/Kdo@Pass#2025 其他用户可以通过OIDC登录                   |  
+| 控制台                                                  | 功能                   | 默认访问地址                                                            | 默认用户密码                                         |     
+|:-----------------------------------------------------|:---------------------|:------------------------------------------------------------------|:-----------------------------------------------|
+| KDO平台控制台 [管理员页面介绍](/docs/admin) [开发者页面介绍](/docs/dev) | KDO整体功能管理            | `http://${NODE_IP}:30080` 比如： http://10.22.1.20:30080             | 管理员账号：admin/Kdo@Pass#2025 ， 开发者账号：pa1/Kdo#2025 |
+| KeyCloak控制台                                          | OIDC认证管理、用户管理        | `https://${NODE_IP}:30443` 比如： https://10.22.1.20:30443 (需要HTTPS) | 管理员账号：admin/Kdo@Pass#2025                      |              
+| Harbor控制台                                            | 镜像仓库管理，一般不用操作        | `http://${NODE_IP}:30002`比如： http://10.22.1.20:30002              | 管理员账号：admin/Kdo@Pass#2025                      |              
+| [Grafana控制台](/docs/observability/monitoring)         | 告警管理、自定义监控、监控/日志高级功能 | `http://grafana.${DEFAULT_DOMAIN}` 比如： http://grafana.kube-do.dev | admin/KdoGrafana2025 其他用户可以通过OIDC登录            |  

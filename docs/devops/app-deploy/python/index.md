@@ -7,7 +7,7 @@ description: 在 KDO 上通过源码部署 Python 项目
 ## 概述
 
 平台默认会根据源码根目录是否有 `requirements.txt` 文件来识别为 Python 项目.
-
+![](imgs/create-repo.png)
 ### requirements.txt 规范
 
 若无 `requirements.txt` 可用如下命令生成
@@ -15,6 +15,7 @@ description: 在 KDO 上通过源码部署 Python 项目
 ```bash
 pip freeze > requirements.txt
 ```
+![](imgs/repo-options.png)
 
 ### Django 静态文件支持
 
@@ -35,6 +36,8 @@ STATICFILES_DIRS = (
 )
 ```
 
+![](imgs/manual-run.png)
+
 默认情况下系统会在构建 Django 应用时自动执行以下命令尝试检测（--dry-run）静态文件配置是否正确：
 
 ```bash
@@ -47,8 +50,10 @@ $ python manage.py collectstatic --dry-run --noinput
 $ python manage.py collectstatic --noinput
 ```
 
+![](imgs/pipelinerun-info.png)
 可以手工禁用上述特性，只需要在应用的环境变量里配置 `BUILD_DISABLE_COLLECTSTATIC` 的值为 1。
 
 ## 部署示例
 
+![](imgs/view-web.png)
 进入到团队下，新建应用选择**基于源码示例**进行构建，选中 Python Demo 并默认全部下一步即可。
