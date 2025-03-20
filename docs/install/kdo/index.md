@@ -59,7 +59,7 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 ![](imgs/console-is-ready.png)
 
 1. 安装完成后，运行`kubectl get pod -n kubedo-system`，根据提示确认console组件已经启动，就可以访问平台了, KDO平台默认访问地址是`http://$NODE_IP:30080`。
-[平台组件访问信息](../index.md#平台组件访问)
+[平台组件访问信息](/docs/install#平台组件访问)
 
 
    
