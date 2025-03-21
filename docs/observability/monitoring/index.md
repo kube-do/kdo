@@ -18,7 +18,7 @@ nav_order: 1
 ## 监控告警架构
 ![](imgs/prometheus-architecture.gif)
 
-从上图可以看到，整个 Prometheus 可以分为四大部分，分别是：
+从上图可以看到，整个 监控告警模块 可以分为四大部分，分别是：
 
 1. **Prometheus 服务器：** Prometheus Server 是 Prometheus组件中的核心部分，负责实现对监控数据的获取，存储以及查询。
 2. **Exporter 业务数据源：** 业务数据源通过 Pull/Push 两种方式推送数据到 Prometheus Server。
@@ -34,7 +34,7 @@ Grafana是一个非常强大的开源监控和可视化工具，用于监控和�
 ![](imgs/login.png)
 Grafana的登录地址默认是 `http://grafana.${DEFAULT_DOMAIN}` 比如： http://grafana.kube-do.dev。
 可以选择管理员账号登录，默认账号密码是`admin/KdoGrafana2025`。
-也选择通过`OAuth`登录，这个和`KDO`平台的登录方式一致。
+普通需要通过`OAuth`登录，这个和`KDO`平台的登录方式一致，默认`Oauth`登录都是`Viewer`权限，可以通过管理员设置为管理员权限。
 
 
 ## KDO告警模块
