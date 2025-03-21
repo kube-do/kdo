@@ -1,5 +1,5 @@
 ---
-title: +其他应用
+title: 其他应用
 parent: 应用管理
 nav_order: 5
 ---

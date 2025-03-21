@@ -78,4 +78,4 @@ STATICFILES_DIRS = (
 
 ### 访问应用
 路由创建完成后，就可以通过域名访问到应用了（需要确认已经配置了域名解析或设置hosts文件）。
-![](imgs/view-web.png)
+
