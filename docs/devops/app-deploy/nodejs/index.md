@@ -3,10 +3,6 @@ title: NodeJS 前后端项目部署
 parent: 部署应用
 description: 在 Rainbond 上通过源代码部署 NodeJS 前端项目和后端项目。例如 Vue、React 等前端项目和 Express、Koa 等后端项目。
 keywords:
-- Rainbond 部署 Vue React 前端项目
-- Vue React 前端项目部署
-- Rainbond 部署 Express 项目
-- Rainbond 部署 Koa 项目
 ---
 
 
