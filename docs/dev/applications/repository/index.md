@@ -110,8 +110,11 @@ KDO Pipelines-as-Code相关的文件都是存储在应用的代码仓库，其�
 - 应用基本参数设置好后，就可以开始设置自动分支流水线，不同环境选对应的分支，最后点击`添加`，这个支持多环境自动化流水线的应用就创建完成了。
 
 [创建Java应用](/docs/devops/app-deploy/java)
+
 [创建Python应用](/docs/devops/app-deploy/python)
+
 [创建Golang应用](/docs/devops/app-deploy/golang)
+
 [创建PHP应用](/docs/devops/app-deploy/php)
 
 ![创建应用](imgs/createApplication.gif)

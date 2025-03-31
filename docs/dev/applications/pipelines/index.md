@@ -10,7 +10,8 @@ nav_order: 2
 ##  概述
 
 {: .note }
-KDO平台的流水线模块是基于[Tekton](https://tekton.dev/)实现的， Tekton 是一个强大、灵活的构建 CI/CD 流水线系统的开源框架，允许开发者构建、测试和发布应用。Tekton 是云原生的，通过定义CRD，让用户快速灵活定义流水线。
+KDO平台的流水线模块是基于[Tekton](https://tekton.dev/)实现的， Tekton 是一个强大、灵活的构建 CI/CD 流水线系统的开源框架，允许开发者构建、测试和发布应用。 
+Tekton 是云原生的，通过定义CRD，让用户快速灵活定义流水线。
 
 ![logo.jpeg](imgs/logo.jpeg)
 
@@ -76,8 +77,6 @@ Tekton 资源对象是构成 Tekton Pipelines 的核心组件，它们定义了 
 
 ### Workspaces
 **工作区(Workspace)** 允许你为 PipelineRuns 和 TaskRuns 指定持久卷或其他存储资源。工作区提供了一种机制，使得 Tasks 可以访问共享的数据或代码库，并且可以在多个步骤之间保持数据的一致性和可用性。
-
-
 
 
 ## kdo流水线
