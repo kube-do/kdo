@@ -41,7 +41,8 @@ KDO 支持构建 Java 单模块的项目，并自动识别。当源代码根目�
 2. 流水线可以根据需要进行定制。
 3. 默认maven仓库默认为`https://maven.aliyun.com/repository/public` ，可以通过`流水线编辑`选择maven组件进行修改。
 4. 由于Java的版本差异，在Maven构建可以根据需要选择对应的Java版本，默认为`11`，也可以选择`8`、`17`、`21`等。
-   ![](imgs/maven-java-versions.png)
+
+![](imgs/maven-java-versions.png)
 
 ### 手动运行流水线
 1. 进入`分支流水线`页面，选择一个分支，点击**运行流水线**，就可以进行应用构建和部署了。
@@ -52,10 +53,11 @@ KDO 支持构建 Java 单模块的项目，并自动识别。当源代码根目�
 ### 查看流水线运行信息
 1. 进入`流水线运行`页面，选择对应的流水线运行，就可以查看流水线运行信息了。[更多信息](/docs/dev/applications/pipelines)
 2. KDO平台会在项目内创建一个[持久存储卷PVC](/docs/storage#存储概念)，用来缓存这个项目所有应用安装包(包括Java)的依赖，所以只有第一次构建的时候，时间比较长，后续构建时间会比较短。
+
 ![](imgs/pipelinerun-info.png)
 
 ### 查看应用运行信息
-进入`工作负载`菜单，选择`应用拓扑`，就可以查看应用运行信息了。[更多信息](/docs/dev/workloads/topology)
+进入`工作负载`菜单，选择`无状态`，选择对应的`应用名称`，就可以查看应用运行信息了。[更多信息](/docs/dev/workloads/deployments)
 
 ![](imgs/workload.png)
 

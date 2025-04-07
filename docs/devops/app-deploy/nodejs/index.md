@@ -67,10 +67,10 @@ KDO 会根据源码根目录是否有`package.json`来识别为 NodeJS 项目。
 ![](imgs/repo-detail.png)
 
 ### 定制流水线
-1. 基于npm构建应用的基础流水线一般有五个[任务](/docs/dev/applications/pipelines#task)，分别是`拉取代码`、`npm install`、`npm build`、`构建镜像`、`部署镜像`。[更多信息](/docs/dev/applications/pipelines)
+1. 基于npm构建应用的基础流水线一般有五个[任务](/docs/dev/applications/pipelines#task)，分别是`拉取代码`、`npm install`、`npm run build`、`构建镜像`、`部署镜像`。[更多信息](/docs/dev/applications/pipelines)
 2. 流水线可以根据需要进行定制。
 3. npm仓库默认为淘宝的镜像仓库`https://registry.npmmirror.com` ，可以通过`流水线编辑`选择npm组件进行修改。
-4. 由于Nodejs的版本差异，在npm组件可以根据需要选择对应的Nodejs版本，默认为`14`，也可以选择`12`、`16`、`18`、`20`、`22`等。
+4. 由于Nodejs的版本差异，在npm组件可以根据需要选择对应的Nodejs版本，默认为`18`，也可以选择`12`、`14`、`16`、`20`、`22`等。
 
 ![](imgs/edit-pipelinerun.png)
 
@@ -82,12 +82,11 @@ KDO 会根据源码根目录是否有`package.json`来识别为 NodeJS 项目。
 
 ### 查看流水线运行信息
 1. 进入`流水线运行`页面，选择对应的流水线运行，就可以查看流水线运行信息了。[更多信息](/docs/dev/applications/pipelines)
-2. KDO平台会在项目内创建一个[持久存储卷PVC](/docs/storage#存储概念)，用来缓存这个项目所有应用安装包(包括Java)的依赖，所以只有第一次构建的时候，时间比较长，后续构建时间会比较短。
 
 ![](imgs/pipelinerun-info.png)
 
 ### 查看应用运行信息
-进入`工作负载`菜单，选择`无状态`，就可以查看应用运行信息了。[更多信息](/docs/dev/workloads/topology)
+进入`工作负载`菜单，选择`无状态`，选择对应的`应用名称`，就可以查看应用运行信息了。[更多信息](/docs/dev/workloads/deployments)
 
 ![](imgs/workload.png)
 

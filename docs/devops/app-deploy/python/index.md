@@ -70,7 +70,7 @@ STATICFILES_DIRS = (
 ![](imgs/pipelinerun-info.png)
 
 ### 查看应用运行信息
-进入`工作负载`菜单，选择`应用拓扑`，就可以查看应用运行信息了，[更多信息](/docs/dev/workloads/topology)。
+进入`工作负载`菜单，选择`无状态`，选择对应的`应用名称`，就可以查看应用运行信息了，[更多信息](/docs/dev/workloads/deployments)。
 ![](imgs/workload.png)
 
 ### 创建应用路由

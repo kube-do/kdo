@@ -22,22 +22,22 @@ HPA适用于服务波动较大、服务数量多且需要频繁扩缩容的业�
 ## 组件水平自动伸缩
 ![hpa-arch.png](imgs/hpa-arch.png)
 
-Horizontal Pod Autoscaler 由两部分组成, HPA 资源 和 HPA 控制器. HPA 资源 定义了组件的行为, 包括指标, 期望值, 和最大最小副本数等.
+`水平容器组自动扩缩(HPA)` 由两部分组成, HPA 资源 和 HPA 控制器。HPA 资源 定义了组件的行为, 包括指标, 期望值, 和最大最小副本数等。
 
 HPA 控制器, 周期性地检查检查组件所设置的指标; 其周期由` controller manager `的参数 `--horizontal-pod-autoscaler-sync-period` 控制, 默认是 15 秒。
 
 在每个周期中, HPA 控制器通过 mertrics API 查询用户为每个组件设置的指标; 当指标超过或低于期望阈值时, HPA 控制器会调整 `Deployment/Statefulset` 中的副本数, 最后由 `Deployment/Statefulset` 完成组件实例数的增加或减少。
+![hpa-flow.png](imgs/hpa-flow.png)
 
 HPA 控制器一般从 `metrics.k8s.io`, `custom.metrics.k8s.io` 和 `external.metrics.k8s.io` 三个聚合 API 观察指标。
 
-`metrics.k8s.io` 这个 API 由 metrics-server 提供, 对应的是资源指标(resource metrics), 即 CPU 使用率, CPU 使用量 和 内存使用率, 内存使用量. 也是 Rainbond 目前支持的指标类型。
+`metrics.k8s.io` 这个 API 由 `metrics-server` 提供, 对应的是资源指标(resource metrics), 即 CPU 使用率, CPU 使用量 和 内存使用率, 内存使用量. 也是 KDO 目前支持的指标类型。
 
-`custom.metrics.k8s.io` 对应的是 自定义指标, external.metrics.k8s.io 对应的是 外部指标. 比如: 每秒请求数(requests-per-secon), 每秒接收的包数(packets-per-second). 由 Kube Metrics Adapter, Prometheus Adapter。
-
-或者是自己实现的遵循了 Kubernetes metrics API 定义 的第三方服务提供. 自定义指标和外部指标大体上是相同的。
+`custom.metrics.k8s.io` 对应的是 自定义指标, `external.metrics.k8s.io` 对应的是 外部指标. 比如: 每秒请求数(requests-per-second), 每秒接收的包数(packets-per-second)。
+由 `Kube Metrics Adapter`, `Prometheus Adapter`或者是自己实现的遵循了 `Kubernetes metrics API` 定义 的第三方服务提供。自定义指标和外部指标大体上是相同的。
 
 {: .warning } 
-水平容器组自动扩缩(HPA)不适用于无法扩缩的对象（例如：守护进程集(DaemonSet)） 
+水平容器组自动扩缩(HPA)不适用于无法扩缩的对象，例如：`守护进程集(DaemonSet)`。 
 在设置HPA之前，资源限制必须设置，参考[资源限制](../edit-resource-limits)
 
 ![](imgs/hpa.png)
