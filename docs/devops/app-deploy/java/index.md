@@ -2,6 +2,7 @@
 title: Java 项目部署
 parent: 部署应用
 description: 在 KDO 上通过源码部署 Java 项目
+nav_order: 1
 ---
 
 

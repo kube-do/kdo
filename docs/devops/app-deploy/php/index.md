@@ -2,6 +2,7 @@
 title: PHP 项目部署
 parent: 部署应用
 description: 在 KDO 上通过源代码部署 PHP 项目
+nav_order: 5
 ---
 
 ## 概述

@@ -2,6 +2,7 @@
 title: Python 项目部署
 parent: 部署应用
 description: 在 KDO 上通过源码部署 Python 项目
+nav_order: 2
 ---
 
 
