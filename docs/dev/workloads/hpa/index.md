@@ -18,3 +18,5 @@ HorizontalPodAutoscaler 被实现为 Kubernetes API 资源和控制器。
 资源决定了控制器的行为。 在 Kubernetes 控制平面内运行的水平 Pod 自动扩缩控制器会定期调整其目标（例如：Deployment）的所需规模，以匹配观察到的指标， 例如，平均 CPU 利用率、平均内存利用率或你指定的任何其他自定义指标。
 
 ![](imgs/hpas.png)
+
+## [HPA更多信息](/docs/workload-actions/hpa)

@@ -27,7 +27,7 @@ parent: 工作负载操作
 **作用**
 1. **调度决策：** Kubernetes 调度器会确保只有当节点上的可用资源至少等于所有 容器组(Pod) 请求的总和时，才会将 容器组(Pod) 调度到该节点上。
 2. **资源预留：** 即使其他应用没有完全使用其请求的资源，也会为每个 容器组(Pod) 预留它所请求的资源，以保证该 容器组(Pod) 在启动后能够获得所需的资源。
-3. **服务质量 (QoS)：** 根据容器的 requests 和 limits 设置，Kubernetes 会将 容器组(Pod) 分类为不同的 [QoS级别](#服务质量)（如 Guaranteed, Burstable, BestEffort），这决定了在资源紧张时哪些 容器组(Pod) 更优先得到资源。
+3. **服务质量 (QoS)：** 根据容器的 `requests` 和 `limits` 设置，Kubernetes 会将 容器组(Pod) 分类为不同的 [QoS级别](#服务质量)（如 `Guaranteed`, `Burstable`, `BestEffort`），这决定了在资源紧张时哪些 容器组(Pod) 更优先得到资源。
 
 
 ### 限制(Limits)
