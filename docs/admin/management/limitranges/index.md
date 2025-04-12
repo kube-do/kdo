@@ -11,7 +11,7 @@ nav_order: 5
 
 {: .note }
 LimitRange(限制范围) 是 Kubernetes 中用于限制命名空间内资源使用的策略对象。
-它允许管理员设置容器或 容器组(Pod) 的资源[请求(requests)和限制(limits)](../../../workload-actions/edit-resource-limits)的默认值、最小值、最大值以及最大请求/限制比率等，从而确保容器不会消耗过多的资源，并且能够保证基本的资源分配。
+它允许管理员设置容器或 容器组(Pod) 的资源[请求(requests)和限制(limits)](/docs/workload-actions/edit-resource-limits)的默认值、最小值、最大值以及最大请求/限制比率等，从而确保容器不会消耗过多的资源，并且能够保证基本的资源分配。
 [更多信息, 请参考官方文档。](https://kubernetes.io/zh-cn/docs/concepts/policy/limit-range/)
 
 ![limit-range.png](imgs/limit-range.png)

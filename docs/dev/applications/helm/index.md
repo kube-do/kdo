@@ -17,7 +17,7 @@ nav_order: 4
 借助Helm，用户可以采用一种更为简便的方法来查找、安装、升级以及卸载应用程序。它极大地简化了如MySQL、Redis和Kafka等组件的部署过程，使得向Kubernetes集群添加复杂应用变得更加直观和高效。
 
 ## Helm架构
-Helm有三个重要的概念：Chart、Release和Repository
+Helm有三个重要的概念：`Chart`、`Release`和`Repository`
 
 1. **Chart** chart是创建一个应用的信息集合，包括各种Kubernetes对象的配置模板、参数定义、依赖关系、文档说明等。可以将chart想象成apt、yum中的软件安装包。
 2. **Release** release是chart的运行实例，代表一个正在运行的应用。当chart被安装到Kubernetes集群，就生成一个release。chart能多次安装到同一个集群，每次安装都是一个release。根据chart赋值不同，完全可以部署出多个release出来。
@@ -31,7 +31,7 @@ Helm有三个重要的概念：Chart、Release和Repository
 
 1. 访问Helm菜单，点击`新建`；
 2. 搜索对应组件名，查看说明内容后，选择`创建`；
-3. 设置Helm名字(一般使用默认即可)，选择对应版本，配置组件参数后，选择`创建`，一个Helm应用就创建好了。
+3. 设置Helm名字(一般使用默认即可)，选择对应版本，配置组件参数后，选择`创建`，稍等一段时间，一个Helm应用就创建好了。
 
 ![](imgs/createHelm.gif)
 

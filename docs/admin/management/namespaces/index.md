@@ -11,7 +11,7 @@ nav_order: 2
 
 {: .note }
 在 Kubernetes 中，名字空间(Namespace)提供一种机制，将同一集群中的资源划分为相互隔离的组。 同一名字空间内的资源名称要唯一，但跨名字空间时没有这个要求。 
-名字空间作用域仅针对带有名字空间的对象(例如 Deployment、Service等)，这种作用域对集群范围的对象(例如 StorageClass、Node、PersistentVolume 等)不适用。
+名字空间作用域仅针对带有名字空间的对象(例如 `Deployment`、`Service等`)，这种作用域对集群范围的对象(例如 `StorageClass`、`Node`、`PersistentVolume` 等)不适用。
 
 ![kubernetes-namespaces.png](imgs/kubernetes-namespaces.png)
 
@@ -20,13 +20,13 @@ nav_order: 2
 {: .note }
 Kubernetes 启动时会创建四个初始名字空间：
 
-1. **default** Kubernetes 包含这个名字空间，以便于你无需创建新的名字空间即可开始使用新集群。
-2. **kube-node-lease** 该名字空间包含用于与各个节点关联的 Lease（租约）对象。 节点租约允许 kubelet 发送心跳， 由此控制面能够检测到节点故障。
+1. **default** `Kubernetes` 包含这个名字空间，以便于你无需创建新的名字空间即可开始使用新集群。
+2. **kube-node-lease** 该名字空间包含用于与各个节点关联的 `Lease`（租约）对象。 节点租约允许 `kubelet` 发送心跳， 由此控制面能够检测到节点故障。
 3. **kube-public** 所有的客户端（包括未经身份验证的客户端）都可以读取该名字空间。 该名字空间主要预留为集群使用，以便某些资源需要在整个集群中可见可读。 该名字空间的公共属性只是一种约定而非要求。
-4. **kube-system** 该名字空间用于 Kubernetes 系统创建的对象。
+4. **kube-system** 该名字空间用于 `Kubernetes` 系统创建的对象。
 
 ### 命名空间感知命令
-使用 kubectl 命令时，你可以通过 -n 或 --namespace 参数来指定操作的命名空间。如果不指定，它将会作用于默认命名空间。
+使用 `kubectl` 命令时，你可以通过 -n 或 --namespace 参数来指定操作的命名空间。如果不指定，它将会作用于默认命名空间。
 你可以使用`kubectl config set-context --current --namespace=<namespace_name>`来更改当前上下文的命名空间。
 
 ### 生命周期
@@ -39,8 +39,8 @@ Kubernetes 启动时会创建四个初始名字空间：
 
 ### 名字空间和DNS
 当你创建一个服务时， Kubernetes 会创建一个相应的 DNS 条目。
-该条目的形式是` <服务名称>.<名字空间名称>.svc.cluster.local`，这意味着如果容器只使用 <服务名称>，它将被解析到本地名字空间的服务。
-这对于跨多个名字空间（如开发、测试和生产） 使用相同的配置非常有用。如果你希望跨名字空间访问，则需要使用完全限定域名（FQDN）
+该条目的形式是`<服务名称>.<名字空间名称>.svc.cluster.local`，这意味着如果容器只使用<服务名称>，它将被解析到本地名字空间的服务。
+这对于跨多个名字空间(如开发、测试和生产)使用相同的配置非常有用。如果你希望跨名字空间访问，则需要使用完全限定域名（FQDN）
 
 
 ## 查看命名空间
@@ -62,10 +62,12 @@ Kubernetes 启动时会创建四个初始名字空间：
 ## 命名空间详情
 
 ### 命名空间概述
+命名空间概述页面的内容对应就是环境概要信息页面的内容。更多信息，请参考[环境概要信息](/docs/dev/home/env)
 ![](imgs/namespace.png)
 
 
 ### 命名空间工作负载
+命名空间概述页面的内容对应就是工作负载信息拓扑页面。更多信息，请参考[应用拓扑信息](/docs/dev/workloads/topology)
 ![](imgs/namespace-topology.png)
 
 

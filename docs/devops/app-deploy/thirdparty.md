@@ -26,9 +26,9 @@ KDO 支持第三方服务管理的初衷是为了解决企业在使用 KDO 落�
 
 ### Kubernetes
 
-在 **应用视图 -> 添加组件 -> 第三方组件** 中，选择服务注册方式为 Kubernetes，
-1. 填写 Namespace ，默认为当前团队所在 Namespace
-2. 填写 Service ，Service 应属于上边填写的 Namespace
+在 **应用视图 -> 添加组件 -> 第三方组件** 中，选择服务注册方式为 `Kubernetes`，
+1. 填写 `Namespace` ，默认为当前团队所在 `Namespace`
+2. 填写 `Service` ，`Service` 应属于上边填写的 `Namespace`
 3. 创建组件
 
 进入组件详情页，配置端口、连接信息、健康检查属性等。
