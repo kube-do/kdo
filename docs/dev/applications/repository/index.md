@@ -96,6 +96,9 @@ KDO Pipelines-as-Code相关的文件都是存储在应用的代码仓库，其�
 它定义了部署参数，一般就是[无状态(Deployment)](/docs/dev/workloads/deployments)、[有状态(StatefulSet)](/docs/dev/workloads/statefulsets)、
 [服务(Service)](/docs/dev/network-stroage/services)等这些资源对象。
 
+![](imgs/branch-main-repo-files.png)
+![](imgs/branch-develop-repo-files.png)
+
 
 ## 创建应用
 
