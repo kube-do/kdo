@@ -11,36 +11,11 @@ nav_order: 4
 
 
 ## 概述
-
+Node.js是一个基于Chrome V8引擎的JavaScript运行环境，它使得JavaScript可以脱离浏览器在服务端运行。
+这意味着开发者可以使用JavaScript来编写服务器端的代码，实现前后端编程语言的统一。
 在基于源码构建时，KDO 会识别项目根目录的 **package.json** 文件来判断为 NodeJS 项目。
 1. 支持在页面上选择为 Node 前端项目或者后端项目并自动添加下述文件，并选择使用 NPM 还是 YARN 构建项目。
 2. 在源代码根目录根据下述描述添加文件来确定项目类型。
-
-KDO 会根据源码根目录是否有`package.json`来识别为 NodeJS 项目。根据是否存在`nodestate.json`文件来识别为 Node 前端项目。
-
-- **package-lock.json:** 如源码根目录存在则使用 NPM 构建，不可与 yarn.lock 同时存在。
-- **yarn.lock:** 如源码根目录存在则使用 YARN 构建，不可与 package-lock.json 同时存在。
-- **nodestatic.json:** 如源码根目录存在则为 Node 前端项目，默认如下：
-  ```json
-  {
-    "path": "dist"
-  }
-  ```
-  > 指定静态文件编译后的输出目录，默认为 dist
-- **web.conf:** Nginx配置文件。如源码根目录存在则使用，不存在则采用下述默认配置。
-  ```conf
-  server {
-      listen       8080;
-      
-      location / {
-          root   /app/www;
-          try_files $uri $uri/ /index.html;
-          index  index.html index.htm;
-      }
-  }
-  ```
-  > 容器内 Nginx 默认路径为 /app/nginx，静态文件默认路径为 /app/www。如 /app/nginx/nginx.conf、/app/nginx/conf.d/web.conf
-
 
 ## 创建应用
 

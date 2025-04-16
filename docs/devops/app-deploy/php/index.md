@@ -9,7 +9,7 @@ nav_order: 5
 {:toc}
 
 ## 概述
-
+PHP（全称：PHP: Hypertext Preprocessor，即“PHP：超文本预处理器”）是一种广泛使用的开源服务器端脚本语言，尤其适用于Web开发。
 平台默认会根据源码根目录是否有`index.php` 文件或者 `composer.json`来识别为 PHP 项目.
 
 ### shell hook 支持

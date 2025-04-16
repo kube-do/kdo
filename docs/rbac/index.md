@@ -9,7 +9,7 @@ nav_order: 4
 ## 介绍
 
 {: .note }
-KDO平台的权限管理完全基于Kubernetes的基于角色的访问控制（RBAC）机制。因此，这部分内容主要针对Kubernetes的访问控制进行详细说明。
+KDO平台的权限管理完全基于`Kubernetes`的基于角色的访问控制(RBAC)机制。因此，这部分内容主要针对Kubernetes的访问控制进行详细说明。
 通过利用Kubernetes RBAC，KDO平台能够提供精细的权限管理，确保用户和应用程序仅能访问其被授权的资源，从而增强安全性并支持更灵活的角色与权限配置。
 
 
@@ -63,7 +63,7 @@ RBAC是Kubernetes中一个核心的授权策略，通过它，管理员可以实
    `User`：用户，这是有外部独立服务进行管理的。
    `Group`：组，这是用来关联多个账户的，集群中有一些默认创建的组，比如cluster-admin。
    `ServiceAccount`：服务账号，通过Kubernetes API 来管理的一些用户账号，和 namespace 进行关联的，适用于集群内部运行的应用程序，需要通过 API 来完成权限认证，所以在集群内部进行权限操作，都需要使用到 ServiceAccount。
-2. **API Resource**，也就是请求对应的访问目标。在 Kubernetes 集群中也就是各类资源比如Pod、Deployment等；
+2. **API Resource**，也就是请求对应的访问目标。在 Kubernetes 集群中也就是各类资源比如Pod、Deployment、Service等；
 3. **Verbs**，对应为请求对象资源可以进行哪些操作，包括但不限于`get`，`list`, `watch`, `create`, `update`, `patch`, `delete`,`deletecollection`等。
 
 
@@ -141,7 +141,7 @@ Kubernetes RBAC 的角色(Role)或 集群角色(ClusterRole) 中包含一组代�
 ## RoleBinding和ClusterRoleBinding管理 
 
 {: .note }
-角色绑定(RoleBinding)是将角色中定义的权限赋予一个或者一组用户。 它包含若干主体（Subject),比如用户、组或服务账户的列表和对这些主体所获得的角色的引用。 
+角色绑定(RoleBinding)是将角色中定义的权限赋予一个或者一组用户。它包含若干主体（Subject),比如用户、组或服务账户的列表和对这些主体所获得的角色的引用。 
 
 ### RoleBinding/ClusterRoleBinding区别
 

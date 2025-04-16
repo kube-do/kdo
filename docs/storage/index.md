@@ -52,26 +52,30 @@ Kubernetes 支持多种类型的持久性卷，以适应不同的使用场景和
 
 ### 添加持久性卷声明(PVC)
 点击添加存储，选择存储类型，存储名称、[访问模式](#访问模式)、存储大小等信息，点击确定即可。
+
 ![create-pvc.gif](imgs/create-pvc.gif)
 
 ### 持久性卷声明(PVC)扩容
 PVC扩容允许用户增加分配给应用程序的存储空间，而无需重新创建 PVC 或者关联的容器组
+
 ![expansion-pvc.gif](imgs/expansion-pvc.gif)
 
 
 ### 从工作负载中卸载(umount)持久性卷声明(PVC)
 如果要从现有的工作负载(无状态应用、有状态应用) 卸载(umount)已经工作挂载的持久性卷声明(PVC)，需要到对应工作负载的页面，点击挂载的持久性卷声明(PVC)，点击删除即可。
+
 ![umount-pvc.gif](imgs/umount-pvc.gif)
 
 ### 删除持久性卷声明(PVC)
 当确定PVC已经被从工作负载中卸载后，就可以把PVC删除了。
+
 ![delete-pvc.png](imgs/delete-pvc.png)
 
 
 ## 访问模式
 
 {: .note }
-Kubernetes 中的存储访问模式（Access Modes）定义了 PersistentVolume (PV) 或者通过 PersistentVolumeClaim (PVC) 请求的持久性卷可以如何被 Pod 访问。
+Kubernetes 中的存储访问模式(Access Modes)定义了 PersistentVolume(PV) 或者通过 PersistentVolumeClaim(PVC) 请求的持久性卷可以如何被 Pod 访问。
 不同的访问模式适用于不同类型的存储后端，并且不是所有的存储系统都支持所有访问模式。
 
 ### Kubernetes主要访问模式
@@ -111,10 +115,13 @@ Kubernetes 卷快照（Volume Snapshots）功能允许用户创建现有 Persist
 为了管理卷快照，Kubernetes 引入了三个新的 API 资源：
 
 1. **卷快照(VolumeSnapshot)**: 这个资源表示一个 PVC 在某个时间点的状态快照。
+
 ![](imgs/snapshotss.png)
 2. **卷快照类(VolumeSnapshotClass)**: 是 Kubernetes 中用于定义卷快照(Volume Snapshot)行为的资源。它类似于 StorageClass，为用户提供了一种方式来配置和管理不同类型的卷快照。每个 VolumeSnapshotClass 都关联了一个特定的存储后端，并且可以包含有关如何创建和管理该类型快照的参数。
+
 ![](imgs/volume-snapshot-class.png)
 3. **卷快照类型(VolumeSnapshotContent)**: 类似于 PV 和 PVC 的关系，它是 VolumeSnapshot 的底层实现，通常由系统自动生成或由管理员手动创建。
+
 ![](imgs/volume-snapshot-content.png)
 
 ### 创建卷快照

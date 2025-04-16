@@ -9,34 +9,14 @@ nav_order: 2
 {:toc}
 
 ## 概述
-
+Python 是一个高层次的结合了解释性、编译性、互动性和面向对象的脚本语言。
 代码主目录下有 `requirements.txt` 文件，KDO 会识别代码语言类型为 **Python** 。
 
 ### requirements.txt 规范
-
 若无 `requirements.txt` 可用如下命令生成
 
 ```bash
 pip freeze > requirements.txt
-```
-
-### Django 静态文件支持
-
-由于 [Django](https://www.djangoproject.com/) 的静态文件支持（CSS、图片等）不是很容易配置而且不方便调试，这里给出一个示例：
-
-**settings.py**
-
-```python
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 ```
 
 
