@@ -6,8 +6,9 @@ keywords:
 nav_order: 4
 ---
 
+1. TOC
+{:toc}
 
-本篇文档介绍如何在 KDO 平台上通过源代码部署 NodeJS 前端项目和后端项目。例如 Vue、React 等前端项目和 Express、Koa 等后端项目。
 
 ## 概述
 

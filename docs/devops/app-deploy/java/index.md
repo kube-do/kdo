@@ -5,6 +5,8 @@ description: 在 KDO 上通过源码部署 Java 项目
 nav_order: 1
 ---
 
+1. TOC
+{:toc}
 
 ## 概述
 

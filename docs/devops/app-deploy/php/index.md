@@ -5,6 +5,9 @@ description: 在 KDO 上通过源代码部署 PHP 项目
 nav_order: 5
 ---
 
+1. TOC
+{:toc}
+
 ## 概述
 
 平台默认会根据源码根目录是否有`index.php` 文件或者 `composer.json`来识别为 PHP 项目.

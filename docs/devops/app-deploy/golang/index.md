@@ -5,6 +5,9 @@ description: 在 KDO 上通过源代码部署 Golang 项目
 nav_order: 3
 ---
 
+1. TOC
+{:toc}
+
 ## 概述
 Go语言（Golang）因其简洁性、高效性和强大的并发支持，已成为现代软件开发中的热门选择。
 

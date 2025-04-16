@@ -11,7 +11,7 @@ nav_order: 1
 
 {: .note }
 Kubernetes Operator 是一种专门用于扩展 Kubernetes API 的方法，它允许您为特定应用程序定义、部署和管理复杂的有状态应用。
-Operator 是通过编写自定义资源（Custom Resource Definitions, CRD）来实现的，这些自定义资源可以看作是 Kubernetes API 的扩展，它们描述了您的应用程序的状态和行为。
+Operator 是通过编写自定义资源(Custom Resource Definitions, CRD)来实现的，这些自定义资源可以看作是 Kubernetes API 的扩展，它们描述了您的应用程序的状态和行为。
 
 
 ### Operator的特点
