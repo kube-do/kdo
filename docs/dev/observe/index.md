@@ -11,9 +11,9 @@ nav_order: 6
 
 ![](imgs/observe.png)
 
-1. [仪表盘](../../dev/workloads/topology)
-2. [指标](../../dev/workloads/pods)
-3. [警报](../../dev/workloads/deployments)
-4. [静默](../../dev/workloads/statefulsets)
-5. [事件](../../observability/events)
-6. [日志](../../observability/logging)
+1. [仪表盘](/docs/dev/workloads/topology)
+2. [指标](/docs/dev/workloads/pods)
+3. [警报](/docs/dev/workloads/deployments)
+4. [静默](/docs/dev/workloads/statefulsets)
+5. [事件](/docs/observability/events)
+6. [日志](/docs/observability/logging)

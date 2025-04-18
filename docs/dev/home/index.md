@@ -10,7 +10,7 @@ nav_order: 1
 ## 项目概览
 
 {: .note }
-在**项目概览**页面，可以对当前项目有个整体认识，包括基本信息，资源使用，监控信息，事件等。[更多信息，访问应用项目](/docs/devops/project-manage/project)
+在**项目概览**页面，可以对当前项目有个整体认识，包括基本信息，资源使用，监控信息，事件等。[更多信息，访问应用项目](/docs/devops/project-manage)
 
 ![](imgs/env.gif)
 
