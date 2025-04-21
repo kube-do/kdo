@@ -77,8 +77,6 @@ mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
 
 以 admin 用户登录后，在 **我的账户** 页面切换到 **安全** 选项卡，即可生成 Token。
 
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-4.png)
-
 复制记录下创建出来的 `AuthenticationToken`  ，它只会出现一次！
 
 
