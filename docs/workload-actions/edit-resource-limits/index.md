@@ -41,15 +41,15 @@ parent: 工作负载操作
 
 ![](imgs/edit-resource-limits.png)
 
-1. **要求(requests)** 定义了对应容器需要的最小资源量。这句话的含义是，举例来讲，比如对于一个 Spring Boot 业务容器，这里的requests必须是容器镜像中 JVM 虚拟机需要占用的最少资源。如果这里把 pod 的内存requests指定为 10Mi ，显然是不合理的，JVM 实际占用的内存 Xms 超出了 K8s 分配给 pod 的内存，导致 pod 内存溢出，从而 K8s 不断重启 pod 。
-2. **限制(limits)** 定义了这个容器最大可以消耗的资源上限，防止过量消耗资源导致资源短缺甚至宕机。特别的，设置为 0 表示对使用的资源不做限制。值得一提的是，当设置limits而没有设置requests时，Kubernetes 默认令requests等于limits。 
+1. **要求值(requests)：** 定义了对应容器需要的最小资源量。这句话的含义是，举例来讲，比如对于一个 Spring Boot 业务容器，这里的requests必须是容器镜像中 JVM 虚拟机需要占用的最少资源。如果这里把 pod 的内存requests指定为 10Mi ，显然是不合理的，JVM 实际占用的内存 Xms 超出了 K8s 分配给 pod 的内存，导致 pod 内存溢出，从而 K8s 不断重启 pod 。
+2. **限制值(limits)：** 定义了这个容器最大可以消耗的资源上限，防止过量消耗资源导致资源短缺甚至宕机。特别的，设置为 0 表示对使用的资源不做限制。值得一提的是，当设置limits而没有设置requests时，Kubernetes 默认令requests等于limits。 
 
 进一步可以把requests和limits描述的资源分为 2 类：可压缩资源（例如 CPU ）和不可压缩资源（例如内存）。合理地设置limits参数对于不可压缩资源来讲尤为重要。
 
 ## 最佳实践
-1. **合理设置:** 应该基于应用程序的实际需求来设置 requests 和 limits。过低的 requests 可能会导致调度问题，而过高的 limits 则可能导致资源浪费。
-2. **测试和监控:** 在生产环境中部署之前，建议先在一个测试环境中调整并观察这些值的效果，并结合监控工具持续跟踪资源使用情况。
-3. **考虑QoS级别:** 了解不同 QoS 级别的含义，并据此选择合适的 requests 和 limits 设置，以确保关键应用获得足够的资源保障。
+1. **合理设置：** 应该基于应用程序的实际需求来设置 requests 和 limits。过低的 requests 可能会导致调度问题，而过高的 limits 则可能导致资源浪费。
+2. **测试和监控：** 在生产环境中部署之前，建议先在一个测试环境中调整并观察这些值的效果，并结合监控工具持续跟踪资源使用情况。
+3. **考虑QoS级别：** 了解不同 QoS 级别的含义，并据此选择合适的 requests 和 limits 设置，以确保关键应用获得足够的资源保障。
 
 
 
@@ -73,7 +73,7 @@ Burstable 级别的 Pod 拥有中等的生存优先级。如果资源充足，�
 BestEffort 级别的 Pod 在资源紧张时具有最低的生存优先级，并且会在需要资源的其他 Pod 之前被驱逐。
 
 ### 终止Pod顺序
-![qos-order.png](imgs%2Fqos-order.png)
+![qos-order.png](imgs/qos-order.png)
 Kubernetes 使用这些 QoS 级别来决定在资源不足的情况下如何处理 Pod。
 例如，如果节点上内存不足，Kubernetes 可能会选择终止 QoS 级别较低的 Pod 来确保更关键的服务能够继续运行。
 因此，在部署应用时，合理设置资源的 requests 和 limits 对于保证应用的稳定性和性能非常重要。

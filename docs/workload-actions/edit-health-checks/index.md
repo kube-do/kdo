@@ -10,7 +10,7 @@ parent: 工作负载操作
 ## 介绍
 
 {: .note }
-在 Kubernetes 中，健康检查（Health Checks）是确保应用程序稳定运行的重要机制。
+在 Kubernetes 中，健康检查(Health Checks)是确保应用程序稳定运行的重要机制。
 它们用于监控 Pod 内的容器状态，并根据检查结果决定是否需要重启容器或将其从服务中移除。Kubernetes 提供了三种主要类型的健康检查：
 
 ## 探针类型

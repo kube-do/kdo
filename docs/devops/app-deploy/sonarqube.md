@@ -58,11 +58,8 @@ mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
 
 用户只需要在 KDO 的应用市场界面选择开源应用商店，搜索 `sonarqube` 即可找到对应的安装入口：
 
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-2.png)
 
 点击安装，选择好安装位置，即可将 SonarQube 服务以及 Postgresql 数据库一键安装到指定的位置。
-
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-3.png)
 
 访问 SonarQube 的对外服务端口，即可进入它的登录页面 ，默认的用户名和密码为： `admin / admin` 。
 
@@ -90,15 +87,13 @@ mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
 
 KDO 可以基于 Oauth2.0 与 Gitlab 代码仓库对接，可以非常方便的选择构建 Gitlab 中的项目，并自动配置代码自动构建。
 
-参阅文档：[KDO 与 Gitlab 的对接](https://www.rainbond.com/docs/use-manual/enterprise-manage/enterprise-settings/base/oauth2.0/)
+
 
 我所使用的 Gitlab 中已经存在一份标准的 Java Maven 项目代码。点击基于源码构建组件，选择对接好的 Gitlab，就可以搜索想要部署的项目了。
 
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-5.png)
 
 创建组件的过程中，可以开启自动构建的开关，相当于配置好了代码推送触发自动构建的开关。
 
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-6.png)
 
 点击确认创建之后，会完成代码语言的检测，此时进入高级设置，点击左侧的部署属性，我们需要做些高级设置来适配 SonarScanner 。
 
@@ -163,15 +158,14 @@ clean verify sonar:sonar   -Dsonar.projectName=Maven-demo -Dsonar.projectKey=Mav
 
 到现在，部署属性中，构建源信息页面应该体现如下：
 
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-7.png)
 
 点击确认创建，即可跳转页面，进入第一次构建流程之中。稍等一会，首次构建就会完成，代码会自动被打包并上线，查看构建日志，可以了解构建过程中的分析步骤：
 
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-8.png)
+
 
 访问日志中提及的地址，可以在 SonarQube 服务中查看新增的报告。
 
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-9.png)
+
 
 
 
@@ -179,7 +173,7 @@ clean verify sonar:sonar   -Dsonar.projectName=Maven-demo -Dsonar.projectKey=Mav
 
 开发人员参考 SonarQube 服务提供的报告，可以了解目前代码的问题。SonarQube 报告中会给出业界最佳实践来修复漏洞。以我使用的项目为例，扫描到了 2 个 Bug，和 4 个安全问题。以其中一个 Bug 为例， SonarQube 给出了很详尽的提示，包括合理的代码提示。
 
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-10.png)
+
 
 
 
@@ -187,13 +181,12 @@ clean verify sonar:sonar   -Dsonar.projectName=Maven-demo -Dsonar.projectKey=Mav
 
 开发人员根据分析报告，修复代码后，再次提交代码，在代码提交信息中包含关键字，即可自动触发项目的构建以及新一轮的代码扫描。
 
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-11.png)
 
-Commit Message 中包含的 `@deploy` 是触发自动构建的关键字。有关 KDO 自动构建的详细信息，请参考文档 [KDO自动构建](https://www.rainbond.com/docs/use-manual/component-manage/build-source/auto_build)
+
 
 等待项目自动构建完成，再次审查分析报告，来确定 Bug 是否得到了解决。
 
 回顾 KDO 中组件的操作记录，会发现手动构建与自动构建之间的区别。
 
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-12.png)
+
 
