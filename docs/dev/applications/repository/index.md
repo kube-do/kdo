@@ -132,7 +132,8 @@ KDO Pipelines-as-Code相关的文件都是存储在应用的代码仓库，其�
 | YAML  | 这个应用的YAML定义文件，一些不能在图形化编辑的功能，可以在这里编辑。     |
 
 
-![应用信息](imgs/repositoryInfo.png)
+![应用信息](imgs/repo-info.png)
+
 
 ### 管理分支流水线
 
