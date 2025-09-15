@@ -5,7 +5,7 @@ nav_order: 6
 
 好的，我来为您详细介绍 **云原生AI助手**。
 
-这是一个由 **Red Hat** 推出的、集成了 **生成式 AI** 能力的智能辅助平台，旨在彻底改变开发者在 KDO云平台 上的应用开发、部署和运维体验。
+这是一个集成了 **生成式 AI** 能力的智能辅助平台，旨在彻底改变开发者在 KDO云平台 上的应用开发、部署和运维体验。
 
 它的核心是 **AI 大模型** 技术，专门为 云原生 和 Kubernetes 环境进行了优化。
 
@@ -59,7 +59,7 @@ nav_order: 6
 1.  **开发者输入**（在 IDE 或 Web 控制台中）：
     > "Create a Python Flask application with a Redis cache. Use a ConfigMap for configuration and expose it with an Ingress."
 
-2.  **Lightspeed 处理**：
+2.  **AI助手 处理**：
     *   理解自然语言指令。
     *   调用 AI 模型生成符合要求的代码。
     *   参考集群的当前上下文。
