@@ -18,7 +18,7 @@ nav_order: 6
 ### 二、主要功能与能力
 
 1.  **智能代码生成 (Intelligent Code Suggestions)**
-    *   **自然语言生成代码**：开发者可以用英文描述他们想要实现的功能（例如："创建一个部署三个副本的 nginx 应用，并配置一个负载均衡器服务"），Lightspeed 会自动生成对应的 YAML 清单文件（如 Deployment、Service 等）。
+    *   **自然语言生成代码**：开发者可以用英文描述他们想要实现的功能（例如："创建一个部署三个副本的 nginx 应用，并配置一个负载均衡器服务"），AI助手 会自动生成对应的 YAML 清单文件（如 Deployment、Service 等）。
     *   **代码补全与优化**：在编写 YAML、Helm Charts、Terraform 或 Operator SDK 代码时，云原生AI助手 能提供实时的、上下文感知的代码补全和建议，提高编写效率和准确性。
 
 2.  **专家知识内嵌 (Embedded Expert Knowledge)**
@@ -27,7 +27,7 @@ nav_order: 6
 
 3.  **运维任务自动化 (Operational Task Automation)**
     *   运维人员可以用自然语言查询如何执行特定任务（例如："如何扩展我的 frontend 部署到 5 个副本？" 或 "如何诊断 Pod 启动失败的问题？"）。
-    *   Lightspeed 会生成相应的 `oc`（KDO云平台 CLI）或 `kubectl` 命令，甚至提供详细的故障排除步骤和文档链接。
+    *   AI助手 会生成相应的 `oc`（KDO云平台 CLI）或 `kubectl` 命令，甚至提供详细的故障排除步骤和文档链接。
 
 4.  **与开发工具深度集成**
     *   它主要集成在开发者的 **IDE**（如 VS Code） 和 **Web 控制台** 中，提供无缝的交互体验。
