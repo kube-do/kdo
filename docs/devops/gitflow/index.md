@@ -41,7 +41,7 @@ graph LR
 ```
 
 **示例代码：**
-假设我们需要为项目开发一个新功能，使用 Git Flow 创建 `feature` 分支并完成开发：
+假设我们需要为项目开发一个新功能，使用 `Git Flow` 创建 `feature` 分支并完成开发：
 
 ```shell
 # 切换到 develop 分支并确保最新
@@ -74,7 +74,7 @@ GitHub Flow 是 GitHub 提出的轻量化分支模型，主要适用于需要持
 
 **GitHub Flow 的特点：**
 - 只有一个长期分支，即 `main` 分支。
-- 所有功能和修复都通过创建分支进行开发，并通过 Pull Request 进行代码审查和合并。
+- 所有功能和修复都通过创建分支进行开发，并通过 `Pull Request` 进行代码审查和合并。
 - 功能完成并通过测试后，直接合并回 `main` 分支并自动部署。
 <div align=center>
 <img src="imgs/github-flow.png"  alt=""/>

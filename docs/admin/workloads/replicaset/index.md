@@ -10,12 +10,14 @@ nav_order: 2
 ## 介绍
 
 {: .note }
-ReplicaSet是kubernetes中的一种副本控制器，简称rs，主要作用是控制由其管理的容器组，使容器组副本的数量始终维持在预设的个数。它的主要作用就是保证一定数量的容器组能够在集群中正常运行，它会持续监听这些容器组的运行状态，在容器组发生故障时重启容器组，容器组数量减少时重新运行新的 容器组副本。
-官方推荐不要直接使用ReplicaSet，用Deployments取而代之，Deployments是比ReplicaSet更高级的概念，它会管理ReplicaSet并提供很多其它有用的特性，最重要的是Deployments支持声明式更新，声明式更新的好处是不会丢失历史变更。
-所以Deployment控制器不直接管理容器组对象，而是由 Deployment 管理ReplicaSet，再由ReplicaSet负责管理容器组对象。
+ReplicaSet是kubernetes中的一种副本控制器，简称rs，主要作用是控制由其管理的容器组，使容器组副本的数量始终维持在预设的个数。
+它的主要作用就是保证一定数量的容器组能够在集群中正常运行，它会持续监听这些容器组的运行状态，在容器组发生故障时重启容器组，容器组数量减少时重新运行新的 容器组副本。
 [更多信息](https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/replicaset/)
 
 ![](imgs/replicasets.png)
+
+官方推荐不要直接使用ReplicaSet，用Deployments取而代之，Deployments是比ReplicaSet更高级的概念，它会管理ReplicaSet并提供很多其它有用的特性，最重要的是Deployments支持声明式更新，声明式更新的好处是不会丢失历史变更。
+所以Deployment控制器不直接管理容器组对象，而是由 Deployment 管理ReplicaSet，再由ReplicaSet负责管理容器组对象。
 
 ## 工作原理
 Replicaset核心作用在于用户创建指定数量的容器组副本，并确保容器组副本一直处于满足用户期望的数量， 起到多退少补的作用，并且还具有自动扩容缩容等制。
