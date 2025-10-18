@@ -22,7 +22,7 @@ nav_order: 1
 以确保您从正确的区域下载 KubeKey，运行以下命令来下载 KubeKey：
 ```shell
 export KKZONE=cn
-curl -sfL https://get-kk.kubesphere.io | VERSION=v3.1.7 sh -
+curl -sfL https://get-kk.kubesphere.io | VERSION=v3.1.11 sh -
 ```
 
 
