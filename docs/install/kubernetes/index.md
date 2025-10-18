@@ -9,10 +9,10 @@ nav_order: 1
 {:toc}
 
 {: .note }
-我们是通过[KubeKey](https://www.kubesphere.io/zh/docs/v3.3/installing-on-linux/introduction/kubekey/)安装Kubernetes平台。
+我们是通过[KubeKey](https://github.com/kubesphere/kubekey/releases/download/v3.1.11/kubekey-v3.1.11-linux-amd64.tar.gz)安装Kubernetes平台。
 在安装过程中，首先需要配置环境变量**export KKZONE=cn**，以确保镜像从国内镜像仓库高效拉取，避免因默认从docker.io拉取而可能导致的镜像拉取失败及安装中断。
 随后，只需执行命令`./kk create cluster -f config.yaml`，即可根据预设的配置文件启动集群的创建。
-如需了解更多详细信息，请访问[KubeKey官方文档](https://www.kubesphere.io/zh/docs/v3.3/installing-on-linux/introduction/intro/)获取全面指导。
+如需了解更多详细信息，请访问[KubeKey官方文档](https://github.com/kubesphere/kubekey)获取全面指导。
 
 
 
