@@ -19,7 +19,7 @@ kdo平台的安装主要分为三个步骤：
 首先下载KDO安装脚本到Kubernetes的Master节点，linux平台可以通过`wget`或`curl`下载。
 [KDO平台安装脚本 Zip文件](https://gitee.com/kube-do/docs/releases/download/latest/install.zip)
 
-[KDO平台安装脚本 Tar文件](https://gitee.com/kube-do/docs/releases/download/latest/install.Tar.gz)
+[KDO平台安装脚本 Tar文件](https://gitee.com/kube-do/docs/releases/download/latest/install.tar.gz)
 
 ```shell
 #默认下载Zip安装脚本，也可以通过Tar安装脚本下载
