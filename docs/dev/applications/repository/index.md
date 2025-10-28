@@ -18,6 +18,25 @@ nav_order: 1
 只需`Git URL`和用户的`Git Token`就可以自动生成支持**多环境和多分支**的流水线，流水线支持**自动构建与自动部署**，功能非常强大。
 ![pipeline.png](imgs/application.png)
 
+## 创建应用
+
+- KDO支持多环境多分支的应用管理，在**应用项目**选择对应的项目，选择**应用管理 -> 应用**
+- KDO创建应用主要需要两个信息: **应用的Git地址、访问Git仓库的Token**, 其他信息根据应用进行选择，包括： `开发语言`、`应用模板`、`应用端口`等。
+- 应用基本参数设置好后，就可以开始设置自动分支流水线，不同环境选对应的分支，最后点击`添加`，这个支持多环境自动化流水线的应用就创建完成了。
+
+![创建应用](imgs/createApplication.gif)
+
+[如何创建Java应用](/docs/devops/app-deploy/java)
+
+[如何创建Python应用](/docs/devops/app-deploy/python)
+
+[如何创建Golang应用](/docs/devops/app-deploy/golang)
+
+[如何创建NodeJS应用](/docs/devops/app-deploy/nodejs)
+
+[如何创建PHP应用](/docs/devops/app-deploy/php)
+
+
 ## Pipelines as Code介绍
 `Pipelines as Code` 是一种实践方法，它将CI/CD（持续集成/持续部署）流水线的定义与源代码一同存储在版本控制系统中，如`GitHub`或`GitLab`。
 这种方法使用[Tekton PipelineRuns和Tasks](../pipelines#tekton的资源对象)来定义具体的`CI/CD`流程，并将其保存在一个文件里，该文件位于项目的源代码管理(SCM)系统中。
@@ -100,23 +119,7 @@ KDO Pipelines-as-Code相关的文件都是存储在应用的代码仓库，其�
 ![](imgs/branch-develop-repo-files.png)
 
 
-## 创建应用
 
-- KDO支持多环境多分支的应用管理，在**应用项目**选择对应的项目，选择**应用管理 -> 应用**
-- KDO创建应用主要需要两个信息: **应用的Git地址、访问Git仓库的Token**, 其他信息根据应用进行选择，包括： `开发语言`、`应用模板`、`应用端口`等。
-- 应用基本参数设置好后，就可以开始设置自动分支流水线，不同环境选对应的分支，最后点击`添加`，这个支持多环境自动化流水线的应用就创建完成了。
-
-![创建应用](imgs/createApplication.gif)
-
-[如何创建Java应用](/docs/devops/app-deploy/java)
-
-[如何创建Python应用](/docs/devops/app-deploy/python)
-
-[如何创建Golang应用](/docs/devops/app-deploy/golang)
-
-[如何创建NodeJS应用](/docs/devops/app-deploy/nodejs)
-
-[如何创建PHP应用](/docs/devops/app-deploy/php)
 
 ## 应用管理
 
