@@ -1,6 +1,6 @@
 ---
 title: 权限管理
-nav_order: 4
+nav_order: 8
 ---
 
 1. TOC

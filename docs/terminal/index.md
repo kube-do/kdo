@@ -1,5 +1,6 @@
 ---
 title: 命令行模式
+nav_order: 10
 ---
 
 1. TOC

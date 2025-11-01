@@ -1,6 +1,6 @@
 ---
 title: 在Linux平台安装
-nav_order: 8
+nav_order: 7
 ---
 
 
