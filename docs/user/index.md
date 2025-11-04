@@ -29,13 +29,12 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 ## Keycloak管理
 由于 KDO 使用 Keycloak 作为身份认证中心，所以需要对 Keycloak 进行管理。
 
-###
-访问 Keycloak 控制台,选择`Administration Console`,输入用户名和密码登录
+[Keycloak 控制台地址](../install#平台组件访问)
+
+1. 访问 Keycloak 控制台,选择`Administration Console`,输入用户名和密码登录
 ![](img/keycloak-login.png)
 
-###
-登录后进入 Realm 管理页面，可以看到 Realm 列表，选择 `kdo`，就可以对KDO平台的用户进行管理了
-
+2. 登录后进入 Realm 管理页面，可以看到 Realm 列表，选择 `kdo`，就可以对KDO平台的用户进行管理了
 ![](img/keycloak-realm.png)
 
 ## 用户管理
