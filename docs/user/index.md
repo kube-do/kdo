@@ -5,7 +5,7 @@ nav_order: 12
 
 1. TOC
 {:toc}
-https://cloud.tencent.com/developer/article/1983889
+
 2. 
 ## 介绍
 
@@ -53,3 +53,16 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 ![](img/kc-delete-user.png)
 
 ## 用户组管理
+
+### 介绍
+用户组（Groups）是Keycloak中用于组织和管理用户的逻辑集合。它们可以帮助你：
+**批量管理权限：** 为组分配角色，组内所有用户自动继承
+**组织结构映射：** 映射企业中的部门、团队结构
+**简化管理：** 减少为每个用户单独配置的工作量
+
+1. 登录 Keycloak 控制台，确认Realm是`kdo`, 选择 `Groups`，创建用户组
+
+### 用户与组关联
+分配用户到组,访问管理控制台操作：
+Users → 选择用户 → Groups → Join Groups
+选择要加入的组
