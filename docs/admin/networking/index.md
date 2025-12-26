@@ -11,4 +11,3 @@ nav_order: 4
 ## 管理员工作负载菜单
 1. [服务](../../dev/network-stroage/services)
 2. [路由](../../dev/network-stroage/ingresses)
-3. [网络策略](./networkpolicies)

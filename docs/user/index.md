@@ -64,5 +64,5 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 
 ### 用户与组关联
 分配用户到组,访问管理控制台操作：
-Users → 选择用户 → Groups → Join Groups
+`Users → 选择用户 → Groups → Join Groups`
 选择要加入的组
