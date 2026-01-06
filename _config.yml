@@ -18,7 +18,7 @@ description: KDO平台帮助文档
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://docs.kube-do.cn" # the base hostname & protocol for your site, e.g. http://example.com
 repository: kube-do/kdo # for github-metadata
-theme: just-the-docs
+#theme: just-the-docs
 permalink: pretty
 # 使用 remote_theme 替代 theme
 remote_theme: pmarsceill/just-the-docs
