@@ -22,7 +22,11 @@ nav_order: 1
 以确保您从正确的区域下载 KubeKey，运行以下命令来下载 KubeKey：
 ```shell
 export KKZONE=cn
-curl -O https://github.com/kubesphere/kubekey/releases/download/v3.1.11/kubekey-v3.1.11-linux-amd64.tar.gz
+curl -O https://github.com/kubesphere/kubekey/releases/download/v3.1.12/kubekey-v3.1.12-linux-amd64.tar.gz
+```
+如果无法下载，可以通过这个地址下载：
+```shell
+curl -O https://gitee.com/kube-do/docs/releases/download/latest/kubekey-v3.1.12-linux-amd64.tar.gz
 ```
 
 
@@ -48,7 +52,7 @@ spec:
     - node32
   controlPlaneEndpoint:
   kubernetes:
-    version: v1.31.2
+    version: v1.33.4
     clusterName: cluster.local
     autoRenewCerts: true
     containerManager: containerd
@@ -70,11 +74,11 @@ spec:
     type: kubeadm
   network:
     plugin: calico
-    kubePodsCIDR: 10.10.11.0/22
-    kubeServiceCIDR: 10.10.0.0/22
+    kubePodsCIDR: 10.96.0.0/22
+    kubeServiceCIDR: 10.128.0.0/22
   registry:
-    privateRegistry: ""
-    namespaceOverride: ""
+    privateRegistry: "registry.cn-shenzhen.aliyuncs.com"
+    namespaceOverride: "kubedo"
     # docker.io仓库的镜像地址，这个地址经常需要更新
     registryMirrors: ["https://docker.1ms.run"]
     # 这里默认采用内置的镜像仓库，如果已经有认证的harbor镜像仓库，这里可以不需要配置
@@ -116,7 +120,7 @@ spec:
     address: ""
     port: 6443
   kubernetes:
-    version: v1.31.2
+    version: v1.33.4
     clusterName: cluster.local
     autoRenewCerts: true
     containerManager: containerd
@@ -140,11 +144,11 @@ spec:
     type: kubeadm
   network:
     plugin: calico
-    kubePodsCIDR: 10.10.11.0/22
-    kubeServiceCIDR: 10.10.0.0/22
+    kubePodsCIDR: 10.96.0.0/22
+    kubeServiceCIDR: 10.128.0.0/22
   registry:
-    privateRegistry: ""
-    namespaceOverride: ""
+    privateRegistry: "registry.cn-shenzhen.aliyuncs.com"
+    namespaceOverride: "kubedo"
     # docker.io仓库的国内镜像地址，这个地址经常需要更新
     registryMirrors: ["https://docker.1ms.run"]
     # 这里默认采用内置的镜像仓库，如果已经有认证的harbor镜像仓库，这里可以不需要配置
