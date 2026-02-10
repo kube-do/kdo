@@ -21,11 +21,11 @@ nav_order: 1
 
 以确保您从正确的区域下载 KubeKey，运行以下命令来下载 KubeKey：
 ```shell
-curl -O https://github.com/kubesphere/kubekey/releases/download/v3.1.12/kubekey-v3.1.12-linux-amd64.tar.gz
+wget https://github.com/kubesphere/kubekey/releases/download/v3.1.12/kubekey-v3.1.12-linux-amd64.tar.gz
 ```
 如果无法下载，可以通过这个地址下载：
 ```shell
-curl -O https://gitee.com/kube-do/docs/releases/download/latest/kubekey-v3.1.12-linux-amd64.tar.gz
+wget https://gitee.com/kube-do/docs/releases/download/latest/kubekey-v3.1.12-linux-amd64.tar.gz
 ```
 
 
