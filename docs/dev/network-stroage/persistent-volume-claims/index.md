@@ -4,4 +4,4 @@ parent: 网络存储
 nav_order: 3
 ---
 
-## [访问持久性卷](../../../storage)
+## [访问持久性卷](/storage/)

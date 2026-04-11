@@ -38,7 +38,7 @@ HPA 控制器一般从 `metrics.k8s.io`, `custom.metrics.k8s.io` 和 `external.m
 
 {: .warning } 
 水平容器组自动扩缩(HPA)不适用于无法扩缩的对象，例如：`守护进程集(DaemonSet)`。 
-在设置HPA之前，资源限制必须设置，参考[资源限制](../edit-resource-limits)
+在设置HPA之前，资源限制必须设置，参考[资源限制](/workload-actions/edit-resource-limits/)
 
 ![](imgs/hpa.png)
 

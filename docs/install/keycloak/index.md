@@ -167,4 +167,4 @@ kcadm.sh set-password --username ops1 -r kdo --new-password $devPass  --server h
 
 
 ## 继续安装kdo平台组件
-KeyCloak设置好后，就可以继续[安装kdo平台组件](../kdo)。
+KeyCloak设置好后，就可以继续[安装kdo平台组件](/install/kdo/)。

@@ -35,7 +35,7 @@ Kubernetes 启动时会创建四个初始名字空间：
 
 ### 隔离性
 - 名字空间(Namespace) 提供了一定程度的名称隔离。不同命名空间中的对象可以有相同的名字，因为它们由命名空间的上下文所区分。 
-- 它们也提供了配置的隔离，例如，[资源配额(ResourceQuota)](../resourcequotas)和[限制范围(LimitRange)](../limitranges)可以在命名空间级别定义。
+- 它们也提供了配置的隔离，例如，[资源配额(ResourceQuota)](/admin/management/resourcequotas/)和[限制范围(LimitRange)](/admin/management/limitranges/)可以在命名空间级别定义。
 
 ### 名字空间和DNS
 当你创建一个服务时， Kubernetes 会创建一个相应的 DNS 条目。
@@ -54,8 +54,8 @@ Kubernetes 启动时会创建四个初始名字空间：
 | 显示名称          | 命名空间的显示名称                                                                                                                                                  |
 | 状态            | 命名空间的状况                                                                                                                                                    |
 | 容器组           | 命名空间内运行的容器组数量                                                                                                                                              |
-| 内存-U/R/L(GiB) | 命名空间的内存状态，U表示命名空间内全部容器组实际使用的内存量， R表示命名空间内全部容器组`请求值(Request)`的内存量， L表示命名空间内全部容器组`限制值(Limit)`的内存量。[更多内容](../../../workload-actions/edit-resource-limits)     |
-| CPU-U/R/L(核)  | 命名空间的CPU状态，U表示命名空间内全部容器组实际使用的CPU量， R表示命名空间内全部容器组`请求值(Request)`的CPU量， L表示命名空间内全部容器组`限制值(Limit)`的CPU量。[更多内容](../../../workload-actions/edit-resource-limits) |
+| 内存-U/R/L(GiB) | 命名空间的内存状态，U表示命名空间内全部容器组实际使用的内存量， R表示命名空间内全部容器组`请求值(Request)`的内存量， L表示命名空间内全部容器组`限制值(Limit)`的内存量。[更多内容](/workload-actions/edit-resource-limits/)     |
+| CPU-U/R/L(核)  | 命名空间的CPU状态，U表示命名空间内全部容器组实际使用的CPU量， R表示命名空间内全部容器组`请求值(Request)`的CPU量， L表示命名空间内全部容器组`限制值(Limit)`的CPU量。[更多内容](/workload-actions/edit-resource-limits/) |
 | 网络(Tx/Rx)     | 命名空间内全部容器组的`网络发送(Tx)`和`接收(Tx)`的网络速率。                                                                                                                       |
 | 创建            | 命名空间的创建时间                                                                                                                                                  |
 

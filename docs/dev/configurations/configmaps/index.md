@@ -15,7 +15,7 @@ parent: 配置管理
 ![](imgs/configmaps.png)
 
 {: .warning }
-`配置映射(ConfigMap)` 并不提供保密或者加密功能。如果你想存储的数据是机密的，请使用[保密字典(Secret)](../secrets)， 或者使用其他第三方工具来保证你的数据的私密性，而不是用`配置映射(ConfigMap)`。
+`配置映射(ConfigMap)` 并不提供保密或者加密功能。如果你想存储的数据是机密的，请使用[保密字典(Secret)](/dev/configurations/secrets/)， 或者使用其他第三方工具来保证你的数据的私密性，而不是用`配置映射(ConfigMap)`。
 
 ## 查看配置映射
 ![](imgs/configmap.png)

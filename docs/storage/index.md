@@ -35,7 +35,7 @@ Kubernetes 支持多种类型的持久性卷，以适应不同的使用场景和
 1. **EmptyDir:** 当 Pod 分配到 Node 上时，会创建一个空的目录。它的生命周期与 Pod 相同，当 Pod 从 Node 上移除时，EmptyDir 中的数据也会被删除。这种卷通常用于临时存储，例如缓存数据。
 2. **HostPath:** 将主机节点文件系统上的文件或目录挂载到 Pod 中。这对于开发和调试非常有用，但在生产环境中需要小心使用，因为它紧密耦合了 Pod 和底层基础设施。
 3. **持久性卷 (PV) 和 持久性卷声明 (PVC):** PV 是集群中的一块网络存储，由管理员设置。PVC 是用户对存储资源的请求，它会根据请求绑定到合适的 PV。这种方式提供了灵活的存储管理，并支持动态供应。
-4. **ConfigMap 和 Secret:** [ConfigMap](../dev/configurations/configmaps) 用于存储配置数据，而 [Secret](../dev/configurations/secrets) 用于存储敏感信息如密码。它们都可以作为环境变量或者文件挂载到 Pod 中。
+4. **ConfigMap 和 Secret:** [ConfigMap](/dev/configurations/configmaps/) 用于存储配置数据，而 [Secret](/dev/configurations/secrets/) 用于存储敏感信息如密码。它们都可以作为环境变量或者文件挂载到 Pod 中。
 5. **其他云提供商特定的卷类型:** 比如 AWS EBS、GCE PD、Azure Disk 等等，这些是由云服务提供商提供的持久化存储解决方案。
 6. **CSI (Container Storage Interface):** 这是一个标准接口，用来让存储供应商创建自己的插件，从而可以更容易地集成新的存储系统。
 7. **Local:** 允许将本地磁盘直接用作持久卷，适合性能要求高的应用，但同样会引入可用性和调度问题。

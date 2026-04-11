@@ -192,7 +192,7 @@ spec:
 
 {: .note }
 **嵌入流水线**和标准流水线不一样，它不是[Pipeline](#pipeline)资源对象，是一个[PipelineRun](#pipelinerun)资源对象，通过模板把这个PipelineRun对象实例化，就可以实现流水线的运行。
-主要用于kdo平台的[应用](../repository)，创建应用时它会根据模板自动生成。
+主要用于kdo平台的[应用](/dev/applications/repository/)，创建应用时它会根据模板自动生成。
 
 
 ```yaml

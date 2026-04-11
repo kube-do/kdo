@@ -52,7 +52,7 @@ nav_order: 2
 
 ## 事件
 
-可以查看这个环境内所有资源的事件。关于事件，请访问[更多信息](../../../observability/events)。
+可以查看这个环境内所有资源的事件。关于事件，请访问[更多信息](/observability/events/)。
 
 ![events.png](imgs/events.png)
 

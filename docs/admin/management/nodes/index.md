@@ -60,7 +60,7 @@ Kubernetes 通过将容器放入在节点（Node）上运行的 容器组 中来
 | YAML | 节点的YAML文件                                   |
 | 容器组  | 节点内运行的容器组                                   |
 | 日志   | 节点的日志                                       |
-| 事件   | 节点的事件。[更多内容](../../../observability/events) |
+| 事件   | 节点的事件。[更多内容](/observability/events/) |
 | 终端   | 通过bash访问节点，和SSH类似，可以上传和下载文件                 |
 
 ### 节点终端

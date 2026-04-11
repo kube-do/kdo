@@ -24,7 +24,7 @@ nav_order: 3
 | 按钮                       | 说明                                                                                  |
 |:-------------------------|:------------------------------------------------------------------------------------|
 | [启动](){: .btn .btn-blue} | 批量启动无状态应用，默认是启动两个副本，如果应用是通过批量停止的， 启动会恢复到停止前的副本数                                     |
-| [重启](){: .btn .btn-blue} | 批量重启无状态应用，如果应用有多容器组，会根据应用的[更新策略](../../../workload-actions/edit-update-strategy)来重启 |
+| [重启](){: .btn .btn-blue} | 批量重启无状态应用，如果应用有多容器组，会根据应用的[更新策略](/workload-actions/edit-update-strategy/)来重启 |
 | [停止](){: .btn .btn-blue} | 批量停止无状态应用，在停止时会记录当前运行的副本数                                                           |
 | [删除](){: .btn .btn-blue} | 批量删除无状态应用，需要键入`confirmed`进行确认                                                       |
 
@@ -43,24 +43,24 @@ nav_order: 3
 | 副本集  | 无状态应用通过副本集进行版本控制，可以查看和管理无状态版本         |
 | 容器组  | 属于这个无状态应用的容器组                         |
 | 环境变量 | 属于这个无状态应用的环境变量                        |
-| 事件   | [事件详情](../../../observability/events) |
+| 事件   | [事件详情](/observability/events/) |
 
 ## 操作无状态应用
 
-- 点击列表右侧的`操作图标`或者点击无状态应用页面右上的`操作`，可以对当前无状态应用进行更多操作,其中大部分和[有状态应用](../statefulsets)是相同的
+- 点击列表右侧的`操作图标`或者点击无状态应用页面右上的`操作`，可以对当前无状态应用进行更多操作,其中大部分和[有状态应用](/dev/workloads/statefulsets/)是相同的
 
 ![](imgs/actions.png)
 
 
 | 菜单                     | 说明                                                                 |
 |:-----------------------|:-------------------------------------------------------------------|
-| 编辑容器组数量                | 编辑该无状态应用的副本数 [更多细节](../../../workload-actions/edit-pod-count)      |
-| 添加/编辑/删除容器组水平自动扩缩(HPA) | 支持容器组水平自动扩缩 [更多细节](../../../workload-actions/hpa)                  |
-| 添加/编辑/删除容器组中断预算(PDB)   | 支持容器组中断预算 [更多细节](../../../workload-actions/pdb)                    |
-| 添加/编辑/删除健康检查           | 容器组健康检查 [更多细节](../../../workload-actions/edit-health-checks)       |
-| 添加存储                   | 实现容器数据持久化 [更多细节](../../../workload-actions/add-storage)            |
-| 编辑更新策略                 | 编辑容器组更新策略  [更多细节](../../../workload-actions/edit-update-strategy)  |
-| 编辑资源限制                 | 添加/编辑容器资源限制 [更多细节](../../../workload-actions/edit-resource-limits) |
+| 编辑容器组数量                | 编辑该无状态应用的副本数 [更多细节](/workload-actions/edit-pod-count/)      |
+| 添加/编辑/删除容器组水平自动扩缩(HPA) | 支持容器组水平自动扩缩 [更多细节](/workload-actions/hpa/)                  |
+| 添加/编辑/删除容器组中断预算(PDB)   | 支持容器组中断预算 [更多细节](/workload-actions/pdb/)                    |
+| 添加/编辑/删除健康检查           | 容器组健康检查 [更多细节](/workload-actions/edit-health-checks/)       |
+| 添加存储                   | 实现容器数据持久化 [更多细节](/workload-actions/add-storage/)            |
+| 编辑更新策略                 | 编辑容器组更新策略  [更多细节](/workload-actions/edit-update-strategy/)  |
+| 编辑资源限制                 | 添加/编辑容器资源限制 [更多细节](/workload-actions/edit-resource-limits/) |
 | 编辑Deployment           | 编辑这个无状态应用，支持图形化和YAML两种模式                                           |
 | 删除Deployment           | 删除这个无状态应用                                                          |
 

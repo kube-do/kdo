@@ -190,4 +190,4 @@ state = "/run/containerd"
           endpoint = ["http://10.255.1.32:30002"]
 ```
 
-安装好Kubernetes后，就可以去[安装KDO平台](../kdo)了。
+安装好Kubernetes后，就可以去[安装KDO平台](/install/kdo/)了。
