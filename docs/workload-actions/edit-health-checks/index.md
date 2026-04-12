@@ -3,64 +3,277 @@ title: 设置健康检查
 parent: 工作负载操作
 ---
 
-
-1. TOC
-{:toc}
-
 ## 介绍
 
-{: .note }
-在 Kubernetes 中，健康检查(Health Checks)是确保应用程序稳定运行的重要机制。
-它们用于监控 Pod 内的容器状态，并根据检查结果决定是否需要重启容器或将其从服务中移除。Kubernetes 提供了三种主要类型的健康检查：
+健康检查（Health Checks）通过**存活探针（Liveness Probe）**和**就绪探针（Readiness Probe）**监控容器状态，确保 Kubernetes 只在容器健康时才路由流量，并在容器无响应时自动重启。
 
-## 探针类型
+### 探针类型
 
-### 存活探针(Readiness Probe)
+| 探针 | 触发动作 | 使用时机 | 失败后果 |
+|------|---------|---------|---------|
+| **Liveness** | 容器存活检测 | 容器启动后定期执行 | 容器重启 |
+| **Readiness** | 容器就绪检测 | 整个生命周期持续执行 | 从 Service 端点移除 |
+| **Startup**（可选）| 慢启动检测 | 容器启动初期执行 | 阻止 Liveness/Readiness 过早执行 |
 
-存活探针决定何时重启容器。 例如，当应用在运行但无法取得进展时，存活探针可以捕获这类死锁。
-如果一个容器的存活探针失败多次，kubelet 将重启该容器。
-存活探针不会等待就绪探针成功。 如果你想在执行存活探针前等待，你可以定义初始延迟，或者使用启动探针。
+---
 
-### 就绪探针(Liveness Probe)
+## 快速开始
 
-就绪探针决定何时容器准备好开始接受流量。 这种探针在等待应用执行耗时的初始任务时非常有用，例如建立网络连接、加载文件和预热缓存。
-如果就绪探针返回的状态为失败，Kubernetes 会将该容器组从所有对应服务的端点中移除。
-就绪探针在容器的整个生命期内持续运行。
+### 添加健康检查
 
-### 启动探针(Startup Probe)
+1. 进入目标工作负载（Deployment/StatefulSet）详情页
+2. 点击 **操作** → **添加/编辑健康检查**
+3. 选择探针类型：
+   - **存活探针**：勾选启用
+   - **就绪探针**：勾选启用
 
-启动探针检查容器内的应用是否已启动。 启动探针可以用于对慢启动容器进行存活性检测，避免它们在启动运行之前就被 kubelet 杀掉。
-如果配置了这类探针，它会禁用存活检测和就绪检测，直到启动探针成功为止。
-这类探针仅在启动时执行，不像存活探针和就绪探针那样周期性地运行。
+4. 配置 **检测方式**（三选一）：
 
-![](imgs/edit-health-checks.png)
+#### HTTP GET
 
-## 配置探针
+- **路径**：`/health` 或 `/ready`
+- **端口**：容器端口号（如 `8080`）
+- **HTTP 码**：成功状态码（默认 `200`）
 
-### 探针实现方式
+**适用场景：** Web 应用、API 服务
 
-探针有三种方式：
+#### 容器命令
 
-- **HTTP GET**： kubelet 发送一个 HTTP 请求到指定的端口和路径来执行
-![](imgs/http.png)
-- **容器命令**： 在容器内执行命令检测
-![](imgs/command.png)
-- **TCP套接字**： 使用这种配置时，kubelet 会尝试在指定端口和容器建立TCP连接
-![](imgs/tcp.png)
+- **命令**：Shell 命令，返回 `0` 表示成功
+- 示例：`/bin/curl -f http://localhost:8080/health`
 
-### 探针参数
+**适用场景：** 复杂检查逻辑、执行脚本
 
-{: .note }
-探针(Probe)有很多配置字段，可以使用这些字段精确地控制启动、存活和就绪检测的行为：
+#### TCP 套接字
 
-1. **初始延迟(initialDelaySeconds)**：容器启动后要等待多少秒后才启动启动、存活和就绪探针。 如果定义了启动探针，则存活探针和就绪探针的延迟将在启动探针已成功之后才开始计算。 如果探测周期的值大于初始延迟，则初始延迟将被忽略。默认是 0 秒，最小值是 0。
-2. **周期(periodSeconds)**：执行探测的时间间隔（单位是秒）。默认是 10 秒。最小值是 1。 当容器未就绪时，存活探针(Readiness Probe) 可能会在除配置的 periodSeconds 间隔以外的时间执行。这是为了让容器组更快地达到可用状态。
-3. **超时(timeoutSeconds)**：探测的超时后等待多少秒。默认值是 1 秒。最小值是 1。
-4. **成功阈值(successThreshold)**：探针在失败后，被视为成功的最小连续成功数。默认值是 1。 存活和启动探测的这个值必须是 1。最小值是 1。
-5. **失败阈值(failureThreshold)**：探针连续失败了 failureThreshold 次之后， Kubernetes 认为总体上检查已失败：容器状态未就绪、不健康、不活跃。 默认值为 3，最小值为 1。 对于启动探针或存活探针而言，如果至少有 failureThreshold 个探针已失败， Kubernetes 会将容器视为不健康并为这个特定的容器触发重启操作。
+- **端口**：检查 TCP 连接是否可建立
+- **适用场景：** 非 HTTP 服务（数据库、消息队列）
 
+5. 调整 **探针参数**：
 
+| 参数 | 说明 | 推荐值 |
+|------|------|--------|
+| **初始延迟** | 容器启动后等待多少秒开始探测 | 10-30s（根据启动时间调整） |
+| **检测周期** | 每隔多少秒探测一次 | 10s（默认）|
+| **超时时间** | 每次探测超时时间 | 1-5s |
+| **成功阈值** | 连续成功多少次视为健康 | 1-2 |
+| **失败阈值** | 连续失败多少次视为不健康 | 3（默认）|
 
+6. 点击 **添加** 保存
 
+---
 
+## 详细说明
 
+### 探针执行流程
+
+```
+容器启动 → 等待 initialDelaySeconds → 开始周期性探测
+  ↓
+每次探测：
+  - 执行检查（HTTP/命令/TCP）
+  - 超时未响应 → 失败
+  - 返回错误码/非零退出码 → 失败
+  - 成功次数达到 successThreshold → 标记为健康
+  - 失败次数达到 failureThreshold → 标记为不健康（触发重启或从 Service 移除）
+```
+
+### 探针配置示例
+
+**HTTP GET（Spring Boot 应用）：**
+```yaml
+livenessProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  failureThreshold: 3
+```
+
+**容器命令（数据库检查）：**
+```yaml
+livenessProbe:
+  exec:
+    command:
+    - sh
+    - -c
+    - 'pgrep mysqld || exit 1'
+  initialDelaySeconds: 20
+  periodSeconds: 10
+```
+
+**TCP 端口检查（Redis）：**
+```yaml
+readinessProbe:
+  tcpSocket:
+    port: 6379
+  initialDelaySeconds: 5
+  periodSeconds: 10
+```
+
+---
+
+## 探针选择指南
+
+### 什么时候需要 Liveness Probe？
+
+- 应用可能出现**死锁**（如线程池耗尽、死循环）
+- 应用可能**内存泄漏**导致无响应
+- 应用需要检测内部状态并重启恢复
+
+**不需要的情况：**
+- Deployment 已有 `restartPolicy: Always`，容器崩溃会自动重启
+- 应用本身已经处理了重启逻辑（如 Spring Boot Actuator 的 `/restart`）
+
+### 什么时候需要 Readiness Probe？
+
+- 应用启动需要较长时间（加载数据、预热缓存）
+- 应用启动后可能短暂不可用（如数据库连接初始化）
+- 希望避免 Service 将流量路由到未就绪的 Pod
+
+**强烈建议**：几乎所有生产应用都配置 Readiness Probe。
+
+### Startup Probe（K8s 1.16+）
+
+对于启动时间很长的应用（>30s），避免 Liveness Probe 在启动期间误杀：
+
+```yaml
+startupProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  failureThreshold: 30  # 允许最多 30 次失败（约 5 分钟）
+  periodSeconds: 10
+```
+
+配置 Startup Probe 后，Liveness 和 Readiness 会等到 Startup 成功后才开始。
+
+---
+
+## 最佳实践
+
+### 探针设计
+
+- 🎯 **轻量检查**：探针逻辑应快速执行，避免成为性能瓶颈
+- 🎯 **独立端点**：健康检查使用独立的 controller/handler，不依赖复杂业务逻辑
+- 🎯 **幂等安全**：health 端点应该是只读的，不产生副作用
+- 🎯 **区分 L/R**：Readiness 检查应比 Liveness 更严格（确保完全就绪）
+
+### 参数调优
+
+- ⏱️ **initialDelaySeconds**：足够长，让应用完成启动（观察启动日志估算）
+- ⏱️ **periodSeconds**：检查不要太频繁（增加负载），也不要太稀疏（延迟发现问题）
+- ⏱️ **failureThreshold**：允许短暂波动，避免误判（如 GC 暂停）
+
+### 常见配置模板
+
+**Java Spring Boot：**
+```yaml
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: 8080
+  initialDelaySeconds: 60
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness
+    port: 8080
+  initialDelaySeconds: 20
+  periodSeconds: 5
+```
+
+**Node.js Express：**
+```yaml
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 3000
+  initialDelaySeconds: 5
+  periodSeconds: 5
+```
+
+**数据库（MySQL）：**
+```yaml
+livenessProbe:
+  exec:
+    command:
+    - mysqladmin
+    - ping
+    - -h
+    - 127.0.0.1
+  initialDelaySeconds: 30
+  periodSeconds: 10
+```
+
+---
+
+## 故障排查
+
+### 场景 1：Pod 不断重启（CrashLoopBackOff）
+
+可能原因：
+- Liveness Probe 失败，K8s 不断重启
+- 应用本身崩溃
+
+**排查：**
+```bash
+kubectl logs <pod-name> --previous  # 查看上次容器的日志
+kubectl describe pod <pod-name>    # 查看 Liveness 失败事件
+```
+
+**解决：**
+- 调整 `initialDelaySeconds` 加大等待时间
+- 检查应用日志，修复应用 bug
+- 临时禁用 Liveness Probe（仅调试）
+
+### 场景 2：Pod 处于 `Pending` 后未调度
+
+Readiness Probe 失败不会影响调度。但如果没有配置 Readiness，Service 可能将流量发给未就绪的 Pod，导致连接失败。
+
+**解决：** 配置合适的 Readiness Probe。
+
+### 场景 3：扩缩容后流量中断
+
+可能是新 Pod 的 Readiness Probe 过慢，导致 Service endpoint 未及时更新。
+
+**解决：** 缩短 `periodSeconds` 和 `failureThreshold`，让新 Pod 更快进入 Ready 状态。
+
+---
+
+## 常见问题
+
+### Q: 探针本身失败会影响应用吗？
+
+探针失败只影响容器状态（重启或从 Service 移除），**不会**影响容器内的应用逻辑。但频繁重启可能导致服务中断。
+
+### Q: 端口号填写错误？
+
+- HTTP 端口必须是容器内部端口（不是 Service 端口）
+- 确认容器 spec 中的 `containerPort` 或应用实际监听端口
+
+### Q: Readiness Probe 失败，Pod 一直不 Ready？
+
+- 检查应用是否真的就绪（日志）
+- 探针路径是否正确（如 `/health` vs `/healthz`）
+- 延迟/超时是否足够
+
+---
+
+## 相关链接
+
+- [Kubernetes Probe 官方文档](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes)
+- [Kubernetes Liveness Probe 指南](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+- [Deployment 更新策略](/workload-actions/edit-update-strategy/)
+- [HPA 自动扩缩](/workload-actions/hpa/)

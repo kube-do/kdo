@@ -3,77 +3,189 @@ title: 编辑资源限制
 parent: 工作负载操作
 ---
 
-1. TOC
-{:toc}
-
 ## 介绍
 
-{: .note }
-在 Kubernetes 中，`要求(requests)`和`限制(limits)`是定义容器资源使用量的两个关键参数。
-`要求(requests)`指定了容器期望使用的最小资源量，这些设置影响着调度器如何为容器分配节点资源，确保每个容器都能获得必要的计算资源。
-而`限制(limits)`则定义了容器可以使用的最大资源量，这对于防止某个容器过度消耗资源、保障集群稳定性和公平性至关重要。
+为容器设置 **CPU 和内存的资源请求（requests）和限制（limits）**，是保证集群稳定性和公平性的关键。合理的资源配置可以避免应用相互争抢资源，同时确保关键应用获得足够资源。
 
+---
 
+## 快速开始
 
+### 编辑 Deployment/StatefulSet 的资源限制
 
-## Requests和Limit详解
+1. 进入目标工作负载详情页
+2. 点击 **操作** → **编辑资源限制**
+3. 在表格中为每个容器设置：
 
-![requests-limits.png](imgs/requests-limits.png)
+| 字段 | 说明 | 示例 | 必填 |
+|------|------|------|------|
+| **CPU 请求** | 容器保障的最小 CPU | `500m`（0.5 核） | ❌（但强烈建议） |
+| **CPU 限制** | 容器可使用的最大 CPU | `2000m`（2 核） | ❌（建议） |
+| **内存请求** | 容器保障的最小内存 | `256Mi` | ❌（强烈建议） |
+| **内存限制** | 容器可使用的最大内存 | `1Gi` | ❌（建议） |
 
-### 要求(Requests)
+4. 点击 **添加** 保存
 
-**定义** 要求(requests) 指定了容器需要的最低资源量。这是调度器用来决定哪个节点最适合运行该 Pod 的关键信息。
+**注意：** 如果留空，Kubernetes 使用 `BestEffort` QoS，资源紧张时容器可能被杀死。
 
-**作用**
-1. **调度决策：** Kubernetes 调度器会确保只有当节点上的可用资源至少等于所有 容器组(Pod) 请求的总和时，才会将 容器组(Pod) 调度到该节点上。
-2. **资源预留：** 即使其他应用没有完全使用其请求的资源，也会为每个 容器组(Pod) 预留它所请求的资源，以保证该 容器组(Pod) 在启动后能够获得所需的资源。
-3. **服务质量 (QoS)：** 根据容器的 `requests` 和 `limits` 设置，Kubernetes 会将 容器组(Pod) 分类为不同的 [QoS级别](#服务质量)（如 `Guaranteed`, `Burstable`, `BestEffort`），这决定了在资源紧张时哪些 容器组(Pod) 更优先得到资源。
+---
 
+## 详细说明
 
-### 限制(Limits)
-**定义** 限制(limits) 设定了容器可以使用的最大资源量。一旦容器尝试超过这个限制，Kubernetes 将采取措施限制其资源消耗，它的作用包括：
+### Requests vs Limits
 
-1. **防止资源耗尽：** 通过设定 limits，你可以防止某个容器无节制地消耗资源，从而保护整个节点和其他 Pod 的稳定性。
-2. **CPU 超额使用：** 对于 CPU 资源，如果一个容器在其 requests 之外还有额外的可用资源，它可以利用这些额外资源，直到达到它的 limits。但是，如果系统资源变得紧张，它可能被限制回其 requests 水平。
-3. **内存超额使用：** 对于内存资源，如果容器超过了它的 limits，可能会导致该容器被终止（OOM killed）。
+| 维度 | Requests | Limits |
+|------|----------|--------|
+| **作用** | 调度依据，节点必须能提供 | 硬上限，超过可能被 Throttled 或 OOMKilled |
+| **CPU** | 可超用（如果节点空闲） | 不能超过，超过被限流（throttling）|
+| **内存** | 实际可超过（但风险高） | 不能超过，超过被 OOMKill |
 
-## 编辑资源限制
+### 资源单位
 
-![](imgs/edit-resource-limits.png)
+**CPU：**
+- `m` = millicores（毫核），`1000m` = 1 核
+- 整数：`1`、`2` 表示核数
+- 小数：`0.5`（或 `500m`）
 
-1. **要求值(requests)：** 定义了对应容器需要的最小资源量。这句话的含义是，举例来讲，比如对于一个 Spring Boot 业务容器，这里的requests必须是容器镜像中 JVM 虚拟机需要占用的最少资源。如果这里把 pod 的内存requests指定为 10Mi ，显然是不合理的，JVM 实际占用的内存 Xms 超出了 K8s 分配给 pod 的内存，导致 pod 内存溢出，从而 K8s 不断重启 pod 。
-2. **限制值(limits)：** 定义了这个容器最大可以消耗的资源上限，防止过量消耗资源导致资源短缺甚至宕机。特别的，设置为 0 表示对使用的资源不做限制。值得一提的是，当设置limits而没有设置requests时，Kubernetes 默认令requests等于limits。 
+**内存：**
+- `Mi` = Mebibyte（2^20），如 `256Mi`、`1Gi`
+- `M` / `G` = Megabytes/Gigabytes（10^6/10^9），如 `512M`、`2G`
+- 建议使用 `Mi`/`Gi`（K8s 标准）
 
-进一步可以把requests和limits描述的资源分为 2 类：可压缩资源（例如 CPU ）和不可压缩资源（例如内存）。合理地设置limits参数对于不可压缩资源来讲尤为重要。
+---
 
 ## 最佳实践
-1. **合理设置：** 应该基于应用程序的实际需求来设置 requests 和 limits。过低的 requests 可能会导致调度问题，而过高的 limits 则可能导致资源浪费。
-2. **测试和监控：** 在生产环境中部署之前，建议先在一个测试环境中调整并观察这些值的效果，并结合监控工具持续跟踪资源使用情况。
-3. **考虑QoS级别：** 了解不同 QoS 级别的含义，并据此选择合适的 requests 和 limits 设置，以确保关键应用获得足够的资源保障。
 
+### 设置原则
 
+- 🎯 **基于监控设置**：观察应用实际资源使用（Prometheus + Grafana），设置合理的请求值
+- 🎯 **Limit = Request × 1.5-2**：预留缓冲应对峰值，但避免过高（资源浪费）
+- 🎯 **内存 limit ≥ 请求 × 1.2**：内存不能超卖，limit 应略高于实际峰值
+- 🎯 **JVM 应用特殊**：如果使用 Java，`-Xmx` 应与容器 memory limit 匹配（留 10-20% 给堆外）
 
-## 服务质量
+### 配置示例
 
-{: .note }
-在 Kubernetes 中，QoS(Quality of Service，服务质量)级别用于确定当节点资源不足时，哪些 Pod 应该首先被终止以释放资源。Kubernetes 定义了三种 QoS 级别：
+**普通 Web 应用（Node.js/Python）：**
+```yaml
+resources:
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+```
 
-![qos-level.png](imgs/qos-level.png)
+**Java 应用（Spring Boot）：**
+```yaml
+resources:
+  requests:
+    cpu: "500m"
+    memory: "1Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"
+  # 同时 JVM 参数：-Xmx1g（小于 container memory limit）
+```
 
-### Guaranteed
-如果一个 Pod 的容器都配置了 requests 和 limits 且它们的值对于 CPU 和内存是相等的，那么这个 Pod 就会被分配到 Guaranteed QoS 级别。
-这种级别的 Pod 在资源紧张时拥有最高的生存优先级。
+**数据库（MySQL/PostgreSQL）：**
+```yaml
+resources:
+  requests:
+    cpu: "2000m"
+    memory: "4Gi"
+  limits:
+    cpu: "4000m"
+    memory: "8Gi"
+```
 
-### Burstable
-当 Pod 的容器设置了 requests，但至少有一个容器没有设置 limits 或者它的 limits 大于 requests，那么这个 Pod 就会属于 Burstable 级别。
-Burstable 级别的 Pod 拥有中等的生存优先级。如果资源充足，这些 Pod 可以使用超过其请求的资源；但如果资源变得稀缺，它们可能会被限制回到它们的请求水平，或者在必要时被驱逐。
+---
 
-### BestEffort
-如果一个 Pod 的所有容器都没有设置 requests 或 limits，则该 Pod 被归类为 BestEffort 级别。
-BestEffort 级别的 Pod 在资源紧张时具有最低的生存优先级，并且会在需要资源的其他 Pod 之前被驱逐。
+## QoS 等级
 
-### 终止Pod顺序
-![qos-order.png](imgs/qos-order.png)
-Kubernetes 使用这些 QoS 级别来决定在资源不足的情况下如何处理 Pod。
-例如，如果节点上内存不足，Kubernetes 可能会选择终止 QoS 级别较低的 Pod 来确保更关键的服务能够继续运行。
-因此，在部署应用时，合理设置资源的 requests 和 limits 对于保证应用的稳定性和性能非常重要。
+Kubernetes 根据 requests 和 limits 设置自动划分 **QoS（服务质量）** 等级：
+
+| 等级 | 条件 | 资源紧张时优先级 |
+|------|------|------------------|
+| **Guaranteed** | 所有容器都设置了 **相等** 的 requests 和 limits | 最高（最后被驱逐） |
+| **Burstable** | 至少一个容器设置了 requests（但 limits > requests） | 中等 |
+| **BestEffort** | 所有容器都没设置 requests/limits | 最低（最先被驱逐） |
+
+**建议：** 生产所有应用都应至少达到 `Burstable` 级别（即设置 requests）。
+
+---
+
+## 常见问题
+
+### Q: 不设置资源限制会怎样？
+
+- **QoS = BestEffort**：节点资源不足时，这类 Pod 最先被驱逐
+- **资源争抢**：没有 limits 的 Pod 可能占用大量 CPU/内存，影响其他应用
+- **调度失败**：如果节点资源严重不足，甚至无法调度
+
+### Q: CPU 设置 limits 后变慢？
+
+CPU limits 超出后，Linux CFS 会对容器进行**限流（throttling）**，导致应用变慢。
+
+**现象：**
+- 应用响应延迟增加
+- CPU 使用率一直接近 `limit`，但实际 work 做不完
+
+**解决：**
+- 提高 CPU limits
+- 检查应用是否真的需要这么多 CPU
+- 调整应用内部线程池、并发数
+
+### Q: 内存 OOMKilled？
+
+容器尝试使用超过 `limits.memory` 的内存时，K8s 会发送 `SIGKILL` 杀死容器。
+
+**排查：**
+```bash
+kubectl logs <pod-name> --previous  # 查看被杀死的容器日志
+kubectl describe pod <pod-name>     # 查看 OOMKilled 事件
+kubectl top pod <pod-name>          # 查看实际内存使用峰值
+```
+
+**解决：**
+- 提高 memory limits
+- 优化应用内存使用（如 JVM 调优、减少缓存）
+- 确认 `requests.memory` 是否过小，导致调度到内存不足的节点
+
+### Q: Requests 设置过大会怎样？
+
+- **调度困难**：节点剩余资源不足，Pod 卡在 `Pending`
+- **资源浪费**：即使 Pod 只用 10% 的 CPU，K8s 也会预留 `requests.cpu` 给该 Pod，导致节点"假性不足"
+
+**建议：** requests 设置为应用**基线需求**，limits 设置为**峰值需求**。
+
+---
+
+## 与 HPA 的关系
+
+HPA（水平自动扩缩）基于 CPU/内存使用率（相对于 requests 的百分比）触发扩缩容：
+
+```yaml
+metrics:
+- type: Resource
+  resource:
+    name: cpu
+    target:
+      type: Utilization
+      averageUtilization: 80  # 当 CPU 使用率超过 requests 的 80% 时扩容
+```
+
+因此，**requests 设置直接影响 HPA 行为**：
+- requests 设得太高 → HPA 阈值难以触发（实际使用率低）
+- requests 设得太低 → HPA 过早扩容，可能过度
+
+建议设置后通过监控验证 HPA 行为是否符合预期。
+
+---
+
+## 相关链接
+
+- [Kubernetes 资源管理官方文档](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+- [Kubernetes QoS 等级](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
+- [Kubernetes HPA 文档](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
+- [Java 应用容器化最佳实践](https://kubernetes.io/docs/tutorials/configuration/configure-java-pod/)
