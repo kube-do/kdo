@@ -12,6 +12,7 @@ nav_order: 12
 {: .note }
 KDO平台和Kubernetes的身份认证协议是基于[OpenID Connect(OIDC)](#openid-connectoidc介绍)，KDO使用 Keycloak 作为身份认证中心，统一管理对 Kubernetes 集群的访问权限，实现单点登录和基于角色的精细授权。
 架构图
+
 ![](img/auth-arch.svg)
 
 ##  OpenID Connect（OIDC）介绍
@@ -41,15 +42,15 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 
 ### 创建用户
 1. 登录 Keycloak 控制台，确认Realm是`kdo`, 选择 `Users`，点击 `Add user`，创建用户
-2. 用户创建成功后，点击 `Credentials`，设置密码，用户就创建成功了
+2. 用户创建成功后，点击 `Credentials`，设置密码，用户就创建成功了。
 ![kc-create-user.gif](img/kc-create-user.gif)
 
 ### 修改用户
 1. 登录 Keycloak 控制台，确认Realm是`kdo`, 选择 `Users`，选择 用户，点击 `Edit`
 ![](img/kc-edit-user.png)
 
-### 删除
-1. 登录 Keycloak 控制台，确认Realm是`kdo`, 选择 `Users`，选择 用户，点击 `Delete`
+### 删除用户
+1. 登录 Keycloak 控制台，确认Realm是`kdo`, 选择 `Users`，选择 用户，点击 `Delete`，在Keycloak删除用户后，该用户将无法登录KDO平台。
 ![](img/kc-delete-user.png)
 
 ## 用户组管理

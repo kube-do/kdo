@@ -43,7 +43,7 @@ nav_order: 6
 
 - 输入期望的副本数（如 3）
 - 平台执行滚动更新，保证服务不中断
-- 详情：[编辑副本数](/workload-actions/edit-pod-count/)
+- 详情：[编辑副本数](/docs/workload-actions/edit-pod-count/)
 
 ### 水平自动扩缩 (HPA)
 
@@ -53,7 +53,7 @@ nav_order: 6
 2. 设置副本范围（min/max）
 3. 选择指标类型和目标值
 4. 保存后 HPA Controller 自动调整副本数
-- 详情：[HPA 管理](/workload-actions/hpa/)
+- 详情：[HPA 管理](/docs/workload-actions/hpa/)
 
 ### 中断预算 (PDB)
 
@@ -61,7 +61,7 @@ nav_order: 6
 
 - 定义 `minAvailable` 或 `maxUnavailable`
 - KDO 在更新部署时自动遵守预算
-- 详情：[PDB 配置](/workload-actions/pdb/)
+- 详情：[PDB 配置](/docs/workload-actions/pdb/)
 
 ### 编辑健康检查
 
@@ -70,7 +70,7 @@ nav_order: 6
 - **Liveness Probe**：检测容器是否存活，失败则重启
 - **Readiness Probe**：检测容器是否就绪，失败则从 Service 负载均衡移除
 - 支持 HTTP、TCP、Exec 三种方式
-- 详情：[健康检查](/workload-actions/edit-health-checks/)
+- 详情：[健康检查](/docs/workload-actions/edit-health-checks/)
 
 ### 添加存储
 
@@ -79,7 +79,7 @@ nav_order: 6
 1. 选择已有的 PersistentVolumeClaim 或创建新 PVC
 2. 指定挂载路径（容器内）
 3. 可选：指定读写模式（ReadWriteOnce/ReadOnlyMany 等）
-- 详情：[存储管理](/workload-actions/add-storage/)
+- 详情：[存储管理](/docs/workload-actions/add-storage/)
 
 ### 编辑更新策略
 
@@ -88,7 +88,7 @@ nav_order: 6
 - **Max Unavailable**：更新期间最多不可用的副本数
 - **Max Surge**：更新期间最多额外启动的副本数
 - 策略选择：`RollingUpdate`（默认）或 `Recreate`
-- 详情：[更新策略](/workload-actions/edit-update-strategy/)
+- 详情：[更新策略](/docs/workload-actions/edit-update-strategy/)
 
 ### 编辑资源限制
 
@@ -102,7 +102,7 @@ nav_order: 6
 | Memory Limit | 最大内存 | `1Gi` |
 
 合理设置资源限制可以避免应用相互争抢资源。
-- 详情：[资源限制](/workload-actions/edit-resource-limits/)
+- 详情：[资源限制](/docs/workload-actions/edit-resource-limits/)
 
 ---
 
@@ -136,6 +136,6 @@ curl -X POST https://kdo.kube-do.cn/api/v1/workloads/deployments/myapp/hpa \
 
 ## 相关链接
 
-- [工作负载概览](/dev/workloads/) - 了解各种工作负载类型
-- [应用管理](/dev/applications/) - 创建和管理应用
-- [可观测性](/observability/) - 监控操作影响
+- [工作负载概览](/docs/dev/workloads/) - 了解各种工作负载类型
+- [应用管理](/docs/dev/applications/) - 创建和管理应用
+- [可观测性](/docs/observability/) - 监控操作影响
