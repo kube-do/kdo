@@ -1,5 +1,5 @@
 ---
-title: 安装KDO平台
+title: 安装KDO智能云原生平台
 parent: 在Linux平台安装
 nav_order: 2
 ---
@@ -17,9 +17,9 @@ kdo平台的安装主要分为三个步骤：
 
 ## 下载安装脚本
 首先下载KDO安装脚本到Kubernetes的Master节点，linux平台可以通过`wget`或`curl`下载。
-[KDO平台安装脚本 Zip文件](https://gitee.com/kube-do/docs/releases/download/latest/install.zip)
+[KDO智能云原生平台安装脚本 Zip文件](https://gitee.com/kube-do/docs/releases/download/latest/install.zip)
 
-[KDO平台安装脚本 Tar文件](https://gitee.com/kube-do/docs/releases/download/latest/install.tar.gz)
+[KDO智能云原生平台安装脚本 Tar文件](https://gitee.com/kube-do/docs/releases/download/latest/install.tar.gz)
 
 ```shell
 #默认下载Zip安装脚本，也可以通过Tar安装脚本下载
@@ -48,7 +48,7 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 
 ## 运行安装脚本
 ![](imgs/install-help.png)
-这个脚本自动化安装脚化，一般只需要两个参数就可以运行了，节点IP（注意：这个IP必须能被客户端访问到）和默认平台域名后缀（这个域名后缀是部署在KDO平台的应用的域名后缀）。
+这个脚本自动化安装脚化，一般只需要两个参数就可以运行了，节点IP（注意：这个IP必须能被客户端访问到）和默认平台域名后缀（这个域名后缀是部署在KDO智能云原生平台的应用的域名后缀）。
 ```shell
 # 直接添加参数运行
 ./kdo-install.sh 10.22.1.20 kube-do.dev
@@ -60,7 +60,7 @@ export OIDC_ISSUER_URL=https://$NODE_IP:30443/realms/kdo
 ## 安装验证
 ![](imgs/console-is-ready.png)
 
-1. 安装完成后，运行`kubectl get pod -n kubedo-system`，根据提示确认console组件已经启动，就可以访问平台了, KDO平台默认访问地址是`http://$NODE_IP:30080`。
+1. 安装完成后，运行`kubectl get pod -n kubedo-system`，根据提示确认console组件已经启动，就可以访问平台了, KDO智能云原生平台默认访问地址是`http://$NODE_IP:30080`。
 [平台组件访问信息](/docs/install#平台组件访问)
 
 

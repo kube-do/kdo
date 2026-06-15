@@ -4,9 +4,9 @@ parent: 快速入门
 nav_order: 1
 ---
 
-## 欢迎使用 KDO 平台
+## 欢迎使用 KDO智能云原生平台
 
-**KDO**（Kubernetes DevOps Platform）是一个面向云原生应用开发和运维的一站式平台。它整合了应用管理、CI/CD、可观测性、权限控制等能力，帮助团队高效地在 Kubernetes 上交付应用。
+**KDO智能云原生平台**是一个面向云原生应用开发和运维的一站式平台。它整合了应用管理、CI/CD、可观测性、权限控制等能力，帮助团队高效地在 Kubernetes 上交付应用。
 
 ### 本指南包含什么？
 
@@ -88,10 +88,10 @@ KDO 围绕两大用户角色提供能力：
 
 ### 路径 B：接入现有集群
 
-如果已有合规的 Kubernetes 集群，仅需安装 KDO 平台：
+如果已有合规的 Kubernetes 集群，仅需安装 KDO智能云原生平台：
 
 1. [根据 OIDC 平台配置 Kubernetes 认证](/install/kubernetes/#根据oidc平台设置kubernetes)
-2. [安装 KDO 平台](/install/kdo/)
+2. [安装 KDO智能云原生平台](/install/kdo/)
 
 👉 推荐：已有集群生产环境
 
@@ -144,7 +144,7 @@ cat > index.html << 'EOF'
 <html>
   <head><title>Hello KDO</title></head>
   <body>
-    <h1>🎉 恭喜！你的第一个应用已在 KDO 平台运行！</h1>
+    <h1>🎉 恭喜！你的第一个应用已在 KDO智能云原生平台运行！</h1>
   </body>
 </html>
 EOF

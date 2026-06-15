@@ -10,7 +10,7 @@ nav_order: 12
 ## 介绍
 
 {: .note }
-KDO平台和Kubernetes的身份认证协议是基于[OpenID Connect(OIDC)](#openid-connectoidc介绍)，KDO使用 Keycloak 作为身份认证中心，统一管理对 Kubernetes 集群的访问权限，实现单点登录和基于角色的精细授权。
+KDO智能云原生平台和Kubernetes的身份认证协议是基于[OpenID Connect(OIDC)](#openid-connectoidc介绍)，KDO使用 Keycloak 作为身份认证中心，统一管理对 Kubernetes 集群的访问权限，实现单点登录和基于角色的精细授权。
 架构图
 
 ![](img/auth-arch.svg)
@@ -35,7 +35,7 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 1. 访问 Keycloak 控制台,选择`Administration Console`,输入用户名和密码登录
 ![](img/keycloak-login.png)
 
-2. 登录后进入 Realm 管理页面，可以看到 Realm 列表，选择 `kdo`，就可以对KDO平台的用户进行管理了
+2. 登录后进入 Realm 管理页面，可以看到 Realm 列表，选择 `kdo`，就可以对KDO智能云原生平台的用户进行管理了
 ![](img/keycloak-realm.png)
 
 ## 用户管理
@@ -50,7 +50,7 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 ![](img/kc-edit-user.png)
 
 ### 删除用户
-1. 登录 Keycloak 控制台，确认Realm是`kdo`, 选择 `Users`，选择 用户，点击 `Delete`，在Keycloak删除用户后，该用户将无法登录KDO平台。
+1. 登录 Keycloak 控制台，确认Realm是`kdo`, 选择 `Users`，选择 用户，点击 `Delete`，在Keycloak删除用户后，该用户将无法登录KDO智能云原生平台。
 ![](img/kc-delete-user.png)
 
 ## 用户组管理

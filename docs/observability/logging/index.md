@@ -55,7 +55,7 @@ Grafana Loki 包含很多组件，promtail、distributor、ingester、querier、
 
 1. **Promtail/Vector:** 
 Promtail/Vector 是充当 Loki 的日志代理（agent）的重要组件。它的功能是从系统中收集每个日志，标记它，然后将其发送给 Loki。Loki 从本地日志文件和系统日志中收集日志。 
-您必须在要收集日志的每个系统中安装 Promtail/Vector， KDO平台使用的是Vector，它与Promtail类似，但是它支持更多的日志格式，如JSON、XML、CSV等。
+您必须在要收集日志的每个系统中安装 Promtail/Vector， KDO智能云原生平台使用的是Vector，它与Promtail类似，但是它支持更多的日志格式，如JSON、XML、CSV等。
 
 2. **Distributor:** 
 Distributor 是一个无状态组件，负责处理和验证从日志代理（如 Promtail）接收的日志，并将日志分发到 ingester。

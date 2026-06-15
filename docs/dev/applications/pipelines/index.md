@@ -10,7 +10,7 @@ nav_order: 2
 ##  概述
 
 {: .note }
-KDO平台的流水线模块是基于[Tekton](https://tekton.dev/)实现的，Tekton 是一个强大、灵活的构建 `CI/CD` 流水线系统的开源框架，允许开发者构建、测试和发布应用。 
+KDO智能云原生平台的流水线模块是基于[Tekton](https://tekton.dev/)实现的，Tekton 是一个强大、灵活的构建 `CI/CD` 流水线系统的开源框架，允许开发者构建、测试和发布应用。 
 `Tekton` 是云原生的，通过定义CRD，让用户快速灵活定义流水线。
 
 ![logo.jpeg](imgs/logo.jpeg)

@@ -14,7 +14,7 @@ nav_order: 5
 - ✅ 已有现成的容器镜像（Docker Image），无需从源码构建
 - ✅ 使用的是公共镜像（如 Nginx、Redis、MySQL）或私有镜像仓库的镜像
 - ✅ 快速部署测试环境或临时服务
-- ✅ 迁移现有应用到 KDO 平台
+- ✅ 迁移现有应用到 KDO智能云原生平台
 
 与[镜像构建](/docs/dev/applications/builds/)不同，手动镜像直接使用预构建的镜像，省去 CI 流程，部署更快速。
 
@@ -27,7 +27,7 @@ nav_order: 5
    - 镜像地址格式：`registry.example.com/namespace/image:tag`
 
 2. **镜像仓库访问权限**（如使用私有仓库）
-   - 预先在 KDO 平台配置镜像拉取 Secret（ImagePullSecret）
+   - 预先在 KDO智能云原生平台配置镜像拉取 Secret（ImagePullSecret）
    - 或使用公开镜像无需认证
 
 3. **端口暴露**

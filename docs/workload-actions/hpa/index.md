@@ -7,6 +7,8 @@ parent: 工作负载操作
 
 **水平 Pod 自动扩缩（HPA）** 根据 CPU、内存或其他自定义指标的利用率，自动调整 Deployment 或 StatefulSet 的副本数，实现弹性伸缩。
 
+[hpa-arch](imgs/hpa-arch.png)
+
 ### 为什么需要 HPA？
 
 - ✅ **应对流量波动**：节假日促销、突发热点事件

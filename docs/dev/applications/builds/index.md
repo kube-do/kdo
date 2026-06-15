@@ -121,7 +121,7 @@ spec:
 
 ## Dockerfile 要求
 
-KDO 平台对 Dockerfile 的要求：
+KDO智能云原生平台对 Dockerfile 的要求：
 
 1. **基础镜像**：建议使用公共镜像（Alpine、Ubuntu、OpenJDK 等），私有镜像需提前配置拉取 secret
 2. **端口暴露**：必须使用 `EXPOSE <port>`，端口号需与应用配置的"应用端口"一致
@@ -169,7 +169,7 @@ CMD ["./main"]
 
 ## 构建日志与调试
 
-构建过程在 KDO 平台的 **流水线运行** 页面可以看到详细日志：
+构建过程在 KDO智能云原生平台的 **流水线运行** 页面可以看到详细日志：
 
 1. 进入应用详情 → **流水线运行**
 2. 找到最新的运行记录（状态为 `Running` 或 `Failed`）
@@ -245,7 +245,7 @@ CMD ["./main"]
 
 ### Q: 构建的镜像存储在哪里？
 
-镜像推送到 KDO 平台内置的 **Harbor 仓库**，地址通常为 `hub-k8s.kube-do.cn/<namespace>/<app-name>:<tag>`。该仓库支持拉取/推送认证。
+镜像推送到 KDO智能云原生平台内置的 **Harbor 仓库**，地址通常为 `hub-k8s.kube-do.cn/<namespace>/<app-name>:<tag>`。该仓库支持拉取/推送认证。
 
 ### Q: 镜像构建和标准应用有什么区别？
 
