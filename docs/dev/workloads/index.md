@@ -6,7 +6,7 @@ nav_order: 3
 
 ## 介绍
 
-**工作负载（Workloads）** 是在 Kubernetes 上运行的应用程序单元。KDO智能云原生平台为开发者提供了简化的界面来管理各种类型的 workload，无需直接编写复杂的 YAML 清单。
+**工作负载（Workloads）** 是在 Kubernetes 上运行的应用程序单元。KDO 平台为开发者提供了简化的界面来管理各种类型的 workload，无需直接编写复杂的 YAML 清单。
 
 ### 支持的工作负载类型
 

@@ -6,7 +6,7 @@ nav_order: 1
 
 ## 前置条件
 
-在安装 KDO智能云原生平台之前，请确保满足以下环境要求：
+在安装 KDO 平台之前，请确保满足以下环境要求：
 
 ### 硬件要求
 
@@ -24,7 +24,7 @@ nav_order: 1
   - 版本：20.10+
   - 或 **Containerd**：1.6+
 - **Kubernetes 集群**（可选，如果已有则跳过集群安装）
-  - 版本：v1.28 - v1.33
+  - 版本：v1.24 - v1.28
   - 可以使用 `kubeadm`、K3s、RKE2 等发行版
   - 至少 1 个 Master 节点和 2 个 Worker 节点
 - ** kubectl**：用于集群管理（KDO 安装时会自动配置 context）
@@ -40,11 +40,11 @@ nav_order: 1
 
 ## 安装模式选择
 
-KDO智能云原生平台支持两种安装模式：
+KDO 平台支持两种安装模式：
 
 | 模式 | 描述 | 适用场景 |
 |------|------|----------|
-| **完整安装** | 自动安装 Kubernetes 集群 + KDO智能云原生平台 | 从零开始搭建全新环境 |
+| **完整安装** | 自动安装 Kubernetes 集群 + KDO 平台 | 从零开始搭建全新环境 |
 | **仅安装 KDO** | 跳过集群安装，直接部署到现有集群 | 已有 Kubernetes 集群 |
 
 ---
@@ -86,7 +86,7 @@ sudo ./kdo-install.sh \
 4. **网络插件安装** - 默认 Calico（支持 Flannel、Cilium）
 5. **存储类配置** - 创建默认 `storageclass`（local-path-provisioner）
 6. **Helm 安装** - 配置 Helm 3 和 Repo
-7. **KDO智能云原生平台部署** - 通过 Helm 安装所有 KDO 组件（gateway、console、插件等）
+7. **KDO 平台部署** - 通过 Helm 安装所有 KDO 组件（gateway、console、插件等）
 8. **Keycloak 配置** - 设置 OIDC 认证服务
 9. ** ingress 配置** - Nginx Ingress Controller（如需）
 10. **验证安装** - 输出管理界面地址和初始账号
@@ -96,7 +96,7 @@ sudo ./kdo-install.sh \
 安装完成后，脚本会输出：
 
 ```
-✅ KDO智能云原生平台安装成功！
+✅ KDO 平台安装成功！
 
 📱 控制台地址：https://kdo.kube-do.cn
 🔑 初始管理员账号：admin@kube-do.cn
@@ -302,7 +302,7 @@ helm install local-path-provisioner \
 
 ## 卸载
 
-如需卸载 KDO智能云原生平台：
+如需卸载 KDO 平台：
 
 ```bash
 # Helm 安装的

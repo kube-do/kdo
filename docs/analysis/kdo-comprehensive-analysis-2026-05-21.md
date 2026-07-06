@@ -1,7 +1,7 @@
-# KDO智能云原生平台综合技术分析报告
+# KDO 平台综合技术分析报告
 
 **生成时间**: 2026-05-21
-**分析对象**: KDO智能云原生平台 项目
+**分析对象**: KDO (Kubedo DevOps) 项目
 **仓库路径**: `/home/kubedo/kdo`
 **项目版本**: main branch (最新)
 **文档版本**: v1.x
@@ -15,7 +15,7 @@
 
 | 项目 | 详情 |
 |------|------|
-| **项目名称** | KDO智能云原生平台 |
+| **项目名称** | KDO (Kubedo DevOps) |
 | **仓库地址** | https://github.com/kube-do/kdo |
 | **站点** | https://docs.kube-do.cn |
 | **许可证** | MIT License |
@@ -148,8 +148,8 @@ assets/
 
 | 配置项 | 值 | 说明 |
 |--------|-----|------|
-| `title` | KDO智能云原生平台文档 | 站点标题 |
-| `description` | KDO智能云原生平台帮助文档 | 搜索摘要、SEO |
+| `title` | KDO平台文档 | 站点标题 |
+| `description` | KDO平台帮助文档 | 搜索摘要、SEO |
 | `url` | https://docs.kube-do.cn | 生产环境域名 |
 | `baseurl` | / | 子路径 (空表示根) |
 | `theme` | just-the-docs | Jekyll 主题 gem |

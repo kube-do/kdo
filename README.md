@@ -1,6 +1,6 @@
-# KDO智能云原生平台 Documentation
+# KDO Platform Documentation
 
-这是 **KDO智能云原生平台**的官方文档站点。
+这是 **KDO (Kubedo DevOps)** 平台的官方文档站点。
 
 **在线访问：** https://docs.kube-do.cn
 
@@ -18,7 +18,7 @@
 ### 管理员
 - [⚙️ 管理员手册](/docs/admin/) - 集群管理、用户权限
 - [🔐 RBAC 权限](/docs/rbac/) - 基于角色的访问控制
-- [📦 安装指南](/docs/install/) - KDO智能云原生平台部署步骤
+- [📦 安装指南](/docs/install/) - KDO 平台部署步骤
 - [🔌 终端访问](/docs/terminal/) - CloudShell 与 LocalShell
 
 ### 概念与参考
@@ -94,8 +94,8 @@ bundle exec jekyll serve
 
 - 查看 [常见问题](/docs/admin/) 获取帮助
 - 提交 [Issue](https://github.com/kube-do/kdo/issues) 反馈问题
-- 联系 KDO智能云原生平台运维团队
+- 联系 KDO 平台运维团队
 
 ---
 
-**KDO智能云原生平台** - 让云原生应用管理更简单 ✨
+**KDO Platform** - 让云原生应用管理更简单 ✨
