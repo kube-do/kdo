@@ -18,7 +18,7 @@ nav_order: 1
 只需`Git URL`和用户的`Git Token`就可以自动生成支持**多环境和多分支**的流水线，流水线支持**自动构建与自动部署**，功能非常强大。
 ![pipeline.png](imgs/application.png)
 
-[Pipelines as Code详情](pipelines-as-code.md)
+[Pipelines as Code详情](../pipelines-as-code/index.md)
 
 ## 创建应用
 

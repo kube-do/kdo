@@ -1,6 +1,7 @@
-# Pipelines as Code 配置与使用指南（完整版）
-
-
+---
+title: Pipelines as Code 配置与使用指南
+parent: 应用管理
+nav_order: 4
 ---
 
 ## 目录
