@@ -19,7 +19,7 @@ parent: 工作负载操作
 ---
 
 ## 快速开始
-
+![hpa.png](imgs/hpa.png)
 ### 前提条件
 
 - 目标 Deployment/StatefulSet 已配置 **资源请求（requests）**
