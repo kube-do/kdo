@@ -69,7 +69,7 @@ Tekton Pipelines 执行流水线
 
 1. **配置集成**：集群管理员首先将 Pipelines as Code 与 Git 仓库提供商（如 GitHub、GitLab）集成，配置 Webhook 或 GitHub App。
 
-2. **创建 Repository CR**：在 OpenShift 命名空间中创建 `Repository` 自定义资源（CR），其中包含：
+2. **创建 Repository CR**：在 Kubedo 命名空间中创建 `Repository` 自定义资源（CR），其中包含：
    - 要监听的 Git 仓库 URL
    - Git 提供商的认证信息（Secret 引用）
    - Webhook Secret 引用
@@ -101,72 +101,15 @@ spec:
 
 ## 第二章 安装与配置
 
-### 2.1 在 OpenShift 上安装 Pipelines as Code
+### 2.1 在 Kdo 上安装 Pipelines as Code
 
-Pipelines as Code 随 Red Hat Tekton Pipelines Operator 一同安装，默认安装在 `pipelines-as-code` 命名空间中。
-
-#### 2.1.1 禁用默认安装
-
-如果不需要自动安装 Pipelines as Code，可以在 `TektonConfig` CR 中将 `enable` 参数设置为 `false`：
-
-```yaml
-apiVersion: operator.tekton.dev/v1alpha1
-kind: TektonConfig
-metadata:
-  name: config
-spec:
-  platforms:
-    openshift:
-      pipelinesAsCode:
-        enable: false
-        settings:
-          application-name: "Pipelines as Code CI"
-          auto-configure-new-github-repo: "false"
-          bitbucket-cloud-check-source-ip: "true"
-          hub-catalog-name: tekton
-          hub-url: "https://api.hub.tekton.dev/v1"
-          remote-tasks: "true"
-          secret-auto-create: "true"
-```
-
-也可以使用命令行禁用：
-
-```bash
-oc patch tektonconfig config \
-  --type="merge" \
-  -p '{"spec": {"platforms": {"openshift":{"pipelinesAsCode": {"enable": false}}}}}'
-```
-
-#### 2.1.2 重新启用
-
-```yaml
-apiVersion: operator.tekton.dev/v1alpha1
-kind: TektonConfig
-metadata:
-  name: config
-spec:
-  platforms:
-    openshift:
-      pipelinesAsCode:
-        enable: true
-        settings:
-          application-name: "Pipelines as Code CI"
-          # ... 其他设置
-```
-
-或使用命令行：
-
-```bash
-oc patch tektonconfig config \
-  --type="merge" \
-  -p '{"spec": {"platforms": {"openshift":{"pipelinesAsCode": {"enable": true}}}}}'
-```
+Pipelines as Code 随 Tekton Pipelines Operator 一同安装，默认安装在 `pipelines-as-code` 命名空间中。
 
 ### 2.2 安装 CLI（tkn pac / opc）
 
 集群管理员可以在本地机器上将 `tkn pac` 和 `opc` CLI 工具作为容器使用，或直接安装二进制文件。
 
-安装 `tkn` CLI（Red Hat Tekton Pipelines 的一部分）时会自动安装 `tkn pac` 和 `opc` CLI 工具。
+安装 `tkn` CLI（Tekton Pipelines 的一部分）时会自动安装 `tkn pac` 和 `opc` CLI 工具。
 
 **支持的平台**（v1.22.0）：
 
@@ -313,7 +256,7 @@ GitHub App 是推荐的集成方式，它将 Tekton Pipelines 与基于 Git 的�
 #### 3.1.1 使用命令行界面配置
 
 **先决条件**：
-- 以集群管理员身份登录 OpenShift Container Platform 集群
+- 以集群管理员身份登录 Kdo Platform 集群
 - 已安装带 `tkn pac` 插件的 `tkn` CLI
 
 **步骤**：
@@ -367,19 +310,19 @@ tkn pac bootstrap github-app --github-api-url https://github.com/enterprises/exa
    | 字段 | 值 |
    |---|---|
    | GitHub Application Name | `Tekton Pipelines` |
-   | Homepage URL | OpenShift Console URL |
+   | Homepage URL | KdoConsole URL |
    | Webhook URL | Pipelines as Code 路由或 Ingress URL |
 
    获取路由 URL：
 
    ```bash
-   echo https://$(oc get route -n pipelines-as-code pipelines-as-code-controller -o jsonpath='{.spec.host}')
+   echo https://$(kubectl get route -n pipelines-as-code pipelines-as-code-controller -o jsonpath='{.spec.host}')
    ```
 
    对于额外控制器：
 
    ```bash
-   echo https://$(oc get route -n pipelines-as-code pac_controller_2 -o jsonpath='{.spec.host}')
+   echo https://$(kubectl get route -n pipelines-as-code pac_controller_2 -o jsonpath='{.spec.host}')
    ```
 
    | Webhook secret | 运行 `openssl rand -hex 20` 生成 |
@@ -419,10 +362,10 @@ tkn pac bootstrap github-app --github-api-url https://github.com/enterprises/exa
 
 - 将要使用 Pipelines as Code 的仓库安装该 App
 
-**第四步：在 OpenShift 中创建 Secret**
+**第四步：在 Kdo中创建 Secret**
 
 ```bash
-oc -n pipelines-as-code create secret generic pipelines-as-code-secret \
+kubectl -n pipelines-as-code create secret generic pipelines-as-code-secret \
   --from-literal github-private-key="$(cat <PATH_PRIVATE_KEY>)" \
   --from-literal github-application-id="<APP_ID>" \
   --from-literal webhook.secret="<WEBHOOK_SECRET>"
@@ -448,7 +391,7 @@ Pipelines as Code 使用 GitHub App 生成访问 token，默认仅限定到包�
 | 仓库级别配置 | 不需要管理员权限 | 将 token 扩展到与原始仓库同一命名空间的仓库列表 |
 
 **先决条件**：
-- 对 OpenShift 集群有管理员访问权限（或对仓库级别配置有仓库管理员权限）
+- 对 Kdo集群有管理员访问权限（或对仓库级别配置有仓库管理员权限）
 - 已为集群配置 Pipelines as Code GitHub App
 - 知道要扩展的额外仓库名称
 - 额外仓库必须在 GitHub 组织或账号中已存在
@@ -555,7 +498,7 @@ tkn pac create repo
 1. 获取控制器公共 URL：
 
 ```bash
-echo https://$(oc get route -n openshift-pipelines pipelines-as-code-controller -o jsonpath='{.spec.host}')
+echo https://$(kubectl get ingresss -n pipelines-as-code pipelines-as-code-controller -o jsonpath='{.spec.host}')
 ```
 
 2. 在 GitHub 仓库中配置 Webhook（**Settings → Webhooks → Add webhook**）：
@@ -569,10 +512,10 @@ echo https://$(oc get route -n openshift-pipelines pipelines-as-code-controller 
      - Pull requests
      - Pushes
 
-3. 创建 OpenShift Secret：
+3. 创建 KdoSecret：
 
 ```bash
-oc -n target-namespace create secret generic github-webhook-config \
+kubectl -n target-namespace create secret generic github-webhook-config \
   --from-literal provider.token="<GITHUB_PERSONAL_ACCESS_TOKEN>" \
   --from-literal webhook.secret="<WEBHOOK_SECRET>"
 ```
@@ -645,7 +588,7 @@ tkn pac create repo
 1. 获取控制器 URL：
 
 ```bash
-echo https://$(oc get route -n openshift-pipelines pipelines-as-code-controller -o jsonpath='{.spec.host}')
+echo https://$(kubectl get ingress -n pipelines-as-code pipelines-as-code-controller -o jsonpath='{.spec.host}')
 ```
 
 2. 在 GitLab 项目中配置 Webhook（**Settings → Webhooks**）：
@@ -658,10 +601,10 @@ echo https://$(oc get route -n openshift-pipelines pipelines-as-code-controller 
      - Pull requests
      - Pushes
 
-3. 创建 OpenShift Secret：
+3. 创建 k8s Secret：
 
 ```bash
-oc -n target-namespace create secret generic gitlab-webhook-config \
+kubectl -n target-namespace create secret generic gitlab-webhook-config \
   --from-literal provider.token="<GITLAB_PERSONAL_ACCESS_TOKEN>" \
   --from-literal webhook.secret="<WEBHOOK_SECRET>"
 ```
@@ -744,10 +687,10 @@ tkn pac create repo
    - **Title**：例如 "Pipelines as Code"
    - **URL**：Pipelines as Code 控制器 URL
    - **事件**：勾选 `Repository: Push`、`Pull Request: Created`、`Pull Request: Updated`、`Pull Request: Comment created`
-3. 创建 OpenShift Secret：
+3. 创建 KdoSecret：
 
 ```bash
-oc -n target-namespace create secret generic bitbucket-cloud-token \
+kubectl -n target-namespace create secret generic bitbucket-cloud-token \
   --from-literal provider.token="<BITBUCKET_APP_PASSWORD>"
 ```
 
@@ -799,7 +742,7 @@ spec:
 
 **验证**：
 ```bash
-oc get repository -n <namespace>
+kubectl get repository -n <namespace>
 ```
 
 输出示例：
@@ -821,7 +764,7 @@ workspace-repo  https://bitbucket.org/workspace/repo              repo-pipelines
 1. 获取控制器 URL：
 
 ```bash
-echo https://$(oc get route -n openshift-pipelines pipelines-as-code-controller -o jsonpath='{.spec.host}')
+echo https://$(kubectl get ingress -n pipelines-as-code pipelines-as-code-controller -o jsonpath='{.spec.host}')
 ```
 
 2. 在 Bitbucket Data Center 仓库中配置 Webhook（**Repository settings → Webhooks → Add webhook**）：
@@ -830,10 +773,10 @@ echo https://$(oc get route -n openshift-pipelines pipelines-as-code-controller 
    - **Secret**：`openssl rand -hex 20` 生成
    - **事件**：勾选 `Repository: Push`、`Repository: Modified`、`Pull Request: Opened`、`Pull Request: Source branch updated`、`Pull Request: Comment added`
 
-3. 创建 OpenShift Secret：
+3. 创建 KdoSecret：
 
 ```bash
-oc -n target-namespace create secret generic bitbucket-datacenter-webhook-config \
+kubectl -n target-namespace create secret generic bitbucket-datacenter-webhook-config \
   --from-literal provider.token="<PERSONAL_TOKEN>" \
   --from-literal webhook.secret="<WEBHOOK_SECRET>"
 ```
@@ -863,7 +806,7 @@ spec:
 
 **验证**：
 ```bash
-oc get repository -n <namespace>
+kubectl get repository -n <namespace>
 ```
 
 输出示例：
@@ -972,7 +915,7 @@ EOF
 **示例**：
 
 ```bash
-cat <<EOF | oc create -n pipelines-as-code -f -
+cat <<EOF | kubectl create -n pipelines-as-code -f -
 apiVersion: "pipelinesascode.tekton.dev/v1alpha1"
 kind: Repository
 metadata:
@@ -1207,7 +1150,7 @@ spec:
 
 Pipelines as Code 解析器注解用于引用 `Task` 和 `Pipeline` CR 定义。解析器从注解中指定的位置获取定义，并自动将其包含到生成的 `PipelineRun` CR 中。
 
-> **注意**：Red Hat 已弃用 Tekton Hub 公共实例（`hub.tekton.dev`），将在未来版本中移除。请使用 [Artifact Hub](https://artifacthub.io) 替代。
+> **注意**：Kdo 已弃用 Tekton Hub 公共实例（`hub.tekton.dev`），将在未来版本中移除。请使用 [Artifact Hub](https://artifacthub.io) 替代。
 
 #### 5.4.1 远程任务注解
 
@@ -1636,7 +1579,7 @@ This is a comment inside a commit.
 - Pipelines as Code 在 Repository CR 中存储最近 5 条 PipelineRun 状态消息
 
 ```bash
-oc get repo -n <pipelines_as_code_ci>
+kubectl get repo -n <pipelines_as_code_ci>
 ```
 
 输出示例：
@@ -1721,7 +1664,7 @@ curl -X POST 'https://control.pac.url/incoming?secret=very-secure-shared-secret&
 
 ### 7.1 tkn pac 命令
 
-`tkn pac` CLI 工具用于控制 Pipelines as Code，通过 `TektonConfig` CR 配置日志，使用 `oc` 命令查看日志。
+`tkn pac` CLI 工具用于控制 Pipelines as Code，通过 `TektonConfig` CR 配置日志，使用 `kubectl` 命令查看日志。
 
 **主要功能**：
 - 引导 Pipelines as Code 安装和配置
@@ -1751,7 +1694,7 @@ tkn pac --help
 |---|-----------------------------------------------------------------------------------|
 | `tkn pac bootstrap` | 安装和配置 Pipelines as Code（GitHub/GitHub Enterprise）                                 |
 | `tkn pac bootstrap --nightly` | 安装 nightly 版本                                                                     |
-| `tkn pac bootstrap --route-url <public_url_to_ingress_spec>` | 覆盖 OpenShift 路由 URL。默认自动检测 OpenShift 路由；如无 OpenShift 集群，会要求提供指向 Ingress 端点的公共 URL |
+| `tkn pac bootstrap --route-url <public_url_to_ingress_spec>` | 覆盖 Kdo路由 URL。默认自动检测 Kdo路由；如无 Kdo集群，会要求提供指向 Ingress 端点的公共 URL |
 | `tkn pac bootstrap github-app` | 创建 GitHub 应用和 pipelines-as-code 命名空间中的 Secret                                     |
 
 **repository 命令**：
@@ -1774,7 +1717,7 @@ tkn pac --help
 |---|---|
 | `tkn pac resolve` | 像 Pipelines as Code 服务一样执行 PipelineRun 定义 |
 | `tkn pac resolve -f .tekton/pull-request.yaml` | 解析指定文件，显示包含所有引用资源的完整 PipelineRun 定义 |
-| `tkn pac resolve -f .tekton/pull-request.yaml \| oc apply -f -` | 解析并应用到集群 |
+| `tkn pac resolve -f .tekton/pull-request.yaml \| kubectl apply -f -` | 解析并应用到集群 |
 | `tkn pac resolve -f .tekton/pr.yaml -p revision=main -p repo_name=<name>` | 覆盖从 Git 仓库获取的默认参数值 |
 
 > `-f` 选项可接受目录路径，对目录中所有 `.yaml` 或 `.yml` 文件执行 `tkn pac resolve`，也可在同一命令中多次使用 `-f`。
@@ -2014,10 +1957,10 @@ kubectl logs pipelines-as-code-controller-<unique_id> -n pipelines-as-code | gre
 
 ```bash
 # 查找控制器 pod
-oc get pods -n tekton-pipelines
+kubectl get pods -n pipelines-as-code
 
 # 查看日志
-oc logs pipelines-as-code-controller-<pod_id> -n tekton-pipelines
+kubectl logs pipelines-as-code-controller-<pod_id> -n tekton-pipelines
 ```
 
 ### GitHub Token 作用域故障
