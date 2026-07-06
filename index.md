@@ -16,7 +16,7 @@ last_modified_date: 2026-04-11
 - ✅ 基于开源技术，深度优化企业场景
 - ✅ 应用级多云管理能力
 
-![KDO智能云原生平台](imgs/kdo.png){: .img-responsive }
+![KDO智能云原生平台](imgs/kdo.png)
 
 ## 平台亮点
 
