@@ -6,7 +6,7 @@ parent: 工作负载操作
 ## 介绍
 
 调整 Deployment 或 StatefulSet 的副本数（replicas）是实现应用**扩缩容**的直接方式。KDO 提供图形化界面，让你无需编辑 YAML 即可快速调整副本数量。
-[](imgs/img.png)
+
 ---
 
 ## 快速开始

@@ -28,7 +28,7 @@ Operator 是通过编写自定义资源(Custom Resource Definitions, CRD)来实�
 
 {: .note }
 OperatorHub用于管理用户的operator，支持安装与部署operator。平台提供公开Operator和私有的Operator，公开的可直接安装，无需购买/上传； 私有的Operator支持上传，用户可根据实际的需要在在资产开放平台购买私有的Operator。
-KDO智能云原生平台通过 OLM（OperatorLifecycleManager）插件管理 operator，OLM作为Operator Framework的一部分，可以帮助用户进行Operator的自动安装，升级及其生命周期的管理。
+KDO平台通过 OLM（OperatorLifecycleManager）插件管理 operator，OLM作为Operator Framework的一部分，可以帮助用户进行Operator的自动安装，升级及其生命周期的管理。
 
 ![operator-hub.png](imgs/operator-hub.png)
 

@@ -1,5 +1,5 @@
 ---
-title: KDO智能云原生平台结合GitFlow进行应用开发
+title: KDO平台结合GitFlow进行应用开发
 parent: DevOps
 ---
 
@@ -11,7 +11,7 @@ parent: DevOps
 不同的团队规模、项目复杂度和发布频率都可能需要不同的分支策略。
 常见的 Git 分支策略包括 [Git Flow](#1-git-flow)、[GitHub Flow](#2-github-flow) 和 [Trunk Based Development (主干开发)](#3-trunk-based-development-主干开发)。
 本文将深入分析这些分支策略的优缺点，并探讨如何根据团队规模和项目需求选择合适的工作流程。
-我们还通过KDO智能云原生平台和对应的 Git 分支策略进行结，同时，我们将提供相应的代码示例和最佳实践，帮助团队避免常见的协作问题。
+我们还通过KDO平台和对应的 Git 分支策略进行结，同时，我们将提供相应的代码示例和最佳实践，帮助团队避免常见的协作问题。
 
 
 ##  一、Git 分支策略概述

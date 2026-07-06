@@ -7,17 +7,17 @@
 ## 安装KeyCloak
 
 {: .note }
-由于KDO智能云原生平台和Kubernetes均基于OIDC（OpenID Connect）协议进行用户认证管理，因此在没有现成的OIDC认证平台的情况下，您需要安装Keycloak以支持这一功能。
-在开始安装之前，请确保所有相关的环境变量已经正确设置。这一步骤对于保证Keycloak能够顺利部署以及后续与KDO智能云原生平台和Kubernetes的集成至关重要。
+由于KDO平台和Kubernetes均基于OIDC（OpenID Connect）协议进行用户认证管理，因此在没有现成的OIDC认证平台的情况下，您需要安装Keycloak以支持这一功能。
+在开始安装之前，请确保所有相关的环境变量已经正确设置。这一步骤对于保证Keycloak能够顺利部署以及后续与KDO平台和Kubernetes的集成至关重要。
 [关于KeyCloak](https://www.keycloak.org/)
 
 
 ###  1. 定义环境变量
 ```shell
-# 环境变量KC_USER  KeyCloak平台的管理员用户，这个会和KDO智能云原生平台的保持一致
-# 环境变量KC_PASS  KeyCloak平台的管理员的密码，这个会和KDO智能云原生平台的保持一致
+# 环境变量KC_USER  KeyCloak平台的管理员用户，这个会和KDO平台的保持一致
+# 环境变量KC_PASS  KeyCloak平台的管理员的密码，这个会和KDO平台的保持一致
 # 环境变量NODE_IP  KeyCloak安装节点Master的IP，如果有多个Master，就指定第一个，这个和安装kdo组件时节点IP要保持一致（这个IP必须能被客户端访问到）
-# 环境变量DEFAULT_DOMAIN  KDO智能云原生平台应用的默认域名后缀，这个和安装kdo组件时的保持一致
+# 环境变量DEFAULT_DOMAIN  KDO平台应用的默认域名后缀，这个和安装kdo组件时的保持一致
 export KC_USER=admin
 export KC_PASS=Kdo@Pass#2025
 export NODE_IP=10.255.1.31
