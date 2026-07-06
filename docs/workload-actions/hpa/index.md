@@ -7,7 +7,7 @@ parent: 工作负载操作
 
 **水平 Pod 自动扩缩（HPA）** 根据 CPU、内存或其他自定义指标的利用率，自动调整 Deployment 或 StatefulSet 的副本数，实现弹性伸缩。
 
-[hpa-arch](imgs/hpa-arch.png)
+![hpa-arch](imgs/hpa-arch.png){: .img-responsive }
 
 ### 为什么需要 HPA？
 
@@ -32,7 +32,7 @@ kubectl top pods -n <namespace>
 ```
 
 ### 启用 HPA
-
+![add-hpa](imgs/add-hpa.png)
 1. 进入目标工作负载详情页
 2. 点击 **操作** → **添加容器组水平自动扩缩 (HPA)**
 3. 填写表单：
@@ -63,6 +63,7 @@ kubectl top pods -n <namespace>
 ## 详细说明
 
 ### HPA 工作原理
+![hpa-flow](imgs/hpa-flow.png)
 
 ```
 1. HPA 控制器定期（默认 15 秒）查询 metrics-server
