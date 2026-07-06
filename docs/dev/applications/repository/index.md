@@ -18,6 +18,8 @@ nav_order: 1
 只需`Git URL`和用户的`Git Token`就可以自动生成支持**多环境和多分支**的流水线，流水线支持**自动构建与自动部署**，功能非常强大。
 ![pipeline.png](imgs/application.png)
 
+[Pipelines as Code详情](pipelines-as-code.md)
+
 ## 创建应用
 
 - KDO支持多环境多分支的应用管理，在**应用项目**选择对应的项目，选择**应用管理 -> 应用**
