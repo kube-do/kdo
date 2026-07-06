@@ -31,7 +31,7 @@ Pipelines as Code 支持以下功能：
 - **事件驱动**：支持 GitHub pull request 和 commit 事件触发。
 - **评论操作**：支持通过 PR/MR 评论中的命令操作流水线，例如 `/retest`。
 - **事件过滤**：支持 Git 事件过滤，可为不同事件定义不同的流水线。
-- **自动任务解析**：自动解析 OpenShift Pipelines 中的任务，支持本地任务、Tekton Hub 和远程 URL。
+- **自动任务解析**：自动解析 Tekton Pipelines 中的任务，支持本地任务、Tekton Hub 和远程 URL。
 - **GitHub Blob/Objects API**：通过 GitHub Blob 和 Objects API 检索配置。
 - **访问控制**：支持基于 GitHub 组织的 ACL（访问控制列表），或使用 Prow 风格的 `OWNERS` 文件进行权限控制。
 - **CLI 工具**：`tkn pac` CLI 插件，用于管理引导和 Pipelines as Code 仓库。
@@ -79,7 +79,7 @@ Tekton Pipelines 执行流水线
 
 4. **添加事件匹配注解**：在 PipelineRun 定义中添加注解，指定触发该流水线的 Git 事件类型和目标分支。
 
-5. **触发执行**：当匹配的事件发生时，Pipelines as Code 控制器根据定义创建 `PipelineRun` CR，OpenShift Pipelines 开始执行流水线。
+5. **触发执行**：当匹配的事件发生时，Pipelines as Code 控制器根据定义创建 `PipelineRun` CR，Tekton Pipelines 开始执行流水线。
 
 6. **状态报告**：流水线执行完成后，状态通过 Checks API（GitHub App）或 PR 评论（Webhook）报告回 Git 提供商。
 
@@ -103,7 +103,7 @@ spec:
 
 ### 2.1 在 OpenShift 上安装 Pipelines as Code
 
-Pipelines as Code 随 Red Hat OpenShift Pipelines Operator 一同安装，默认安装在 `openshift-pipelines` 命名空间中。
+Pipelines as Code 随 Red Hat Tekton Pipelines Operator 一同安装，默认安装在 `pipelines-as-code` 命名空间中。
 
 #### 2.1.1 禁用默认安装
 
@@ -166,7 +166,7 @@ oc patch tektonconfig config \
 
 集群管理员可以在本地机器上将 `tkn pac` 和 `opc` CLI 工具作为容器使用，或直接安装二进制文件。
 
-安装 `tkn` CLI（Red Hat OpenShift Pipelines 的一部分）时会自动安装 `tkn pac` 和 `opc` CLI 工具。
+安装 `tkn` CLI（Red Hat Tekton Pipelines 的一部分）时会自动安装 `tkn pac` 和 `opc` CLI 工具。
 
 **支持的平台**（v1.22.0）：
 
@@ -198,7 +198,7 @@ oc patch tektonconfig config \
 | `auto-configure-new-github-repo` | 自动配置新的 GitHub 仓库。Pipelines as Code 会设置命名空间并为仓库创建 CR。仅 GitHub App 支持。 | `disabled` |
 | `auto-configure-repo-namespace-template` | 用于自动生成命名空间的模板（启用 `auto-configure-new-github-repo` 时）。 | `{repo_name}-pipelines` |
 | `auto-configure-repo-repository-template` | 用于自动生成 Repository CR 名称的模板（启用 `auto-configure-new-github-repo` 时）。 | `{{repo_name}}-repo-cr` |
-| `error-log-snippet` | 启用/禁用流水线失败任务的日志片段。禁用可防止数据泄露。OpenShift Pipelines 将片段截断为 65,000 字符。 | `true` |
+| `error-log-snippet` | 启用/禁用流水线失败任务的日志片段。禁用可防止数据泄露。Tekton Pipelines 将片段截断为 65,000 字符。 | `true` |
 | `error-log-snippet-number-of-lines` | 错误日志片段显示的行数。 | `3` |
 | `error-detection-from-container-logs` | 启用/禁用检查容器日志中的错误消息并将其作为 PR 注解暴露。仅适用于 GitHub App。 | `true` |
 | `error-detection-max-number-of-lines` | 检查容器日志以搜索错误消息的最大行数。设为 `-1` 可检查不限行数。 | `50` |
@@ -280,9 +280,9 @@ spec:
 
 ### 2.5 其他资源
 
-- [安装 OpenShift Pipelines](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines/1.22/html/installing_openshift_pipelines/index)
+- [安装 Tekton Pipelines](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines/1.22/html/installing_openshift_pipelines/index)
 - [安装 tkn CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines/1.22/html/installing_openshift_pipelines/installing-tkn)
-- [Red Hat OpenShift Pipelines 发布说明](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines/1.22/html/release_notes/index)
+- [Tekton Pipelines 发布说明](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines/1.22/html/release_notes/index)
 
 ---
 
@@ -302,7 +302,7 @@ spec:
 
 ### 3.1 GitHub App 集成
 
-GitHub App 是推荐的集成方式，它将 Red Hat OpenShift Pipelines 与基于 Git 的工作流整合。集群管理员为所有用户配置一个 GitHub App，Webhook 指向 Pipelines as Code 控制器端点以触发 PipelineRun。
+GitHub App 是推荐的集成方式，它将 Tekton Pipelines 与基于 Git 的工作流整合。集群管理员为所有用户配置一个 GitHub App，Webhook 指向 Pipelines as Code 控制器端点以触发 PipelineRun。
 
 **三种设置方式**：
 
@@ -343,7 +343,7 @@ tkn pac bootstrap github-app --github-api-url https://github.com/enterprises/exa
 5. 在浏览器中提示时输入 Git 密码
 6. 点击 **Create GitHub App for \<username\>**
 
-**验证**：创建成功后，OpenShift Web 控制台会打开并显示应用的详细信息。Pipelines as Code 将 GitHub App 的详细信息保存为 `openshift-pipelines` 命名空间中的 Secret。
+**验证**：创建成功后,KDO Web 控制台会打开并显示应用的详细信息。Pipelines as Code 将 GitHub App 的详细信息保存为 `pipelines-as-code` 命名空间中的 Secret。
 
 查看已创建的 GitHub App 详情：进入 **Pipelines** → **View GitHub App**。
 
@@ -366,20 +366,20 @@ tkn pac bootstrap github-app --github-api-url https://github.com/enterprises/exa
 
    | 字段 | 值 |
    |---|---|
-   | GitHub Application Name | `OpenShift Pipelines` |
+   | GitHub Application Name | `Tekton Pipelines` |
    | Homepage URL | OpenShift Console URL |
    | Webhook URL | Pipelines as Code 路由或 Ingress URL |
 
    获取路由 URL：
 
    ```bash
-   echo https://$(oc get route -n openshift-pipelines pipelines-as-code-controller -o jsonpath='{.spec.host}')
+   echo https://$(oc get route -n pipelines-as-code pipelines-as-code-controller -o jsonpath='{.spec.host}')
    ```
 
    对于额外控制器：
 
    ```bash
-   echo https://$(oc get route -n openshift-pipelines pac_controller_2 -o jsonpath='{.spec.host}')
+   echo https://$(oc get route -n pipelines-as-code pac_controller_2 -o jsonpath='{.spec.host}')
    ```
 
    | Webhook secret | 运行 `openssl rand -hex 20` 生成 |
@@ -422,7 +422,7 @@ tkn pac bootstrap github-app --github-api-url https://github.com/enterprises/exa
 **第四步：在 OpenShift 中创建 Secret**
 
 ```bash
-oc -n openshift-pipelines create secret generic pipelines-as-code-secret \
+oc -n pipelines-as-code create secret generic pipelines-as-code-secret \
   --from-literal github-private-key="$(cat <PATH_PRIVATE_KEY>)" \
   --from-literal github-application-id="<APP_ID>" \
   --from-literal webhook.secret="<WEBHOOK_SECRET>"
@@ -876,8 +876,8 @@ my-repo  https://bitbucket.com/workspace/repo           target-namespace   True 
 
 如需配置 Pipelines as Code 使用私有签名或自定义证书的 Git 仓库：
 
-- 如果使用 Red Hat OpenShift Pipelines Operator 安装，可以通过 `Proxy` 对象将自定义证书添加到集群
-- Operator 会自动将证书暴露给所有 OpenShift Pipelines 组件和工作负载，包括 Pipelines as Code
+- 如果使用 Tekton Pipelines Operator 安装，可以通过 `Proxy` 对象将自定义证书添加到集群
+- Operator 会自动将证书暴露给所有 Tekton Pipelines 组件和工作负载，包括 Pipelines as Code
 
 ### 3.7 私有仓库支持
 
@@ -967,12 +967,12 @@ EOF
 
 ### 4.3 创建全局 Repository CR
 
-可选地，可以在 `openshift-pipelines` 命名空间中创建一个全局 Repository CR（命名为 `pipelines-as-code`）。此 CR 中的设置将默认应用于所有其他 Repository CR。
+可选地，可以在 `pipelines-as-code` 命名空间中创建一个全局 Repository CR（命名为 `pipelines-as-code`）。此 CR 中的设置将默认应用于所有其他 Repository CR。
 
 **示例**：
 
 ```bash
-cat <<EOF | oc create -n openshift-pipelines -f -
+cat <<EOF | oc create -n pipelines-as-code -f -
 apiVersion: "pipelinesascode.tekton.dev/v1alpha1"
 kind: Repository
 metadata:
@@ -1134,7 +1134,7 @@ spec:
             - name: name
               value: maven
             - name: namespace
-              value: openshift-pipelines
+              value: kubedo
         workspaces:
           - name: source
             workspace: shared-workspace
@@ -1747,12 +1747,12 @@ tkn pac --help
 
 **bootstrap 命令**：
 
-| 命令 | 描述 |
-|---|---|
-| `tkn pac bootstrap` | 安装和配置 Pipelines as Code（GitHub/GitHub Enterprise） |
-| `tkn pac bootstrap --nightly` | 安装 nightly 版本 |
+| 命令 | 描述                                                                                |
+|---|-----------------------------------------------------------------------------------|
+| `tkn pac bootstrap` | 安装和配置 Pipelines as Code（GitHub/GitHub Enterprise）                                 |
+| `tkn pac bootstrap --nightly` | 安装 nightly 版本                                                                     |
 | `tkn pac bootstrap --route-url <public_url_to_ingress_spec>` | 覆盖 OpenShift 路由 URL。默认自动检测 OpenShift 路由；如无 OpenShift 集群，会要求提供指向 Ingress 端点的公共 URL |
-| `tkn pac bootstrap github-app` | 创建 GitHub 应用和 openshift-pipelines 命名空间中的 Secret |
+| `tkn pac bootstrap github-app` | 创建 GitHub 应用和 pipelines-as-code 命名空间中的 Secret                                     |
 
 **repository 命令**：
 
@@ -1991,7 +1991,7 @@ spec:
 Pipelines as Code 日志包含命名空间信息，可以用 `grep` 过滤特定命名空间的日志：
 
 ```bash
-oc logs pipelines-as-code-controller-<unique_id> -n openshift-pipelines | grep mynamespace
+kubectl logs pipelines-as-code-controller-<unique_id> -n pipelines-as-code | grep mynamespace
 ```
 
 ---
@@ -2014,10 +2014,10 @@ oc logs pipelines-as-code-controller-<unique_id> -n openshift-pipelines | grep m
 
 ```bash
 # 查找控制器 pod
-oc get pods -n openshift-pipelines
+oc get pods -n tekton-pipelines
 
 # 查看日志
-oc logs pipelines-as-code-controller-<pod_id> -n openshift-pipelines
+oc logs pipelines-as-code-controller-<pod_id> -n tekton-pipelines
 ```
 
 ### GitHub Token 作用域故障
@@ -2034,4 +2034,3 @@ failed to scope GitHub token as repo owner1/project1 does not exist in namespace
 
 ---
 
-> **法律声明**：本文档基于 Red Hat OpenShift Pipelines 1.22 官方文档翻译整理（Creative Commons Attribution–Share Alike 3.0 Unported 许可）。原文版权归 Red Hat 所有。本文档仅供学习和参考，如需官方支持请查阅 [Red Hat 官方文档](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines/1.22/html-single/pipelines_as_code/index)。
