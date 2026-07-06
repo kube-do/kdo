@@ -20,6 +20,7 @@ url: "https://docs.kube-do.cn" # the base hostname & protocol for your site, e.g
 repository: kube-do/kdo # for github-metadata
 theme: just-the-docs
 permalink: pretty
+encoding: utf-8
 
 defaults:
   - scope:
