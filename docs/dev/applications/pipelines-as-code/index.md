@@ -20,7 +20,7 @@ nav_order: 4
 
 ### 1.1 概述
 
-Pipelines as Code 是 OpenShift Pipelines 的一个子系统，允许集群管理员和具有相应权限的用户将流水线模板定义为源代码 Git 仓库的一部分。当配置的 Git 仓库发生源代码推送（push）或拉取请求（pull request / merge request）时，Pipelines as Code 会自动运行流水线并将执行状态报告回 Git 提供商平台。
+Pipelines as Code 是 Tekton Pipelines 的一个子系统，允许集群管理员和具有相应权限的用户将流水线模板定义为源代码 Git 仓库的一部分。当配置的 Git 仓库发生源代码推送（push）或拉取请求（pull request / merge request）时，Pipelines as Code 会自动运行流水线并将执行状态报告回 Git 提供商平台。
 
 ### 1.2 主要特性
 
