@@ -1,8 +1,255 @@
 ---
-title: Bridge Console 配置说明
+title: Kdo Web控制台
 parent: 集群配置
 nav_order: 1
 ---
+
+
+
+# Kdo Console 项目介绍与架构说明
+
+## 项目简介
+
+Kdo Console 是一个**多集群 Kubernetes 管理平台**。它不仅是 K8s API 的友好 Web UI，更是一个涵盖认证、监控、日志、应用生命周期管理、镜像仓库、多集群联邦的综合性管理控制台。
+
+---
+
+## 核心功能
+
+###   Kubernetes 资源管理
+- 对所有 K8s 核心资源（Pod、Deployment、Service、ConfigMap、Secret 等）的 CRUD
+- 内置 YAML 编辑器（Monaco Editor），支持资源创建与编辑
+- Pod 日志实时查看、Web Terminal 远程登录、文件上传下载
+- 跨命名空间资源搜索（按名称或 IP）
+
+###   多集群管理
+- 通过自定义 CRD `Cluster`（`kube-do.cn/v1`）纳管多个 K8s 集群
+- 统一视图查看所有集群的资源，支持集群切换
+- 每个集群的监控（Thanos/Prometheus）、告警（AlertManager）独立代理
+- 主集群 + 托管集群的联邦管理
+
+###   OIDC 认证（Keycloak）
+- 支持 Keycloak 作为 OIDC 身份提供商
+- RP-initiated logout（Keycloak Session 注销）
+- 权限基于 `kube-do.cn/v1 User/Group` CRD
+- 支持静态 Token（开发模式）和 OpenShift OAuth
+
+###   应用生命周期管理
+- **AppProject / AppEnv** CRD：项目与多环境（dev/test/stage/prod）管理
+- ImageStream / BuildConfig 操作（kube-do.cn API Group）
+- 工作负载启停（通过 annotation `kube-do.cn/replicas` 保存原始副本数）
+- 从 Git 仓库 / 容器镜像导入应用
+
+###   监控与告警
+- 集成 Prometheus / Thanos，提供指标查询和监控面板
+- AlertManager 告警管理
+- 集群级和多租户级监控路由
+
+###   日志与可观测性
+- Loki 日志查询
+- Jaeger 链路追踪
+- Kiali 服务网格可视化
+- OLS（OpenLightSpeed）AI 助手
+
+###   镜像仓库管理
+- 集成 Harbor 镜像仓库，支持镜像查询与推送配置
+
+---
+
+## 系统架构
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│                        Browser (React SPA)                         │
+│   index.html  |  JS Bundles  |  CSS  |  WebSocket (Terminal)      │
+└──────────────────┬─────────────────────────────────────────────────┘
+                   │
+                   │ HTTP / WebSocket
+                   ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                    Bridge (Go HTTP Server) —— cmd/bridge/           │
+│                                                                     │
+│  ┌─────────────┐  ┌──────────────┐  ┌──────────────────────────┐  │
+│  │  Static      │  │  Auth        │  │  Proxy Layer             │  │
+│  │  Assets      │  │  Middleware  │  │  ┌────────────────────┐  │  │
+│  │  (frontend   │  │  + CSRF     │  │  │ K8s API Proxy      │  │  │
+│  │   dist/)     │  │  + OIDC     │  │  ├────────────────────┤  │  │
+│  └─────────────┘  └──────────────┘  │  │ Thanos/Prometheus   │  │  │
+│                                      │  ├────────────────────┤  │  │
+│  ┌──────────────────────────────┐   │  │ AlertManager        │  │  │
+│  │  API Handlers                 │   │  ├────────────────────┤  │  │
+│  │  ┌────── ────── ┬──────────┐ │   │  │ Helm Charts        │  │  │
+│  │  │ OLM/Operator │ Logging  │ │   │  ├────────────────────┤  │  │
+│  │  ├──────────────┼──────────┤ │   │  │ Dynamic Plugins    │  │  │
+│  │  │ Helm         │ Search   │ │   │  ├────────────────────┤  │  │
+│  │  ├──────────────┼──────────┤ │   │  │ GitOps             │  │  │
+│  │  │ Knative      │ Podfile  │ │   │  └────────────────────┘  │  │
+│  │  ├──────────────┼──────────┤ │   └──────────────────────────┘  │
+│  │  │ GraphQL      │ Terminal │ │                                  │
+│  │  └──────────────┴──────────┘ │   ┌──────────────────────────┐  │
+│  └──────────────────────────────┘   │  Multi-Cluster Router     │  │
+│                                      │  (pkg/cluster/)           │  │
+│  ┌──────────────────────────────┐   └──────────────────────────┘  │
+│  │  Controller Manager           │                                  │
+│  │  (tech-preview)               │                                  │
+│  │  └ ClusterCatalog Reconciler  │                                  │
+│  └──────────────────────────────┘                                   │
+└─────────────────────────────────────────────────────────────────────┘
+                   │
+                   │ 代理（Proxy）请求到后端服务
+                   │
+  ┌────────────────┼────────────────────────────────────┐
+  │                ▼                                    │
+  │  ┌─────────────────────┐  ┌──────────────────────┐  │
+  │  │ Kubernetes API       │  │ Managed Cluster A    │  │
+  │  │ (主集群)              │  │ K8s API / Thanos /   │  │
+  │  │                      │  │ AlertManager         │  │
+  │  └─────────────────────┘  └──────────────────────┘  │
+  │                                                    │
+  │  ┌─────────────────────┐  ┌──────────────────────┐  │
+  │  │ Thanos / Prometheus  │  │ Managed Cluster B    │  │
+  │  │ (集群内监控)          │  │ K8s API / Thanos /   │  │
+  │  └─────────────────────┘  │ AlertManager         │  │
+  │                            └──────────────────────┘  │
+  │  ┌─────────────────────┐                              │
+  │  │ AlertManager (告警)  │                              │
+  │  └─────────────────────┘                              │
+  │  ┌─────────────────────┐  ┌──────────────────────┐  │
+  │  │ Keycloak (OIDC)     │  │ Harbor (镜像仓库)     │  │
+  │  └─────────────────────┘  └──────────────────────┘  │
+  └────────────────────────────────────────────────────┘
+```
+
+### 核心设计模式：代理（Proxy）模式
+
+Console 的核心设计是一个**统一的反向代理网关**。所有前端 API 请求都经过 Bridge Server 处理：
+
+1. **认证拦截** — 每次请求先经过认证中间件验证身份
+2. **CSRF 防护** — 敏感操作需要 CSRF Token
+3. **Bearer Token 注入** — 在代理到后端时自动注入用户 Token
+4. **请求路由** — 根据路径分发到不同的后端服务
+5. **多集群路由** — 根据请求上下文选择目标集群
+
+这种设计的优势：
+- 前端无需直接暴露 K8s API Server
+- Token 在服务端管理，安全性高
+- 统一控制跨域（CORS）、标头过滤、协议转换
+- 多集群请求透明路由
+
+---
+
+
+---
+
+## 技术栈
+
+### 后端 (Go)
+
+| 类别 | 技术 | 用途 |
+|------|------|------|
+| 语言 | Go 1.25+ | HTTP Server |
+| HTTP 框架 | 标准库 `net/http` | 路由、中间件 |
+| 认证 | OIDC / OAuth2 | `coreos/go-oidc`、自实现 Keycloak 集成 |
+| 代理 | `net/http/httputil.ReverseProxy` | 统一反向代理 |
+| 配置 | `gopkg.in/yaml.v2` | YAML 配置解析 |
+| K8s 集成 | `client-go`、`controller-runtime` | K8s API 调用、Controller |
+| Session | `gorilla/sessions` | Cookie Session 管理 |
+| 日志 | `klog` | 结构化和分级日志 |
+
+### 前端 (React/TypeScript)
+
+| 类别 | 技术 |
+|------|------|
+| 框架 | React 18 + TypeScript 5 |
+| 状态管理 | Redux 5 |
+| 路由 | React Router 7 |
+| UI 库 | PatternFly 6 |
+| 构建 | Webpack 5 (Module Federation) |
+| 测试 | Jest + Cypress |
+| 国际化 | i18next |
+| 监控客户端 | Prometheus API 客户端 |
+| 终端 | XTerm.js |
+| 编辑器 | Monaco Editor (YAML) |
+
+---
+
+## 配置体系
+
+配置支持三种来源，优先级从高到低：
+
+1. **命令行参数** — `--listen=http://0.0.0.0:9000`
+2. **环境变量** — `BRIDGE_LISTEN=http://0.0.0.0:9000`
+3. **YAML 配置文件** — `--config=/path/to/config.yaml`
+
+详细配置项说明参见 `cmd/bridge/README.md`。
+
+**示例配置**（`examples/config.yaml`）：
+```yaml
+apiVersion: console.kube-do.cn/v1
+kind: ConsoleConfig
+servingInfo:
+  bindAddress: http://0.0.0.0:9000
+clusterInfo:
+  consoleBaseAddress: http://127.0.0.1:9000
+  k8sModeOffClusterEndpoint: https://10.255.0.180:6443
+  k8sMode: off-cluster
+auth:
+  clientID: kdo
+  clientSecret: kubedo
+  issuerURL: https://keycloak.example.com/realms/kdo
+  userAuth: oidc
+  oidcProvider: Keycloak
+```
+
+---
+
+## 认证流程
+
+### OIDC 认证（Keycloak）
+
+```
+1. 用户访问 Console
+2. Console 重定向到 Keycloak 登录页
+3. 用户登录成功后，Keycloak 返回 Authorization Code
+4. Console 服务端用 Code 换取 ID Token + Access Token
+5. Token 加密存储在 Cookie Session 中
+6. 后续 API 请求从 Session 中提取 Token，注入到 K8s API 请求
+
+登出流程：
+1. 用户点击 Logout
+2. Console 从 Session 清除 Token
+3. 调用 Keycloak 的 end_session_endpoint 清除 Keycloak Session
+```
+
+---
+
+
+### 生产部署
+
+参考 `examples/deployment.yaml`，包含：
+- **ConfigMap**：注入配置文件
+- **Deployment**：运行 bridge 容器
+- **Service**：NodePort 30080 暴露服务
+- **Ingress**：nginx ingress 代理
+- **RoleBinding**：授权认证用户
+
+---
+
+## 与上游 OpenShift Console 的差异
+
+| 维度 | OpenShift Console | KubeDo Console |
+|------|------------------|----------------|
+| API Group | `console.openshift.io` | `console.kube-do.cn` |
+| 认证 | OpenShift OAuth | Keycloak OIDC |
+| 多集群 | ACM 集成 | 自定义 Cluster CRD |
+| 镜像仓库 | OpenShift Internal Registry | Harbor |
+| 应用模型 | OpenShift Template | AppProject / AppEnv CRD |
+| 用户管理 | OpenShift User | kube-do.cn/v1 User/Group CRD |
+| 文档链接 | docs.openshift.com | docs.kube-do.cn |
+| 镜像构建 | ImageStream (image.openshift.io) | ImageStream (kube-do.cn) |
+| 全局搜索 | 无 | Pod / Service IP 搜索 |
+| Pod 文件 | 无 | 文件上传下载 |
+
 
 ## 配置加载优先级
 
