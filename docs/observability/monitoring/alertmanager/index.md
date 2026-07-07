@@ -656,6 +656,7 @@ email_configs:
 
 对应 Alertmanager 配置格式：
 
+{% raw %}
 ```yaml
 slack_configs:
   - api_url: https://hooks.slack.com/services/...
@@ -665,6 +666,7 @@ slack_configs:
     title: '{{ template "slack.default.title" . }}'
     text: '{{ template "slack.default.text" . }}'
 ```
+{% endraw %}
 
 | 字段 | formValues key | 必填 | 说明 |
 |------|---------------|------|------|
@@ -694,6 +696,7 @@ if (formValues.slackIconEmoji && formValues.slackIconUrl) {
 
 对应 Alertmanager 原生配置格式：
 
+{% raw %}
 ```yaml
 wechat_configs:
   - send_resolved: true
@@ -704,6 +707,7 @@ wechat_configs:
     message: '{{ template "wechat.default.message" . }}'
     api_url: 'https://qyapi.weixin.qq.com/cgi-bin/'
 ```
+{% endraw %}
 
 | 字段 | formValues key | 必填 | 说明 |
 |------|---------------|------|------|
@@ -1121,11 +1125,13 @@ const submit = (event) => {
 
 **支持的语法：**
 
+{% raw %}
 ```typescript
 t('public~Static text')                       // ✅ 静态字符串
 t('public~Hello {{name}}')                    // ✅ 插值变量
 t('public~{{count}} item', { count: 5 })      // ✅ 复数（自动添加 _one / _other 后缀）
 ```
+{% endraw %}
 
 **不支持的语法（解析器无法提取）：**
 
