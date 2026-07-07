@@ -12,6 +12,8 @@ nav_order: 1
 
 Kdo Console 是一个**多集群 Kubernetes 管理平台**。它不仅是 K8s API 的友好 Web UI，更是一个涵盖认证、监控、日志、应用生命周期管理、镜像仓库、多集群联邦的综合性管理控制台。
 
+Kdo Console 运行在**kubedo-system**这个namespace，deployment名字是**console**。
+
 ---
 
 ## 核心功能
@@ -234,22 +236,6 @@ auth:
 - **RoleBinding**：授权认证用户
 
 ---
-
-## 与上游 OpenShift Console 的差异
-
-| 维度 | OpenShift Console | KubeDo Console |
-|------|------------------|----------------|
-| API Group | `console.openshift.io` | `console.kube-do.cn` |
-| 认证 | OpenShift OAuth | Keycloak OIDC |
-| 多集群 | ACM 集成 | 自定义 Cluster CRD |
-| 镜像仓库 | OpenShift Internal Registry | Harbor |
-| 应用模型 | OpenShift Template | AppProject / AppEnv CRD |
-| 用户管理 | OpenShift User | kube-do.cn/v1 User/Group CRD |
-| 文档链接 | docs.openshift.com | docs.kube-do.cn |
-| 镜像构建 | ImageStream (image.openshift.io) | ImageStream (kube-do.cn) |
-| 全局搜索 | 无 | Pod / Service IP 搜索 |
-| Pod 文件 | 无 | 文件上传下载 |
-
 
 ## 配置加载优先级
 
