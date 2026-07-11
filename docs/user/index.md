@@ -67,7 +67,7 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 |------|------|---------|
 | **Username** | 用户登录名，唯一标识 | 是 |
 | **Email** | 用户邮箱地址 | 否 |
-| **First Name** | 用户名 | 否 |
+| **First Name** | 用户名 | 是 |
 | **Last Name** | 用户姓氏 | 否 |
 | **Email Verified** | 邮箱是否已验证，用于控制是否需要邮箱验证后才能登录 | 否 |
 | **Enabled** | 用户是否启用，禁用后用户无法登录 | 是（默认开启） |
@@ -91,23 +91,8 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 | **Linked Accounts** | 关联的外部账号 |
 | **CustomAttributes** | 自定义属性 |
 
-![](img/kc-user-detail-tabs.png)
-
-3. 在 `Details` 标签页中，可以修改用户的以下基本信息：
-
-| 字段 | 说明 |
-|------|------|
-| **Username** | 用户登录名 |
-| **Email** | 邮箱地址 |
-| **First Name** | 名 |
-| **Last Name** | 姓 |
-| **Email Verified** | 邮箱是否已验证 |
-| **Enabled** | 用户启用状态 |
-| **Required User Actions** | 要求用户执行的操作（如更新密码、验证邮箱等） |
-
 修改完成后，点击 `Save` 保存更改。
 
-![](img/kc-edit-user-details.png)
 
 ### 删除用户
 1. 登录 Keycloak 控制台，确认Realm是`kdo`, 选择 `Users`，选择 用户，点击 `Delete`，在Keycloak删除用户后，该用户将无法登录KDO平台。
@@ -136,16 +121,6 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 {: .important }
 重置密码后，用户之前的所有会话将被强制终止，用户需要使用新密码重新登录。
 
-#### 设置临时密码
-
-1. 在 `Credentials` 标签页的 `Set Password` 区域
-2. 勾选 `Temporary` 选项
-3. 输入密码后点击 `Set Password`
-
-![](img/kc-temp-password.png)
-
-设置为临时密码后，用户首次登录时会被要求修改密码，只有修改密码后才能正常使用平台。
-
 #### 配置密码策略（管理员）
 
 {: .note }
@@ -157,7 +132,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 4. 选择 `Password Policy`（密码策略）配置密码复杂度要求
 
 ![](img/kc-password-policy.png)
-
+![img.png](img.png)
 可配置的密码策略包括：
 
 | 策略 | 说明 |
@@ -184,7 +159,6 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 4. 点击 `Save` 保存更改
 
 ![](img/kc-user-enabled.png)
-
 #### 邮箱验证
 
 {: .note }
@@ -196,7 +170,6 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 4. 点击 `Save` 保存更改
 
 ![](img/kc-email-verified.png)
-
 ### 角色分配
 
 {: .note }
@@ -246,7 +219,6 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 3. 点击 `Save` 完成创建
 
 ![](img/kc-create-group.png)
-
 {: .note }
 组名称建议使用英文命名，以避免潜在的编码问题。创建后可以添加中文描述以便识别。
 
@@ -257,7 +229,6 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 3. 点击 `Save` 保存更改
 
 ![](img/kc-edit-group.png)
-
 ### 删除用户组
 
 1. 在 `Groups` 列表中，选择要删除的组
@@ -270,7 +241,6 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 - 为该组分配的角色将不再生效
 - 操作不可恢复
 
-![](img/kc-delete-group.png)
 
 ### 用户与组关联
 分配用户到组,访问管理控制台操作：
@@ -286,7 +256,6 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 5. 已加入的组会显示在 `Group Membership` 列表中
 
 ![](img/kc-user-join-group.png)
-
 #### 将用户移出组
 
 1. 在用户详情页的 `Groups` 标签页
