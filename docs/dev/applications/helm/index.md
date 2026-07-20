@@ -250,5 +250,5 @@ KDO 当前主要使用第 2 层（UI 配置）。
 
 - [Helm 官方文档](https://helm.sh/docs/)
 - [Bitnami Helm Charts](https://github.com/bitnami/charts)
-- [KDO 应用管理概览](/dev/applications/)
-- [Helm 应用 vs 标准应用对比](/dev/applications/)
+- [KDO 应用管理概览](/docs/dev/applications/)
+- [Helm 应用 vs 标准应用对比](/docs/dev/applications/)

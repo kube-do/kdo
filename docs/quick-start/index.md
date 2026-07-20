@@ -68,7 +68,7 @@ KDO 围绕两大用户角色提供能力：
 如果已有 Kubernetes 集群（v1.28+）：
 
 1. 确认集群健康：`kubectl get nodes` 显示所有节点 `Ready`
-2. 配置 OIDC 认证（Keycloak）或使用现有认证系统（详见 [安装指南](/install/)）
+2. 配置 OIDC 认证（Keycloak）或使用现有认证系统（详见 [安装指南](/docs/install/)）
 3. 确保集群资源充足（预留 CPU/Memory 供平台组件运行）
 
 ---
@@ -81,8 +81,8 @@ KDO 围绕两大用户角色提供能力：
 
 在没有现有集群的环境中，使用 KDO 安装脚本自动部署 Kubernetes 和平台组件：
 
-1. [在 Linux 上安装 Kubernetes](/install/kubernetes/)
-2. [在 Kubernetes 上安装 KDO](/install/kdo/)
+1. [在 Linux 上安装 Kubernetes](/docs/install/kubernetes/)
+2. [在 Kubernetes 上安装 KDO](/docs/install/kdo/)
 
 👉 推荐：完整自动化，适合从零搭建
 
@@ -90,8 +90,8 @@ KDO 围绕两大用户角色提供能力：
 
 如果已有合规的 Kubernetes 集群，仅需安装 KDO 平台：
 
-1. [根据 OIDC 平台配置 Kubernetes 认证](/install/kubernetes/#根据oidc平台设置kubernetes)
-2. [安装 KDO 平台](/install/kdo/)
+1. [根据 OIDC 平台配置 Kubernetes 认证](/docs/install/kubernetes/#根据oidc平台设置kubernetes)
+2. [安装 KDO 平台](/docs/install/kdo/)
 
 👉 推荐：已有集群生产环境
 
@@ -199,12 +199,12 @@ git push
 
 | 主题 | 文档 | 难度 |
 |------|------|------|
-| 应用管理进阶 | [应用管理概览](/dev/applications/) | ⭐⭐ |
-| 工作负载详解 | [工作负载](/dev/workloads/) | ⭐⭐ |
-| 配置管理 | [配置管理](/dev/configurations/) | ⭐⭐ |
-| 网络与存储 | [网络与存储](/dev/network-stroage/) | ⭐⭐⭐ |
-| 观测平台 | [观测平台](/observability/) | ⭐⭐ |
-| 权限控制 | [权限管理](/rbac/) | ⭐⭐⭐ |
+| 应用管理进阶 | [应用管理概览](/docs/dev/applications/) | ⭐⭐ |
+| 工作负载详解 | [工作负载](/docs/dev/workloads/) | ⭐⭐ |
+| 配置管理 | [配置管理](/docs/dev/configurations/) | ⭐⭐ |
+| 网络与存储 | [网络与存储](/docs/dev/network-stroage/) | ⭐⭐⭐ |
+| 观测平台 | [观测平台](/docs/observability/) | ⭐⭐ |
+| 权限控制 | [权限管理](/docs/rbac/) | ⭐⭐⭐ |
 
 ---
 

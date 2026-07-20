@@ -12,12 +12,12 @@ nav_order: 9
 
 | 功能 | 描述 | 入口 |
 |------|------|------|
-| **资源配额 (ResourceQuota)** | 限制命名空间的资源使用总量（CPU、内存、存储、对象数量等） | [ResourceQuota](/admin/management/resourcequotas/) |
-| **资源范围 (LimitRange)** | 为命名空间设置容器资源请求/限制的默认值和约束范围 | [LimitRange](/admin/management/limitranges/) |
-| **节点管理 (Nodes)** | 查看和管理集群节点状态、标签、污点、资源容量 | [Nodes](/admin/management/nodes/) |
-| **命名空间 (Namespaces)** | 创建和管理命名空间，实现多租户资源隔离 | [Namespaces](/admin/management/namespaces/) |
-| **应用项目 (AppProjects)** | KDO 特有的项目模型，映射到命名空间并提供额外约束 | [AppProjects](/admin/management/appprojects/) |
-| **自定义资源 (CRD)** | 查看和管理集群中安装的自定义资源定义 | [CustomResourceDefinitions](/admin/management/customresourcedefinitions/) |
+| **资源配额 (ResourceQuota)** | 限制命名空间的资源使用总量（CPU、内存、存储、对象数量等） | [ResourceQuota](/docs/admin/management/resourcequotas/) |
+| **资源范围 (LimitRange)** | 为命名空间设置容器资源请求/限制的默认值和约束范围 | [LimitRange](/docs/admin/management/limitranges/) |
+| **节点管理 (Nodes)** | 查看和管理集群节点状态、标签、污点、资源容量 | [Nodes](/docs/admin/management/nodes/) |
+| **命名空间 (Namespaces)** | 创建和管理命名空间，实现多租户资源隔离 | [Namespaces](/docs/admin/management/namespaces/) |
+| **应用项目 (AppProjects)** | KDO 特有的项目模型，映射到命名空间并提供额外约束 | [AppProjects](/docs/admin/management/appprojects/) |
+| **自定义资源 (CRD)** | 查看和管理集群中安装的自定义资源定义 | [CustomResourceDefinitions](/docs/admin/management/customresourcedefinitions/) |
 
 ---
 
@@ -25,11 +25,11 @@ nav_order: 9
 
 ### 常用任务
 
-- [创建 ResourceQuota](/admin/management/resourcequotas/) - 限制项目资源使用
-- [设置 LimitRange](/admin/management/limitranges/) - 规范容器资源配置
-- [查看节点状态](/admin/management/nodes/) - 监控集群容量和健康
-- [创建命名空间](/admin/management/namespaces/) - 为新团队/环境隔离资源
-- [配置 AppProject](/admin/management/appprojects/) - KDO 项目权限管理
+- [创建 ResourceQuota](/docs/admin/management/resourcequotas/) - 限制项目资源使用
+- [设置 LimitRange](/docs/admin/management/limitranges/) - 规范容器资源配置
+- [查看节点状态](/docs/admin/management/nodes/) - 监控集群容量和健康
+- [创建命名空间](/docs/admin/management/namespaces/) - 为新团队/环境隔离资源
+- [配置 AppProject](/docs/admin/management/appprojects/) - KDO 项目权限管理
 
 ---
 
@@ -181,4 +181,4 @@ kubectl explain resourcequota --api-version=v1
 - [Kubernetes LimitRange 官方文档](https://kubernetes.io/docs/concepts/policy/limit-range/)
 - [Kubernetes 节点管理](https://kubernetes.io/docs/concepts/architecture/nodes/)
 - [Kubernetes 命名空间](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
-- [AppProject CRD 参考](/admin/management/appprojects/)
+- [AppProject CRD 参考](/docs/admin/management/appprojects/)

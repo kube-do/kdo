@@ -273,4 +273,4 @@ NetworkPolicy 由 CNI 实现（如 Calico）在数据平面处理。简单的策
 - [Kubernetes NetworkPolicy 官方文档](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
 - [Calico 网络策略指南](https://docs.projectcalico.org/security/network-policy/)
 - [Kubernetes 零信任网络模型](https://kubernetes.io/docs/concepts/security/network-policies/)
-- [KDO 开发者网络存储](/dev/network-stroage/)
+- [KDO 开发者网络存储](/docs/dev/network-stroage/)

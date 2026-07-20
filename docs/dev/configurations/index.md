@@ -213,5 +213,5 @@ kubectl get configmap app-config -o jsonpath='{.data.key1}'
 
 - [Kubernetes ConfigMap 官方文档](https://kubernetes.io/docs/concepts/configuration/configmap/)
 - [Kubernetes Secret 官方文档](https://kubernetes.io/docs/concepts/configuration/secret/)
-- [工作负载操作](/workload-actions/) - 如何将配置应用到应用
-- [存储管理](/dev/network-stroage/) - 持久化配置存储
+- [工作负载操作](/docs/workload-actions/) - 如何将配置应用到应用
+- [存储管理](/docs/dev/network-stroage/) - 持久化配置存储

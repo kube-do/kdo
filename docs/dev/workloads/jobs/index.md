@@ -139,7 +139,7 @@ Pod 名称会带有索引：`example-job-9cx2l` → 环境变量 `JOB_COMPLETION
 
 ### 3. 定时任务 (CronJob)
 
-如果需要周期性执行，使用 [CronJob](/dev/workloads/cronjobs/) 而非手动创建 Job。
+如果需要周期性执行，使用 [CronJob](/docs/dev/workloads/cronjobs/) 而非手动创建 Job。
 
 ---
 
@@ -211,5 +211,5 @@ spec:
 
 - [Kubernetes Job 官方文档](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 - [Kubernetes CronJob 官方文档](https://kubernetes.io/docs/concepts/workloads/controllers/cron-job/)
-- [工作负载操作（扩缩、更新、健康检查）](/workload-actions/)
-- [Pod 生命周期](/dev/workloads/pods/)
+- [工作负载操作（扩缩、更新、健康检查）](/docs/workload-actions/)
+- [Pod 生命周期](/docs/dev/workloads/pods/)

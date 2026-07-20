@@ -262,6 +262,6 @@ kubectl get secret my-secret -o yaml
 ## 相关链接
 
 - [Kubernetes Secret 官方文档](https://kubernetes.io/docs/concepts/configuration/secret/)
-- [ConfigMap 使用指南](/dev/configurations/configmaps/)
+- [ConfigMap 使用指南](/docs/dev/configurations/configmaps/)
 - [Kubernetes Encryption at Rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/)
 - [HashiCorp Vault 集成](https://www.vaultproject.io/docs/platform/k8s)

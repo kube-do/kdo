@@ -171,5 +171,5 @@ Kubernetes 默认：
 
 - [Kubernetes Deployment 更新策略](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy)
 - [Kubernetes StatefulSet 更新](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#ordered-rolling-updates)
-- [PodDisruptionBudget](/workload-actions/pdb/)
-- [健康检查配置](/workload-actions/edit-health-checks/)
+- [PodDisruptionBudget](/docs/workload-actions/pdb/)
+- [健康检查配置](/docs/workload-actions/edit-health-checks/)

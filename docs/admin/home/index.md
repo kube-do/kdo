@@ -26,11 +26,11 @@ nav_order: 1
 
 ### 常用任务
 
-- [安装 Helm 应用](/admin/application-management/helm/) - 通过 Helm Chart 部署应用
-- [部署 Operator](/admin/application-management/operators/) - 安装和管理 Kubernetes Operators
-- [配置网络策略](/admin/networking/networkpolicies/) - 控制 Pod 间访问规则
-- [管理存储类](/admin/storage/storageclasses/) - 定义持久化存储类型
-- [设置资源配额](/admin/management/resourcequotas/) - 限制命名空间资源使用
+- [安装 Helm 应用](/docs/admin/application-management/helm/) - 通过 Helm Chart 部署应用
+- [部署 Operator](/docs/admin/application-management/operators/) - 安装和管理 Kubernetes Operators
+- [配置网络策略](/docs/admin/networking/networkpolicies/) - 控制 Pod 间访问规则
+- [管理存储类](/docs/admin/storage/storageclasses/) - 定义持久化存储类型
+- [设置资源配额](/docs/admin/management/resourcequotas/) - 限制命名空间资源使用
 
 ---
 
@@ -42,7 +42,7 @@ nav_order: 1
 - `namespaces` 管理命名空间
 - `nodes` 查看和管理节点
 
-如需细粒度权限控制，请参考 [RBAC 配置指南](/dev/security/rbac/)（待补充）。
+如需细粒度权限控制，请参考 [RBAC 配置指南](/docs/dev/security/rbac/)（待补充）。
 
 ---
 
@@ -69,5 +69,5 @@ nav_order: 1
 ## 相关链接
 
 - [Kubernetes 官方文档](https://kubernetes.io/docs/) - 参考底层概念
-- [开发者界面概览](/dev/) - 了解应用开发者视角
-- [集群架构说明](/concepts/cluster-architecture/) - 理解 KDO 集群设计
+- [开发者界面概览](/docs/dev/) - 了解应用开发者视角
+- [集群架构说明](/docs/concepts/cluster-architecture/) - 理解 KDO 集群设计

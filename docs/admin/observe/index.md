@@ -25,10 +25,10 @@ KDO 平台集成了以下开源可观测性组件：
 
 ### 管理任务
 
-- [配置监控告警](/admin/observe/alerting/) - 设置告警规则和通知渠道
-- [管理仪表盘](/admin/observe/dashboards/) - 查看集群健康度、资源利用率
-- [日志查询](/admin/observe/logging/) - 全集群日志检索与分析
-- [审计日志](/admin/observe/audit/) - Kubernetes API 审计追踪（待完善）
+- [配置监控告警](/docs/admin/observe/alerting/) - 设置告警规则和通知渠道
+- [管理仪表盘](/docs/admin/observe/dashboards/) - 查看集群健康度、资源利用率
+- [日志查询](/docs/admin/observe/logging/) - 全集群日志检索与分析
+- [审计日志](/docs/admin/observe/audit/) - Kubernetes API 审计追踪（待完善）
 
 ### 访问地址
 
@@ -58,7 +58,7 @@ KDO 平台集成了以下开源可观测性组件：
 
 ### 2. 应用级监控（开发者视角）
 
-开发者可通过 [开发者观测平台](/dev/observe/) 查看：
+开发者可通过 [开发者观测平台](/docs/dev/observe/) 查看：
 - 所属项目的环境概览
 - 应用的 Pod 指标（CPU、内存、网络、文件系统）
 - 应用事件（部署、扩缩、故障）
@@ -197,7 +197,7 @@ spec:
 
 ## 相关链接
 
-- [开发者观测平台](/dev/observe/) - 项目和应用级监控
+- [开发者观测平台](/docs/dev/observe/) - 项目和应用级监控
 - [可观测性组件官方文档](https://prometheus.io/docs/, https://grafana.com/docs/)
 - [Kubernetes 日志架构](https://kubernetes.io/docs/concepts/cluster-administration/logging/)
 - [Kubernetes Monitoring 最佳实践](https://kubernetes.io/docs/tasks/debug/debug-cluster/monitoring/)

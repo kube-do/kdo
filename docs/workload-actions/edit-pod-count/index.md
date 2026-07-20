@@ -128,6 +128,6 @@ strategy:
 
 - [Kubernetes Deployment 官方文档](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - [Kubernetes StatefulSet 官方文档](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
-- [HPA 自动扩缩](/workload-actions/hpa/)
-- [更新策略配置](/workload-actions/edit-update-strategy/)
-- [PodDisruptionBudget](/workload-actions/pdb/)
+- [HPA 自动扩缩](/docs/workload-actions/hpa/)
+- [更新策略配置](/docs/workload-actions/edit-update-strategy/)
+- [PodDisruptionBudget](/docs/workload-actions/pdb/)

@@ -219,6 +219,6 @@ kubectl get jobs --all-namespaces --field-selector=metadata.ownerReferences.name
 ## 相关链接
 
 - [Kubernetes CronJob 官方文档](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)
-- [Job 使用指南](/dev/workloads/jobs/)
+- [Job 使用指南](/docs/dev/workloads/jobs/)
 - [时间表达式工具](https://crontab.guru/)
 - [Kubernetes 工作负载最佳实践](https://kubernetes.io/docs/concepts/workloads/)

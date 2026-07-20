@@ -315,7 +315,7 @@ Kubernetes 默认保留 1 小时，KDO 扩展配置可将事件聚合到中央�
 
 ## 相关链接
 
-- [管理员观测平台](/admin/observe/) - 集群级监控
-- [可观测性组件文档](/observability/)
+- [管理员观测平台](/docs/admin/observe/) - 集群级监控
+- [可观测性组件文档](/docs/observability/)
 - [Prometheus 查询语言 (PromQL)](https://prometheus.io/docs/prometheus/latest/querying/basics/)
 - [Kubernetes Events 指南](https://kubernetes.io/docs/concepts/cluster-administration/system-logs/)

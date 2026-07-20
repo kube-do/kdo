@@ -212,6 +212,6 @@ LimitRange 约束单个容器，ResourceQuota 约束整个命名空间：
 ## 相关链接
 
 - [Kubernetes LimitRange 官方文档](https://kubernetes.io/docs/concepts/policy/limit-range/)
-- [Kubernetes ResourceQuota](/admin/management/resourcequotas/)
+- [Kubernetes ResourceQuota](/docs/admin/management/resourcequotas/)
 - [Kubernetes 资源管理](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
-- [AppProject 自动配额](/admin/management/appprojects/)
+- [AppProject 自动配额](/docs/admin/management/appprojects/)

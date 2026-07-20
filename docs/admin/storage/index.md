@@ -22,11 +22,11 @@ nav_order: 5
 
 ### 常用任务
 
-- [管理存储类](/admin/storage/storageclasses/) - 创建、编辑 StorageClass
-- [查看持久卷](/admin/storage/persistentvolumes/) - 集群 PV 概览和状态
-- [管理卷快照](/admin/storage/volumesnapshots/) - 创建快照、恢复数据
-- [容量规划](/admin/storage/capacity-planning/) - 存储资源使用趋势分析（待完善）
-- [CSI 驱动维护](/admin/storage/csi-drivers/) - 安装、升级 CSI 插件（待完善）
+- [管理存储类](/docs/admin/storage/storageclasses/) - 创建、编辑 StorageClass
+- [查看持久卷](/docs/admin/storage/persistentvolumes/) - 集群 PV 概览和状态
+- [管理卷快照](/docs/admin/storage/volumesnapshots/) - 创建快照、恢复数据
+- [容量规划](/docs/admin/storage/capacity-planning/) - 存储资源使用趋势分析（待完善）
+- [CSI 驱动维护](/docs/admin/storage/csi-drivers/) - 安装、升级 CSI 插件（待完善）
 
 ### 访问路径
 
@@ -205,4 +205,4 @@ KDO 默认提供：
 - [Kubernetes StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 - [Kubernetes VolumeSnapshot](https://kubernetes.io/docs/concepts/storage/volume-snapshots/)
 - [CSI 规范](https://github.com/container-storage-interface/spec)
-- [开发者持久卷声明指南](/dev/network-stroage/persistent-volume-claims/)
+- [开发者持久卷声明指南](/docs/dev/network-stroage/persistent-volume-claims/)

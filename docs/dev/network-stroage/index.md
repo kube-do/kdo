@@ -10,11 +10,11 @@ nav_order: 5
 
 ### 主要功能
 
-| 功能类别 | 描述 | 入口 |
-|----------|------|------|
-| **服务 (Services)** | 定义 Pod 的访问入口，提供集群内服务发现和负载均衡 | [服务](/dev/network-stroage/services/) |
-| **路由 (Ingresses)** | 配置外部访问规则，将 HTTP/HTTPS 请求路由到集群内服务 | [路由](/dev/network-stroage/ingresses/) |
-| **持久卷声明 (PVC)** | 申请持久化存储空间，用于数据库、文件等需要保存的数据 | [持久卷声明](/dev/network-stroage/persistent-volume-claims/) |
+| 功能类别 | 描述 | 入口                                                      |
+|----------|------|---------------------------------------------------------|
+| **服务 (Services)** | 定义 Pod 的访问入口，提供集群内服务发现和负载均衡 | [服务](/docs/dev/network-stroage/services/)               |
+| **路由 (Ingresses)** | 配置外部访问规则，将 HTTP/HTTPS 请求路由到集群内服务 | [路由](/docs/dev/network-stroage/ingresses/)                   |
+| **持久卷声明 (PVC)** | 申请持久化存储空间，用于数据库、文件等需要保存的数据 | [持久卷声明](/docs/dev/network-stroage/persistent-volume-claims/) |
 
 ---
 
@@ -171,8 +171,8 @@ PVC 申请持久化存储，数据独立于 Pod 生命周期：
 
 ## 相关链接
 
-- [存储概念详解](/storage/) - 深入了解 PV、PVC、StorageClass
-- [网络策略（管理员）](/admin/networking/networkpolicies/) - Pod 间访问控制
+- [存储概念详解](/docs/storage/) - 深入了解 PV、PVC、StorageClass
+- [网络策略（管理员）](/docs/admin/networking/networkpolicies/) - Pod 间访问控制
 - [Kubernetes Service 官方文档](https://kubernetes.io/docs/concepts/services-networking/service/)
 - [Kubernetes Ingress 官方文档](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - [Kubernetes 存储官方文档](https://kubernetes.io/docs/concepts/storage/)

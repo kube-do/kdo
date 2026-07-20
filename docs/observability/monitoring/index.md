@@ -64,7 +64,7 @@ Dashboard 是一个可视化界面，展示各种指标的数据，在界面上�
 ## KDO告警模块
 KDO的告警模块基于`Grafana`，提供了告警规则、告警通知和告警状态等信息，它同时支持监控告警和日志告警。 
 1. **监控告警：** 监控模块已经对接`Prometheus`和`Alertmanager`，可以配置告警规则和告警通知。
-2. **日志告警：** [日志模块](/observability/logging/)已经对接`Loki`，可以配置日志查询和日志告警规则。
+2. **日志告警：** [日志模块](/docs/observability/logging/)已经对接`Loki`，可以配置日志查询和日志告警规则。
 
 ### Grafana报警架构
 Grafana 警报定期查询数据源并评估警报规则中定义的条件

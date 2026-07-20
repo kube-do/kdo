@@ -240,4 +240,4 @@ Deployment 副本数保持不变，只是不再自动调整。
 - [Kubernetes HPA 官方文档](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
 - [Kubernetes 自定义指标 HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/)
 - [ClusterAutoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler)
-- [KDO 工作负载操作首页](/workload-actions/)
+- [KDO 工作负载操作首页](/docs/workload-actions/)

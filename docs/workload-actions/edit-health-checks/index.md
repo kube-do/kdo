@@ -275,5 +275,5 @@ Readiness Probe 失败不会影响调度。但如果没有配置 Readiness，Ser
 
 - [Kubernetes Probe 官方文档](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes)
 - [Kubernetes Liveness Probe 指南](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
-- [Deployment 更新策略](/workload-actions/edit-update-strategy/)
-- [HPA 自动扩缩](/workload-actions/hpa/)
+- [Deployment 更新策略](/docs/workload-actions/edit-update-strategy/)
+- [HPA 自动扩缩](/docs/workload-actions/hpa/)

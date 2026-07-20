@@ -24,10 +24,10 @@ nav_order: 8
 
 ### 常用任务
 
-- [查看流水线定义](/admin/pipeline/pipelines/) - 了解现有流水线的结构
-- [监控流水线运行](/admin/pipeline/pipelineruns/) - 跟踪 CI/CD 执行状态
-- [管理任务模板](/admin/pipeline/tasks/) - 创建可复用的步骤
-- [配置流水线触发器](/admin/pipeline/triggers/) - Webhook 自动触发（待完善）
+- [查看流水线定义](/docs/admin/pipeline/pipelines/) - 了解现有流水线的结构
+- [监控流水线运行](/docs/admin/pipeline/pipelineruns/) - 跟踪 CI/CD 执行状态
+- [管理任务模板](/docs/admin/pipeline/tasks/) - 创建可复用的步骤
+- [配置流水线触发器](/docs/admin/pipeline/triggers/) - Webhook 自动触发（待完善）
 
 ---
 
@@ -201,6 +201,6 @@ spec:
 ## 相关链接
 
 - [Tekton 官方文档](https://tekton.dev/docs/) - 完整 Pipelines as Code 指南
-- [KDO 应用流水线架构](/dev/applications/pipelines/) - 开发者视角
-- [Kubernetes ServiceAccount 与 RBAC](/rbac/) - 权限模型
-- [可观测性平台](/observability/) - 监控流水线运行状态
+- [KDO 应用流水线架构](/docs/dev/applications/pipelines/) - 开发者视角
+- [Kubernetes ServiceAccount 与 RBAC](/docs/rbac/) - 权限模型
+- [可观测性平台](/docs/observability/) - 监控流水线运行状态

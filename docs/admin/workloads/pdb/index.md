@@ -230,6 +230,6 @@ kubectl describe pdb my-pdb
 ## 相关链接
 
 - [Kubernetes PDB 官方文档](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/)
-- [Kubernetes 节点管理](/admin/management/nodes/)
-- [Deployment 更新策略](/workload-actions/edit-update-strategy/)
-- [HPA 自动扩缩](/workload-actions/hpa/)
+- [Kubernetes 节点管理](/docs/admin/management/nodes/)
+- [Deployment 更新策略](/docs/workload-actions/edit-update-strategy/)
+- [HPA 自动扩缩](/docs/workload-actions/hpa/)

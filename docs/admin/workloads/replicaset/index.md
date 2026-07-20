@@ -150,5 +150,5 @@ kubectl delete rs my-rs --cascade=orphan
 ## 相关链接
 
 - [Kubernetes ReplicaSet 官方文档](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
-- [Deployment 使用指南](/dev/workloads/deployments/)
+- [Deployment 使用指南](/docs/dev/workloads/deployments/)
 - [Kubernetes 工作负载最佳实践](https://kubernetes.io/docs/concepts/workloads/controllers/)

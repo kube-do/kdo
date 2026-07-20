@@ -41,7 +41,7 @@ nav_order: 1
 
 ## Pipelines as Code介绍
 `Pipelines as Code` 是一种实践方法，它将CI/CD（持续集成/持续部署）流水线的定义与源代码一同存储在版本控制系统中，如`GitHub`或`GitLab`。
-这种方法使用[Tekton PipelineRuns和Tasks](/dev/applications/pipelines/#tekton的资源对象)来定义具体的`CI/CD`流程，并将其保存在一个文件里，该文件位于项目的源代码管理(SCM)系统中。
+这种方法使用[Tekton PipelineRuns和Tasks](/docs/dev/applications/pipelines/#tekton的资源对象)来定义具体的`CI/CD`流程，并将其保存在一个文件里，该文件位于项目的源代码管理(SCM)系统中。
 
 ![basic-devops.jpg](imgs/basic-devops.jpg)
 ### 主要特点
@@ -57,7 +57,7 @@ KDO Pipelines-as-Code的架构主要由以下组件构成：
 
 ![pipeline-as-code.png](imgs/pipeline-as-code.png)
 
-1. **Tekton Pipelines：** [Tekton Pipelines](/dev/applications/pipelines/) 是 KDO Pipelines-as-Code 的核心引擎，负责执行流水线任务。
+1. **Tekton Pipelines：** [Tekton Pipelines](/docs/dev/applications/pipelines/) 是 KDO Pipelines-as-Code 的核心引擎，负责执行流水线任务。
 
 2. **Pipelines-as-Code Controller:** 这是 KDO Pipelines-as-Code 的核心组件，负责将代码仓库中的流水线定义(如 .tekton/目录下的YAML文件)转换为Tekton资源。
 它监听代码仓库的事件（如 Pull Request 或 Push），并根据事件触发流水线。
@@ -109,7 +109,7 @@ KDO Pipelines-as-Code相关的文件都是存储在应用的代码仓库，其�
 
 2. **流水线定义文件：** 在应用Git仓库主分支(比如`master/main`)的`.tekton/`目录下，是流水线定义的核心文件，它定义了流水线的分支、任务、步骤和参数。
 每个环境分支的流水线对应一个yaml文件，命名是应用名-部署环境-部署分支，比如：`spring-boot-scheduler-dev-develop.yaml`表示应用名为`spring-boot-scheduler`，部署环境为`dev`，部署分支为`develop`。
-里面的内容就是一个嵌入流水线。关于嵌入流水线，可以参考[嵌入流水线](/dev/applications/pipelines/#嵌入流水线)
+里面的内容就是一个嵌入流水线。关于嵌入流水线，可以参考[嵌入流水线](/docs/dev/applications/pipelines/#嵌入流水线)
 
 3. **应用镜像配置文件：** 在应用Git仓库分支(比如`develop/release`)的`docker/`目录下，它定义了应用的镜像的参数，一般就是`Dockerfile`，可以根据需要进行修改
 
@@ -143,9 +143,9 @@ KDO Pipelines-as-Code相关的文件都是存储在应用的代码仓库，其�
 ### 管理分支流水线
 
 {: .note }
-在分支流水线菜单，我们可以对对应分支的流水线进行管理，包括新增分支流水线、[编辑流水线](/dev/applications/pipelines/#编辑嵌入流水线)、手动运行流水线(必须先禁用自动触发)等。
+在分支流水线菜单，我们可以对对应分支的流水线进行管理，包括新增分支流水线、[编辑流水线](/docs/dev/applications/pipelines/#编辑嵌入流水线)、手动运行流水线(必须先禁用自动触发)等。
 无论是开发、测试还是生产环境，您都可以针对各个分支配置和调整相应的流水线，以满足特定环境下的需求。 
-流水线的编辑支持`图形化`和`YAML文件`方式，请参考[嵌入流水线](/dev/applications/pipelines/#嵌入流水线)。
+流水线的编辑支持`图形化`和`YAML文件`方式，请参考[嵌入流水线](/docs/dev/applications/pipelines/#嵌入流水线)。
 
 ![管理分支流水线](imgs/manageBranch.gif)
 

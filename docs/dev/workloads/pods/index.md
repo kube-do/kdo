@@ -50,7 +50,7 @@ Pod 中的内容总是并置（colocated）的并且一同调度，在共享的�
 | 详情   | 容器组的详细信息                                                                    |
 | 指标   | 容器组的监控指标，包括CPU, 内存，网络，磁盘                                                    |
 | YAML | 容器组资源对象的YAML                                                                |
-| 环境变量 | 容器组的环境变量，继承它的拥有者（Owner），一般为[无状态应用](/dev/workloads/deployments/)或[有状态应用](/dev/workloads/statefulsets/) |
+| 环境变量 | 容器组的环境变量，继承它的拥有者（Owner），一般为[无状态应用](/docs/dev/workloads/deployments/)或[有状态应用](/docs/dev/workloads/statefulsets/) |
 | 日志   | 容器组打印到标准输出的日志内容                                                             |
 | 事件   | [事件详情](/docs/observability/events)                                          |
 | 终端   | 容器组的访问终端，并且支持上传和下载文件                                                        |
