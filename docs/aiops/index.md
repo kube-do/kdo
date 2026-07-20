@@ -27,6 +27,8 @@ KDO平台集成了 **云原生 AI 智能助手** —— 一个基于生成式 AI
 
 {: .note }
 Kubernetes Lightspeed 通过 `ConfigMap` 中的 `olsconfig.yaml` 文件进行配置。配置文件位于 `kubedo-system` 命名空间下的 `olsconfig` ConfigMap 中。
+大模型api key的配置是`kubedo-system` 命名空间下的 `openai` 这个Secret。
+
 
 ### 配置文件示例
 

@@ -42,10 +42,12 @@ CloudShell集成了[Hermes Agent](https://github.com/NousResearch/hermes-agent),
 ![](img/open-terminal-tab.png)
 
 #### 配置大模型
+{: .note }
 **注意:** AI Agent需要提前获取对应大模型的api key，比如：deepseek、阿里云这些，这些大模型会按量收费。
 ![](img/hermas-setup-1.gif)
 
 #### 配置消息通道
+{: .note }
 **注意:** Hermes在配置有些消息通道(比如企业微信)时不会自动重启gateway组件，一般建议手动运行一下 `hermes gateway restart`。
 ![](img/hermas-setup-2.gif)
 
@@ -53,6 +55,7 @@ CloudShell集成了[Hermes Agent](https://github.com/NousResearch/hermes-agent),
 ![test-agent.png](img/test-agent.png)
 
 #### 注意事项
+{: .note }
 1. agent的权限和用户在Kdo平台的权限一致，比如普通用户只有对应项目的权限，没有集群相关权限，所以不用担心安全风险。
 2. 访问Kdo平台的权限有时效性，如果发现无法访问Kdo，需要用户重新登陆一下Kdo平台，重新访问一下CloudShell。
 
