@@ -38,7 +38,7 @@ KDO CloudShell 集成在KDO的管理控制台中，点击KDO页面右上角的�
 CloudShell集成了[Hermes Agent](https://github.com/NousResearch/hermes-agent),实现通过各种通讯软件(比如:微信、企业微信、QQ、钉钉)来管理KDO平台，包括应用和流水线，排查问题，监控告警这些。
 
 ### 打开CloudShell
-首先通过新tab的方式打开CloudShell，主要terminal内容比较多，便于访问。
+首先通过新tab的方式打开CloudShell，主要terminal内容比较多，建议使用`F11浏览器全屏模式`，便于访问。
 ![](img/open-terminal-tab.png)
 
 ### 配置大模型
@@ -55,10 +55,11 @@ CloudShell集成了[Hermes Agent](https://github.com/NousResearch/hermes-agent),
 
 ![](img/hermas-setup-2.gif)
 
-### 验证Agent
+#### 验证Agent
+现在我们可以打开消息通道(比如企业微信)和Agent进行沟通了。
 ![test-agent.png](img/test-agent.png)
 
-### 注意事项
+#### 注意事项
 
 {: .note }
 1. agent的权限和用户在Kdo平台的权限一致，比如普通用户只有对应项目的权限，没有集群相关权限，所以不用担心安全风险。
