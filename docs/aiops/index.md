@@ -45,10 +45,10 @@ data:
   olsconfig.yaml: |
     llm_providers:
       - name: openai
-        url: "http://litellm.hindsight.svc:4000"
+        url: "https://api.deepseek.com"
         credentials_path: config/openai/openai_api_key.txt
         models:
-          - name: nvidia-stepfun
+          - name: deepseek-v4-flash
     ols_config:
       max_workers: 1
       reference_content:
@@ -69,7 +69,7 @@ data:
         tls_certificate_path: /app-root/certs/tls.crt
         tls_key_path: /app-root/certs/tls.key
       default_provider: openai
-      default_model: nvidia-stepfun
+      default_model: deepseek-v4-flash
       user_data_collection:
         feedback_disabled: true
         transcripts_disabled: true
@@ -92,7 +92,7 @@ LLM 提供商配置，定义 AI 模型的接入方式。
 | 字段 | 类型 | 说明 |
 |------|------|------|
 | `name` | string | 提供商名称标识，用于 `default_provider` 引用 |
-| `url` | string | LLM 服务的 API 端点地址。支持远程 API（如 `https://api.openai.com/v1`）或集群内服务（如 `http://litellm.hindsight.svc:4000`） |
+| `url` | string | LLM 服务的 API 端点地址。支持远程 API（如 `https://api.openai.com/v1`）或集群内服务（如 `https://api.deepseek.com`） |
 | `credentials_path` | string | API Key 文件的路径，相对于配置目录 |
 | `models` | list | 可用模型列表 |
 | `models[].name` | string | 模型名称，用于 `default_model` 引用 |
@@ -100,7 +100,7 @@ LLM 提供商配置，定义 AI 模型的接入方式。
 {: .note }
 `url` 支持两种接入方式：
 - **远程 API**：直接调用外部 LLM 服务，如 `https://api.openai.com/v1`
-- **集群内代理**：通过 LiteLLM 等代理服务转发，如 `http://litellm.hindsight.svc:4000`，适合统一管理多个模型提供商
+- **集群内代理**：通过 LiteLLM 等代理服务转发，如 `https://api.deepseek.com`，适合统一管理多个模型提供商
 
 ### ols_config 配置
 
@@ -229,6 +229,7 @@ MCP 服务器（如 `openshift.py`）允许 Lightspeed 直接查询集群资源�
 3. 点击 `Add` 按钮
 4. 选择要附加的资源对象
 5. 输入问题并提交
+
 
 ![](imgs/kc-lightspeed-attach-resource.png)
 
