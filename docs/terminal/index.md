@@ -1,5 +1,5 @@
 ---
-title: 命令行模式
+title: 命令行模式(AI Agent)
 nav_order: 10
 ---
 
@@ -30,8 +30,31 @@ KDO CloudShell 是一种基于云的命令行界面（CLI），KDO CloudShell可
 ### 访问CloudShell命令行界面
 KDO CloudShell 集成在KDO的管理控制台中，点击KDO页面右上角的这个图标就可以访问
 ![](img/open-terminal.png)
-如果是集群管理员，默认会创建`kubernetes-terminal`这个命名空间，其他用户可以选择对应[项目的命名空间](/devops/project-manage/)
+如果是集群管理员，默认会创建`kubernetes-terminal`这个命名空间，其他用户可以选择对应[项目的命名空间](/docs/devops/project-manage/)
 ![](img/create-terminal.png)
+
+
+### 使用AI-Agent
+CloudShell集成了[Hermes Agent](https://github.com/NousResearch/hermes-agent),实现通过各种通讯软件(比如:微信、企业微信、QQ、钉钉)来管理KDO平台，包括应用和流水线，排查问题，监控告警这些。
+
+#### 打开CloudShell
+首先通过新tab的方式打开CloudShell，主要terminal内容比较多，便于访问。
+![](img/open-terminal-tab.png)
+
+#### 配置大模型
+**注意:** AI Agent需要提前获取对应大模型的api key，比如：deepseek、阿里云这些，这些大模型会按量收费。
+![](img/hermas-setup-1.gif)
+
+#### 配置消息通道
+**注意:** Hermes在配置有些消息通道(比如企业微信)时不会自动重启gateway组件，一般建议手动运行一下 `hermes gateway restart`。
+![](img/hermas-setup-2.gif)
+
+#### 验证Agent
+![test-agent.png](img/test-agent.png)
+
+#### 注意事项
+1. agent的权限和用户在Kdo平台的权限一致，比如普通用户只有对应项目的权限，没有集群相关权限，所以不用担心安全风险。
+2. 访问Kdo平台的权限有时效性，如果发现无法访问Kdo，需要用户重新登陆一下Kdo平台，重新访问一下CloudShell。
 
 ### 预装工具
 
@@ -63,7 +86,7 @@ CloudShell 运行在 Kubernetes Pod 中，受到资源配额限制。请合理�
 | **CPU** | 1 核 | 单个终端会话的 CPU 限制 |
 | **内存** | 1 Gi | 单个终端会话的内存限制 |
 | **临时存储** | 1 Gi | `/tmp` 等临时目录的存储空间 |
-| **持久化存储** | 5 Gi | `/data` 目录的持久化存储空间 |
+| **持久化存储** | 5 Gi | `/home/user` 目录的持久化存储空间 |
 
 ### 网络访问
 
@@ -79,11 +102,11 @@ CloudShell 的网络访问能力取决于其运行的命名空间和网络策略
 ### 自定义环境
 
 {: .note }
-CloudShell 支持自定义 Shell 环境，常用的配置可以持久化到 `/data` 目录。
+CloudShell 支持自定义 Shell 环境，常用的配置可以持久化到 `/home/user` 目录。
 
 #### 设置别名
 
-将常用命令的别名添加到 `/data/.bashrc` 文件中：
+将常用命令的别名添加到 `/home/user/.bashrc` 文件中：
 
 ```bash
 # 编辑持久化 bashrc
@@ -100,16 +123,16 @@ alias ocg='oc get pods'
 使配置生效：
 
 ```bash
-source /data/.bashrc
+source /home/user/.bashrc
 ```
 
 #### 持久化环境变量
 
-将自定义环境变量写入 `/data/.bash_profile`：
+将自定义环境变量写入 `/home/user/.bash_profile`：
 
 ```bash
 # 编辑持久化 bash_profile
-vi /data/.bash_profile
+vi /home/user/.bash_profile
 
 # 添加环境变量
 export EDITOR=vim
@@ -125,7 +148,7 @@ export KUBE_EDITOR=vim
 {: .note }
 - 关闭终端不会影响正在运行的 Kubernetes 资源
 - 如果在终端中运行了后台进程（如 `nohup`），关闭终端后进程可能会终止
-- 需要长期运行的命令建议使用 [Jobs](/dev/workloads/jobs/) 或 [CronJobs](/dev/workloads/cronjobs/)
+- 需要长期运行的命令建议使用 [Jobs](/docs/dev/workloads/jobs/) 或 [CronJobs](/docs/dev/workloads/cronjobs/)
 
 
 ## LocalShell模式

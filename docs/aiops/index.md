@@ -9,7 +9,7 @@ nav_order: 11
 ## 介绍
 
 {: .note }
-KDO平台集成了 **Kubernetes AI 智能助手** —— 一个基于生成式 AI 的智能虚拟助手。它直接嵌入在 Web 控制台中，用户可以通过自然语言与 AI 进行交互，获取关于 Kubernetes 及云原生应用的实时指导和帮助。
+KDO平台集成了 **云原生 AI 智能助手** —— 一个基于生成式 AI 的智能虚拟助手。它直接嵌入在 Web 控制台中，用户可以通过自然语言与 AI 进行交互，获取关于 Kubernetes 及云原生应用的实时指导和帮助。
 
 ![ai.png](imgs/ai.png)
 
@@ -21,7 +21,7 @@ KDO平台集成了 **Kubernetes AI 智能助手** —— 一个基于生成式 A
 | **上下文感知** | 可附加集群资源对象（Pod、Deployment 等）获取针对性建议 |
 | **专家知识** | 基于 Red Hat 官方文档和最佳实践提供权威回答 |
 | **告警诊断** | 可附加集群告警，获取根因分析和修复建议 |
-| **多 LLM 支持** | 支持 OpenAI、Azure OpenAI、watsonx、RHEL AI、Kubernetes AI 等模型提供商 |
+| **多 LLM 支持** | 支持 OpenAI、Azure OpenAI、watsonx、RHEL AI、云原生 AI 等模型提供商 |
 
 ## 配置说明
 
@@ -92,15 +92,15 @@ LLM 提供商配置，定义 AI 模型的接入方式。
 | 字段 | 类型 | 说明 |
 |------|------|------|
 | `name` | string | 提供商名称标识，用于 `default_provider` 引用 |
-| `url` | string | LLM 服务的 API 端点地址。支持远程 API（如 `https://api.openai.com/v1`）或集群内服务（如 `https://api.deepseek.com`） |
+| `url` | string | LLM 服务的 API 端点地址。支持远程 API（如 `https://api.deepseek.com`）或集群内服务（如 `http://litellm.default.svc:4000`） |
 | `credentials_path` | string | API Key 文件的路径，相对于配置目录 |
 | `models` | list | 可用模型列表 |
 | `models[].name` | string | 模型名称，用于 `default_model` 引用 |
 
 {: .note }
 `url` 支持两种接入方式：
-- **远程 API**：直接调用外部 LLM 服务，如 `https://api.openai.com/v1`
-- **集群内代理**：通过 LiteLLM 等代理服务转发，如 `https://api.deepseek.com`，适合统一管理多个模型提供商
+- **远程 API**：直接调用外部 LLM 服务，如 `https://api.deepseek.com`
+- **集群内代理**：通过 LiteLLM 等代理服务转发，如 `http://litellm.default.svc:4000`，适合统一管理多个模型提供商
 
 ### ols_config 配置
 
@@ -153,14 +153,6 @@ Lightspeed 服务的核心运行配置。
 | `default_provider` | string | 默认使用的 LLM 提供商名称，需与 `llm_providers[].name` 对应 |
 | `default_model` | string | 默认使用的模型名称，需与 `llm_providers[].models[].name` 对应 |
 
-#### user_data_collection（数据收集）
-
-控制是否向 Red Hat 发送遥测数据。
-
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `feedback_disabled` | bool | 设为 `true` 禁止收集用户反馈数据 |
-| `transcripts_disabled` | bool | 设为 `true` 禁止收集对话记录 |
 
 ### dev_config 配置
 
@@ -263,7 +255,7 @@ MCP 服务器（如 `openshift.py`）允许 Lightspeed 直接查询集群资源�
 ### 示例 1：通用 Kubernetes 问题
 
 **输入：**
-> What is an Kubernetes image stream used for?
+> What is a Kubernetes image stream used for?
 
 **AI 回答：** 提供 ImageStream 的概念解释、用途说明和使用场景。
 
@@ -303,41 +295,7 @@ MCP 服务器（如 `openshift.py`）允许 Lightspeed 直接查询集群资源�
 - 利用对话历史进行追问以获取更精确的回答
 - 尽量附加相关的资源对象以提供更多上下文
 
-## 数据与隐私
-
-{: .warning }
-Kubernetes Lightspeed 会向 LLM 提供商发送您的消息和集群上下文数据。请勿在对话中输入敏感信息（如密码、密钥、证书等）。
-
-### 数据传输
-
-- Kubernetes Lightspeed 在发送数据前会通过脱敏层（redaction layer）过滤敏感信息
-- 默认情况下，对话记录每两小时发送给 Red Hat 用于质量分析
-- 脱敏后的数据才会被共享，Red Hat 无法看到原始数据
-
-### 配置数据收集
-
-通过修改 `OLSConfig` CR 可以控制数据收集行为：
-
-```yaml
-apiVersion: ols.openshift.io/v1alpha1
-kind: OLSConfig
-metadata:
-  name: cluster
-spec:
-  ols:
-    userDataCollection:
-      feedbackDisabled: true        # 禁止收集用户反馈
-      transcriptsDisabled: true     # 禁止收集对话记录
-```
-
-| 字段 | 说明 |
-|------|------|
-| `feedbackDisabled` | 设为 `true` 禁止收集用户反馈数据 |
-| `transcriptsDisabled` | 设为 `true` 禁止收集对话记录 |
-
-{: .note }
-禁用数据收集不会影响 Lightspeed 的核心功能，仅停止向 Red Hat 发送遥测数据。
 
 ## 总结
 
-**Kubernetes AI 智能助手 是 KDO 平台的 AI 智能助手，通过自然语言交互显著降低了 Kubernetes 和云原生平台的使用门槛。** 无论是新手开发者还是经验丰富的运维人员，都可以通过它快速获取文档指导、排查集群问题和执行日常运维任务，从而提升整体生产力和平台使用体验。
+**云原生 AI 智能助手 是 KDO 平台的 AI 智能助手，通过自然语言交互显著降低了 Kubernetes 和云原生平台的使用门槛。** 无论是新手开发者还是经验丰富的运维人员，都可以通过它快速获取文档指导、排查集群问题和执行日常运维任务，从而提升整体生产力和平台使用体验。
