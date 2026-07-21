@@ -1,6 +1,6 @@
 ---
 title: 快速入门
-nav_order: 2
+nav_order: 15
 ---
 
 ## 欢迎使用 KDO 平台
