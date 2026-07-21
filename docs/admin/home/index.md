@@ -26,7 +26,7 @@ nav_order: 1
 
 ### 常用任务
 
-- [安装 Helm 应用](/docs/admin/application-management/helm/) - 通过 Helm Chart 部署应用
+- [安装 Helm 应用](/docs/dev/applications/helm/) - 通过 Helm Chart 部署应用
 - [部署 Operator](/docs/admin/application-management/operators/) - 安装和管理 Kubernetes Operators
 - [配置网络策略](/docs/admin/networking/networkpolicies/) - 控制 Pod 间访问规则
 - [管理存储类](/docs/admin/storage/storageclasses/) - 定义持久化存储类型

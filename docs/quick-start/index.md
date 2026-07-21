@@ -1,6 +1,5 @@
 ---
 title: 快速入门
-parent: 快速入门
 nav_order: 1
 ---
 
