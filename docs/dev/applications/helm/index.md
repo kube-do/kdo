@@ -8,6 +8,8 @@ nav_order: 4
 
 **Helm 应用** 是基于 Helm Chart 部署 Kubernetes 应用的方式。Helm 是 Kubernetes 的包管理器，类似于 Ubuntu 的 apt 或 CentOS 的 yum。通过 Helm，你可以一键部署复杂的应用栈（如数据库、消息队列、监控套件），无需手动编写和管理大量 YAML。
 
+![helm-chart.png](imgs/helm-chart.png)
+
 ### 为什么使用 Helm？
 
 - ✅ **模板化**：Chart 提供参数化模板，一次定义，多次部署
@@ -49,6 +51,8 @@ Release 是 Chart 的一次部署实例。同一个 Chart 可以安装多次，�
 ## 快速开始
 
 ### 1. 浏览和搜索 Chart
+
+![createHelm.gif](imgs/createHelm.gif)
 
 进入 **应用管理 → Helm 应用**：
 
@@ -113,6 +117,8 @@ replicaCount: 1  # 副本数（主从复制可设为 >1）
 KDO 后台调用 `helm install`（或 `helm upgrade` 如果 Upgrade 模式）创建资源。
 
 ### 3. 管理 Helm 应用
+
+![manageHelm.gif](imgs/manageHelm.gif)
 
 安装完成后，在 **Helm 应用** 列表找到你的 Release：
 
