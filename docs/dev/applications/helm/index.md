@@ -38,9 +38,7 @@ my-chart/
 
 Chart 仓库是存储和分发 Chart 的地方。KDO 默认集成：
 
-- **stable**（社区维护）
-- **bitnami**（高质量生产级 Chart）
-- **kdo-local**（内部自定义 Chart）
+- **kdo**（内部自定义 Chart）
 
 ### Release
 

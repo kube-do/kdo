@@ -180,21 +180,27 @@ kubectl get deployment -n tekton-pipelines tekton-pipelines-webhook
 
 ### Q: 如何为 Pipeline 添加审批步骤？
 
-Tekton v0.38+ 支持 [PipelineApproval](https://tekton.dev/docs/pipelines/pipelineruns/#approvals)：
+KDO 平台提供 **ApprovalTask** CRD（`openshift-pipelines.org/v1alpha1`），在 PipelineRun 中插入人工审批节点。
+
+在 PipelineRun 的 task 中引用即可：
 
 ```yaml
-spec:
-  pipelineSpec:
-    tasks: [...]
-  pipelineRunSpec:
-    pipelineRef:
-      name: my-pipeline
-    approvals:
-    - name: "prod-deploy-approval"
-      issuer: "admin@example.com"
+tasks:
+  - name: need-approval
+    taskRef:
+      apiVersion: openshift-pipelines.org/v1alpha1
+      kind: ApprovalTask
+    params:
+      - name: approvers
+        value:
+          - admin@kube-do.dev   # 指定用户
+          - group:dev           # 用户组（组内成员均可审批）
+      - name: numberOfApprovalsRequired
+        value: '1'              # 需要 1 人批准即放行
 ```
 
-需要 Tekton Dashboard 或自定义集成来管理审批操作。
+审批人在 KDO 控制台的 **审批任务** 页面进行操作（批准/拒绝）。
+详情参考 [开发者流水线文档](/docs/dev/applications/pipelines/#审批任务-approvaltask)。
 
 ---
 

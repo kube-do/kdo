@@ -1,5 +1,5 @@
 ---
-title: 应用
+title: Git应用
 parent: 应用管理
 nav_order: 1
 ---
@@ -20,7 +20,7 @@ nav_order: 1
 
 [Pipelines as Code详情](../pipelines-as-code/index.md)
 
-## 创建应用
+## 创建Git应用
 
 - KDO支持多环境多分支的应用管理，在**应用项目**选择对应的项目，选择**应用管理 -> 应用**
 - KDO创建应用主要需要两个信息: **应用的Git地址、访问Git仓库的Token**, 其他信息根据应用进行选择，包括： `开发语言`、`应用模板`、`应用端口`等。
