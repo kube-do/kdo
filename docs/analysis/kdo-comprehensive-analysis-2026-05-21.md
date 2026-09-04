@@ -146,24 +146,24 @@ assets/
 
 ### 3.2 Jekyll 配置 (`_config.yml`)
 
-| 配置项 | 值 | 说明 |
-|--------|-----|------|
-| `title` | KDO平台文档 | 站点标题 |
-| `description` | KDO平台帮助文档 | 搜索摘要、SEO |
-| `url` | https://docs.kube-do.cn | 生产环境域名 |
-| `baseurl` | / | 子路径 (空表示根) |
-| `theme` | just-the-docs | Jekyll 主题 gem |
-| `permalink` | pretty | 生成静态链接为 `/path/` 而非 `.html` |
-| `nav_sort` | case_sensitive | 导航排序：大写字母排在小写前 |
-| `search_enabled` | true | 启用客户端搜索 (基于 Lunr.js) |
-| `heading_anchors` | true | 标题自动生成锚点 |
-| `color_scheme` | nil | 默认明亮主题，支持 `dark` |
-| `back_to_top` | true | 页面底部“回到顶部”按钮 |
-| `footer_content` | 版权信息 + Netlify 驱动声明 | 站点页脚 |
-| `last_edit_timestamp` | true | 显示最后编辑时间 (依赖 frontmatter) |
-| `callouts_level` | quiet | 高亮框为安静样式 |
-| `liquid` | strict_mode/strict_filters | 严格模板解析，避免潜在注入 |
-| `mermaid.version` | 9.1.6 | 流程图、序列图支持 |
+| 配置项                   | 值                          | 说明                          |
+|-----------------------|----------------------------|-----------------------------|
+| `title`               | KDO平台文档                    | 站点标题                        |
+| `description`         | KDO平台帮助文档                  | 搜索摘要、SEO                    |
+| `url`                 | https://docs.kube-do.cn    | 生产环境域名                      |
+| `baseurl`             | /                          | 子路径 (空表示根)                  |
+| `theme`               | just-the-docs              | Jekyll 主题 gem               |
+| `permalink`           | pretty                     | 生成静态链接为 `/path/` 而非 `.html` |
+| `nav_sort`            | case_sensitive             | 导航排序：大写字母排在小写前              |
+| `search_enabled`      | true                       | 启用客户端搜索 (基于 Lunr.js)        |
+| `heading_anchors`     | true                       | 标题自动生成锚点                    |
+| `color_scheme`        | nil                        | 默认明亮主题，支持 `dark`            |
+| `back_to_top`         | true                       | 页面底部“回到顶部”按钮                |
+| `footer_content`      | 版权信息 + Netlify 驱动声明        | 站点页脚                        |
+| `last_edit_timestamp` | true                       | 显示最后编辑时间 (依赖 frontmatter)   |
+| `callouts_level`      | quiet                      | 高亮框为安静样式                    |
+| `liquid`              | strict_mode/strict_filters | 严格模板解析，避免潜在注入               |
+| `mermaid.version`     | 9.1.6                      | 流程图、序列图支持                   |
 
 **亮点**:
 - 启用了搜索、标题锚点、回顶按钮，用户体验良好
@@ -181,11 +181,11 @@ gem "just-the-docs", "0.10.0"
 
 ### 3.4 部署流程
 
-| 工作流 | 触发条件 | 作用 |
-|--------|----------|------|
-| **ci.yml** | push 到 main / PR | 运行 `jekyll build`，验证构建成功 |
-| **pages.yml** | push 到 main (dispatchable) | 构建静态站 -> 上传 artifact -> 部署到 GitHub Pages |
-| **dependabot.yml** | hourly/daily | 每日检查 RubyGems 依赖更新，开 PR |
+| 工作流                | 触发条件                       | 作用                                       |
+|--------------------|----------------------------|------------------------------------------|
+| **ci.yml**         | push 到 main / PR           | 运行 `jekyll build`，验证构建成功                 |
+| **pages.yml**      | push 到 main (dispatchable) | 构建静态站 -> 上传 artifact -> 部署到 GitHub Pages |
+| **dependabot.yml** | hourly/daily               | 每日检查 RubyGems 依赖更新，开 PR                  |
 
 **部署目的地**: GitHub Pages (`gh-pages` 分支) 或 Vercel (通过 vercel.json)
 
