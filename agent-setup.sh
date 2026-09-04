@@ -36,11 +36,15 @@ echo ">>> 创建目录 $AGENT_DIR ..."
 mkdir -p "$AGENT_DIR"
 
 cd "$AGENT_DIR"
-echo ">>> 下载 cluster-agent-swarm.tar.gz ..."
-wget https://docs.kube-do.cn/cluster-agent-swarm.tar.gz
+echo ">>> 下载 kdo-developer.tar.gz ..."
+wget https://docs.kube-do.cn/kdo-developer.tar.gz
 
 echo ">>> 解压文件 ..."
-tar zxvf cluster-agent-swarm.tar.gz
+tar zxvf kdo-developer.tar.gz
+
+echo ">>> 执行source ~/.bashrc更新环境变量"
+source ~/.bashrc
 
 echo "=== 部署完成 ==="
-echo "请执行 'source ~/.bashrc' 使环境变量生效，然后即可使用 opencode-ai 和相关技能。"
+echo "现在可以使用 opencode-ai 和相关技能，也可以通过bun安装其他的agent"
+echo "也可以安装claude-code或者codex 命令: bun install -g @anthropic-ai/claude-code, bun install -g @openai/codex"
