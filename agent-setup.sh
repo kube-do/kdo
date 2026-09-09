@@ -4,7 +4,7 @@
 
 set -e  # 遇到错误立即退出
 
-echo "=== 开始执行自动化部署脚本（幂等模式） ==="
+echo "=== 开始执行自动化部署脚本 ==="
 
 # 1. 设置 npm 镜像源为国内镜像（幂等）
 echo ">>> 设置 npm registry..."
@@ -58,6 +58,7 @@ else
         echo "错误：解压后未找到 $SKILL_DIR，请检查下载文件"
         exit 1
     fi
+    rm -rf kdo-developer.tar.gz
 fi
 
 # 6. 创建 .claude 目录并链接技能包（强制覆盖，幂等）
@@ -68,6 +69,8 @@ mkdir -p "$CLAUDE_SKILLS"
 TARGET_DIR="$SKILL_DIR"
 LINK_PATH="$CLAUDE_SKILLS/kdo-developer"
 ln -sf "$TARGET_DIR" "$LINK_PATH"
+
+source ~/.bashrc
 echo ">>> 已创建符号链接：$LINK_PATH -> $TARGET_DIR"
 
 echo "=== 部署完成 ==="
