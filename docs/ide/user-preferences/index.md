@@ -25,7 +25,7 @@ User Preferences 页面包含以下 Tab：
 |-----|------|
 | **Container Registries（容器注册表）** | 配置私有容器镜像仓库的访问凭据（主机、用户名、密码） |
 | **Git Services（Git 服务）** | 查看 Git 服务商的 OAuth 授权状态，可撤销授权 |
-| **Personal Access Tokens（个人访问令牌）** | 配置 Git 服务访问令牌，详见 [个人访问令牌(Personal Access Tokens)](personal-access-tokens) |
+| **Personal Access Tokens（个人访问令牌）** | 配置 Git 服务访问令牌，详见 [个人访问令牌(Personal Access Tokens)](../personal-access-tokens/) |
 | **Git Config（Git 配置）** | 配置 Git 身份（`user.name` / `user.email`） |
 | **SSH Keys（SSH 密钥）** | 管理 SSH 密钥，用于通过 SSH 方式访问 Git 仓库 |
 | **AI Provider Keys（AI 提供商密钥）** | 配置 AI 服务商的 API 密钥（平台启用 AI 能力时显示） |
@@ -84,7 +84,7 @@ User Preferences 页面包含以下 Tab：
 支持表单编辑与查看器两种模式，也可**导入 Git 配置**。
 
 {: .note }
-如果已通过 OAuth 或 [个人访问令牌](personal-access-tokens) 连接了 Git 服务商，且其用户资料中设置了姓名和邮箱，则此处会自动同步对应值。
+如果已通过 OAuth 或 [个人访问令牌](../personal-access-tokens/) 连接了 Git 服务商，且其用户资料中设置了姓名和邮箱，则此处会自动同步对应值。
 
 ![git-config.png](imgs/git-config.png)
 
