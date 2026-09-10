@@ -148,7 +148,7 @@ spec:
 
 **注意：**
 - 如果不指定 `tag`，默认使用 `latest`
-- 私有仓库需提前配置 [镜像仓库配置](/docs/admin/container-registry/) 和 Secret
+- 私有仓库需提前在 KDO 控制台配置镜像仓库（Harbor）信息和 Secret
 
 ### 镜像拉取策略
 
@@ -275,5 +275,5 @@ kubectl get secret <imagepullsecret> -n <namespace>
 ## 下一步
 
 - 学习 [Helm 应用部署](/docs/dev/applications/helm/) - 管理复杂多组件应用
-- 了解 [工作负载操作](/docs/dev/workload-actions/) - 启动、停止、扩缩容
+- 了解 [工作负载操作](/docs/workload-actions/) - 启动、停止、扩缩容
 - 配置 [监控告警](/docs/observability/monitoring/) - 保障应用稳定性

@@ -1,6 +1,7 @@
     ---
 title: 仪表盘(Dashboard)
-parent: 观测平台
+parent: 监控(Monitoring)
+nav_order: 2
 ---
 
 1. TOC

@@ -27,7 +27,7 @@ nav_order: 2
 ## 库存
 
 在库存子页面，可以获取当前环境内的各类资源，包括: [容器组](/docs/dev/workloads/pods)、[无状态](/docs/dev/workloads/deployments)、[有状态](/docs/dev/workloads/statefulsets)、
-[配置映射](/docs/dev/configurations/configmaps)、[服务](/docs/dev/network-stroage/services)、[持久化声明](/docs/dev/network-stroage/persistent-volume-claims)等。点击对应的资源链接，可以直接跳转资源类型页面。
+[配置映射](/docs/dev/configurations/configmaps)、[服务](/docs/dev/network-storage/services)、[持久化声明](/docs/dev/network-storage/persistent-volume-claims)等。点击对应的资源链接，可以直接跳转资源类型页面。
 
 ![inventory.png](imgs/inventory.png)
 

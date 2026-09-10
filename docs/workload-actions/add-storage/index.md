@@ -147,4 +147,4 @@ PV 状态 `Lost` 表示底层存储不可用（如 NFS 服务器宕机）。需�
 - [Kubernetes Volumes 官方文档](https://kubernetes.io/docs/concepts/storage/volumes/)
 - [Kubernetes PVC 官方文档](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 - [Kubernetes StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/)
-- [开发者网络存储首页](/docs/dev/network-stroage/)
+- [开发者网络存储首页](/docs/dev/network-storage/)

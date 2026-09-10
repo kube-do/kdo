@@ -1,12 +1,12 @@
 ---
-title: 用户管理
-nav_order: 12
+title: Keycloak 用户管理
+parent: 用户管理
+nav_order: 1
 ---
 
 1. TOC
 {:toc}
 
-2. 
 ## 介绍
 
 {: .note }
@@ -132,7 +132,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 4. 选择 `Password Policy`（密码策略）配置密码复杂度要求
 
 ![](img/kc-password-policy.png)
-![img.png](img.png)
+
 可配置的密码策略包括：
 
 | 策略 | 说明 |

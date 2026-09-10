@@ -56,7 +56,7 @@ last_modified_date: 2026-04-11
 
 支持从创建到停用的完整流程：启动、停止、构建、更新、自动伸缩、网关策略管理等，提供无侵入的微服务架构治理。
 
-- 详情：[工作负载操作](/docs/dev/workload-actions/)
+- 详情：[工作负载操作](/docs/workload-actions/)
 
 ### 6. 开发运维一体化
 
@@ -149,4 +149,4 @@ last_modified_date: 2026-04-11
 | 快速安装 | [/docs/install/kdo/](/docs/install/kdo/) |
 | 开发者指南 | [/docs/dev/](/docs/dev/) |
 | 管理员手册 | [/docs/admin/](/docs/admin/) |
-| API 参考 | [/docs/api/](/docs/api/) |
+| 系统架构 | [/docs/architecture/](/docs/architecture/) |

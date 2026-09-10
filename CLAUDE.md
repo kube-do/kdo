@@ -32,24 +32,26 @@ bundle exec jekyll build
 ```
 docs/                          # 所有文档内容（Markdown + 图片）
 ├── quick-start/               # 快速开始
-├── install/                   # 安装指南 (kdo, kubernetes, keycloak)
+├── install/                   # 安装指南 (kdo, kubernetes, keycloak, config)
+├── architecture/              # 系统架构
 ├── dev/                       # 开发者指南
 │   ├── applications/          # 应用管理（仓库、Helm、构建、流水线）
-│   ├── workloads/             # 工作负载（Deployments, StatefulSets, Jobs, CronJobs, Pods, HPA）
+│   ├── workloads/             # 工作负载（Deployments, StatefulSets, Jobs, CronJobs, Pods, HPA, Topology）
 │   ├── configurations/        # ConfigMaps, Secrets
-│   └── network-stroage/       # Services, Ingresses, PVC
+│   ├── network-storage/       # Services, Ingresses, PVC
+│   └── observe/               # 观测平台入口页（指向顶层 observability）
 ├── admin/                     # 管理员手册
 │   ├── management/            # 集群资源管理（节点、命名空间、CRD、配额等）
-│   └── workloads/             # DaemonSets, PDB, ReplicaSet
+│   ├── workloads/             # DaemonSets, ReplicaSet
+│   ├── user-management/       # 用户管理（含 Keycloak 用户管理）
+│   └── observe/               # 观测平台入口页（指向顶层 observability）
 ├── workload-actions/          # 工作负载操作（扩缩容、HPA、资源限制、健康检查、存储、更新策略、PDB）
-├── observability/             # 监控、日志、事件、大屏
+├── observability/             # 可观测性专题（监控、日志、事件、大屏、指标）
 ├── rbac/                      # 权限管理
 ├── terminal/                  # CloudShell / LocalShell
-├── architecture/              # 系统架构
 ├── devops/                    # DevOps 实践（语言部署示例、持续交付、多环境）
 ├── storage/                   # 存储
 ├── aiops/                     # 智能运维
-├── user/                      # 用户手册
 └── analysis/                  # 平台分析报告
 index.md                       # 文档站首页
 _config.yml                    # Jekyll 全局配置（搜索、导航、Mermaid、callouts 等）

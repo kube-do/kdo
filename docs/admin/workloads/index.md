@@ -21,4 +21,3 @@ nav_order: 3
 9. [保密字典(Secret)](/docs/dev/configurations/secrets/)
 10. [配置映射(ConfigMap)](/docs/dev/configurations/configmaps/)
 11. [水平容器组自动缩放器(HPA)](/docs/dev/workloads/hpa/)
-12. [容器组中断预算(PDB)](pdb)

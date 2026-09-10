@@ -185,6 +185,6 @@ tier=backend
 ## 相关链接
 
 - [Kubernetes Pod 文档](/docs/dev/workloads/pods/)
-- [Kubernetes Service 文档](/docs/dev/network-stroage/services/)
-- [Kubernetes Ingress 文档](/docs/dev/network-stroage/ingresses/)
+- [Kubernetes Service 文档](/docs/dev/network-storage/services/)
+- [Kubernetes Ingress 文档](/docs/dev/network-storage/ingresses/)
 - [开发者观测平台](/docs/dev/observe/)

@@ -15,3 +15,6 @@ RBAC 提供了细粒度的访问控制能力，允许你定义谁可以对集群
 3. [服务账号(ServiceAccount)](/docs/rbac/#服务账号)
 4. [角色(Role)](/docs/rbac/#role和clusterrole管理)
 5. [角色绑定(RoleBinding)](/docs/rbac/#rolebinding和clusterrolebinding管理)
+
+## Keycloak 用户管理
+KDO 使用 Keycloak 作为身份认证中心，统一管理用户、用户组与会话。详见 [Keycloak 用户管理](/docs/admin/user-management/keycloak/)。

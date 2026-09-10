@@ -24,10 +24,10 @@ nav_order: 8
 
 ### 常用任务
 
-- [查看流水线定义](/docs/admin/pipeline/pipelines/) - 了解现有流水线的结构
-- [监控流水线运行](/docs/admin/pipeline/pipelineruns/) - 跟踪 CI/CD 执行状态
-- [管理任务模板](/docs/admin/pipeline/tasks/) - 创建可复用的步骤
-- [配置流水线触发器](/docs/admin/pipeline/triggers/) - Webhook 自动触发（待完善）
+- [查看流水线定义](/docs/dev/applications/pipelines/) - 了解现有流水线的结构
+- [监控流水线运行](/docs/dev/applications/pipelines/) - 跟踪 CI/CD 执行状态
+- [管理任务模板](/docs/dev/applications/pipelines/) - 创建可复用的步骤
+- 配置流水线触发器（待完善） - Webhook 自动触发
 
 ---
 

@@ -185,6 +185,6 @@ kubectl logs -f <pod-name> -c <container-name>
 ## 下一步
 
 - 学习 [配置管理](/docs/dev/configurations/) - 使用 ConfigMap 和 Secret 管理应用配置
-- 掌握 [存储管理](/docs/dev/network-stroage/) - 持久化数据存储
+- 掌握 [存储管理](/docs/dev/network-storage/) - 持久化数据存储
 - 了解 [工作负载操作](/docs/workload-actions/) - 运行时运维能力
 - 参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/workloads/)

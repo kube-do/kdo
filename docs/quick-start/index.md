@@ -201,7 +201,7 @@ git push
 | 应用管理进阶 | [应用管理概览](/docs/dev/applications/) | ⭐⭐ |
 | 工作负载详解 | [工作负载](/docs/dev/workloads/) | ⭐⭐ |
 | 配置管理 | [配置管理](/docs/dev/configurations/) | ⭐⭐ |
-| 网络与存储 | [网络与存储](/docs/dev/network-stroage/) | ⭐⭐⭐ |
+| 网络与存储 | [网络与存储](/docs/dev/network-storage/) | ⭐⭐⭐ |
 | 观测平台 | [观测平台](/docs/observability/) | ⭐⭐ |
 | 权限控制 | [权限管理](/docs/rbac/) | ⭐⭐⭐ |
 

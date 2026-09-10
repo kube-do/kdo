@@ -55,7 +55,7 @@ pip freeze > requirements.txt
 ![](imgs/workload.png)
 
 ### 创建应用路由
-如应用属于 `web` 类型应用，可以创建对应的路由，通过路由访问到应用，[更多信息](/docs/dev/network-stroage/ingresses)
+如应用属于 `web` 类型应用，可以创建对应的路由，通过路由访问到应用，[更多信息](/docs/dev/network-storage/ingresses)
 ![create-ingress.png](imgs/create-ingress.png)
 
 ### 访问应用

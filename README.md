@@ -23,8 +23,8 @@
 
 ### 概念与参考
 - [🏗️ 系统架构](/docs/architecture/) - 核心组件与技术栈
-- [🎯 核心概念](/docs/concepts/) - 云原生基础概念
-- [📚 参考文档](/docs/reference/) - API、配置参数
+- [📊 可观测性](/docs/observability/) - 监控、日志、告警
+- [🛠️ 工作负载操作](/docs/workload-actions/) - 扩缩容、HPA、资源限制、健康检查
 
 ---
 
@@ -33,11 +33,18 @@
 ```
 kdo/
 ├── docs/                    # 文档源码 (Markdown)
-│   ├── admin/              # 管理员指南
-│   ├── dev/                # 开发者中心
-│   ├── install/            # 安装部署
-│   ├── observability/      # 可观测性
-│   ├── rbac/               # 权限管理
+│   ├── quick-start/         # 快速入门
+│   ├── install/             # 安装部署（含集群配置）
+│   ├── architecture/        # 系统架构
+│   ├── dev/                 # 开发者中心（应用/工作负载/配置/网络存储/观测入口）
+│   ├── admin/               # 管理员手册（集群管理/用户/工作负载/观测入口）
+│   ├── devops/              # DevOps 实践
+│   ├── observability/       # 可观测性专题（监控/日志/事件/大屏/指标）
+│   ├── workload-actions/    # 工作负载操作手册
+│   ├── rbac/                # 权限管理
+│   ├── storage/             # 存储
+│   ├── terminal/            # 终端
+│   ├── aiops/               # 智能运维
 │   └── ...
 ├── _config.yml             # Jekyll 配置
 ├── index.md                # 文档站首页

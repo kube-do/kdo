@@ -9,5 +9,5 @@ nav_order: 4
 管理员的网络界面主要增加了网络策略页面。
 
 ## 管理员工作负载菜单
-1. [服务](/docs/dev/network-stroage/services/)
-2. [路由](/docs/dev/network-stroage/ingresses/)
+1. [服务](/docs/dev/network-storage/services/)
+2. [路由](/docs/dev/network-storage/ingresses/)

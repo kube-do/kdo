@@ -210,5 +210,5 @@ xfs_growfs /mount/path  # xfs
 
 - [Kubernetes PVC 官方文档](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 - [Kubernetes StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/)
-- [开发者网络存储首页](/docs/dev/network-stroage/)
+- [开发者网络存储首页](/docs/dev/network-storage/)
 - [管理员存储管理](/docs/admin/storage/)

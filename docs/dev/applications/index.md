@@ -121,7 +121,7 @@ KDO 采用 **Pipelines as Code** 理念，将 CI/CD 流水线定义与源码一�
 
 - 了解 [开发者控制台概览](/docs/dev/home/)
 - 学习 [工作负载管理](/docs/dev/workloads/)
-- 掌握 [网络与存储](/docs/dev/network-stroage/)
+- 掌握 [网络与存储](/docs/dev/network-storage/)
 - 配置 [可观测性](/docs/observability/)
 
 如有疑问，请查阅 [管理员指南](/docs/admin/) 或联系平台运维团队。

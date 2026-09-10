@@ -1,6 +1,6 @@
 ---
 title: 路由(Ingress)
-parent: 网络存储
+parent: 网络与存储
 nav_order: 2
 ---
 

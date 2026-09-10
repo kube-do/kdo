@@ -16,8 +16,8 @@ nav_order: 1
 | **工作负载** | 管理 DaemonSet、ReplicaSet、Pod Disruption Budget | 左侧菜单第3项 |
 | **网络** | 网络策略、服务、路由配置 | 左侧菜单第4项 |
 | **存储** | 持久卷、存储类、卷快照管理 | 左侧菜单第5项 |
-| **观测平台** | 集群监控、日志、告警（待完善） | 左侧菜单第6项 |
-| **流水线** | CI/CD 流水线配置（待完善） | 左侧菜单第8项 |
+| **观测平台** | 集群监控、日志、告警 | 左侧菜单第6项 |
+| **流水线** | CI/CD 流水线配置 | 左侧菜单第8项 |
 | **管理** | 资源配额、节点、命名空间、CRD | 左侧菜单第9项 |
 
 ---
@@ -29,7 +29,7 @@ nav_order: 1
 - [安装 Helm 应用](/docs/dev/applications/helm/) - 通过 Helm Chart 部署应用
 - [部署 Operator](/docs/admin/application-management/operators/) - 安装和管理 Kubernetes Operators
 - [配置网络策略](/docs/admin/networking/networkpolicies/) - 控制 Pod 间访问规则
-- [管理存储类](/docs/admin/storage/storageclasses/) - 定义持久化存储类型
+- [管理存储类](/docs/storage/) - 定义持久化存储类型
 - [设置资源配额](/docs/admin/management/resourcequotas/) - 限制命名空间资源使用
 
 ---
@@ -42,7 +42,7 @@ nav_order: 1
 - `namespaces` 管理命名空间
 - `nodes` 查看和管理节点
 
-如需细粒度权限控制，请参考 [RBAC 配置指南](/docs/dev/security/rbac/)（待补充）。
+如需细粒度权限控制，请参考 [RBAC 配置指南](/docs/rbac/)。
 
 ---
 
@@ -70,4 +70,4 @@ nav_order: 1
 
 - [Kubernetes 官方文档](https://kubernetes.io/docs/) - 参考底层概念
 - [开发者界面概览](/docs/dev/) - 了解应用开发者视角
-- [集群架构说明](/docs/concepts/cluster-architecture/) - 理解 KDO 集群设计
+- [系统架构说明](/docs/architecture/) - 理解 KDO 集群设计

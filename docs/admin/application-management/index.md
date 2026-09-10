@@ -26,11 +26,11 @@ nav_order: 2
 
 ### 常用任务
 
-- [安装 Helm 应用](/docs/admin/application-management/helm/) - 通过 Chart 快速部署中间件
+- [安装 Helm 应用](/docs/dev/applications/helm/) - 通过 Chart 快速部署中间件
 - [从 OperatorHub 安装 Operator](/docs/admin/application-management/operator-hub/) - 搜索并订阅 Operators
 - [管理已安装的 Operators](/docs/admin/application-management/operators/) - 查看版本、升级、删除
-- [配置 Helm 仓库](/docs/admin/application-management/helm-repositories/) - 添加自定义 Chart 源（待完善）
-- [Operator 最佳实践](/docs/admin/application-management/operator-best-practices/) - 权限、升级策略（待完善）
+- 配置 Helm 仓库（待完善） - 添加自定义 Chart 源
+- Operator 最佳实践（待完善） - 权限、升级策略
 
 ---
 
@@ -176,5 +176,4 @@ KDO 使用 ` OperatorHub` 的社区 catalog，也支持添加私有 catalog（Re
 - [OperatorHub.io](https://www.operatorhub.io/)
 - [Kubernetes Operators 最佳实践](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
 - [KDO 应用管理（开发者视角）](/docs/dev/applications/)
-- [Helm 应用使用指南](/docs/admin/application-management/helm/)
-- [OperatorHub 使用指南](/docs/admin/application-management/operator-hub/)
+- [Helm 应用使用指南](/docs/dev/applications/helm/)

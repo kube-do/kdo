@@ -115,7 +115,7 @@ KDO Pipelines-as-Code相关的文件都是存储在应用的代码仓库，其�
 
 4. **部署配置文件：** 在应用Git仓库分支(比如`develop/release`)的`kubernetes/`目录下。
 它定义了部署参数，一般就是[无状态(Deployment)](/docs/dev/workloads/deployments)、[有状态(StatefulSet)](/docs/dev/workloads/statefulsets)、
-[服务(Service)](/docs/dev/network-stroage/services)等这些资源对象。
+[服务(Service)](/docs/dev/network-storage/services)等这些资源对象。
 
 ![](imgs/branch-main-repo-files.png)
 ![](imgs/branch-develop-repo-files.png)

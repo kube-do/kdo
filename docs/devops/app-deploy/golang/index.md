@@ -63,7 +63,7 @@ Go语言（Golang）因其简洁性、高效性和强大的并发支持，已成
 
 
 ### 创建应用路由
-如应用属于 `web` 类型应用，可以创建对应的路由，通过路由访问到应用。[更多信息](/docs/dev/network-stroage/ingresses#新增路由)
+如应用属于 `web` 类型应用，可以创建对应的路由，通过路由访问到应用。[更多信息](/docs/dev/network-storage/ingresses#新增路由)
 
 ![create-ingress.png](imgs/create-ingress.png)
 

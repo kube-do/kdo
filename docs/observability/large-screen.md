@@ -1,6 +1,7 @@
 ---
-parent: 可观测
+parent: 观测平台
 title: 监控大屏
+nav_order: 5
 description: 介绍监控大屏相关的监测项和使用。
 keywords:
 - 监控大屏

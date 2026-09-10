@@ -60,7 +60,7 @@ docs/
 │   │   ├── helm/        # Helm 应用安装
 │   │   └── pipelines/   # CI/CD 流水线配置
 │   ├── configurations/  # 配置管理 (ConfigMap/Secret)
-│   ├── network-stroage/ # 网络与存储
+│   ├── network-storage/ # 网络与存储
 │   ├── workloads/       # 工作负载管理
 │   └── workload-actions/# 工作负载操作 (启动/停止/伸缩)
 ├── devops/              # DevOps 实践
