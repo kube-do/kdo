@@ -1,5 +1,5 @@
 ---
-title: 云开发环境(Eclipse Che)
+title: 云开发环境
 nav_order: 11
 has_children: true
 ---
@@ -49,13 +49,29 @@ Che Dashboard 提供以下核心页面，本手册按此组织：
 | [用户偏好设置](/docs/ide/user-preferences/) | `/user-preferences` | 配置容器注册表、Git 服务、SSH 密钥、Git 身份等 |
 | [个人访问令牌](/docs/ide/personal-access-tokens/) | `/user-preferences` | 配置 Git 访问令牌，克隆私有仓库与推送代码 |
 
+
+{: .highlight }
+使用云开发环境前，请先为 Git 仓库配置好[个人访问令牌](/docs/ide/personal-access-tokens/)。如有多个不同的 Git 服务商或仓库，需要分别配置。
+
+
 ## 快速开始
 
 1. 登录 KDO 平台 Web 控制台
-2. 在控制台顶部导航中点击 **云开发环境(Eclipse Che)** 入口，浏览器将自动打开 Che Dashboard
+2. 在控制台顶部导航中点击 **云开发环境** 入口，浏览器将自动打开 Che Dashboard
 3. 首次启动一个 Workspace 需要 2-3 分钟（拉取开发镜像、初始化持久化存储），后续启动因镜像缓存会显著加快
 
 ![access-che.png](imgs/access-che.png)
+
+
+## 从 Git 仓库应用访问
+
+{: .highlight }
+通过 Git 仓库应用可以直接将代码加载到云开发环境，无需手动克隆。
+
+1. 登录 KDO 平台 Web 控制台
+2. 进入某个 Git 仓库应用的详情页面，点击 **访问云开发环境**，即可把该应用直接加载到云开发环境
+
+![repo-che.png](imgs/repo-che.png)
 
 
 ## 在 IDE 中开发
@@ -71,7 +87,7 @@ Workspace 启动后，浏览器中打开的是 VS Code 风格的 IDE，具备：
 | **调试** | 支持断点调试，调试器与代码同处云环境，无需本地端口转发 |
 | **构建运行** | 可在容器内直接编译并运行应用，甚至部署到集群测试 |
 
-<!-- 截图：IDE 主界面（占位，待补充） -->
+![ide-vscode.png](imgs/ide-vscode.png)
 
 ## 资源与环境
 

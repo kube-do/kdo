@@ -1,6 +1,6 @@
 ---
 title: 打开 IDE 与工厂加载
-parent: 云开发环境(Eclipse Che)
+parent: 云开发环境
 nav_order: 3
 ---
 

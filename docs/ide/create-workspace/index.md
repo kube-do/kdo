@@ -1,6 +1,6 @@
 ---
 title: 创建工作区
-parent: 云开发环境(Eclipse Che)
+parent: 云开发环境
 nav_order: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: 工作区管理
-parent: 云开发环境(Eclipse Che)
+parent: 云开发环境
 nav_order: 2
 ---
 

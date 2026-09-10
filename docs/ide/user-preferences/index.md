@@ -1,6 +1,6 @@
 ---
 title: 用户偏好设置(User Preferences)
-parent: 云开发环境(Eclipse Che)
+parent: 云开发环境
 nav_order: 5
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: 备份与恢复
-parent: 云开发环境(Eclipse Che)
+parent: 云开发环境
 nav_order: 4
 ---
 

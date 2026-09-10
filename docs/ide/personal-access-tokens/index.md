@@ -1,6 +1,6 @@
 ---
 title: 个人访问令牌(Personal Access Tokens)
-parent: 云开发环境(Eclipse Che)
+parent: 云开发环境
 nav_order: 6
 ---
 
