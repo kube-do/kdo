@@ -70,7 +70,7 @@ TARGET_DIR="$SKILL_DIR"
 LINK_PATH="$CLAUDE_SKILLS/kdo-developer"
 ln -sf "$TARGET_DIR" "$LINK_PATH"
 
-source ~/.bashrc
+
 echo ">>> 已创建符号链接：$LINK_PATH -> $TARGET_DIR"
 
 echo "=== 部署完成 ==="
