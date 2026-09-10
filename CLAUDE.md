@@ -49,6 +49,7 @@ docs/                          # 所有文档内容（Markdown + 图片）
 ├── observability/             # 可观测性专题（监控、日志、事件、大屏、指标）
 ├── rbac/                      # 权限管理
 ├── terminal/                  # CloudShell / LocalShell
+├── ide/                       # 云开发环境（Eclipse Che）
 ├── devops/                    # DevOps 实践（语言部署示例、持续交付、多环境）
 ├── storage/                   # 存储
 ├── aiops/                     # 智能运维

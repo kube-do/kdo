@@ -20,6 +20,7 @@
 - [🔐 RBAC 权限](/docs/rbac/) - 基于角色的访问控制
 - [📦 安装指南](/docs/install/) - KDO 平台部署步骤
 - [🔌 终端访问](/docs/terminal/) - CloudShell 与 LocalShell
+- [☁️ 云开发环境](/docs/ide/) - Eclipse Che 浏览器即用 IDE
 
 ### 概念与参考
 - [🏗️ 系统架构](/docs/architecture/) - 核心组件与技术栈
@@ -44,6 +45,7 @@ kdo/
 │   ├── rbac/                # 权限管理
 │   ├── storage/             # 存储
 │   ├── terminal/            # 终端
+│   ├── ide/                 # 云开发环境 (Eclipse Che)
 │   ├── aiops/               # 智能运维
 │   └── ...
 ├── _config.yml             # Jekyll 配置
