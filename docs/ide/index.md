@@ -89,11 +89,72 @@ Workspace 启动后，浏览器中打开的是 VS Code 风格的 IDE，具备：
 
 ![ide-vscode.png](imgs/ide-vscode.png)
 
+### 一键安装 AI 助手与语言扩展
+
+平台提供按语言划分的一键脚本，在 Workspace 内置终端中执行即可完成：安装 AI 编程助手（opencode-ai，兼容 Claude Code / Codex）、安装该语言的 VS Code 扩展、配置依赖的国内镜像。脚本幂等，可重复执行。
+
+| 语言 | 脚本 | 主要扩展 | 镜像 |
+|------|------|----------|------|
+| Java | `agent-setup-java.sh` | redhat.java、java-debug、java-test、maven、java-dependency | Maven → 阿里云 |
+| Python | `agent-setup-python.sh` | Python、Pylance、debugpy、Ruff | pip → 阿里云 |
+| Go | `agent-setup-golang.sh` | Go | GOPROXY → goproxy.cn |
+| Node.js | `agent-setup-node.sh` | ESLint、Prettier | npm → npmmirror |
+| PHP | `agent-setup-php.sh` | Intelephense、PHP Debug | Composer → 阿里云 |
+| Rust | `agent-setup-rust.sh` | rust-analyzer、CodeLLDB | rustup、Cargo → rsproxy.cn |
+
+若只想安装 AI 编程助手、暂不需要特定语言扩展，可执行基础脚本 `agent-setup.sh`：它只安装 bun、opencode-ai 与 kdo-developer 技能包（并配置 npm 镜像），**不安装任何语言扩展与语言级镜像**。
+
+```bash
+curl -fsSL https://docs.kube-do.cn/agent-setup.sh | bash
+```
+
+以 Java 为例，在 IDE 内置终端执行：
+
+```bash
+curl -fsSL https://docs.kube-do.cn/agent-setup-java.sh | bash
+```
+
+每个脚本都会安装 bun、opencode-ai 与 kdo-developer 技能包，并配置 npm 镜像；执行完成后运行 `source ~/.bashrc` 使环境变量生效。
+
+{: .note }
+- 每个脚本仅安装对应语言的扩展，需要多种语言时依次执行多个脚本即可。
+- Eclipse Che 使用 Open VSX 扩展市场，新安装的扩展需**重载窗口/刷新页面**后才会生效。
+- 已安装的组件会自动跳过；已存在的配置文件（如 `~/.m2/settings.xml`）不会被覆盖。
+
+### 常用操作与快捷键
+
+Che Code 即浏览器版 VS Code，操作方式与桌面版一致，常用快捷键如下：
+
+| 分类 | 操作 | 快捷键 |
+|------|------|--------|
+| 通用 | 命令面板 | `Ctrl+Shift+P` / `F1` |
+| 通用 | 快速打开文件 | `Ctrl+P` |
+| 通用 | 打开设置 | `Ctrl+,` |
+| 通用 | 自定义键盘快捷方式 | `Ctrl+K Ctrl+S` |
+| 界面 | 显示/隐藏侧边栏 | `Ctrl+B` |
+| 界面 | 显示/隐藏终端 | ``Ctrl+` `` |
+| 界面 | 新建终端 | ``Ctrl+Shift+` `` |
+| 界面 | 拆分编辑器 | `Ctrl+\` |
+| 界面 | 资源管理器 / 搜索 / 源代码管理 / 扩展 | `Ctrl+Shift+E` / `F` / `G` / `X` |
+| 编辑 | 切换行注释 | `Ctrl+/` |
+| 编辑 | 格式化文档 | `Shift+Alt+F` |
+| 编辑 | 多光标 | `Alt+Click` |
+| 编辑 | 选择下一个匹配 | `Ctrl+D` |
+| 编辑 | 触发建议 | `Ctrl+Space` |
+| 编辑 | 重命名符号 | `F2` |
+| 导航 | 转到定义 / 速览定义 / 查找引用 | `F12` / `Alt+F12` / `Shift+F12` |
+| 导航 | 转到文件中的符号 | `Ctrl+Shift+O` |
+| 导航 | 跳转到指定行 | `Ctrl+G` |
+| 调试 | 开始/继续、切换断点、单步跳过、单步进入 | `F5`、`F9`、`F10`、`F11` |
+
+{: .note }
+浏览器会占用部分按键（如 `Ctrl+W`、`Ctrl+N`、`Ctrl+T`）。若某个快捷键无效，可改用命令面板，或在**独立窗口**中打开工作区。
+
 ## 资源与环境
 
 ### 预装工具链
 
-Workspace 使用通用开发镜像（Universal Developer Image），预置了主流语言的编译器、运行时与构建工具（Java、Go、Python、Node.js 等）。若项目需要额外工具，可在 `devfile.yaml` 中声明依赖组件。
+Workspace 使用通用开发镜像（Universal Developer Image），预置了主流语言的编译器、运行时与构建工具（Java、Go、Python、Node.js 等）。若项目需要额外工具，可在 `devfile.yaml` 中声明依赖组件。语言级别的智能补全、调试等能力由编辑器扩展提供，可通过[一键安装 AI 助手与语言扩展](#一键安装-ai-助手与语言扩展)按语言安装扩展并配置国内镜像。
 
 ### 持久化存储
 
@@ -139,5 +200,20 @@ Workspace 运行在 Kubernetes Pod 中，受命名空间资源配额限制。请
 **原因：** 尚未配置 Git 服务的 OAuth 或个人访问令牌。
 
 **解决方法：** 在 Che Dashboard 中完成 Git 服务授权，或为私有仓库配置个人访问令牌后重试。
+
+#### Q: IDE 中没有某语言的智能补全或调试？
+
+**原因：** 编辑器默认未安装该语言的扩展。
+
+**解决方法：** 在 Workspace 内置终端执行对应语言的一键脚本（见[一键安装 AI 助手与语言扩展](#一键安装-ai-助手与语言扩展)），安装后重载窗口即可。
+
+#### Q: 如何在 Workspace 中使用 AI 编程助手？
+
+**解决方法：** 一键脚本会安装 opencode-ai 与 kdo-developer 技能包。也可自行安装：
+
+```bash
+bun install -g @anthropic-ai/claude-code
+bun install -g @openai/codex
+```
 
 更多问题参见各子页面的 FAQ 小节。

@@ -1,6 +1,6 @@
 #!/bin/bash
 # 自动化部署脚本（幂等版）：安装 bun、opencode-ai，配置 agent swarm 技能包，
-# 并配置 Node.js 开发环境（VS Code 扩展 + pnpm/yarn 镜像）。
+# 并配置 PHP 开发环境（VS Code 扩展 + Composer 镜像）。
 # 支持 Claude Code / Codex
 
 set -e  # 遇到错误立即退出
@@ -14,11 +14,12 @@ SKILL_NAME="kdo-developer"
 SKILL_URL="https://docs.kube-do.cn/kdo-developer.tar.gz"
 SKILL_DIR="$AGENT_DIR/$SKILL_NAME"
 CLAUDE_SKILLS="$HOME/.claude/skills"
-NODE_EXTENSIONS=(
-    dbaeumer.vscode-eslint
-    esbenp.prettier-vscode
+PHP_EXTENSIONS=(
+    bmewburn.vscode-intelephense-client
+    xdebug.php-debug
 )
 VSCODE_GALLERY_SERVICE_URL="https://vscode.bj.bcebos.com/_apis/public/gallery"
+COMPOSER_MIRROR="https://mirrors.aliyun.com/composer/"
 
 # ---------- 日志函数 ----------
 log()  { echo ">>> $*"; }
@@ -239,26 +240,20 @@ setup_vscode_mirror() {
     log "已配置扩展市场镜像：$VSCODE_GALLERY_SERVICE_URL（$settings）"
 }
 
-# 8. 安装 VS Code Node 扩展（code-oss 或 Eclipse Che 环境）
-setup_node_extensions() {
-    install_vscode_extensions "${NODE_EXTENSIONS[@]}"
+# 8. 安装 VS Code PHP 扩展（code-oss 或 Eclipse Che 环境）
+setup_php_extensions() {
+    install_vscode_extensions "${PHP_EXTENSIONS[@]}"
 }
 
-# 9. 配置 pnpm/yarn 镜像（npm 镜像已由步骤 1 设置）
-setup_node_mirrors() {
-    if command -v pnpm &> /dev/null; then
-        log "设置 pnpm registry..."
-        pnpm config set registry "$NPM_REGISTRY" || warn "pnpm registry 设置失败"
-    else
-        warn "未找到 pnpm，跳过 pnpm 镜像配置"
+# 9. 配置 Composer 全局镜像（未检测到 composer 时跳过）
+setup_php_mirror() {
+    if ! command -v composer &> /dev/null; then
+        warn "未找到 composer，跳过 Composer 镜像配置"
+        return
     fi
 
-    if command -v yarn &> /dev/null; then
-        log "设置 yarn registry..."
-        yarn config set registry "$NPM_REGISTRY" || warn "yarn registry 设置失败"
-    else
-        warn "未找到 yarn，跳过 yarn 镜像配置"
-    fi
+    log "设置 Composer packagist 镜像..."
+    composer config -g repo.packagist composer "$COMPOSER_MIRROR" || warn "Composer 镜像设置失败"
 }
 
 main() {
@@ -271,8 +266,8 @@ main() {
     install_skill
     link_skill
     setup_vscode_mirror
-    setup_node_extensions
-    setup_node_mirrors
+    setup_php_extensions
+    setup_php_mirror
 
     log "=== 部署完成 ==="
     echo "现在可以使用 opencode-ai 和相关技能，也可以通过 bun 安装其他的 agent"
