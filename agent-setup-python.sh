@@ -116,6 +116,9 @@ CHE_LD_LIBRARY_PATH=""
 CHE_EXTENSIONS_DIR="/checode/remote/extensions"
 CHE_USER_DATA_DIR="/checode/remote/data"
 CHE_DETECTED="" # 探测结果缓存："" 未探测，1 是 Che，0 否
+EXT_LOG="$HOME/.agents/logs/agent-setup-extensions.log"
+EXT_FOREGROUND="${AGENT_SETUP_EXTENSIONS_FOREGROUND:-0}"
+EXT_LOCK="$HOME/.agents/logs/.agent-setup-extensions.lock"
 
 # 探测 Eclipse Che 内置的 che-code 运行时（不依赖环境变量，基于文件系统，结果缓存）
 # 注意：镜像内可能有多个候选运行时（如 ubi8/ubi9/musl），需逐个验证 node 是否可用
@@ -150,8 +153,8 @@ detect_che() {
     return 1
 }
 
-# 安装 VS Code 扩展：优先 code-oss，其次 Eclipse Che 内置 che-code（已安装的自动跳过）
-install_vscode_extensions() {
+# 安装 VS Code 扩展（同步实现）：优先 code-oss，其次 Eclipse Che 内置 che-code（已安装的自动跳过）
+install_vscode_extensions_now() {
     local ext installed changed=""
 
     if command -v code-oss &> /dev/null; then
@@ -195,6 +198,30 @@ install_vscode_extensions() {
     fi
 
     warn "未找到 code-oss，且非 Eclipse Che 环境，跳过扩展安装"
+}
+
+# 后台安装 VS Code 扩展：默认不阻塞脚本，日志写入 $EXT_LOG
+# 设 AGENT_SETUP_EXTENSIONS_FOREGROUND=1 可强制前台同步安装
+install_vscode_extensions() {
+    mkdir -p "$(dirname "$EXT_LOG")"
+
+    if [ "$EXT_FOREGROUND" = "1" ]; then
+        install_vscode_extensions_now "$@"
+        return
+    fi
+
+    (
+        set +e
+        flock 9 2> /dev/null || true
+        echo "=== $(date '+%Y-%m-%d %H:%M:%S') 开始安装扩展 ==="
+        install_vscode_extensions_now "$@"
+        echo "=== $(date '+%Y-%m-%d %H:%M:%S') 扩展安装任务结束 ==="
+    ) >> "$EXT_LOG" 2>&1 9> "$EXT_LOCK" &
+
+    disown 2> /dev/null || true
+
+    log "扩展安装已在后台进行，日志：$EXT_LOG"
+    log "新扩展需重载窗口后生效；设 AGENT_SETUP_EXTENSIONS_FOREGROUND=1 可前台安装并查看过程"
 }
 
 # 7. 配置 VS Code 扩展市场为百度 BOS 镜像（写 settings.json + 导出环境变量；Che 环境跳过）
