@@ -3,7 +3,7 @@
 # 并配置 Java 开发环境（VS Code 扩展 + Maven 镜像）。
 # 支持 Claude Code / Codex
 
-set -e  # 遇到错误立即退出
+# 不使用 set -e：本脚本作为 devfile postStart 引导运行，需容忍单步失败，避免中断后续步骤
 
 # ---------- 全局变量 ----------
 NPM_REGISTRY="https://registry.npmmirror.com"
@@ -14,6 +14,7 @@ SKILL_NAME="kdo-developer"
 SKILL_URL="https://docs.kube-do.cn/kdo-developer.tar.gz"
 SKILL_DIR="$AGENT_DIR/$SKILL_NAME"
 CLAUDE_SKILLS="$HOME/.claude/skills"
+SKILL_ETAG_FILE="$AGENT_DIR/.$SKILL_NAME.etag"
 M2_DIR="$HOME/.m2"
 MAVEN_SETTINGS="$M2_DIR/settings.xml"
 JAVA_EXTENSIONS=(
@@ -43,7 +44,10 @@ setup_npm_mirror() {
 # 2. 全局安装 bun（仅在未安装时执行），并让当前 shell 立即可用
 install_bun() {
     export BUN_INSTALL
-    export PATH="$BUN_INSTALL/bin:$PATH"
+    case ":$PATH:" in
+        *":$BUN_INSTALL/bin:"*) ;;
+        *) export PATH="$BUN_INSTALL/bin:$PATH" ;;
+    esac
 
     if command -v bun &> /dev/null; then
         log "bun 已安装，跳过安装"
@@ -77,28 +81,58 @@ setup_shell_env() {
     fi
 }
 
-# 5. 创建目录并下载解压集群 kdo-developer 技能包（仅当未存在时）
+# 读取远端技能包标识（优先 ETag，其次 Last-Modified）；失败返回非 0
+remote_skill_id() {
+    local headers
+    headers="$(curl -fsSI --connect-timeout 5 --max-time 10 "$SKILL_URL" 2> /dev/null)" || return 1
+    [ -n "$headers" ] || return 1
+
+    printf '%s\n' "$headers" | tr -d '\r' | awk '
+        tolower($1) == "etag:" { print $0; exit }
+        tolower($1) == "last-modified:" { lm = $0 }
+        END { if (lm != "") print lm }
+    '
+}
+
+# 5. 创建目录并下载解压集群 kdo-developer 技能包（存在且无更新时跳过）
 install_skill() {
     log "创建目录 $AGENT_DIR ..."
     mkdir -p "$AGENT_DIR"
 
+    local remote_id local_id=""
+    remote_id="$(remote_skill_id || true)"
+
     if [ -d "$SKILL_DIR" ]; then
-        log "技能包已存在于 $SKILL_DIR，跳过下载和解压"
-        return
+        [ -f "$SKILL_ETAG_FILE" ] && local_id="$(cat "$SKILL_ETAG_FILE" 2> /dev/null)"
+
+        if [ -z "$remote_id" ] || [ "$remote_id" = "$local_id" ]; then
+            log "技能包已是最新，跳过下载和解压"
+            return 0
+        fi
+        log "检测到技能包更新，重新下载 ..."
     fi
 
-    cd "$AGENT_DIR"
-    log "下载 $SKILL_NAME.tar.gz ..."
-    wget "$SKILL_URL"
-    log "解压文件 ..."
-    tar zxvf "$SKILL_NAME.tar.gz"
+    if ! (
+        cd "$AGENT_DIR" || exit 1
+        log "下载 $SKILL_NAME.tar.gz ..."
+        wget "$SKILL_URL" || exit 1
+        log "解压文件 ..."
+        rm -rf "$SKILL_DIR"
+        tar zxf "$SKILL_NAME.tar.gz" || exit 1
+        rm -f "$SKILL_NAME.tar.gz"
+    ); then
+        err "技能包下载或解压失败，跳过技能包更新"
+        return 1
+    fi
 
-    # 解压后校验目录是否生成，若失败则退出
+    # 解压后校验目录是否生成
     if [ ! -d "$SKILL_DIR" ]; then
         err "解压后未找到 $SKILL_DIR，请检查下载文件"
-        exit 1
+        return 1
     fi
-    rm -rf "$SKILL_NAME.tar.gz"
+
+    [ -n "$remote_id" ] && printf '%s\n' "$remote_id" > "$SKILL_ETAG_FILE"
+    return 0
 }
 
 # 6. 创建 .claude 目录并链接技能包（强制覆盖，幂等）
@@ -154,6 +188,21 @@ detect_che() {
     return 1
 }
 
+# 列出 Che 环境已安装的扩展 ID（优先读 extensions.json，避免启动额外的 node 进程）
+list_che_extensions() {
+    local json="$CHE_EXTENSIONS_DIR/extensions.json"
+    if command -v jq &> /dev/null && [ -f "$json" ]; then
+        jq -r '.[].identifier.id' "$json" 2> /dev/null && return 0
+    fi
+
+    LD_LIBRARY_PATH="$CHE_LD_LIBRARY_PATH" \
+        VSCODE_AGENT_FOLDER=/checode/remote \
+        "$CHE_NODE" "$CHE_SERVER" --list-extensions \
+        --extensions-dir "$CHE_EXTENSIONS_DIR" \
+        --user-data-dir "$CHE_USER_DATA_DIR" \
+        --builtin-extensions-dir "$CHE_RUNTIME_DIR/extensions" 2> /dev/null
+}
+
 # 安装 VS Code 扩展（同步实现）：优先 code-oss，其次 Eclipse Che 内置 che-code（已安装的自动跳过）
 install_vscode_extensions_now() {
     local ext installed changed=""
@@ -172,18 +221,20 @@ install_vscode_extensions_now() {
     fi
 
     if detect_che; then
-        log "检测到 Eclipse Che 环境（$CHE_RUNTIME_DIR），安装扩展 ..."
-        installed="$(LD_LIBRARY_PATH="$CHE_LD_LIBRARY_PATH" \
-            VSCODE_AGENT_FOLDER=/checode/remote \
-            "$CHE_NODE" "$CHE_SERVER" --list-extensions \
-            --extensions-dir "$CHE_EXTENSIONS_DIR" \
-            --user-data-dir "$CHE_USER_DATA_DIR" \
-            --builtin-extensions-dir "$CHE_RUNTIME_DIR/extensions" 2> /dev/null || true)"
+        installed="$(list_che_extensions || true)"
+
+        local missing=() ext
         for ext in "$@"; do
-            if printf '%s\n' "$installed" | grep -qixF "$ext"; then
-                log "扩展已安装，跳过：$ext"
-                continue
-            fi
+            printf '%s\n' "$installed" | grep -qixF "$ext" || missing+=("$ext")
+        done
+
+        if [ "${#missing[@]}" -eq 0 ]; then
+            log "扩展已全部安装，跳过：$*"
+            return 0
+        fi
+
+        log "检测到 Eclipse Che 环境（$CHE_RUNTIME_DIR），安装扩展 ..."
+        for ext in "${missing[@]}"; do
             LD_LIBRARY_PATH="$CHE_LD_LIBRARY_PATH" \
                 VSCODE_AGENT_FOLDER=/checode/remote \
                 "$CHE_NODE" "$CHE_SERVER" --install-extension "$ext" \
@@ -209,6 +260,11 @@ install_vscode_extensions() {
     if [ "$EXT_FOREGROUND" = "1" ]; then
         install_vscode_extensions_now "$@"
         return
+    fi
+
+    # 日志文件超过 256KB 时截断，避免无限制增长
+    if [ -f "$EXT_LOG" ] && [ "$(wc -c < "$EXT_LOG")" -gt 262144 ]; then
+        : > "$EXT_LOG"
     fi
 
     (
