@@ -56,9 +56,10 @@ Che Dashboard 提供以下核心页面，本手册按此组织：
 
 ## 快速开始
 
-1. 登录 KDO 平台 Web 控制台
-2. 在控制台顶部导航中点击 **云开发环境** 入口，浏览器将自动打开 Che Dashboard
-3. 首次启动一个 Workspace 需要 2-3 分钟（拉取开发镜像、初始化持久化存储），后续启动因镜像缓存会显著加快
+1. 登录 KDO 平台 Web 控制台。
+2. 在控制台顶部导航中点击 **云开发环境** 入口，浏览器将自动打开 Che Dashboard，首次需要设置[个人访问令牌](/docs/ide/personal-access-tokens/)。
+3. 首次启动一个 Workspace 需要 2-3 分钟（拉取开发镜像、初始化持久化存储），后续启动因镜像缓存会显著加快。
+4. 也可从 Git 应用列表直接加载代码到云开发环境，无需手动克隆。
 
 ![access-che.png](imgs/access-che.png)
 
