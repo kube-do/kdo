@@ -18,6 +18,8 @@ KDO Console 提供图形化的**多集群管理**能力。所有被纳管的集�
 | 集群列表 | `/cluster-management` | 管理员视角 → **管理 → 集群**，查看所有纳管集群 |
 | 集群详情 | `/cluster-management/<name>` | 点击列表中的集群名称进入，查看组件健康状态 |
 
+![cluster-list.png](imgs/cluster-list.png)
+
 ## 核心概念
 
 - **主集群（local-cluster）**：控制面所在的集群，使用控制器的 ServiceAccount 访问，不依赖 kubeconfig；其监控/告警 URL 未显式配置时由 Console 的 `monitoringInfo` 默认值提供。
@@ -100,6 +102,8 @@ KDC Controller **每 5 分钟**探测一次各组件 URL，并把结果写入 `s
 - 探测超时为 5 秒；失败原因记录在 `message` 字段。
 - 详情页对各组件不可用给出业务化提示，例如 **Metering 不可用 → “监控不可用，请检查监控 URL”**。
 
+![cluster-status.png](imgs/cluster-status.png)
+
 ## 控制台操作
 
 ### 集群列表
@@ -112,7 +116,7 @@ KDC Controller **每 5 分钟**探测一次各组件 URL，并把结果写入 `s
 
 ### 添加集群
 
-点击 **Add cluster**，填写名称、kubeconfig（必填）及各组件 URL 后保存。保存前后端会先执行校验：
+点击 **添加集群**，填写名称、kubeconfig（必填）及各组件 URL 后保存。保存前后端会先执行校验：
 
 - kubeconfig 可解析、可连接、可访问目标集群；
 - kubeconfig 必须具备**集群管理员权限**（对 namespaces、serviceaccounts、secrets、rolebindings、clusterrolebindings 等具备创建/删除权限）；
@@ -120,6 +124,14 @@ KDC Controller **每 5 分钟**探测一次各组件 URL，并把结果写入 `s
 - 客户端证书不足 30 天、TLS 跳过校验、API Server 与 kubeconfig 不一致等会给出警告。
 
 校验不通过会阻止创建/更新，并在弹窗中展示原因。
+
+![add-cluster.png](imgs/add-cluster.png)
+
+### 集群详情
+
+点击列表中的集群名称进入详情页，可查看集群基本信息（名称、显示名称、描述、各组件 URL、默认域名、镜像仓库 URL）以及 Kubernetes 版本、最近连接时间和各组件健康状态。
+
+![cluster-detail.png](imgs/cluster-detail.png)
 
 ### 编辑与删除
 
