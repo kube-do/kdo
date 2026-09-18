@@ -49,7 +49,6 @@ Kdo Console 运行在**kubedo-system**这个namespace，deployment名字是**con
 
 ###   日志与可观测性
 - Loki 日志查询
-- Jaeger 链路追踪
 - Kiali 服务网格可视化
 - OLS（OpenLightSpeed）AI 助手
 
@@ -417,22 +416,22 @@ monitoringInfo:
 | 字段 | 类型 | 说明 |
 |------|------|------|
 | `name` | string | 托管集群名称 |
-| `apiServer.url` | string | API Server 地址 |
-| `apiServer.caFile` | string | API Server CA 证书文件 |
-| `oauth.clientID` | string | OAuth Client ID |
-| `oauth.clientSecret` | string | OAuth Client Secret |
-| `oauth.caFile` | string | OAuth CA 证书文件 |
+| `apiServer` | object | 不使用（保留字段） |
+| `oauth` | object | 不使用（保留字段） |
 | `clusterAlertManagerURL` | string | AlertManager URL |
-| `clusterThanosURL` | string | Thanos 监控地址 |
-| `clusterGitOpsURL` | string | GitOps 服务地址 |
+| `clusterMeteringURL` | string | 监控地址（Thanos / Prometheus） |
 | `clusterLoggingURL` | string | 日志服务地址 |
 | `cname` | string | 集群中文名称 |
 | `apiServerURL` | string | API Server 访问地址 |
-| `jaegerHost` | string | Jaeger 链路追踪地址 |
-| `kialiHost` | string | Kiali 服务网格地址 |
 | `defaultDomain` | string | Ingress 默认域名后缀 |
 | `mainCluster` | bool | 是否为主管理集群 |
 | `copiedCSVsDisabled` | bool | 是否禁用复制的 CSV |
+| `description` | string | 集群描述 |
+| `oidcIssuerURL` | string | 目标集群信任的 OIDC Issuer |
+| `insecureSkipTLSVerify` | bool | 是否跳过 TLS 证书校验 |
+
+{: .note }
+该文件方式为早期多集群配置方式。当前推荐通过 `Cluster` CRD（`kube-do.cn/v1`）在控制台 **管理 → 集群** 页面动态纳管，详见 [集群管理](/docs/admin/management/clusters/)。已移除字段：`jaegerHost`、`kialiHost`、`clusterGitOpsURL`；`clusterThanosURL` 已重命名为 `clusterMeteringURL`。
 
 ---
 
@@ -449,7 +448,7 @@ monitoringInfo:
 - `clusterInfo.k8sMode`：集群内模式使用 `in-cluster`
 
 ### Deployment (`console`)
-- 镜像：`registry.cn-shenzhen.aliyuncs.com/kubedo/console:v202607`
+- 镜像：`registry.cn-shenzhen.aliyuncs.com/kubedo/console:v202609`
 - 启动命令：`/opt/bridge/bin/bridge --config=/opt/bridge/config.yaml`
 - 服务端口：9000
 - 就绪检查：`/health` 路径

@@ -18,6 +18,7 @@ nav_order: 9
 | **命名空间 (Namespaces)** | 创建和管理命名空间，实现多租户资源隔离 | [Namespaces](/docs/admin/management/namespaces/) |
 | **应用项目 (AppProjects)** | KDO 特有的项目模型，映射到命名空间并提供额外约束 | [AppProjects](/docs/admin/management/appprojects/) |
 | **自定义资源 (CRD)** | 查看和管理集群中安装的自定义资源定义 | [CustomResourceDefinitions](/docs/admin/management/customresourcedefinitions/) |
+| **集群管理 (Clusters)** | 纳管多个 K8s 集群，查看集群与各组件的健康状态 | [Clusters](/docs/admin/management/clusters/) |
 
 ---
 
@@ -30,6 +31,7 @@ nav_order: 9
 - [查看节点状态](/docs/admin/management/nodes/) - 监控集群容量和健康
 - [创建命名空间](/docs/admin/management/namespaces/) - 为新团队/环境隔离资源
 - [配置 AppProject](/docs/admin/management/appprojects/) - KDO 项目权限管理
+- [管理多个集群](/docs/admin/management/clusters/) - 添加/查看纳管集群及组件健康状态
 
 ---
 
