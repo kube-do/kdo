@@ -1,5 +1,5 @@
 #!/bin/bash
-# 自动化部署脚本（幂等版）：安装 bun、opencode-ai，并配置集群 agent swarm 技能包
+# 自动化部署脚本（幂等版）：安装 bun、opencode v2，并配置集群 agent swarm 技能包
 # 同时创建 .claude 目录并链接技能包，支持 Claude Code / Codex
 
 set -e  # 遇到错误立即退出
@@ -18,12 +18,12 @@ else
     npm install -g bun
 fi
 
-# 3. 使用 bun 全局安装 opencode-ai（仅在未安装时执行）
+# 3. 使用 bun 全局安装 opencode v2（仅在未安装时执行）
 if command -v opencode &> /dev/null; then
-    echo ">>> opencode-ai 已安装，跳过安装"
+    echo ">>> opencode 已安装，跳过安装"
 else
-    echo ">>> 安装 opencode-ai..."
-    bun install -g opencode-ai
+    echo ">>> 安装 opencode v2..."
+    bun install -g --trust @opencode/cli
 fi
 
 # 4. 配置环境变量（BUN_INSTALL 和 PATH）到 ~/.bashrc（幂等）
@@ -74,7 +74,7 @@ ln -sf "$TARGET_DIR" "$LINK_PATH"
 echo ">>> 已创建符号链接：$LINK_PATH -> $TARGET_DIR"
 
 echo "=== 部署完成 ==="
-echo "现在可以使用 opencode-ai 和相关技能，也可以通过 bun 安装其他的 agent"
+echo "现在可以使用 opencode v2 和相关技能，也可以通过 bun 安装其他的 agent"
 echo "也可以安装 claude-code 或 codex："
 echo "  bun install -g @anthropic-ai/claude-code"
 echo "  bun install -g @openai/codex"

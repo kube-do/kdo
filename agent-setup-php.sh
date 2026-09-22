@@ -1,5 +1,5 @@
 #!/bin/bash
-# 自动化部署脚本（幂等版）：安装 bun、opencode-ai，配置 agent swarm 技能包，
+# 自动化部署脚本（幂等版）：安装 bun、opencode v2，配置 agent swarm 技能包，
 # 并配置 PHP 开发环境（VS Code 扩展 + Composer 镜像）。
 # 支持 Claude Code / Codex
 
@@ -53,13 +53,13 @@ install_bun() {
     fi
 }
 
-# 3. 使用 bun 全局安装 opencode-ai（仅在未安装时执行）
+# 3. 使用 bun 全局安装 opencode v2（仅在未安装时执行）
 install_opencode() {
     if command -v opencode &> /dev/null; then
-        log "opencode-ai 已安装，跳过安装"
+        log "opencode 已安装，跳过安装"
     else
-        log "安装 opencode-ai..."
-        bun install -g opencode-ai
+        log "安装 opencode v2..."
+        bun install -g --trust @opencode/cli
     fi
 }
 
@@ -353,7 +353,7 @@ main() {
     setup_php_mirror
 
     log "=== 部署完成 ==="
-    echo "现在可以使用 opencode-ai 和相关技能，也可以通过 bun 安装其他的 agent"
+    echo "现在可以使用 opencode v2 和相关技能，也可以通过 bun 安装其他的 agent"
     echo "也可以安装 claude-code 或 codex："
     echo "  bun install -g @anthropic-ai/claude-code"
     echo "  bun install -g @openai/codex"
