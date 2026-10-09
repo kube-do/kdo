@@ -39,6 +39,42 @@ nav_order: 1
 [如何创建PHP应用](/docs/devops/app-deploy/php)
 
 
+## 创建应用表单说明
+
+{: .note }
+在 **应用管理 → 应用** 点击 **新建应用** 打开创建表单，主要分区说明如下。
+
+### 源码与开发信息
+
+- **Git 提供商 / Git 仓库地址 / 访问 Token**：用于对接 `GitHub`、`GitLab`、`Gitee`、`Gitea` 等代码仓库。
+- **开发信息（开发语言 / 开发版本 / 开发模板）**：三个下拉**级联**选择。
+  - **开发语言**下拉只列出 **kubedo 命名空间**中已经可用的语言。
+  - 选择语言后，**开发版本**只显示该语言可用的版本；**开发模板**只显示该语言+版本可用的框架模板。
+  - 切换开发语言/版本/模板时会弹出确认框；确认并**保存、重新初始化**后，平台会**自动重建生成的文件**（`devfile.yaml`、`docker/Dockerfile`、`kubernetes/deploy-*.yaml`）。
+
+### 应用模板与高级配置
+
+- **应用模板（Application Template）**：默认**自动选中第一个可用模板**。
+- **Secure Route**：默认**不勾选**（默认创建非安全的路由）；如需通过 HTTPS 访问，请手动勾选。
+- **Webhook 配置**：默认**折叠**，展开后可查看并复制 `Webhook URL` 与 `Webhook Secret`；新建时会自动生成 Secret，也可以点击 **Generate** 重新生成。
+- **Pipeline Source（流水线来源）**：可选择 `事件分支（event branch）` 或 `默认分支（default branch）`，对应仓库的 `spec.settings.pipelinerun_provenance` 设置；选择**默认分支**时，流水线定义文件的读写都走仓库的默认分支。
+
+### Webhook 与仓库初始化
+
+{: .note }
+- Webhook 支持 `GitHub`、`GitLab`、`Gitee`、`Bitbucket` 等提供商，控制台会根据所选提供商展示对应的 Token 权限与触发事件说明。
+- 仓库初始化与 **Webhook 挂载已经解耦**：**Webhook 创建/挂载失败不会阻断源码仓库的初始化**，可以稍后再补齐 Webhook。
+
+### 从 Git 导入应用 (/import)
+
+在 **开发者界面 → +添加 → 从 Git 导入**（`/import`）页面：
+
+- 填写 Git 仓库地址后，会自动填充 **Name、应用名、端口/Hostname** 等信息：
+  - `Name` 由仓库地址推导（去除末尾的 `/` 与 `.git` 后缀，兼容 HTTPS 与 SSH 形式）；组件 `Name` 与应用名保持一致（不再追加 `-app` 后缀）。
+  - `Hostname` 按 `<namespace>-<name>.<默认域名>` 规则自动生成。
+- 自动填充只写入**空字段或仍是上次自动填充值的字段**，**不会覆盖手动输入**；编辑模式下不会自动填充。
+
+
 ## Pipelines as Code介绍
 `Pipelines as Code` 是一种实践方法，它将CI/CD（持续集成/持续部署）流水线的定义与源代码一同存储在版本控制系统中，如`GitHub`或`GitLab`。
 这种方法使用[Tekton PipelineRuns和Tasks](/docs/dev/applications/pipelines/#tekton的资源对象)来定义具体的`CI/CD`流程，并将其保存在一个文件里，该文件位于项目的源代码管理(SCM)系统中。
@@ -127,6 +163,9 @@ KDO Pipelines-as-Code相关的文件都是存储在应用的代码仓库，其�
 
 {: .note }
 应用创建完成以后，如果需要对应用进行管理，选择**应用管理 -> 应用**，点击对应的应用，有四个菜单。
+
+{: .note }
+在 **应用管理 → 应用** 列表中，每一行还提供一个 **Open in Che**（访问云开发环境）图标入口，点击可直接在 [Eclipse Che](/docs/ide/) 中以该仓库地址打开云开发环境。
 
 
 | 菜单    | 说明                                       |

@@ -1,7 +1,7 @@
 ---
 title: 水平容器组自动缩放器(HPA)
 parent: 工作负载
-nav_order: 7
+nav_order: 8
 ---
 
 1. TOC

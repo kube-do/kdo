@@ -18,6 +18,11 @@ nav_order: 3
 | **DaemonSet** | 在每个节点上运行一个 Pod副本 | 日志收集、监控 Agent |
 | **Job** | 运行一次性任务到完成 | 数据迁移、批处理 |
 | **CronJob** | 定时运行的 Job | 定时备份、定时任务 |
+| **CloneSet** | OpenKruise 增强工作负载，支持原地升级、分批发布 | 无状态应用的高效发布 |
+| **Kruise StatefulSet** | OpenKruise 增强版 StatefulSet，支持原地升级 | 有状态应用的高级发布 |
+
+{: .note }
+**CloneSet** 与 **Kruise StatefulSet** 属于 OpenKruise（API 组 `apps.kruise.io`），**仅在集群已安装 OpenKruise 时显示**。详情参见 [OpenKruise 工作负载](/docs/dev/workloads/kruise/)。
 
 ---
 

@@ -7,6 +7,9 @@ nav_order: 3
 1. TOC
 {:toc}
 
+{: .note }
+**界面说明**：KDO 控制台中的 **镜像构建（Builds）** 页面以**资源列表**形式直接展示 Shipwright `Build` 资源（`v1beta1`/`v1alpha1`）。它已由原先的多标签页合并为**单页**，访问旧的 `/builds`、`/builds/all-namespaces`、`/builds/ns/:ns` 路径会自动跳转到对应的资源列表。
+
 ## 介绍
 
 **镜像构建** 是一种从源代码自动构建容器镜像并部署到 Kubernetes 的应用创建方式。与标准应用（Pipelines as Code）相比，它提供了更轻量级的 CI/CD 流程，适合以下场景：

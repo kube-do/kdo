@@ -41,6 +41,16 @@ CloudShell集成了[Hermes Agent](https://github.com/NousResearch/hermes-agent),
 首先通过新tab的方式打开CloudShell，主要terminal内容比较多，建议使用`F11浏览器全屏模式`，便于访问。
 ![](img/open-terminal-tab.png)
 
+### 文件上传与下载
+
+{: .note }
+CloudShell（包括独立终端页面 `/terminal` 和页面底部弹出的 Cloud Shell 抽屉）支持在终端中**上传、下载文件**，复用容器组的文件传输能力：
+
+- 终端工具栏右侧提供 **上传**、**下载** 按钮，可与多标签终端在同一行使用。
+- **上传**：把本地文件上传到当前终端的工作目录。
+- **下载**：把终端中的文件下载到本地（例如日志、生成的配置等）。
+- 文件传输会跟随**当前选中的集群**，在多集群环境下自动切换到对应集群执行。
+
 ### 配置大模型
 
 {: .note }
@@ -244,6 +254,19 @@ oc config view
 export KUBECONFIG=~/.kube/config:~/.kube/config-production
 oc config view --merge --flatten > merged-config.yaml
 ```
+
+### 下载 kubeconfig
+
+{: .note }
+除了 `oc login` 之外，KDO 控制台还提供 **下载 kubeconfig** 的能力，方便把集群访问凭据交给本地工具（`kubectl`、`oc`、IDE 等）：
+
+| 入口 | 位置 | 说明 |
+|------|------|------|
+| 用户 kubeconfig | 右上角**用户菜单 → 下载 kubeconfig** | 导出当前登录用户的 kubeconfig，内嵌当前会话 Token |
+| 服务账号 kubeconfig | **服务账号(ServiceAccount) → 操作 → 下载 kubeconfig** | 为指定服务账号签发绑定 Token 并生成 kubeconfig（需相应权限） |
+
+{: .important }
+在多集群环境下，下载的 kubeconfig 默认指向**当前所在集群**；后端通过 `X-Cluster` 头区分目标集群。下载文件名会自动带上命名空间/服务账号等标识，避免不同资源的文件相互覆盖。
 
 ### 代理设置
 
