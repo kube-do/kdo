@@ -96,4 +96,22 @@
 
 ---
 
+## 六、补充（2026-10 后续）：证书管理（KdcCertificate）
+
+本节补充报告时间范围之后新增的功能。
+
+- **证书自动替换（KdcCertificate）**：新增集群级 CRD `KdcCertificate`（`kube-do.cn/v1`）与 KDC 控制器调和逻辑。把主集群的一份「权威证书」自动分发到各集群、各命名空间 Ingress 引用的 TLS Secret，并在目标证书更早过期时替换（只写目标 Secret 的 `tls.crt`/`tls.key`，不修改 Ingress）。到期时间优先直读目标 Secret 解析，回退 x509-certificate-exporter 指标。
+- **Console 管理界面**：证书列表 / 创建表单 / 详情页（详情含「证书」在线预览与「目标」分发状态）；入口受 `KDC_CERTIFICATE_API` 标志控制（CRD 存在即显示）。
+- **Ingress 表单集成**：创建/编辑路由时可选择 KdcCertificate，自动填充主机名并在提交时生成/复用目标 TLS Secret；跨集群时来源固定读主集群、目标写入当前集群。
+- 相关提交：`kdc@22cf278`、`console@dad4f38970`。
+
+| 文档 | 变更 |
+|------|------|
+| `docs/admin/management/kdccertificates/index.md` | **新增** 证书管理（KdcCertificate） |
+| `docs/dev/network-storage/ingresses/index.md` | 新增「使用证书(KdcCertificate)自动生成 TLS」小节 |
+| `docs/admin/management/index.md` | 功能表 / 快速导航补充 KdcCertificate |
+| `docs/dev/network-storage/index.md` | 路由(Ingress) 说明补充证书自动生成 |
+
+---
+
 *本报告由对 console 仓库最近一个月 git 历史的分析生成，用于同步 KDO 产品文档。*

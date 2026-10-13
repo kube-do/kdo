@@ -76,7 +76,7 @@ Ingress 管理 HTTP/HTTPS 流量的路由规则：
 
 - **主机名路由**：基于域名将请求分发到不同后端服务
 - **路径路由**：基于 URL 路径分发（如 `/api` → api 服务，`/static` → 前端）
-- **TLS 终止**：配置 HTTPS，支持自动证书管理（cert-manager）
+- **TLS 终止**：配置 HTTPS，支持自动证书管理（cert-manager），也可选择[证书(KdcCertificate)](/docs/admin/management/kdccertificates/)自动生成/续期 TLS
 - **负载均衡**：Ingress Controller（如 Nginx、Traefik）实现
 
 **典型配置：**

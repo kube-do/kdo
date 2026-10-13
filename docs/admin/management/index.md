@@ -19,6 +19,7 @@ nav_order: 9
 | **应用项目 (AppProjects)** | KDO 特有的项目模型，映射到命名空间并提供额外约束 | [AppProjects](/docs/admin/management/appprojects/) |
 | **自定义资源 (CRD)** | 查看和管理集群中安装的自定义资源定义 | [CustomResourceDefinitions](/docs/admin/management/customresourcedefinitions/) |
 | **集群管理 (Clusters)** | 纳管多个 K8s 集群，查看集群与各组件的健康状态 | [Clusters](/docs/admin/management/clusters/) |
+| **证书管理 (KdcCertificate)** | 自动维护 Ingress TLS 证书，按到期时间在各集群/命名空间分发替换 | [KdcCertificate](/docs/admin/management/kdccertificates/) |
 
 ---
 
@@ -32,6 +33,7 @@ nav_order: 9
 - [创建命名空间](/docs/admin/management/namespaces/) - 为新团队/环境隔离资源
 - [配置 AppProject](/docs/admin/management/appprojects/) - KDO 项目权限管理
 - [管理多个集群](/docs/admin/management/clusters/) - 添加/查看纳管集群及组件健康状态
+- [配置证书自动替换](/docs/admin/management/kdccertificates/) - 自动分发与替换 Ingress TLS 证书
 
 ---
 
