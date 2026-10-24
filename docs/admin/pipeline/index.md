@@ -204,6 +204,30 @@ tasks:
 
 ---
 
+### Q: 应用的部署流水线在哪里定义？如何重新部署？
+
+应用的部署流水线**不在代码仓库里**，而是定义在 `kubedo` 命名空间的 ConfigMap `pipelinerun-gitops-deploy`（可通过 Repository 的 `spec.settings.gitops.deployTemplate` 换成其他模板）。
+
+构建成功后，平台会自动创建名为 `<应用>-<环境>-<分支>-deploy-<写回提交前 8 位>` 的部署运行，按写回提交中的清单执行 `kubectl apply`。整个过程不依赖 Git 服务器的 webhook。
+
+如果构建成功但没有出现部署运行，依次检查：
+
+1. `gitops-writeback` 任务的结果是否为 `changed=true`（`changed=false` 表示清单没有变化，不会部署）；
+2. Controller 日志中是否有 `forbidden` 报错，确认 `pipelines-as-code-watcher` 服务账号具备 `pipelineruns` 的 `create` 权限；
+3. 部署模板 ConfigMap 是否存在；
+4. 清单中的镜像是否带有版本 tag。
+
+需要重新部署时，可在控制台`发布历史`中选择版本回滚，或直接调用接口：
+
+```bash
+curl -X POST "http://pipelines-as-code-controller.pipelines-as-code.svc:8080/manual?cluster=<集群>&namespace=<项目>&repository=<应用>&branch=<分支>&appEnv=<环境>&deploy=yes" \
+  -H "X-Webhook-Secret: ${WEBHOOK_SECRET}"
+```
+
+详情参考 [源码持续交付](/docs/devops/continuous/source-code/#构建写回与自动部署)。
+
+---
+
 ## 相关链接
 
 - [Tekton 官方文档](https://tekton.dev/docs/) - 完整 Pipelines as Code 指南

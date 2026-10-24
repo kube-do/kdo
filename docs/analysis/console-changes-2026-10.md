@@ -114,4 +114,22 @@
 
 ---
 
+## 七、补充（2026-10 后续）：构建触发部署与发布历史
+
+本节补充报告时间范围之后新增的功能。
+
+- **部署改为构建触发**：构建流水线成功后，Pipelines as Code 控制器直接创建部署流水线 `<应用>-<环境>-<分支>-deploy-<写回提交前 8 位>`，按写回提交中的清单执行 `kubectl apply`。部署不再依赖 Git 服务器的 webhook，内网 Git 访问不到平台时同样可以自动部署。
+- **部署流水线定义外置**：部署模板存放在 `kubedo` 命名空间的 ConfigMap `pipelinerun-gitops-deploy`，应用仓库不再生成 `.tekton/*-deploy.yaml`；可通过 Repository 的 `spec.settings.gitops.deployTemplate` 指定其他模板。
+- **取消 GitOps 开关**：镜像写回成为所有构建流水线的固定行为，Repository 的 `settings.gitops` 只保留 `deployTemplate` 一项。
+- **流水线模板统一**：24 个构建模板（含 12 个审批变体）全部改为「构建 → 写回」形态，移除内联的 `deploy-app` 任务；`.tekton` 生成文件增加内容指纹，模板内容更新后会自动重写。
+- **发布历史与回滚**：分支页面新增发布历史抽屉，按清单提交展示历史版本，并可从任意版本回滚；回滚提交清单后自动触发部署。
+- **清单历史显示源提交**：发布历史的提交列展示触发本次构建的源码提交标题，副行同时给出源提交与写回提交的短 sha。写回提交中新增 `Kubedo-Source-Commit` / `Kubedo-Source-Title` 两个 trailer 保存该信息。
+
+| 文档 | 变更 |
+|------|------|
+| `docs/devops/continuous/source-code/index.md` | 新增「构建写回与自动部署」小节 |
+| `docs/admin/pipeline/index.md` | 常见问题新增「部署流水线在哪里定义、如何重新部署」 |
+
+---
+
 *本报告由对 console 仓库最近一个月 git 历史的分析生成，用于同步 KDO 产品文档。*
