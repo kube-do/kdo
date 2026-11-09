@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">手动镜像应用创建表单示意图</title>
+  <desc id="desc">页面包含镜像地址、端口、副本数、拉取策略、环境变量、资源限制、健康检查与命名空间等字段，右侧显示将创建的资源。</desc>
+
+  <rect width="1200" height="800" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">KDO 控制台</text>
+  <text x="1000" y="35" font-family="sans-serif" font-size="12" fill="#9aa0a6">应用管理 / 新建应用</text>
+
+  <!-- Heading -->
+  <text x="48" y="110" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">新建手动镜像应用</text>
+  <text x="48" y="136" font-family="sans-serif" font-size="14" fill="#6a6e73">填写镜像与部署信息，平台据此生成 Deployment 与 Service。</text>
+
+  <!-- Form card -->
+  <rect x="48" y="164" width="760" height="580" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="198" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">基本信息与高级配置</text>
+  <text x="72" y="220" font-family="sans-serif" font-size="12" fill="#6a6e73">带 * 的字段为必填项，其余可在创建后继续修改。</text>
+
+  <!-- Row 1 -->
+  <text x="72" y="250" font-family="sans-serif" font-size="12" fill="#6a6e73">应用名称 *</text>
+  <rect x="72" y="258" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="280" font-family="sans-serif" font-size="13" fill="#151515">my-nginx</text>
+
+  <text x="396" y="250" font-family="sans-serif" font-size="12" fill="#6a6e73">镜像地址 *</text>
+  <rect x="396" y="258" width="388" height="34" rx="4" fill="#ffffff" stroke="#0066cc" stroke-width="2"/>
+  <text x="410" y="280" font-family="sans-serif" font-size="13" fill="#151515">nginx:alpine</text>
+
+  <!-- Row 2 -->
+  <text x="72" y="320" font-family="sans-serif" font-size="12" fill="#6a6e73">应用端口 *</text>
+  <rect x="72" y="328" width="150" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="350" font-family="sans-serif" font-size="13" fill="#151515">80</text>
+
+  <text x="246" y="320" font-family="sans-serif" font-size="12" fill="#6a6e73">副本数</text>
+  <rect x="246" y="328" width="150" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="260" y="350" font-family="sans-serif" font-size="13" fill="#151515">2</text>
+
+  <text x="420" y="320" font-family="sans-serif" font-size="12" fill="#6a6e73">镜像拉取策略</text>
+  <rect x="420" y="328" width="364" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="434" y="350" font-family="sans-serif" font-size="13" fill="#151515">IfNotPresent</text>
+  <text x="760" y="350" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <!-- Row 3 -->
+  <text x="72" y="390" font-family="sans-serif" font-size="12" fill="#6a6e73">环境变量（每行一个 KEY=VALUE）</text>
+  <rect x="72" y="398" width="712" height="74" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="422" font-family="monospace" font-size="12" fill="#151515">NGINX_ENV=production</text>
+  <text x="86" y="442" font-family="monospace" font-size="12" fill="#151515">TZ=Asia/Shanghai</text>
+
+  <!-- Row 4 -->
+  <text x="72" y="500" font-family="sans-serif" font-size="12" fill="#6a6e73">资源限制</text>
+  <rect x="72" y="508" width="168" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="530" font-family="sans-serif" font-size="12" fill="#6a6e73">CPU 100m</text>
+  <rect x="252" y="508" width="168" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="266" y="530" font-family="sans-serif" font-size="12" fill="#6a6e73">CPU 500m</text>
+  <rect x="432" y="508" width="168" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="446" y="530" font-family="sans-serif" font-size="12" fill="#6a6e73">内存 128Mi</text>
+  <rect x="612" y="508" width="172" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="626" y="530" font-family="sans-serif" font-size="12" fill="#6a6e73">内存 256Mi</text>
+
+  <!-- Row 5 -->
+  <text x="72" y="570" font-family="sans-serif" font-size="12" fill="#6a6e73">健康检查</text>
+  <rect x="72" y="586" width="36" height="20" rx="10" fill="#0066cc"/>
+  <circle cx="90" cy="596" r="8" fill="#ffffff"/>
+  <text x="116" y="601" font-family="sans-serif" font-size="12" fill="#151515">存活探针</text>
+
+  <rect x="360" y="586" width="36" height="20" rx="10" fill="#0066cc"/>
+  <circle cx="378" cy="596" r="8" fill="#ffffff"/>
+  <text x="404" y="601" font-family="sans-serif" font-size="12" fill="#151515">就绪探针</text>
+
+  <!-- Row 6 -->
+  <text x="72" y="650" font-family="sans-serif" font-size="12" fill="#6a6e73">命名空间 *</text>
+  <rect x="72" y="658" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="680" font-family="sans-serif" font-size="13" fill="#151515">default</text>
+  <text x="352" y="680" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <text x="396" y="650" font-family="sans-serif" font-size="12" fill="#6a6e73">节点选择（可选）</text>
+  <rect x="396" y="658" width="388" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="410" y="680" font-family="sans-serif" font-size="12" fill="#6a6e73">kubernetes.io/os=linux</text>
+
+  <!-- Buttons -->
+  <rect x="72" y="706" width="86" height="32" rx="4" fill="#0066cc"/>
+  <text x="103" y="727" font-family="sans-serif" font-size="13" fill="#ffffff">添加</text>
+  <rect x="170" y="706" width="86" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="201" y="727" font-family="sans-serif" font-size="13" fill="#0066cc">取消</text>
+
+  <!-- Resources card -->
+  <rect x="836" y="164" width="316" height="280" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="860" y="198" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">将创建的资源</text>
+
+  <circle cx="866" cy="234" r="4" fill="#0066cc"/>
+  <text x="880" y="238" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">Deployment</text>
+  <text x="880" y="256" font-family="sans-serif" font-size="11" fill="#6a6e73">my-nginx · 2 个副本</text>
+
+  <circle cx="866" cy="280" r="4" fill="#0066cc"/>
+  <text x="880" y="284" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">Service</text>
+  <text x="880" y="302" font-family="sans-serif" font-size="11" fill="#6a6e73">ClusterIP · 80 → 80</text>
+
+  <circle cx="866" cy="326" r="4" fill="#3e8635"/>
+  <text x="880" y="330" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">容器组</text>
+  <text x="880" y="348" font-family="sans-serif" font-size="11" fill="#6a6e73">由 Deployment 自动管理</text>
+
+  <circle cx="866" cy="372" r="4" fill="#c58c00"/>
+  <text x="880" y="376" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">Ingress · 可选</text>
+  <text x="880" y="394" font-family="sans-serif" font-size="11" fill="#6a6e73">创建后再单独添加外部访问</text>
+
+  <!-- Tips card -->
+  <rect x="836" y="464" width="316" height="280" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="860" y="498" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">填写提示</text>
+
+  <text x="860" y="530" font-family="sans-serif" font-size="12" fill="#6a6e73">· 镜像地址需包含仓库、命名空间与标签</text>
+  <text x="860" y="556" font-family="sans-serif" font-size="12" fill="#6a6e73">· 应用端口需与 Dockerfile 的 EXPOSE 一致</text>
+  <text x="860" y="582" font-family="sans-serif" font-size="12" fill="#6a6e73">· 生产环境建议使用 IfNotPresent</text>
+  <text x="860" y="608" font-family="sans-serif" font-size="12" fill="#6a6e73">· 私有仓库需提前配置拉取 Secret</text>
+  <text x="860" y="634" font-family="sans-serif" font-size="12" fill="#6a6e73">· 设置资源限制可避免节点资源争抢</text>
+
+  <rect x="860" y="660" width="268" height="60" rx="4" fill="#fdf3e3" stroke="#c58c00"/>
+  <text x="874" y="682" font-family="sans-serif" font-size="11" fill="#7a5200">镜像拉取失败时，可先检查</text>
+  <text x="874" y="700" font-family="sans-serif" font-size="11" fill="#7a5200">Secret 与仓库网络连通性。</text>
+
+  <text x="48" y="776" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

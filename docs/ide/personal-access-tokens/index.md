@@ -27,6 +27,25 @@ Personal Access Tokens（个人访问令牌，简称 PAT）用于让 Eclipse Che
 
 ![pat.png](imgs/pat.png)
 
+## 工作流程
+
+```mermaid
+flowchart TD
+    A[在 Git 服务商生成访问令牌] --> B[选择服务商并填写端点<br/>Azure DevOps 需填组织]
+    B --> C[User Preferences 添加令牌]
+    C --> D[Che 后端 API 校验并保存]
+    D --> E[以 Secret 存入用户命名空间<br/>携带 SCM 令牌标签与注解]
+    E --> F[Che Server 与 DevWorkspace Operator 识别]
+    F --> G[创建工作区时克隆私有仓库]
+    F --> H[运行时提供提交与推送凭据]
+    F --> I[同步 Git 用户姓名与邮箱]
+    G --> J[开发完成后推送代码]
+    H --> J
+    J --> K[令牌轮换或吊销]
+```
+
+令牌不进入 Workspace 环境变量，而是以带标签的 Secret 存放在用户命名空间，由 Che Server 与 DevWorkspace Operator 在克隆、推送和同步 Git 身份时读取。
+
 ## 支持的 Git 服务商
 
 PAT 支持以下 Git 服务商（默认 GitHub）：

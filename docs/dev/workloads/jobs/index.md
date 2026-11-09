@@ -15,6 +15,30 @@ nav_order: 7
 - ✅ **一次性服务**：临时爬虫、数据同步
 - ✅ **初始化任务**：集群首次启动的配置任务
 
+![任务创建表单与执行状态](imgs/job-create-form.svg)
+
+*图：Job 的并行数、完成数、重试配置，以及执行进度与容器组列表。*
+
+## 执行流程
+
+```mermaid
+flowchart TD
+    A[创建任务并填写并行数与完成数] --> B[指定镜像 命令与参数]
+    B --> C[设置环境变量与资源限制]
+    C --> D[选择重启策略与重试上限]
+    D --> E[Job 控制器创建容器组]
+    E --> F{容器退出码是否为 0}
+    F -->|是| G[累计成功数]
+    F -->|否| H{是否超过重试上限}
+    H -->|否| E
+    H -->|是| I[标记任务失败]
+    G --> J{成功数是否达到完成数}
+    J -->|否| E
+    J -->|是| K[标记任务完成]
+    K --> L[保留容器组与日志]
+    L --> M[按 TTL 或手动清理]
+```
+
 ---
 
 ## 快速开始
@@ -122,7 +146,7 @@ completions: 10  # 总共需要 10 个成功
 
 ### 2. 带索引的 Pod
 
-Kubernetes 1.21+ 支持 `index` 字段：
+在 `completionMode: Indexed` 模式下，Kubernetes 1.21+ 会为每个 Pod 注入 `JOB_COMPLETION_INDEX` 环境变量：
 
 ```yaml
 spec:
@@ -190,7 +214,7 @@ spec:
 
 默认 Job 的 Pod 不会自动删除，以便查看日志。可以：
 
-- 手动删除：`kubectl delete pod --jobs-name=<job-name>`
+- 手动删除：`kubectl delete pod -l job-name=<job-name>`
 - 设置 TTL：`spec.ttlSecondsAfterFinished: 300`
 - 使用 `kubectl delete job --cascade=orphan` 保留 Pod 只删除 Job 对象
 

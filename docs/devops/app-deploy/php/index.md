@@ -214,6 +214,26 @@ composer update --ignore-platform-reqs
 - [rdkafka](https://pecl.php.net/package/rdkafka) (`rdkafka`)
 - [PHPRedis](http://pecl.php.net/package/redis) (`redis`)
 
+## 构建与部署流程
+
+```mermaid
+flowchart TD
+    A[提交 PHP 源码] --> B{根目录特征文件}
+    B -->|index.php| C[识别为 PHP 项目]
+    B -->|composer.json| C
+    C --> D[选择 PHP 版本与应用模板]
+    D --> E[准备 composer.json 与 composer.lock]
+    E --> F[运行 pre-install-cmd]
+    F --> G[执行 composer install]
+    G --> H[运行 post-install-cmd]
+    H --> I[启用内置或共享扩展]
+    I --> J[构建 PHP-FPM 运行镜像]
+    J --> K[推送镜像到仓库]
+    K --> L[生成 Deployment 与 Service]
+    L --> M[部署到环境并创建路由]
+    M --> N[访问应用验证]
+```
+
 ## 部署示例
 
 进入到团队下，新建应用选择基于源码示例进行构建，选中 PHP Demo 并默认全部下一步即可。

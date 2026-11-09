@@ -49,6 +49,26 @@ Dashboard 是一个可视化界面，展示各种指标的数据，在界面上�
 4. **可视化监控界面：** `Prometheus` 收集到数据之后，由 `WebUI` 界面进行可视化图标展示。目前我们可以通过自定义的 API 客户端进行调用数据展示，也可以直接使用 `Grafana` 解决方案来展示。
 
 
+## 告警工作流程
+
+```mermaid
+flowchart TD
+    A[业务服务 / 节点 / 中间件] --> B[Exporter 暴露指标]
+    B --> C[Prometheus Server 周期抓取]
+    C --> D[TSDB 存储时序数据]
+    D --> E[告警规则周期评估]
+    E -->|满足阈值| F[推送告警到 Alertmanager]
+    F --> G[分组 / 静默 / 抑制]
+    G --> H[邮件 / 钉钉 / 企业微信 / Slack / Webhook]
+    D --> I[Grafana 查询与仪表盘]
+    I --> J[面板告警规则]
+    J --> F
+    D --> K[Grafana 告警状态与历史]
+    H --> K
+```
+
+指标链路与告警链路共用 Prometheus：规则在 Prometheus 侧评估后交给 Alertmanager 收敛，Grafana 侧的面板告警则直接由 Grafana 评估，两条链路最终都汇入通知渠道与告警历史。
+
 ## Grafana登录
 
 `Grafana`是一个非常强大的开源监控和可视化工具，用于监控和可视化各种类型的数据，如应用程序、服务器、网络、数据库等。
@@ -57,7 +77,7 @@ Dashboard 是一个可视化界面，展示各种指标的数据，在界面上�
 ![](imgs/login.png)
 
 `Grafana` 的登录地址默认是 `http://grafana.${DEFAULT_DOMAIN}` 比如： http://grafana.kube-do.dev。
-管理员账号密码是`admin/KdoGrafana2025`，登录后，建议修改管理员密码。
+管理员账号默认为 `admin`，初始密码请参考部署配置或联系平台管理员；首次登录后请立即修改密码。
 普通用户需要通过`OAuth`登录，这个和`KDO`平台的登录方式一致，默认`Oauth`登录都是`Viewer`权限，可以通过管理员设置更多权限。
 
 

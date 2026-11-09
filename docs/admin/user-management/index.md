@@ -9,6 +9,10 @@ nav_order: 7
 Kubernetes 的权限管理是通过其内置的 Role-Based Access Control (RBAC) 系统来实现的。
 RBAC 提供了细粒度的访问控制能力，允许你定义谁可以对集群中的资源做什么操作。
 
+![用户管理页面](imgs/user-management.svg)
+
+*图：用户列表与编辑用户面板中的通知设置。*
+
 ## 管理员用户管理菜单
 1. [用户(User)](/docs/rbac/#用户管理)
 2. [组(Group)](/docs/rbac/#组管理)
@@ -40,3 +44,22 @@ RBAC 提供了细粒度的访问控制能力，允许你定义谁可以对集群
 
 ## Keycloak 用户管理
 KDO 使用 Keycloak 作为身份认证中心，统一管理用户、用户组与会话。详见 [Keycloak 用户管理](/docs/admin/user-management/keycloak/)。
+
+## 用户权限关系
+
+```mermaid
+flowchart TD
+    A[用户或组] --> B[RoleBinding 或 ClusterRoleBinding]
+    B --> C[Role 或 ClusterRole]
+    C --> D[规则 资源与动词]
+    D --> E[命名空间级<br/>或集群级权限]
+    F[ServiceAccount] --> B
+    G[Keycloak 登录] --> H[OIDC Token]
+    H --> A
+    A --> I[控制台身份展示<br/>显示名优先]
+    I --> J[通知设置]
+    J --> K[绑定 IM<br/>与事件偏好]
+    K --> L[通知中心投递]
+```
+
+Keycloak 负责认证并签发 OIDC Token，Kubernetes 依据 Token 中的用户与组执行 RBAC 鉴权；通知设置属于用户偏好，不参与权限判定。

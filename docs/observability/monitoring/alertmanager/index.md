@@ -9,6 +9,7 @@ nav_order: 1
 ## 目录
 
 - [功能概述](#功能概述)
+- [配置修改流程](#配置修改流程)
 - [访问入口](#访问入口)
 - [核心概念与数据模型](#核心概念与数据模型)
   - [AlertmanagerConfig](#alertmanagerconfig)
@@ -87,6 +88,31 @@ Alertmanager 配置管理模块提供了一套完整的图形化界面，用于�
 | Slack | `slack_configs` | ✅ 原生 | `slack_configs` |
 | 企业微信 | `wechat_configs` | ✅ 原生 | `wechat_configs` |
 | 钉钉 | `dingtalk_configs` | ❌ 非原生 | `webhook_configs`（映射） |
+
+![Alertmanager 配置详情页](imgs/alertmanager-details.svg)
+
+*图：Alertmanager 详情页的五个配置区块与 Details/YAML 标签页。*
+
+---
+
+## 配置修改流程
+
+```mermaid
+flowchart TD
+    A[Details 标签页操作<br/>路由 / 全局配置 / 抑制规则 / 接收器] --> B[读取 AlertmanagerConfig 对象]
+    B --> C[cloneDeep 克隆配置]
+    C --> D[仅写入发生变化的字段]
+    D --> E[YAML safeDump]
+    E --> F[Base64 编码]
+    F --> G[JSON Patch 更新 Secret<br/>monitoring/alertmanager-main]
+    G --> H[Alertmanager 热加载新配置]
+    H --> I[按路由匹配并按分组策略收敛]
+    I --> J[抑制规则过滤]
+    J --> K[发送到接收器<br/>PagerDuty / Webhook / 邮件 / Slack / 企业微信 / 钉钉]
+    L[YAML 标签页直接编辑] --> G
+```
+
+表单与 YAML 两个入口最终都落到同一个 Secret：表单只改动发生变化的字段，避免覆盖用户手工维护的其他配置；写入后由 Alertmanager 自行热加载，无需重启 Pod。
 
 ---
 

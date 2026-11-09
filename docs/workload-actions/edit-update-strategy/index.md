@@ -7,6 +7,10 @@ parent: 工作负载操作
 
 **更新策略（Update Strategy）** 控制 Deployment 或 StatefulSet 在镜像或配置变更时如何滚动更新 Pod。它决定了新旧版本替换的速度和安全性，是保障服务持续可用的关键设置。
 
+![编辑更新策略弹窗示意图](imgs/update-strategy-dialog.svg)
+
+*图：编辑更新策略弹窗中的策略类型、maxUnavailable、maxSurge 与滚动结果预览。*
+
 ---
 
 ## 快速开始
@@ -30,6 +34,25 @@ parent: 工作负载操作
 - **适用场景：** 不支持多版本共存的应用（如数据库升级）
 
 4. 点击 **添加** 保存
+
+## 工作流程
+
+```mermaid
+flowchart TD
+    A[进入 Deployment 详情页] --> B[打开操作菜单]
+    B --> C[选择编辑更新策略]
+    C --> D{选择策略类型}
+    D -->|RollingUpdate| E[设置 maxUnavailable]
+    E --> F[设置 maxSurge]
+    D -->|Recreate| G[先删除全部旧 Pod]
+    F --> H{是否配置 PDB}
+    H -->|是| I[校验 maxUnavailable 不大于<br/>副本数减 minAvailable]
+    H -->|否| J[提交策略变更]
+    I --> J
+    J --> K[触发新的滚动更新]
+    K --> L[逐批替换 Pod 并保持可用]
+    G --> M[删除完成后再创建新 Pod]
+```
 
 ---
 

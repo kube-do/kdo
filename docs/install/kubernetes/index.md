@@ -17,6 +17,23 @@ nav_order: 1
 
 
 
+## 工作流程
+
+```mermaid
+flowchart TD
+    A[下载 KubeKey v3.1.12] --> B{节点数量}
+    B -->|单节点| C[编写单节点 config.yaml]
+    B -->|多节点| D[编写多节点 config.yaml<br/>配置 haproxy 与 controlPlaneEndpoint]
+    C --> E[设置 apiserverArgs 中的 OIDC 参数]
+    D --> E
+    E --> F[配置私有仓库与 registryMirrors]
+    F --> G[准备 containerd 配置]
+    G --> H[export KKZONE=cn]
+    H --> I[执行 kk create cluster -f config.yaml]
+    I --> J[确认节点全部 Ready]
+    J --> K[继续安装 KDO 平台]
+```
+
 ## 下载KubeKey
 
 以确保您从正确的区域下载 KubeKey，运行以下命令来下载 KubeKey：

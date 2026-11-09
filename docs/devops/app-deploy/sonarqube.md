@@ -42,6 +42,26 @@ mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
 5. 开发人员读取代码检测报告，获悉改进点。
 6. 开发人员根据报告完善代码，并再次提交，回到步骤1，形成持续集成的闭环。
 
+### 扫描链路阶段细化
+
+上述阶段在 KDO 中对应以下任务与配置：
+
+```mermaid
+flowchart TD
+    A[开发人员提交代码] --> B[Git 仓库触发 Webhook]
+    B --> C[调用 KDO OpenAPI 触发构建]
+    C --> D[使用 OpenJDK 11 执行 Maven 构建]
+    D --> E[加载 Settings.xml 中的 SonarQube 地址与令牌]
+    E --> F[执行 sonar:sonar 扫描]
+    F --> G[SonarScanner 上传分析结果]
+    G --> H[SonarQube 生成质量报告]
+    H --> I{是否达到质量要求}
+    I -->|否| J[开发人员按报告修复代码]
+    J --> A
+    I -->|是| K[Maven 打包并构建镜像]
+    K --> L[部署到环境并上线]
+```
+
 接下来，将会从实际操作的角度出发，基于 KDO 一点点实现上述持续集成链条。
 
 

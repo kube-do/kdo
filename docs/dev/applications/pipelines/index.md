@@ -7,13 +7,34 @@ nav_order: 2
 1. TOC
 {:toc}
 
-##  概述
+## 概述
 
 {: .note }
 KDO平台的流水线模块是基于[Tekton](https://tekton.dev/)实现的，Tekton 是一个强大、灵活的构建 `CI/CD` 流水线系统的开源框架，允许开发者构建、测试和发布应用。 
 `Tekton` 是云原生的，通过定义CRD，让用户快速灵活定义流水线。
 
 ![logo.jpeg](imgs/logo.jpeg)
+
+## 流水线执行流程
+
+```mermaid
+flowchart TD
+    A[创建或选择流水线] --> B{流水线类型}
+    B -->|标准流水线| C[定义 Pipeline 资源]
+    B -->|嵌入流水线| D[由应用信息实例化 PipelineRun]
+    C --> E[手动填写参数与工作区]
+    D --> F[平台自动注入参数与工作区]
+    E --> G[创建 PipelineRun]
+    F --> G
+    G --> H[获取代码仓库]
+    H --> I[编译或构建镜像]
+    I --> J[推送镜像到仓库]
+    J --> K{是否存在审批任务}
+    K -->|是| L[等待审批人批准或拒绝]
+    K -->|否| M[部署到 Kubernetes]
+    L -->|批准| M
+    L -->|拒绝| N[终止流水线]
+```
 
 ## Tekton的优点
 
@@ -183,10 +204,6 @@ spec:
     - name: maven-settings
     - name: empty-dir
 ```
-
-### 编辑标准流水线
-
-
 
 ## 嵌入流水线
 

@@ -21,6 +21,29 @@ keywords:
 
 ![code-delivery.png](imgs/code-delivery.png)
 
+## 分支映射与写回链路
+
+代码仓库的三个分支分别映射到开发、测试、生产环境，生产发布由构建写回的提交触发，而不是由仓库 Webhook 直接部署。
+
+```mermaid
+flowchart TD
+    A[开发者向 dev 分支提交代码] --> B[dev 流水线构建并运行自动化测试]
+    B --> C{测试是否通过}
+    C -->|否| D[修复后重新提交 dev]
+    D --> A
+    C -->|是| E[合并 dev 到 test 分支]
+    E --> F[test 环境批量构建全部组件]
+    F --> G[测试人员完整功能测试]
+    G --> H{测试是否通过}
+    H -->|否| D
+    H -->|是| I[人工审核并合并 test 到 master]
+    I --> J[master 流水线构建]
+    J --> K[gitops-writeback 写入部署清单]
+    K --> L[推送 kubedo-writeback 提交]
+    L --> M[平台按写回提交创建部署流水线]
+    M --> N[kubectl apply 完成生产发布]
+```
+
 ## 操作步骤
 
 ### 准备工作
@@ -29,9 +52,9 @@ keywords:
 
 2. 项目源代码拥有三个分支，dev、test、master。
 
-3. [创建项目](/docs/devops/project-manage/project#创建项目)时，选择`开发环境`、`测试环境`、`生产环境`三个环境。
+3. [创建项目](/docs/devops/project-manage/#创建项目)时，选择`开发环境`、`测试环境`、`生产环境`三个环境。
 
-4. [创建应用](/docs/dev/applications/repository#创建应用)时，在`自动分支流水线`选项中把源代码分支和环境环境进行对应。
+4. [创建应用](/docs/dev/applications/repository#创建应用)时，在`自动分支流水线`选项中把源代码分支和环境进行对应。
 
 ### 开发环境
 

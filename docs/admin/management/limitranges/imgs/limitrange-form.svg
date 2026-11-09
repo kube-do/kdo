@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="840" viewBox="0 0 1200 840" role="img" aria-labelledby="title desc">
+  <title id="title">创建限制范围表单示意图</title>
+  <desc id="desc">表单包含名称与命名空间，以及按 CPU 和内存分别填写的默认请求、默认限制、最小、最大与最大请求限制比。</desc>
+
+  <rect width="1200" height="840" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">KDO Console</text>
+  <text x="190" y="35" font-family="sans-serif" font-size="13" fill="#9aa0a6">管理员界面 / 管理 / 限制范围</text>
+  <circle cx="1104" cy="28" r="10" fill="#3c3f44"/>
+  <circle cx="1146" cy="28" r="10" fill="#3c3f44"/>
+
+  <!-- Heading -->
+  <text x="48" y="106" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">创建限制范围</text>
+  <text x="48" y="134" font-family="sans-serif" font-size="14" fill="#6a6e73">为命名空间设置容器资源请求与限制的默认值和边界。</text>
+
+  <!-- Basic info -->
+  <rect x="48" y="160" width="1104" height="140" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="192" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">基本信息</text>
+
+  <text x="72" y="222" font-family="sans-serif" font-size="12" fill="#6a6e73">名称</text>
+  <rect x="72" y="230" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="252" font-family="sans-serif" font-size="13" fill="#151515">default-limits</text>
+
+  <text x="396" y="222" font-family="sans-serif" font-size="12" fill="#6a6e73">命名空间</text>
+  <rect x="396" y="230" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="410" y="252" font-family="sans-serif" font-size="13" fill="#151515">development</text>
+  <text x="666" y="252" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <text x="720" y="222" font-family="sans-serif" font-size="12" fill="#6a6e73">类型</text>
+  <rect x="720" y="230" width="408" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="734" y="252" font-family="sans-serif" font-size="13" fill="#151515">Container</text>
+  <text x="1108" y="252" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <!-- Constraint table -->
+  <rect x="48" y="320" width="1104" height="440" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="352" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">资源约束</text>
+  <text x="72" y="372" font-family="sans-serif" font-size="12" fill="#6a6e73">留空的约束不会生效；默认值与边界同时填写时，默认值必须落在边界范围内。</text>
+
+  <rect x="64" y="386" width="1072" height="34" fill="#f0f0f0"/>
+  <text x="88" y="408" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">约束类型</text>
+  <text x="380" y="408" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">CPU</text>
+  <text x="650" y="408" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">内存</text>
+  <text x="900" y="408" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">说明</text>
+
+  <text x="88" y="462" font-family="sans-serif" font-size="13" fill="#151515">默认请求</text>
+  <rect x="360" y="442" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="374" y="462" font-family="sans-serif" font-size="13" fill="#151515">100m</text>
+  <rect x="630" y="442" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="644" y="462" font-family="sans-serif" font-size="13" fill="#151515">128Mi</text>
+  <text x="900" y="462" font-family="sans-serif" font-size="12" fill="#6a6e73">未指定 requests 时注入</text>
+
+  <text x="88" y="504" font-family="sans-serif" font-size="13" fill="#151515">默认限制</text>
+  <rect x="360" y="484" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="374" y="504" font-family="sans-serif" font-size="13" fill="#151515">500m</text>
+  <rect x="630" y="484" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="644" y="504" font-family="sans-serif" font-size="13" fill="#151515">512Mi</text>
+  <text x="900" y="504" font-family="sans-serif" font-size="12" fill="#6a6e73">未指定 limits 时注入</text>
+
+  <text x="88" y="546" font-family="sans-serif" font-size="13" fill="#151515">最小请求</text>
+  <rect x="360" y="526" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="374" y="546" font-family="sans-serif" font-size="13" fill="#151515">50m</text>
+  <rect x="630" y="526" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="644" y="546" font-family="sans-serif" font-size="13" fill="#151515">64Mi</text>
+  <text x="900" y="546" font-family="sans-serif" font-size="12" fill="#6a6e73">低于该值将被拒绝</text>
+
+  <text x="88" y="588" font-family="sans-serif" font-size="13" fill="#151515">最大请求</text>
+  <rect x="360" y="568" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="374" y="588" font-family="sans-serif" font-size="13" fill="#151515">2000m</text>
+  <rect x="630" y="568" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="644" y="588" font-family="sans-serif" font-size="13" fill="#151515">4Gi</text>
+  <text x="900" y="588" font-family="sans-serif" font-size="12" fill="#6a6e73">高于该值将被拒绝</text>
+
+  <text x="88" y="630" font-family="sans-serif" font-size="13" fill="#151515">最小限制</text>
+  <rect x="360" y="610" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="374" y="630" font-family="sans-serif" font-size="13" fill="#151515">100m</text>
+  <rect x="630" y="610" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="644" y="630" font-family="sans-serif" font-size="13" fill="#151515">128Mi</text>
+  <text x="900" y="630" font-family="sans-serif" font-size="12" fill="#6a6e73">低于该值将被拒绝</text>
+
+  <text x="88" y="672" font-family="sans-serif" font-size="13" fill="#151515">最大限制</text>
+  <rect x="360" y="652" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="374" y="672" font-family="sans-serif" font-size="13" fill="#151515">4000m</text>
+  <rect x="630" y="652" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="644" y="672" font-family="sans-serif" font-size="13" fill="#151515">8Gi</text>
+  <text x="900" y="672" font-family="sans-serif" font-size="12" fill="#6a6e73">高于该值将被拒绝</text>
+
+  <text x="88" y="714" font-family="sans-serif" font-size="13" fill="#151515">最大请求与限制比</text>
+  <rect x="360" y="694" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="374" y="714" font-family="sans-serif" font-size="13" fill="#151515">4</text>
+  <rect x="630" y="694" width="250" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="644" y="714" font-family="sans-serif" font-size="13" fill="#151515">4</text>
+  <text x="900" y="714" font-family="sans-serif" font-size="12" fill="#6a6e73">limits 不得超过 requests 的 4 倍</text>
+
+  <rect x="72" y="766" width="100" height="30" rx="4" fill="#0066cc"/>
+  <text x="88" y="786" font-family="sans-serif" font-size="12" fill="#ffffff">添加</text>
+  <rect x="184" y="766" width="72" height="30" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="206" y="786" font-family="sans-serif" font-size="12" fill="#0066cc">取消</text>
+
+  <text x="48" y="812" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

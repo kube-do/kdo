@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">事件列表页示意图</title>
+  <desc id="desc">页面上方为命名空间、资源类型、关键字与时间范围筛选区，下方为事件表格，包含类型、原因、对象、来源、消息、最后出现时间与次数。</desc>
+
+  <rect width="1200" height="720" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="32" y="34" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">KDO 控制台</text>
+  <text x="180" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">主页</text>
+  <text x="240" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">工作负载</text>
+  <text x="320" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">观测</text>
+  <circle cx="1104" cy="28" r="10" fill="#3c3f44"/>
+  <circle cx="1146" cy="28" r="10" fill="#3c3f44"/>
+
+  <!-- Page heading -->
+  <text x="48" y="112" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">事件 Event</text>
+  <text x="48" y="142" font-family="sans-serif" font-size="14" fill="#6a6e73">查看集群事件，按对象、类型、原因与关键字过滤</text>
+
+  <!-- Status chips -->
+  <rect x="820" y="126" width="88" height="26" rx="13" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="836" y="144" font-family="sans-serif" font-size="12" fill="#004080">全部 12</text>
+  <rect x="916" y="126" width="104" height="26" rx="13" fill="#faeae8" stroke="#c9190b"/>
+  <text x="932" y="144" font-family="sans-serif" font-size="12" fill="#8a1207">Warning 3</text>
+  <rect x="1028" y="126" width="100" height="26" rx="13" fill="#e7f5ec" stroke="#3e8635"/>
+  <text x="1044" y="144" font-family="sans-serif" font-size="12" fill="#1e4f18">Normal 9</text>
+
+  <!-- Filters -->
+  <rect x="48" y="164" width="1104" height="108" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="68" y="188" font-family="sans-serif" font-size="11" fill="#6a6e73">命名空间</text>
+  <rect x="68" y="196" width="200" height="36" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="82" y="219" font-family="sans-serif" font-size="13" fill="#151515">全部命名空间</text>
+  <text x="246" y="219" font-family="sans-serif" font-size="11" fill="#6a6e73">▾</text>
+
+  <text x="288" y="188" font-family="sans-serif" font-size="11" fill="#6a6e73">资源类型</text>
+  <rect x="288" y="196" width="200" height="36" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="302" y="219" font-family="sans-serif" font-size="13" fill="#151515">全部资源类型</text>
+  <text x="466" y="219" font-family="sans-serif" font-size="11" fill="#6a6e73">▾</text>
+
+  <text x="508" y="188" font-family="sans-serif" font-size="11" fill="#6a6e73">关键字</text>
+  <rect x="508" y="196" width="320" height="36" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="522" y="219" font-family="sans-serif" font-size="13" fill="#9aa0a6">按原因或消息搜索</text>
+
+  <text x="848" y="188" font-family="sans-serif" font-size="11" fill="#6a6e73">时间范围</text>
+  <rect x="848" y="196" width="140" height="36" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="862" y="219" font-family="sans-serif" font-size="13" fill="#151515">最近 1 小时</text>
+  <text x="966" y="219" font-family="sans-serif" font-size="11" fill="#6a6e73">▾</text>
+
+  <rect x="1008" y="196" width="60" height="36" rx="4" fill="#0066cc"/>
+  <text x="1022" y="219" font-family="sans-serif" font-size="13" fill="#ffffff">查询</text>
+  <rect x="1078" y="196" width="56" height="36" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="1090" y="219" font-family="sans-serif" font-size="13" fill="#0066cc">重置</text>
+
+  <!-- Events table -->
+  <rect x="48" y="292" width="1104" height="372" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <rect x="48" y="292" width="1104" height="40" rx="6" fill="#f5f5f5"/>
+  <text x="68" y="317" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">类型</text>
+  <text x="160" y="317" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">原因</text>
+  <text x="350" y="317" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">对象</text>
+  <text x="540" y="317" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">来源</text>
+  <text x="670" y="317" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">消息</text>
+  <text x="976" y="317" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">最后出现</text>
+  <text x="1096" y="317" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">次数</text>
+
+  <line x1="48" y1="332" x2="1152" y2="332" stroke="#e0e0e0"/>
+  <line x1="48" y1="396" x2="1152" y2="396" stroke="#f0f0f0"/>
+  <line x1="48" y1="460" x2="1152" y2="460" stroke="#f0f0f0"/>
+  <line x1="48" y1="524" x2="1152" y2="524" stroke="#f0f0f0"/>
+  <line x1="48" y1="588" x2="1152" y2="588" stroke="#f0f0f0"/>
+
+  <!-- Row 1 -->
+  <rect x="68" y="346" width="64" height="22" rx="11" fill="#faeae8"/>
+  <text x="76" y="362" font-family="sans-serif" font-size="11" fill="#8a1207">Warning</text>
+  <text x="160" y="362" font-family="sans-serif" font-size="12" fill="#151515">FailedScheduling</text>
+  <text x="350" y="362" font-family="sans-serif" font-size="12" fill="#151515">Pod/web-7d9f8c-abcde</text>
+  <text x="540" y="362" font-family="sans-serif" font-size="12" fill="#6a6e73">default-scheduler</text>
+  <text x="670" y="362" font-family="sans-serif" font-size="12" fill="#151515">0/3 nodes available: insufficient cpu</text>
+  <text x="976" y="362" font-family="sans-serif" font-size="12" fill="#6a6e73">2 分钟前</text>
+  <text x="1100" y="362" font-family="sans-serif" font-size="12" fill="#151515">12</text>
+
+  <!-- Row 2 -->
+  <rect x="68" y="410" width="64" height="22" rx="11" fill="#e7f5ec"/>
+  <text x="78" y="426" font-family="sans-serif" font-size="11" fill="#1e4f18">Normal</text>
+  <text x="160" y="426" font-family="sans-serif" font-size="12" fill="#151515">Scheduled</text>
+  <text x="350" y="426" font-family="sans-serif" font-size="12" fill="#151515">Pod/web-7d9f8c-abcde</text>
+  <text x="540" y="426" font-family="sans-serif" font-size="12" fill="#6a6e73">default-scheduler</text>
+  <text x="670" y="426" font-family="sans-serif" font-size="12" fill="#151515">Assigned to node worker-01</text>
+  <text x="976" y="426" font-family="sans-serif" font-size="12" fill="#6a6e73">5 分钟前</text>
+  <text x="1100" y="426" font-family="sans-serif" font-size="12" fill="#151515">8</text>
+
+  <!-- Row 3 -->
+  <rect x="68" y="474" width="64" height="22" rx="11" fill="#faeae8"/>
+  <text x="76" y="490" font-family="sans-serif" font-size="11" fill="#8a1207">Warning</text>
+  <text x="160" y="490" font-family="sans-serif" font-size="12" fill="#151515">BackOff</text>
+  <text x="350" y="490" font-family="sans-serif" font-size="12" fill="#151515">Pod/api-6c8d7f-fghij</text>
+  <text x="540" y="490" font-family="sans-serif" font-size="12" fill="#6a6e73">kubelet</text>
+  <text x="670" y="490" font-family="sans-serif" font-size="12" fill="#151515">Back-off restarting failed container</text>
+  <text x="976" y="490" font-family="sans-serif" font-size="12" fill="#6a6e73">8 分钟前</text>
+  <text x="1100" y="490" font-family="sans-serif" font-size="12" fill="#151515">5</text>
+
+  <!-- Row 4 -->
+  <rect x="68" y="538" width="64" height="22" rx="11" fill="#e7f5ec"/>
+  <text x="78" y="554" font-family="sans-serif" font-size="11" fill="#1e4f18">Normal</text>
+  <text x="160" y="554" font-family="sans-serif" font-size="12" fill="#151515">Pulled</text>
+  <text x="350" y="554" font-family="sans-serif" font-size="12" fill="#151515">Pod/api-6c8d7f-fghij</text>
+  <text x="540" y="554" font-family="sans-serif" font-size="12" fill="#6a6e73">kubelet</text>
+  <text x="670" y="554" font-family="sans-serif" font-size="12" fill="#151515">Container image already present</text>
+  <text x="976" y="554" font-family="sans-serif" font-size="12" fill="#6a6e73">8 分钟前</text>
+  <text x="1100" y="554" font-family="sans-serif" font-size="12" fill="#151515">3</text>
+
+  <!-- Row 5 -->
+  <rect x="68" y="602" width="64" height="22" rx="11" fill="#faeae8"/>
+  <text x="76" y="618" font-family="sans-serif" font-size="11" fill="#8a1207">Warning</text>
+  <text x="160" y="618" font-family="sans-serif" font-size="12" fill="#151515">Unhealthy</text>
+  <text x="350" y="618" font-family="sans-serif" font-size="12" fill="#151515">Pod/db-0</text>
+  <text x="540" y="618" font-family="sans-serif" font-size="12" fill="#6a6e73">kubelet</text>
+  <text x="670" y="618" font-family="sans-serif" font-size="12" fill="#151515">Readiness probe failed</text>
+  <text x="976" y="618" font-family="sans-serif" font-size="12" fill="#6a6e73">12 分钟前</text>
+  <text x="1100" y="618" font-family="sans-serif" font-size="12" fill="#151515">2</text>
+
+  <!-- Footer hint -->
+  <text x="48" y="700" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">计划任务创建表单示意图</title>
+  <desc id="desc">左侧为名称、时区、Cron 表达式、并发策略、镜像与命令，右侧为表达式字段预览与最近 Job 列表。</desc>
+
+  <rect width="1200" height="820" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">KDO 控制台</text>
+  <text x="1000" y="35" font-family="sans-serif" font-size="12" fill="#9aa0a6">工作负载 / 计划任务</text>
+
+  <!-- Heading -->
+  <text x="48" y="110" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">新建计划任务</text>
+  <text x="48" y="136" font-family="sans-serif" font-size="14" fill="#6a6e73">Cron 表达式决定触发时间，并发策略决定是否跳过或替换运行中的任务。</text>
+
+  <!-- Form card -->
+  <rect x="48" y="164" width="660" height="600" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="198" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">调度配置</text>
+
+  <text x="72" y="244" font-family="sans-serif" font-size="12" fill="#6a6e73">名称 *</text>
+  <rect x="72" y="252" width="240" height="34" rx="4" fill="#ffffff" stroke="#0066cc" stroke-width="2"/>
+  <text x="86" y="274" font-family="sans-serif" font-size="13" fill="#151515">daily-backup</text>
+
+  <text x="332" y="244" font-family="sans-serif" font-size="12" fill="#6a6e73">时区</text>
+  <rect x="332" y="252" width="352" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="346" y="274" font-family="sans-serif" font-size="13" fill="#151515">Asia/Shanghai</text>
+  <text x="660" y="274" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <text x="72" y="316" font-family="sans-serif" font-size="12" fill="#6a6e73">Cron 表达式 *</text>
+  <rect x="72" y="324" width="300" height="34" rx="4" fill="#ffffff" stroke="#0066cc" stroke-width="2"/>
+  <text x="86" y="346" font-family="monospace" font-size="14" fill="#151515">0 2 * * *</text>
+
+  <text x="392" y="316" font-family="sans-serif" font-size="12" fill="#6a6e73">任务超时</text>
+  <rect x="392" y="324" width="292" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="406" y="346" font-family="sans-serif" font-size="13" fill="#151515">3600 秒</text>
+
+  <text x="72" y="388" font-family="sans-serif" font-size="12" fill="#6a6e73">并发策略</text>
+  <rect x="72" y="396" width="240" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="418" font-family="sans-serif" font-size="13" fill="#151515">Forbid</text>
+  <text x="286" y="418" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <text x="332" y="388" font-family="sans-serif" font-size="12" fill="#6a6e73">成功历史</text>
+  <rect x="332" y="396" width="170" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="346" y="418" font-family="sans-serif" font-size="13" fill="#151515">3</text>
+
+  <text x="522" y="388" font-family="sans-serif" font-size="12" fill="#6a6e73">失败历史</text>
+  <rect x="522" y="396" width="162" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="536" y="418" font-family="sans-serif" font-size="13" fill="#151515">1</text>
+
+  <text x="72" y="460" font-family="sans-serif" font-size="12" fill="#6a6e73">容器镜像 *</text>
+  <rect x="72" y="468" width="612" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="490" font-family="monospace" font-size="12" fill="#151515">mysql:8.0</text>
+
+  <text x="72" y="520" font-family="sans-serif" font-size="12" fill="#6a6e73">命令</text>
+  <rect x="72" y="528" width="612" height="74" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="552" font-family="monospace" font-size="11" fill="#151515">sh -c "mysqldump -h db app &gt; /backup/app.sql"</text>
+  <text x="86" y="574" font-family="monospace" font-size="11" fill="#6a6e73"># 任务需前台运行并以退出码表示结果</text>
+
+  <text x="72" y="632" font-family="sans-serif" font-size="12" fill="#6a6e73">环境变量</text>
+  <rect x="72" y="640" width="612" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="662" font-family="monospace" font-size="12" fill="#151515">BACKUP_DIR=/backup</text>
+
+  <rect x="72" y="706" width="86" height="32" rx="4" fill="#0066cc"/>
+  <text x="103" y="727" font-family="sans-serif" font-size="13" fill="#ffffff">添加</text>
+  <rect x="170" y="706" width="86" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="201" y="727" font-family="sans-serif" font-size="13" fill="#0066cc">取消</text>
+
+  <!-- Cron preview card -->
+  <rect x="732" y="164" width="420" height="280" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="756" y="198" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">表达式预览</text>
+
+  <rect x="756" y="224" width="64" height="64" rx="6" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="780" y="264" font-family="sans-serif" font-size="22" font-weight="700" fill="#004080">0</text>
+  <text x="778" y="308" font-family="sans-serif" font-size="11" fill="#6a6e73">分钟</text>
+
+  <rect x="828" y="224" width="64" height="64" rx="6" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="852" y="264" font-family="sans-serif" font-size="22" font-weight="700" fill="#004080">2</text>
+  <text x="850" y="308" font-family="sans-serif" font-size="11" fill="#6a6e73">小时</text>
+
+  <rect x="900" y="224" width="64" height="64" rx="6" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="926" y="264" font-family="sans-serif" font-size="22" font-weight="700" fill="#004080">*</text>
+  <text x="922" y="308" font-family="sans-serif" font-size="11" fill="#6a6e73">日</text>
+
+  <rect x="972" y="224" width="64" height="64" rx="6" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="998" y="264" font-family="sans-serif" font-size="22" font-weight="700" fill="#004080">*</text>
+  <text x="994" y="308" font-family="sans-serif" font-size="11" fill="#6a6e73">月</text>
+
+  <rect x="1044" y="224" width="64" height="64" rx="6" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="1070" y="264" font-family="sans-serif" font-size="22" font-weight="700" fill="#004080">*</text>
+  <text x="1066" y="308" font-family="sans-serif" font-size="11" fill="#6a6e73">周</text>
+
+  <text x="756" y="356" font-family="sans-serif" font-size="12" fill="#151515">下次运行：明天 02:00</text>
+  <text x="756" y="382" font-family="sans-serif" font-size="12" fill="#151515">时区：Asia/Shanghai</text>
+  <text x="756" y="408" font-family="sans-serif" font-size="11" fill="#6a6e73">修改表达式后预览会立即更新。</text>
+
+  <!-- Jobs card -->
+  <rect x="732" y="468" width="420" height="296" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="756" y="500" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">最近 Job</text>
+
+  <text x="756" y="530" font-family="sans-serif" font-size="11" fill="#6a6e73">名称</text>
+  <text x="1000" y="530" font-family="sans-serif" font-size="11" fill="#6a6e73">时间</text>
+  <text x="1060" y="530" font-family="sans-serif" font-size="11" fill="#6a6e73">状态</text>
+  <line x1="756" y1="540" x2="1128" y2="540" stroke="#e0e0e0"/>
+
+  <text x="756" y="566" font-family="monospace" font-size="11" fill="#151515">daily-backup-28917360</text>
+  <text x="1000" y="566" font-family="sans-serif" font-size="11" fill="#6a6e73">02:00</text>
+  <rect x="1056" y="552" width="72" height="20" rx="10" fill="#e7f5ec"/>
+  <text x="1062" y="566" font-family="sans-serif" font-size="10" fill="#1e4f18">Succeeded</text>
+
+  <line x1="756" y1="580" x2="1128" y2="580" stroke="#e0e0e0"/>
+  <text x="756" y="606" font-family="monospace" font-size="11" fill="#151515">daily-backup-28916700</text>
+  <text x="1000" y="606" font-family="sans-serif" font-size="11" fill="#6a6e73">昨天</text>
+  <rect x="1056" y="592" width="72" height="20" rx="10" fill="#faeae8"/>
+  <text x="1068" y="606" font-family="sans-serif" font-size="10" fill="#8a1207">Failed</text>
+
+  <line x1="756" y1="620" x2="1128" y2="620" stroke="#e0e0e0"/>
+  <text x="756" y="646" font-family="monospace" font-size="11" fill="#151515">daily-backup-28916040</text>
+  <text x="1000" y="646" font-family="sans-serif" font-size="11" fill="#6a6e73">前天</text>
+  <rect x="1056" y="632" width="72" height="20" rx="10" fill="#e7f5ec"/>
+  <text x="1062" y="646" font-family="sans-serif" font-size="10" fill="#1e4f18">Succeeded</text>
+
+  <line x1="756" y1="660" x2="1128" y2="660" stroke="#e0e0e0"/>
+  <text x="756" y="690" font-family="sans-serif" font-size="11" fill="#6a6e73">失败的 Job 会按重试上限重试，并保留在历史中。</text>
+  <text x="756" y="712" font-family="sans-serif" font-size="11" fill="#6a6e73">超出历史保留数量的 Job 会被自动清理。</text>
+  <text x="756" y="740" font-family="sans-serif" font-size="11" fill="#0066cc">查看全部 Job ›</text>
+
+  <text x="48" y="796" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

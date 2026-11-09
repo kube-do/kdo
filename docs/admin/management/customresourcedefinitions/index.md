@@ -16,6 +16,25 @@ CRD 是一种 API 对象，它代表了一类自定义资源。 当你创建一�
 
 ![crds.png](imgs/crds.png)
 
+## CRD 与自定义资源的关系
+
+```mermaid
+flowchart TD
+    A[创建 CustomResourceDefinition] --> B[API Server 注册新 API]
+    B --> C[集群中可创建自定义资源]
+    C --> D[控制器监听自定义资源]
+    D --> E[调和期望状态与实际状态]
+    E --> F[写回 status 与事件]
+    C --> G[控制台 CRD 列表]
+    G --> H[查看 CRD 详情与 YAML]
+    H --> I[进入自定义资源列表]
+    I --> J[增删改查自定义资源]
+    J --> C
+    K[未在菜单列出的资源] --> I
+```
+
+CRD 定义的是资源类型，真正承载配置的是该类型下的自定义资源实例；删除 CRD 会同时移除集群中所有同类型的自定义资源。
+
 ## 操作CRD
 
 {: .note }

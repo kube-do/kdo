@@ -21,6 +21,26 @@ nav_order: 9
 | **集群管理 (Clusters)** | 纳管多个 K8s 集群，查看集群与各组件的健康状态 | [Clusters](/docs/admin/management/clusters/) |
 | **证书管理 (KdcCertificate)** | 自动维护 Ingress TLS 证书，按到期时间在各集群/命名空间分发替换 | [KdcCertificate](/docs/admin/management/kdccertificates/) |
 
+## 功能地图
+
+```mermaid
+flowchart TD
+    A[管理模块] --> B[资源配额 ResourceQuota]
+    A --> C[限制范围 LimitRange]
+    A --> D[节点 Node]
+    A --> E[命名空间 Namespace]
+    A --> F[应用项目 AppProject]
+    A --> G[自定义资源定义 CRD]
+    A --> H[集群 Cluster]
+    A --> I[证书 KdcCertificate]
+    B --> J[命名空间总量上限]
+    C --> K[单容器默认值与边界]
+    E --> L[多租户资源隔离]
+    F --> L
+```
+
+资源配额与限制范围通常配合命名空间使用；集群、证书与 CRD 则属于跨命名空间的管理对象。
+
 ---
 
 ## 快速导航
@@ -74,7 +94,7 @@ spec:
 - **资源容量**：CPU、内存、GPU、可分配容量
 - **节点标签**：用于Pod调度选择（`nodeSelector`、`nodeAffinity`）
 - **污点 (Taints)**：排斥不匹配的 Pod（如 `dedicated=master:NoSchedule`）
-- **运行时信息**：内核版本、Docker/Containerd 版本、操作系统
+- **运行时信息**：内核版本、容器运行时（containerd）版本、操作系统
 
 **关键操作：**
 - 查看节点详情（资源使用、标签、污点）
@@ -164,7 +184,7 @@ kubectl explain resourcequota --api-version=v1
 
 1. 确认节点网络是否正常
 2. 检查 kubelet 日志：`journalctl -u kubelet -f`
-3. 检查 Docker/Containerd 状态
+3. 检查容器运行时（containerd）状态
 4. 如果节点故障，考虑从集群移除并替换新节点
 
 ### Q: LimitRange 不生效？

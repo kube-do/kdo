@@ -13,6 +13,26 @@ KDO平台的权限管理完全基于`Kubernetes`的基于角色的访问控制(R
 通过利用Kubernetes RBAC，KDO平台能够提供精细的权限管理，确保用户和应用程序仅能访问其被授权的资源，从而增强安全性并支持更灵活的角色与权限配置。
 
 
+## 授权流程
+
+```mermaid
+flowchart TD
+    A[用户或 ServiceAccount 发起请求] --> B[OIDC 或 Token 认证]
+    B --> C[API Server 提取 User 与 Groups]
+    C --> D{访问的是命名空间资源<br/>还是集群资源}
+    D -->|命名空间资源| E[查找该命名空间的 RoleBinding]
+    D -->|集群资源| F[查找 ClusterRoleBinding]
+    E --> G{绑定引用哪种角色}
+    G -->|Role| H[读取 Role 中的 rules]
+    G -->|ClusterRole| I[读取 ClusterRole 中的 rules]
+    F --> J[读取 ClusterRole 中的 rules]
+    H --> K[匹配 verb 与 resource]
+    I --> K
+    J --> K
+    K --> L{是否存在允许规则}
+    L -->|是| M[执行操作并返回结果]
+    L -->|否| N[返回 403 Forbidden]
+```
 
 ## Kubernetes的访问控制
 {: .note }
@@ -59,7 +79,7 @@ RBAC是Kubernetes中一个核心的授权策略，通过它，管理员可以实
 
 ### Kubernetes RBAC的三要素
 
-1. **Subjects**，也就是主体。可以是开发人员、集群管理员这样的自然人，也可以是- 系统组件进程，或者是 Pod 中的逻辑进程；在k8s中有以下三种类型：
+1. **Subjects**，也就是主体。可以是开发人员、集群管理员这样的自然人，也可以是系统组件进程，或者是 Pod 中的逻辑进程；在k8s中有以下三种类型：
    `User`：用户，这是有外部独立服务进行管理的。
    `Group`：组，这是用来关联多个账户的，集群中有一些默认创建的组，比如cluster-admin。
    `ServiceAccount`：服务账号，通过Kubernetes API 来管理的一些用户账号，和 namespace 进行关联的，适用于集群内部运行的应用程序，需要通过 API 来完成权限认证，所以在集群内部进行权限操作，都需要使用到 ServiceAccount。
@@ -157,9 +177,7 @@ Kubernetes RBAC 的角色(Role)或 集群角色(ClusterRole) 中包含一组代�
 
 ### 创建角色绑定
 
-
-
-
+在项目成员或访问控制页面为成员分配角色后，平台会自动创建对应的 RoleBinding；也可以使用 `kubectl create rolebinding` 手动创建。
 
 
 

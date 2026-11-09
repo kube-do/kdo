@@ -13,6 +13,25 @@ nav_order: 3
 无状态应用（Deployment）用于管理和运行一组容器组，适用于不需要保持持久状态的负载。这种部署方式非常适合如Web服务和微服务等应用场景。
 [更多信息](https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/deployment)
 
+## 对象关系与发布流程
+
+```mermaid
+flowchart TD
+    A[创建或编辑无状态应用] --> B[生成 Deployment]
+    B --> C[创建 ReplicaSet]
+    C --> D[创建指定副本数的容器组]
+    B --> E{发布新版本}
+    E -->|滚动更新| F[新建 ReplicaSet 并按策略替换容器组]
+    F --> G{新容器组是否就绪}
+    G -->|是| H[旧 ReplicaSet 缩容保留历史]
+    G -->|否| I[暂停发布或回滚到旧版本]
+    B --> J[调整副本数或由 HPA 扩缩]
+    J --> D
+    B --> K[批量启动 重启 停止或删除]
+    K --> C
+    D --> L[服务通过标签选择容器组]
+```
+
 ## 无状态列表
 
 ![](imgs/deployments.png)

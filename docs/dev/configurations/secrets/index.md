@@ -15,6 +15,33 @@ nav_order: 2
 - ✅ **动态更新**：Secret 更新后可选择是否重启 Pod 生效
 - ✅ **多种使用方式**：环境变量、文件挂载、镜像拉取密钥
 
+![保密字典创建表单](imgs/secret-create-form.svg)
+
+*图：新建 Secret 的键值对编辑区、类型说明与三种引用方式。*
+
+## 创建与使用流程
+
+```mermaid
+flowchart TD
+    A[选择创建方式] --> B{创建入口}
+    B -->|控制台表单| C[选择键值对或文件类型]
+    B -->|kubectl| D[使用 create secret 命令]
+    B -->|YAML| E[手写 data 字段]
+    C --> F[填写字段并提交]
+    D --> G[命令行自动编码]
+    E --> H[手动提供 base64 值]
+    F --> I[保存为 Secret 对象]
+    G --> I
+    H --> I
+    I --> J{在何处引用}
+    J -->|环境变量| K[secretKeyRef 注入容器]
+    J -->|文件挂载| L[挂载到指定路径]
+    J -->|镜像拉取| M[imagePullSecrets 引用]
+    K --> N[容器组使用配置]
+    L --> N
+    M --> N
+```
+
 ---
 
 ## 快速开始

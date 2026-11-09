@@ -35,6 +35,25 @@ nav_order: 8
 {: .note }
 控制器只监听**管理集群**的 Ingress/Secret 事件；远端集群的变化依赖周期性调和（默认 30 分钟）。若希望远端更及时，可在成员集群通过 Ingress 表单选择证书后立即生成（见《路由(Ingress)》）。
 
+## 证书分发流程
+
+```mermaid
+flowchart TD
+    A[来源 TLS Secret<br/>tls.crt 与 tls.key] --> B[解析证书链并校验私钥匹配]
+    B --> C{SAN 覆盖 spec.domains 且未过期}
+    C -->|否| D[Webhook 拒绝创建或更新]
+    C -->|是| E[按分发策略发现 Ingress]
+    E --> F[得到候选目标 Secret]
+    F --> G[读取目标证书到期时间<br/>必要时回退 exporter]
+    G --> H{目标缺失或更早过期}
+    H -->|是| I[写入 tls.crt 与 tls.key]
+    H -->|否| J[仅记录当前状态]
+    I --> K[写回 status.targets<br/>每 30 分钟调和]
+    J --> K
+```
+
+替换只发生在目标证书缺失或比来源证书更早过期时；关闭 `autoReplace` 后，控制器只记录状态而不写入目标 Secret。
+
 ## 前置条件
 
 1. **来源 Secret**：主集群中存在一个 `kubernetes.io/tls` Secret，包含 `tls.crt`（可含证书链）与 `tls.key`，且证书覆盖 `spec.domains`、未过期。
@@ -126,7 +145,7 @@ spec:
 
 列表列：**名称 / 域名 / 到期时间 / 集群 / 自动替换 / 目标数 / 创建时间**。到期时间少于 30 天显示橙色、已过期显示红色。
 
-![create-certificate.png](imgs/create-certificate.png)
+![证书列表](imgs/certificate-list.png)
 
 ### 创建证书
 

@@ -27,7 +27,7 @@ Operator 是通过编写自定义资源(Custom Resource Definitions, CRD)来实�
 ## OperatorHub介绍
 
 {: .note }
-OperatorHub用于管理用户的operator，支持安装与部署operator。平台提供公开Operator和私有的Operator，公开的可直接安装，无需购买/上传； 私有的Operator支持上传，用户可根据实际的需要在在资产开放平台购买私有的Operator。
+OperatorHub用于管理用户的operator，支持安装与部署operator。平台提供公开Operator和私有的Operator，公开的可直接安装，无需购买/上传； 私有的Operator支持上传，用户可根据实际的需要在资产开放平台购买私有的Operator。
 KDO平台通过 OLM（OperatorLifecycleManager）插件管理 operator，OLM作为Operator Framework的一部分，可以帮助用户进行Operator的自动安装，升级及其生命周期的管理。
 
 ![operator-hub.png](imgs/operator-hub.png)
@@ -35,10 +35,31 @@ KDO平台通过 OLM（OperatorLifecycleManager）插件管理 operator，OLM作�
 ### 创建Operator
 
 {: .note }
-创建Operator应用和创建[Helm应用](/docs/dev/applications/helm/)的流程类型，查找需要的Operator，选择`频道`和`版本`即可，一般Operator都是安装在`operators`这个命名空间(namespace)。
+创建Operator应用和创建[Helm应用](/docs/dev/applications/helm/)的流程类似，查找需要的Operator，选择`频道`和`版本`即可，一般Operator都是安装在`operators`这个命名空间(namespace)。
 
 {: .warning }
 有一部分Operator需要安装到特定的命名空间(namespace)，具体查看说明文档。
 
 ![install-operator.gif](imgs/install-operator.gif)
+
+## 安装与订阅流程
+
+```mermaid
+flowchart TD
+    A[进入 OperatorHub] --> B{Operator 来源}
+    B -->|公开| C[直接搜索公开 Operator]
+    B -->|私有| D[在资产开放平台购买并上传]
+    C --> E[查看说明与所需权限]
+    D --> E
+    E --> F[选择频道 Channel]
+    F --> G[选择版本]
+    G --> H[选择命名空间<br/>通常为 operators]
+    H --> I[确认安装]
+    I --> J[OLM 创建 Subscription]
+    J --> K[部署 Operator 与 CSV]
+    K --> L[安装 Operator 提供的 CRD]
+    L --> M[创建自定义资源实例]
+```
+
+安装完成后，Operator 会持续监听其自定义资源并调和实际状态；频道决定后续版本的升级路径。
 

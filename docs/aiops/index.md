@@ -23,11 +23,33 @@ KDO平台集成了 **云原生 AI 智能助手** —— 一个基于生成式 AI
 | **告警诊断** | 可附加集群告警，获取根因分析和修复建议 |
 | **多 LLM 支持** | 支持 OpenAI、Azure OpenAI、watsonx、RHEL AI、云原生 AI 等模型提供商 |
 
+![AI 助手对话窗口](imgs/lightspeed-chat.svg)
+
+*图：Kubernetes Lightspeed 对话窗口与附加资源对象、反馈和输入区域。*
+
+## 工作流程
+
+```mermaid
+flowchart TD
+    A[用户在控制台提问] --> B[Lightspeed 对话窗口]
+    B --> C[附加资源对象或告警上下文]
+    C --> D[读取 olsconfig 与 openai Secret]
+    D --> E[选择默认 LLM 提供商与模型]
+    E --> F[Embedding 检索产品文档索引]
+    F --> G[MCP 服务器查询集群实时状态]
+    G --> H[组装上下文并调用大模型]
+    H --> I[返回回答与文档引用]
+    I --> J[用户追问并复用对话历史]
+    I --> K[提交有帮助或无帮助反馈]
+```
+
+回答由三部分上下文拼装而成：对话历史、附加的资源对象或告警、以及 RAG 文档索引与 MCP 返回的集群实时状态；模型只负责组织语言，配置与凭据都来自 `olsconfig` 和 `openai` Secret。
+
 ## 配置说明
 
 {: .note }
 Kubernetes Lightspeed 通过 `ConfigMap` 中的 `olsconfig.yaml` 文件进行配置。配置文件位于 `kubedo-system` 命名空间下的 `olsconfig` ConfigMap 中。
-大模型api key的配置是`kubedo-system` 命名空间下的 `openai` 这个Secret。
+大模型api key的配置是`kubedo-system` 命名空间下的 `openai` 这个Secret。该 Secret 会以文件形式挂载到 Lightspeed 服务容器内的 `config/openai/openai_api_key.txt`，下面的 `credentials_path` 即指向该文件。
 
 
 ### 配置文件示例
@@ -235,8 +257,6 @@ MCP 服务器（如 `openshift.py`）允许 Lightspeed 直接查询集群资源�
 4. 点击 `Attach context`，选择 `Alert`
 5. 输入 `What should I do about this alert?`
 6. AI 将返回告警的根因分析、相关文档和修复建议
-
-![](imgs/kc-lightspeed-troubleshoot-alert.png)
 
 ### 提供反馈
 

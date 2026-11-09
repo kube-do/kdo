@@ -15,6 +15,23 @@ kdo平台的安装主要分为三个步骤：
 2. **安装前检查**
 3. **运行安装脚本**
 
+## 工作流程
+
+```mermaid
+flowchart TD
+    A[下载 install.zip 或 install.tar.gz] --> B[解压并进入 install 目录]
+    B --> C[chmod +x kdo-install.sh]
+    C --> D{是否使用内置 Keycloak}
+    D -->|是| E[保持默认 OIDC 变量]
+    D -->|否| F[修改 OIDC_CLIENT_ID<br/>OIDC_CLIENT_SECRET 与 OIDC_ISSUER_URL]
+    E --> G[按需修改 KC_PASS]
+    F --> G
+    G --> H[运行 kdo-install.sh<br/>传入 NODE_IP 与 DEFAULT_DOMAIN]
+    H --> I[脚本部署平台组件]
+    I --> J[kubectl get pod -n kubedo-system]
+    J --> K[访问 http://NODE_IP:30080]
+```
+
 ## 下载安装脚本
 首先下载KDO安装脚本到Kubernetes的Master节点，linux平台可以通过`wget`或`curl`下载。
 [KDO平台安装脚本 Zip文件](https://gitee.com/kube-do/docs/releases/download/latest/install.zip)

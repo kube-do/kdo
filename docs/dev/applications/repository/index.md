@@ -20,6 +20,25 @@ nav_order: 1
 
 [Pipelines as Code详情](../pipelines-as-code/index.md)
 
+## 应用创建流程
+
+```mermaid
+flowchart TD
+    A[填写 Git 仓库地址与访问 Token] --> B[级联选择开发语言 版本与模板]
+    B --> C[设置应用端口与命名空间]
+    C --> D[配置分支与环境映射]
+    D --> E[配置 Webhook 与流水线来源]
+    E --> F[点击添加]
+    F --> G[生成 devfile.yaml]
+    G --> H[生成 docker/Dockerfile]
+    H --> I[生成 kubernetes 部署清单]
+    I --> J[按环境生成 .tekton 流水线定义]
+    J --> K[挂载 Webhook 到代码仓库]
+    K --> L[推送或 PR 触发 PipelineRun]
+    L --> M[构建镜像并部署到目标环境]
+    M --> N[状态回报到 Git 提供商]
+```
+
 ## 创建Git应用
 
 - KDO支持多环境多分支的应用管理，在**应用项目**选择对应的项目，选择**应用管理 -> 应用**
@@ -140,7 +159,7 @@ v                           v                           v
 +-------------------+       +-------------------+       +-------------------+
 | Code Repository   |       |                   |       |                   |
 | (.tekton/*.yaml   |       |   Task Pods       |       |   Tekton CRDs     |
-| kubrnetes/*.yaml  |       | (Kubernetes Pods) |       |  (PipelineRun,    |
+| kubernetes/*.yaml  |       | (Kubernetes Pods) |       |  (PipelineRun,    |
 | docker/Dockerfile)|       |                   |       |   Task, etc.)     | 
 +-------------------+       +-------------------+       +-------------------+
 ```

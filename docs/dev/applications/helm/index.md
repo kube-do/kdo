@@ -18,6 +18,25 @@ nav_order: 4
 - ✅ **社区生态**：Helm Hub 有数千个官方和社区维护的 Chart
 - ✅ **可重复**：不同环境使用相同 Chart，仅参数不同
 
+## 安装流程
+
+```mermaid
+flowchart TD
+    A[进入应用管理并选择 Helm 应用] --> B[点击新建并搜索 Chart]
+    B --> C[查看 Chart 名称 版本与描述]
+    C --> D[进入安装向导]
+    D --> E[填写 Release 名称与目标命名空间]
+    E --> F[选择 Chart 版本]
+    F --> G{参数配置方式}
+    G -->|图形化表单| H[编辑全局与主组件参数]
+    G -->|YAML 模式| I[直接编辑 values.yaml]
+    H --> J[预览最终 Kubernetes 资源]
+    I --> J
+    J --> K[调用 helm install 创建 Release]
+    K --> L[生成工作负载 Service 与 PVC]
+    L --> M[在列表执行升级 回滚或删除]
+```
+
 ---
 
 ## 核心概念
@@ -195,9 +214,7 @@ KDO 当前主要使用第 2 层（UI 配置）。
 
 ### Q: Helm 应用安装失败？
 
-在 KDO UI 看不到详细错误，可以：
-1. 查看 **流水线运行** 或 **事件** 页面
-2. 或命令行：
+可以先查看 **流水线运行** 或 **事件** 页面获取详细错误，也可以使用命令行：
    ```bash
    helm list -n <namespace>
    helm status <release-name> -n <namespace>  # 查看失败原因

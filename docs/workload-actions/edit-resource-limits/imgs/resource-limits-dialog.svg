@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">编辑资源限制弹窗示意图</title>
+  <desc id="desc">弹窗按容器设置 CPU 与内存的 requests 和 limits，并展示 QoS 等级预览、校验提示与添加按钮。</desc>
+
+  <rect width="1200" height="900" fill="#f3f4f6"/>
+
+  <text x="48" y="64" font-family="sans-serif" font-size="26" font-weight="700" fill="#151515">编辑资源限制弹窗</text>
+  <text x="48" y="92" font-family="sans-serif" font-size="13" fill="#6a6e73">为每个容器设置 CPU 与内存的 requests 和 limits，并预览 QoS 等级。</text>
+
+  <rect x="120" y="116" width="960" height="700" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="152" y="160" font-family="sans-serif" font-size="20" font-weight="700" fill="#151515">编辑资源限制</text>
+  <text x="152" y="182" font-family="sans-serif" font-size="12" fill="#6a6e73">myapp · Deployment · kdo/dev</text>
+  <text x="1042" y="160" font-family="sans-serif" font-size="18" fill="#6a6e73">×</text>
+
+  <rect x="152" y="204" width="150" height="36" rx="4" fill="#0066cc"/>
+  <text x="182" y="227" font-family="sans-serif" font-size="12" fill="#ffffff">容器 myapp</text>
+  <rect x="302" y="204" width="130" height="36" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="330" y="227" font-family="sans-serif" font-size="12" fill="#151515">sidecar</text>
+  <rect x="858" y="204" width="130" height="36" rx="4" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="876" y="227" font-family="sans-serif" font-size="12" fill="#004080">QoS Burstable</text>
+
+  <line x1="120" y1="258" x2="1080" y2="258" stroke="#e0e0e0"/>
+
+  <text x="172" y="288" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">资源</text>
+  <text x="440" y="288" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">请求 requests</text>
+  <text x="650" y="288" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">限制 limits</text>
+  <text x="860" y="288" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">说明</text>
+
+  <rect x="152" y="300" width="896" height="80" rx="4" fill="#fafafa"/>
+  <text x="172" y="334" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">CPU</text>
+  <text x="172" y="354" font-family="sans-serif" font-size="11" fill="#6a6e73">1000m 等于 1 核</text>
+  <rect x="440" y="316" width="170" height="38" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="454" y="340" font-family="sans-serif" font-size="13" fill="#151515">500m</text>
+  <rect x="650" y="316" width="170" height="38" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="664" y="340" font-family="sans-serif" font-size="13" fill="#151515">2000m</text>
+  <text x="860" y="340" font-family="sans-serif" font-size="12" fill="#6a6e73">超过 limits 会被限流</text>
+
+  <rect x="152" y="388" width="896" height="80" rx="4" fill="#ffffff" stroke="#f0f0f0"/>
+  <text x="172" y="422" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">内存</text>
+  <text x="172" y="442" font-family="sans-serif" font-size="11" fill="#6a6e73">建议使用 Mi 与 Gi</text>
+  <rect x="440" y="404" width="170" height="38" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="454" y="428" font-family="sans-serif" font-size="13" fill="#151515">256Mi</text>
+  <rect x="650" y="404" width="170" height="38" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="664" y="428" font-family="sans-serif" font-size="13" fill="#151515">1Gi</text>
+  <text x="860" y="428" font-family="sans-serif" font-size="12" fill="#6a6e73">超出 limits 会 OOMKilled</text>
+
+  <rect x="152" y="490" width="896" height="170" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="172" y="518" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">QoS 等级预览</text>
+
+  <text x="188" y="552" font-family="sans-serif" font-size="12" fill="#151515">Guaranteed：所有容器都设置了相等的 requests 与 limits，最高优先级。</text>
+  <rect x="172" y="566" width="856" height="36" rx="4" fill="#e7f1fa"/>
+  <text x="188" y="589" font-family="sans-serif" font-size="12" fill="#004080">Burstable：至少一个容器设置了 requests，limits 可大于 requests（当前）。</text>
+  <text x="188" y="628" font-family="sans-serif" font-size="12" fill="#151515">BestEffort：所有容器均未设置 requests 与 limits，资源紧张时最先被驱逐。</text>
+
+  <text x="152" y="690" font-family="sans-serif" font-size="12" fill="#3e8635">✓ 单位合法：CPU 使用 m，内存使用 Mi；内存限制 1Gi 不低于内存请求 256Mi。</text>
+  <text x="152" y="712" font-family="sans-serif" font-size="12" fill="#7a5200">! CPU 限制 2000m，达到上限后会被 CFS 限流；生产环境建议按监控数据调整。</text>
+
+  <rect x="812" y="740" width="100" height="38" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="840" y="764" font-family="sans-serif" font-size="13" fill="#0066cc">取消</text>
+  <rect x="924" y="740" width="124" height="38" rx="4" fill="#0066cc"/>
+  <text x="960" y="764" font-family="sans-serif" font-size="13" fill="#ffffff">添加</text>
+
+  <text x="48" y="882" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

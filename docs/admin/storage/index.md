@@ -53,6 +53,27 @@ Kubernetes 存储采用**两级模型**：
 
 **推荐：** 使用动态供应，简化开发者体验。
 
+## 存储供应流程
+
+```mermaid
+flowchart TD
+    A[开发者创建 PVC] --> B{是否指定 StorageClass}
+    B -->|是| C[动态供应创建 PV]
+    B -->|否| D{是否存在默认 StorageClass}
+    D -->|是| C
+    D -->|否| E[PVC 保持 Pending]
+    C --> F[PV 与 PVC 绑定]
+    F --> G[Pod 挂载存储]
+    G --> H[创建 VolumeSnapshot 备份]
+    H --> I[从快照恢复新 PVC]
+    F --> J{是否需要扩容}
+    J -->|是| K[编辑 PVC 增加容量]
+    K --> L[StorageClass 允许扩容并扩展后端]
+    F --> M[按 reclaimPolicy 回收 PV]
+```
+
+静态供应需要管理员先创建 PV，动态供应则由 StorageClass 自动完成；两条路径最终都要经过 PV 与 PVC 绑定后才能被 Pod 挂载。
+
 ---
 
 ## 功能概览

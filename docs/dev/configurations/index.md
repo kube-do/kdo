@@ -20,6 +20,26 @@ Kubernetes 提供了两种核心的配置资源：**ConfigMap** 和 **Secret**�
 
 ---
 
+## 配置对象关系
+
+```mermaid
+flowchart TD
+    A[配置管理] --> B[ConfigMap]
+    A --> C[Secret]
+    B --> D[非敏感键值对或配置文件]
+    C --> E[base64 编码的敏感数据]
+    D --> F{使用方式}
+    E --> F
+    F --> G[注入环境变量]
+    F --> H[挂载为文件]
+    F --> I[镜像拉取密钥]
+    G --> J[容器组与工作负载]
+    H --> J
+    I --> K[从私有仓库拉取镜像]
+    K --> J
+    J --> L[配置更新后按需重启或等待同步]
+```
+
 ## 快速开始
 
 ### 创建 ConfigMap

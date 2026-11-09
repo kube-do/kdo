@@ -10,6 +10,33 @@ keywords:
 
 本篇文档介绍在 KDO 中创建组件的基础流程。
 
+## 创建方式决策
+
+KDO 会根据构建源的类型选择不同的识别与构建路径：源码和软件包走语言识别，Docker 镜像走镜像元数据解析。
+
+```mermaid
+flowchart TD
+    S[新建组件] --> Q{选择构建源}
+    Q -->|源代码仓库| SRC[读取仓库根目录特征文件]
+    SRC --> LANG{识别语言与构建方式}
+    LANG -->|pom.xml| JAVA[Java Maven 构建]
+    LANG -->|index.php 或 composer.json| PHP[PHP Composer 构建]
+    LANG -->|package.json| NODE[NodeJS 构建]
+    LANG -->|其他特征文件| MORE[Python Golang HTML 等构建]
+    Q -->|软件包| PKG[上传 Jar War Zip Tar]
+    PKG -->|Jar 或 War| JAVA
+    PKG -->|Zip 或 Tar| UNZIP[解压后识别目录文件]
+    UNZIP --> LANG
+    Q -->|Docker 镜像| IMG[填写镜像地址与拉取凭据]
+    IMG --> META[解析环境变量 端口 启动命令]
+    JAVA --> CFG[配置端口 环境变量 存储]
+    PHP --> CFG
+    NODE --> CFG
+    MORE --> CFG
+    META --> CFG
+    CFG --> BUILD[首次构建并部署]
+```
+
 ## 从源码开始创建组件
 
 KDO 会根据源代码根目录下的文件来判断源码的语言类型，目前支持的源码类型有 Java、Python、PHP、NodeJS、.Net、Golang、Html 等。

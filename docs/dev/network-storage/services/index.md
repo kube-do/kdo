@@ -10,11 +10,30 @@ nav_order: 1
 ## 介绍
 
 {: .note }
-Kubernetes 中服务(Service)是 将运行在一个或一组容器组上的网络应用程序公开为网络服务的方法。
+Kubernetes 中服务(Service)是将运行在一个或一组容器组上的网络应用程序公开为网络服务的方法。
 Kubernetes 中服务(Service)的一个关键目标是让你无需修改现有应用以使用某种不熟悉的服务发现机制。
 你可以在容器组集合中运行代码，无论该代码是为云原生环境设计的，还是被容器化的老应用。 你可以使用服务让一组容器组可在网络上访问，这样客户端就能与之交互。
 
 ![](imgs/services.jpg)
+
+## 服务流量与类型
+
+```mermaid
+flowchart TD
+    A[客户端请求] --> B{访问来源}
+    B -->|集群内部| C[ClusterIP 虚拟 IP]
+    B -->|节点端口| D[NodePort 节点 IP 与静态端口]
+    B -->|云负载均衡| E[LoadBalancer 外部地址]
+    B -->|外部域名| F[ExternalName 返回 CNAME]
+    C --> G[按 selector 匹配容器组]
+    D --> G
+    E --> G
+    F --> H[转发到外部主机名]
+    G --> I[Endpoints 列表]
+    I --> J[容器组接收流量]
+    J --> K[就绪探针决定是否接入]
+    K --> L[未就绪容器组被剔除]
+```
 
 ## 服务类型
 

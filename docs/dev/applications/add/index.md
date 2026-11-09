@@ -1,7 +1,7 @@
 ---
 title: 手动镜像应用
 parent: 应用管理
-nav_order: 5
+nav_order: 6
 ---
 
 1. TOC
@@ -17,6 +17,30 @@ nav_order: 5
 - ✅ 迁移现有应用到 KDO 平台
 
 与[镜像构建](/docs/dev/applications/builds/)不同，手动镜像直接使用预构建的镜像，省去 CI 流程，部署更快速。
+
+![手动镜像应用创建表单](imgs/manual-image-form.svg)
+
+*图：手动镜像应用的创建表单，左侧填写镜像与部署参数，右侧显示将生成的资源。*
+
+## 创建流程
+
+```mermaid
+flowchart TD
+    A[进入应用管理并点击新建应用] --> B[选择手动镜像类型]
+    B --> C[填写应用名称与镜像地址]
+    C --> D[设置应用端口与副本数]
+    D --> E{是否需要高级配置}
+    E -->|是| F[配置拉取策略 环境变量 资源限制与健康检查]
+    E -->|否| G[选择目标命名空间]
+    F --> G
+    G --> H[点击添加提交]
+    H --> I[平台创建 Deployment]
+    I --> J[创建 ClusterIP Service]
+    J --> K{是否需要外部访问}
+    K -->|是| L[额外创建 Ingress 或 LoadBalancer]
+    K -->|否| M[应用在集群内运行]
+    L --> M
+```
 
 ---
 

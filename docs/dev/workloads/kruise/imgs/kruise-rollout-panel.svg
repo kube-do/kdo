@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+  <title id="title">CloneSet 发布面板示意图</title>
+  <desc id="desc">左侧为副本数、当前版本、更新策略与分批发布进度，右侧为容器组版本状态与可用操作。</desc>
+
+  <rect width="1200" height="780" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">KDO 控制台</text>
+  <text x="960" y="35" font-family="sans-serif" font-size="12" fill="#9aa0a6">工作负载 / CloneSet / web-app</text>
+
+  <!-- Heading -->
+  <text x="48" y="110" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">CloneSet 发布面板</text>
+  <text x="48" y="136" font-family="sans-serif" font-size="14" fill="#6a6e73">原地升级只替换容器镜像，分批发布可随时暂停、恢复或回滚。</text>
+
+  <!-- Main card -->
+  <rect x="48" y="164" width="700" height="560" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="198" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">基本信息</text>
+
+  <text x="72" y="238" font-family="sans-serif" font-size="11" fill="#6a6e73">名称</text>
+  <text x="200" y="238" font-family="monospace" font-size="13" fill="#151515">web-app</text>
+
+  <text x="72" y="272" font-family="sans-serif" font-size="11" fill="#6a6e73">副本</text>
+  <text x="200" y="272" font-family="sans-serif" font-size="13" fill="#151515">4 / 4 就绪</text>
+
+  <text x="72" y="306" font-family="sans-serif" font-size="11" fill="#6a6e73">当前版本</text>
+  <text x="200" y="306" font-family="monospace" font-size="13" fill="#151515">v2</text>
+
+  <text x="72" y="340" font-family="sans-serif" font-size="11" fill="#6a6e73">更新策略</text>
+  <text x="200" y="340" font-family="sans-serif" font-size="13" fill="#151515">原地升级 InPlace</text>
+
+  <line x1="72" y1="364" x2="724" y2="364" stroke="#e0e0e0"/>
+
+  <text x="72" y="396" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">分批发布</text>
+
+  <text x="72" y="428" font-family="sans-serif" font-size="11" fill="#6a6e73">批次</text>
+  <text x="200" y="428" font-family="sans-serif" font-size="13" fill="#151515">2 / 3</text>
+
+  <text x="360" y="428" font-family="sans-serif" font-size="11" fill="#6a6e73">最大不可用</text>
+  <text x="488" y="428" font-family="sans-serif" font-size="13" fill="#151515">1</text>
+
+  <text x="600" y="428" font-family="sans-serif" font-size="11" fill="#6a6e73">暂停</text>
+  <rect x="648" y="414" width="36" height="20" rx="10" fill="#e0e0e0"/>
+  <circle cx="666" cy="424" r="8" fill="#ffffff" stroke="#8a8d90"/>
+  <text x="696" y="428" font-family="sans-serif" font-size="11" fill="#6a6e73">否</text>
+
+  <rect x="72" y="474" width="652" height="12" rx="6" fill="#e0e0e0"/>
+  <rect x="72" y="474" width="434" height="12" rx="6" fill="#0066cc"/>
+  <text x="72" y="506" font-family="sans-serif" font-size="11" fill="#6a6e73">已升级 3 个</text>
+  <text x="724" y="506" font-family="sans-serif" font-size="11" fill="#6a6e73" text-anchor="end">剩余 1 个</text>
+
+  <rect x="72" y="532" width="652" height="66" rx="4" fill="#fdf3e3" stroke="#c58c00"/>
+  <text x="86" y="556" font-family="sans-serif" font-size="11" fill="#7a5200">原地升级不会重建容器组，IP 与挂载保持不变；</text>
+  <text x="86" y="576" font-family="sans-serif" font-size="11" fill="#7a5200">分批发布期间可暂停当前批次，确认无误后继续。</text>
+
+  <text x="72" y="634" font-family="sans-serif" font-size="11" fill="#6a6e73">历史版本保留数量与扩缩容顺序可在 YAML 中调整。</text>
+
+  <rect x="72" y="660" width="108" height="32" rx="4" fill="#0066cc"/>
+  <text x="96" y="681" font-family="sans-serif" font-size="12" fill="#ffffff">暂停发布</text>
+  <rect x="192" y="660" width="108" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="216" y="681" font-family="sans-serif" font-size="12" fill="#0066cc">恢复发布</text>
+  <rect x="312" y="660" width="108" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="336" y="681" font-family="sans-serif" font-size="12" fill="#0066cc">查看 YAML</text>
+
+  <!-- Pod card -->
+  <rect x="772" y="164" width="380" height="260" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="796" y="198" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">容器组</text>
+  <text x="1080" y="198" font-family="sans-serif" font-size="11" fill="#6a6e73">版本</text>
+
+  <circle cx="802" cy="228" r="4" fill="#3e8635"/>
+  <text x="816" y="232" font-family="monospace" font-size="11" fill="#151515">web-app-abc12</text>
+  <text x="1080" y="232" font-family="monospace" font-size="11" fill="#6a6e73">v2</text>
+
+  <circle cx="802" cy="260" r="4" fill="#3e8635"/>
+  <text x="816" y="264" font-family="monospace" font-size="11" fill="#151515">web-app-def34</text>
+  <text x="1080" y="264" font-family="monospace" font-size="11" fill="#6a6e73">v2</text>
+
+  <circle cx="802" cy="292" r="4" fill="#3e8635"/>
+  <text x="816" y="296" font-family="monospace" font-size="11" fill="#151515">web-app-ghi56</text>
+  <text x="1080" y="296" font-family="monospace" font-size="11" fill="#6a6e73">v2</text>
+
+  <circle cx="802" cy="324" r="4" fill="#c58c00"/>
+  <text x="816" y="328" font-family="monospace" font-size="11" fill="#151515">web-app-jkl78</text>
+  <text x="1080" y="328" font-family="monospace" font-size="11" fill="#6a6e73">v1</text>
+
+  <text x="796" y="368" font-family="sans-serif" font-size="11" fill="#6a6e73">绿色表示已升级到当前版本，黄色表示等待升级。</text>
+  <text x="796" y="392" font-family="sans-serif" font-size="11" fill="#6a6e73">原地升级期间容器组名称与 IP 保持不变。</text>
+
+  <!-- Actions card -->
+  <rect x="772" y="448" width="380" height="276" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="796" y="482" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">可用操作</text>
+
+  <text x="796" y="514" font-family="sans-serif" font-size="12" fill="#151515">扩缩容副本数</text>
+  <text x="796" y="540" font-family="sans-serif" font-size="12" fill="#151515">重启容器组</text>
+  <text x="796" y="566" font-family="sans-serif" font-size="12" fill="#151515">暂停或恢复发布</text>
+  <text x="796" y="592" font-family="sans-serif" font-size="12" fill="#151515">回滚到历史版本</text>
+  <text x="796" y="618" font-family="sans-serif" font-size="12" fill="#151515">编辑 YAML</text>
+
+  <line x1="796" y1="640" x2="1128" y2="640" stroke="#e0e0e0"/>
+  <text x="796" y="666" font-family="sans-serif" font-size="11" fill="#6a6e73">API 组 apps.kruise.io，仅当集群</text>
+  <text x="796" y="684" font-family="sans-serif" font-size="11" fill="#6a6e73">已安装 OpenKruise 时显示入口。</text>
+
+  <text x="48" y="756" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

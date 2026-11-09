@@ -16,6 +16,32 @@ nav_order: 6
 - ✅ **资源清理**：每天删除过期的日志、临时文件
 - ✅ **健康检查**：每 5 分钟执行一次服务健康探测
 
+![计划任务创建表单](imgs/cronjob-create-form.svg)
+
+*图：计划任务的调度表单、Cron 字段预览与最近 Job 列表。*
+
+## 调度流程
+
+```mermaid
+flowchart TD
+    A[创建计划任务] --> B[填写 Cron 表达式与时区]
+    B --> C[设置并发策略 历史保留与超时]
+    C --> D[保存为 CronJob]
+    D --> E[调度器等待触发]
+    E --> F{是否到触发时间}
+    F -->|否| E
+    F -->|是| G{并发策略判断}
+    G -->|Forbid 且上一任务未结束| H[跳过本次执行]
+    G -->|Replace| I[删除旧 Job 后新建]
+    G -->|允许并发| J[创建 Job]
+    I --> J
+    J --> K[Job 创建容器组执行任务]
+    K --> L{任务是否成功}
+    L -->|成功| M[计入成功历史并清理旧 Job]
+    L -->|失败| N[计入失败历史并按策略重试]
+    H --> E
+```
+
 ---
 
 ## 快速开始
@@ -184,7 +210,7 @@ CronJob 会自动清理旧的 Job 对象：
 
 CronJob 本身不受 Job 失败影响，只要调度时间到了就会创建新 Job。但如果：
 
-- `startingDeadlineSeconds` 内 Job 一直失败，下一轮可能被跳过（取决于 `failedJobsHistoryLimit` 和 Kubernetes 版本）
+- `startingDeadlineSeconds` 内 Job 一直失败时，下一轮可能被跳过；`failedJobsHistoryLimit` 只控制失败 Job 历史记录的保留数量
 - 检查 `kubectl get cronjob` 的 `AGE` 和 `LAST SCHEDULE` 时间
 
 ### Q: 如何查看所有历史 Job？
@@ -194,7 +220,7 @@ CronJob 本身不受 Job 失败影响，只要调度时间到了就会创建新 
 kubectl get jobs --selector=job-name=<cronjob-name>
 
 # 详细查看
-kubectl get jobs --all-namespaces --field-selector=metadata.ownerReferences.name=<cronjob-name>
+kubectl get jobs -n <namespace> -o custom-columns=NAME:.metadata.name,CRONJOB:.metadata.ownerReferences[0].name
 ```
 
 ### Q: 任务执行时间太长怎么办？

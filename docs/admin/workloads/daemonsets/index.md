@@ -8,6 +8,10 @@ nav_order: 1
 
 **DaemonSet** 确保每个（或部分）集群节点上都运行一个 Pod 副本。当新节点加入集群时，会自动部署 Pod；节点移除时，Pod 被回收。适用于需要在每个节点上运行的守护进程。
 
+![创建守护进程集表单](imgs/daemonset-form.svg)
+
+*图：创建守护进程集表单中的调度设置与容器配置。*
+
 ### 典型用例
 
 - ✅ **日志收集**：Fluentd、Fluent Bit 在每个节点采集日志
@@ -129,6 +133,27 @@ tolerations:
   operator: Exists
   effect: NoSchedule
 ```
+
+## 调度与更新流程
+
+```mermaid
+flowchart TD
+    A[创建 DaemonSet] --> B[控制器监听节点变化]
+    B --> C{节点是否匹配 nodeSelector}
+    C -->|否| D[跳过该节点]
+    C -->|是| E{是否容忍节点污点}
+    E -->|否| D
+    E -->|是| F[在节点创建 Pod]
+    F --> G[新节点加入时自动补建]
+    F --> H[节点移除时回收 Pod]
+    F --> I{Pod 模板是否变更}
+    I -->|是| J[按 RollingUpdate 逐节点更新]
+    I -->|否| K[保持当前副本]
+    J --> L[核对 Desired 与 Current 数量]
+    K --> L
+```
+
+`nodeSelector` 决定 Pod 落在哪些节点，`tolerations` 决定能否进入带污点的节点；两者需同时满足才会创建 Pod。
 
 ---
 

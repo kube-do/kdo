@@ -19,6 +19,27 @@ KDO 平台集成了以下开源可观测性组件：
 | **Loki** | 日志聚合与查询 | `http://loki.${DEFAULT_DOMAIN}` |
 | **Alertmanager** | 告警路由与通知（邮件、企业微信等） | 与 Prometheus 集成 |
 
+## 观测数据流
+
+```mermaid
+flowchart TD
+    A[集群与节点] --> B[Prometheus 采集指标]
+    A --> C[Loki 采集日志]
+    F[告警规则] --> B
+    B --> D[Grafana 仪表盘]
+    B --> E[Alertmanager 告警]
+    C --> D
+    C --> H[审计与日志检索]
+    E --> G[邮件 企业微信等通知]
+    B --> I[事件 Event 流]
+    D --> J[管理员查看集群健康]
+    E --> J
+    G --> J
+    H --> J
+```
+
+指标、日志、告警与事件分别由不同组件采集，最终在 Grafana、Alertmanager 与日志检索入口汇总；排查问题时可先从告警时间点回看对应指标与日志。
+
 ## 管理任务
 
 - **监控与告警**：[监控(Monitoring)](/docs/observability/monitoring/) - 指标采集、集群监控、告警规则与通知渠道
@@ -31,7 +52,7 @@ KDO 平台集成了以下开源可观测性组件：
 
 假设集群默认域名为 `kube-do.dev`，访问入口：
 
-- **Grafana**：http://grafana.kube-do.dev （admin/KdoGrafana2025）
+- **Grafana**：http://grafana.kube-do.dev （管理员账号默认为 `admin`，初始密码请参考部署配置或联系平台管理员；首次登录后请立即修改密码）
 - **Prometheus**：http://prometheus.kube-do.dev
 - **Alertmanager**：http://alertmanager.kube-do.dev
 

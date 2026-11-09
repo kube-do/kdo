@@ -47,6 +47,47 @@ KDO 是一站式云原生应用开发和运维平台，基于 Kubernetes，采�
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
+## 部署架构
+
+```mermaid
+flowchart TD
+    subgraph 用户访问层
+        U[浏览器<br/>管理员与开发者]
+        I[Ingress NGINX<br/>console.kube-do.dev]
+    end
+    subgraph 控制台层
+        B[Console Bridge<br/>认证 反向代理 API 聚合]
+    end
+    subgraph 控制面
+        K[Kubernetes API<br/>kube-do.cn/v1 CRD]
+        C[KDC Controller<br/>AppProject AppEnv Cluster]
+    end
+    subgraph 平台服务
+        A[Keycloak<br/>OIDC 身份认证]
+        H[Harbor<br/>镜像仓库]
+        T[Tekton 与 Shipwright<br/>CI 构建]
+        N[通知中心<br/>邮件 企业微信 钉钉]
+    end
+    subgraph 可观测与存储
+        M[Prometheus Grafana<br/>Thanos Alertmanager]
+        S[NFS StorageClass<br/>PV 与 PVC]
+    end
+    subgraph 多集群
+        MC[托管集群<br/>独立 API 与监控]
+    end
+    U --> I --> B
+    B --> K
+    B --> A
+    B --> M
+    B --> MC
+    K --> C
+    C --> H
+    C --> T
+    C --> N
+    C --> S
+    T --> H
+```
+
 ## 核心组件
 
 | 组件                              | 功能                                                    |
@@ -56,7 +97,7 @@ KDO 是一站式云原生应用开发和运维平台，基于 Kubernetes，采�
 | **Keycloak**                    | 身份提供者（OIDC），对接 K8s API Server 认证，PostgreSQL 存储    |
 | **Harbor**                      | 镜像仓库（Core + Registry + Trivy + Notary + Portal），NodePort 30002 暴露 |
 | **Prometheus Operator**         | 监控栈管理（Prometheus + Alertmanager + 各种 Exporter）      |
-| **Grafana**                     | 监控可视化大屏，通过 `grafana.kube-do.cc` 访问                |
+| **Grafana**                     | 监控可视化大屏，通过 `grafana.kube-do.dev` 访问                |
 | **OpenShift Logging Operator**  | 日志采集管理（ClusterLogForwarder → Vector → LokiStack）     |
 | **Loki Operator**               | LokiStack 生命周期管理（8 子组件: Distributor/Ingester/Querier 等） |
 | **Minio**                       | S3 兼容对象存储，Loki 日志的持久化后端                           |
@@ -77,7 +118,7 @@ KDO 是一站式云原生应用开发和运维平台，基于 Kubernetes，采�
 
 ## Console（Bridge）服务器
 
-Console 基于 OpenShift Console（Bridge）改造，是 KDO 平台的**唯一入口网关**，集前端 SPA 与后端代理于一体。详见 [[kdo-console]]。
+Console 基于 OpenShift Console（Bridge）改造，是 KDO 平台的**唯一入口网关**，集前端 SPA 与后端代理于一体。详见 [Console 配置与部署](/docs/install/config/console/)。
 
 ### 前端 SPA
 
@@ -125,7 +166,7 @@ Console 后端 Go 服务器承担**API 网关和反向代理**职责：
 
 KDC 是 KDO 平台的核心 Operator，负责声明式调和所有业务资源。
 
-Refer to [[kdc-controller]] for:
+KDC Controller 的主要内容包括：
 - CRD 清单和 Controller 职责
 - Webhook 验证逻辑
 - 外部依赖（Harbor/Keycloak/Dex/Skopeo）

@@ -13,6 +13,27 @@ nav_order: 1
 Kubernetes 通过将容器放入在节点（Node）上运行的 容器组 中来执行你的工作负载。 节点可以是一个虚拟机或者物理机器，取决于所在的集群配置。 每个节点包含运行 容器组 所需的服务； 这些节点由控制面负责管理。
 通常集群中会有若干个节点；而在一个学习所用或者资源受限的环境中，你的集群中也可能只有一个节点。 节点上的组件包括 kubelet、 容器运行时以及 kube-proxy。
 
+## 节点状态与运维操作
+
+```mermaid
+flowchart TD
+    A[节点加入集群] --> B[节点注册并上报状态]
+    B --> C{kubelet 心跳是否正常}
+    C -->|是| D[节点 Ready]
+    C -->|否| E[节点 NotReady]
+    D --> F[调度容器组到节点]
+    F --> G{是否进入维护窗口}
+    G -->|是| H[标识为不可调度]
+    H --> I[排干节点容器组]
+    I --> J[升级或维护]
+    J --> K[恢复可调度]
+    K --> D
+    E --> L[检查网络 kubelet 与容器运行时]
+    L --> C
+```
+
+节点处于 `NotReady` 时不会再接收新的容器组；排干操作会驱逐现有容器组，执行前应确认工作负载已有其他副本承接。
+
 ## 节点列表
 
 ![](imgs/nodes.png)
@@ -44,7 +65,7 @@ Kubernetes 通过将容器放入在节点（Node）上运行的 容器组 中来
 | DiskPressure       | True 表示节点存在磁盘空间压力，即磁盘可用量低，否则为 False                                                                                   |
 | MemoryPressure     | True 表示节点存在内存压力，即节点内存可用量低，否则为 False                                                                                   |
 | PIDPressure        | True 表示节点存在进程压力，即节点上进程过多；否则为 False                                                                                    |
-| NetworkUnavailable | rue 表示节点网络配置不正确；否则为 False                                                                                             |
+| NetworkUnavailable | True 表示节点网络配置不正确；否则为 False                                                                                             |
 
 
 ## 节点详情

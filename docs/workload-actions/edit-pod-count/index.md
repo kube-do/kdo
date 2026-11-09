@@ -7,6 +7,10 @@ parent: 工作负载操作
 
 调整 Deployment 或 StatefulSet 的副本数（replicas）是实现应用**扩缩容**的直接方式。KDO 提供图形化界面，让你无需编辑 YAML 即可快速调整副本数量。
 
+![编辑副本数弹窗示意图](imgs/pod-count-dialog.svg)
+
+*图：编辑副本数弹窗展示当前副本与就绪状态，并提供目标副本数输入。*
+
 ---
 
 ## 快速开始
@@ -28,6 +32,25 @@ parent: 工作负载操作
 操作步骤相同，但注意：
 - StatefulSet 扩缩容是**有序**的（扩容按索引 0→N，缩容按 N→0）
 - 确保存储（PVC）绑定正确，避免数据丢失
+
+## 工作流程
+
+```mermaid
+flowchart TD
+    A[选择目标 Deployment 或 StatefulSet] --> B{是否已启用 HPA}
+    B -->|是| C[编辑 HPA 的副本范围]
+    B -->|否| D[选择编辑副本数]
+    D --> E[输入目标副本数]
+    E --> F{资源与 PDB 是否允许}
+    F -->|资源不足| G[补充节点资源或调整请求]
+    F -->|PDB 阻止缩容| H[调整 minAvailable 或稍后重试]
+    F -->|允许| I[提交副本数变更]
+    C --> J[控制器创建或删除 Pod]
+    I --> J
+    J --> K[确认 Pod 全部 Ready]
+    G --> E
+    H --> E
+```
 
 ---
 

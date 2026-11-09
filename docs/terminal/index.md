@@ -12,6 +12,29 @@ nav_order: 10
 它不仅兼容 `CloudShell`，还支持 `LocalShell`，为运维人员和开发人员带来了极大的便利和高效的操作体验。
 无论是云端还是本地环境，KDO平台都能满足多样化的需求，显著提升工作效率。
 
+![CloudShell 终端与 LocalShell 入口](img/terminal-toolbar.svg)
+
+*图：CloudShell 的集群与命名空间选择、多标签、上传下载按钮及 LocalShell 登录入口。*
+
+## 两种终端的工作流程
+
+```mermaid
+flowchart TD
+    A[控制台右上角终端入口] --> B{选择终端模式}
+    B -->|CloudShell| C[在集群内创建终端 Pod<br/>kubernetes-terminal 或项目命名空间]
+    C --> D[继承 KDO 账号 Token 与权限]
+    D --> E[经集群内网络访问 API Server 与 Service]
+    E --> F[浏览器内多标签终端<br/>上传下载与预装工具]
+    C --> G[Hermes Agent 接入消息通道]
+    B -->|LocalShell| H[用户菜单复制登录命令]
+    H --> I[本地安装 oc 并执行 oc login]
+    I --> J[浏览器 OAuth 授权换取 Token]
+    J --> K[写入本地 kubeconfig]
+    K --> L[经代理或直连 API Server]
+    L --> M[本地 kubectl 或 IDE 访问集群]
+```
+
+两种模式的分界线在鉴权与网络位置：CloudShell 的终端 Pod 运行在集群内，直接继承平台账号权限并从集群内部访问 API Server；LocalShell 把登录凭据落到本地 kubeconfig，请求从开发者机器经代理或直连到达集群。
 
 ## CloudShell模式
 CloudShell 主要面向对 Kubernetes 有深入了解的开发者和运维人员，它通过命令行提供了高效的问题处理能力。
@@ -129,7 +152,7 @@ CloudShell 支持自定义 Shell 环境，常用的配置可以持久化到 `/ho
 
 ```bash
 # 编辑持久化 bashrc
-vi /data/.bashrc
+vi /home/user/.bashrc
 
 # 添加常用别名
 alias gp='kubectl get pods'
@@ -161,7 +184,7 @@ export KUBE_EDITOR=vim
 ### 关闭终端会话
 
 1. 直接关闭浏览器标签页或点击终端区域的关闭按钮
-2. 终端会话将自动停止，`/data` 目录中的数据会保留
+2. 终端会话将自动停止，`/home/user` 目录中的数据会保留
 3. 下次打开 CloudShell 时，将创建新的终端会话
 
 {: .note }
@@ -420,7 +443,7 @@ helm status <release-name> -n <namespace>
 **原因：** CloudShell Pod 以非 root 用户运行，部分系统目录无写入权限。
 
 **解决方法：**
-- 将文件写入 `/data` 目录（具有持久化存储和写入权限）
+- 将文件写入 `/home/user` 目录（具有持久化存储和写入权限）
 - 使用 `sudo` 执行需要 root 权限的命令（如可用）
 
 #### Q: CloudShell 中工具版本较旧

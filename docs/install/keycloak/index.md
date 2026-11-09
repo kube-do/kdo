@@ -1,4 +1,8 @@
-
+---
+title: 安装 Keycloak
+parent: 在Linux平台安装
+nav_order: 4
+---
 
 1. TOC
 {:toc}
@@ -11,6 +15,23 @@
 在开始安装之前，请确保所有相关的环境变量已经正确设置。这一步骤对于保证Keycloak能够顺利部署以及后续与KDO平台和Kubernetes的集成至关重要。
 [关于KeyCloak](https://www.keycloak.org/)
 
+
+## 工作流程
+
+```mermaid
+flowchart TD
+    A[定义 KC_USER KC_PASS<br/>NODE_IP 与 DEFAULT_DOMAIN] --> B[安装 NFS Server]
+    B --> C[部署 nfs-subdir-external-provisioner<br/>设为默认 StorageClass]
+    C --> D[通过 Helm 安装 Keycloak]
+    D --> E[生成并替换 TLS 证书]
+    E --> F[等待 keycloak-0 就绪]
+    F --> G[kcadm 创建 realm kdo<br/>调整会话超时]
+    G --> H[创建 openid 与 groups client-scopes]
+    H --> I[创建 client 并绑定 scope]
+    I --> J[创建 admin 与 pa1 dev1 qa1 ops1 用户]
+    J --> K[Web 控制台核对 client scopes]
+    K --> L[继续安装 KDO 平台组件]
+```
 
 ###  1. 定义环境变量
 ```shell
@@ -103,9 +124,9 @@ kubectl delete secret -n kubedo-system keycloak-crt && kubectl create secret tls
 KeyCloak安装完成后，需要对其进行设置，主要进行以下操作：
 1. 创建realm kdo
 2. 添加client-scopes openid和groups，这是OIDC协议必需的
-3. 在realm kdo创建client kdo
-4. 添加默认集群管理员kdo并设置密码
-5. 添加普通用户dev1和dev2并设置密码
+3. 在 realm kdo 创建 client `kdo`
+4. 添加平台管理员用户 `admin` 并设置密码
+5. 添加测试项目用户 `pa1`、`dev1`、`qa1`、`ops1` 并设置密码
 
 ```shell
 # 检查pod是否正常运行，确认keycloak-0已经ready
@@ -119,9 +140,14 @@ kubectl get pod -n kubedo-system
 # 在master节点执行，需要进入keycloak容器里面进行执行
 kubectl exec -it  -n kubedo-system keycloak-0 -- bash
 
-# 进行容器后设置环境变量
+# 进入容器后设置环境变量
 # 普通用户的密码，这里可以设置其他密码
 export devPass=Kdo#2025
+
+# 下面的 kcadm 命令使用容器内的 KEYCLOAK_ADMIN / KEYCLOAK_ADMIN_PASSWORD，
+# 这两个变量由 Helm 安装时注入。如果提示变量为空，请补充：
+# export KEYCLOAK_ADMIN=<KC_USER>
+# export KEYCLOAK_ADMIN_PASSWORD=<KC_PASS>
 
 # 1. 创建realm kdo，并且调整session超时时间，不然会频繁登出
 kcadm.sh create realms -s realm=kdo -s enabled=true --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
@@ -136,14 +162,14 @@ kcadm.sh create client-scopes -r kdo \
 --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 
 # 3. 创建client kdo 在realm kdo
-kcadm.sh create clients -r kdo -s clientId=kdo1 -s secret=kubedo -s 'optionalClientScopes=["address","microprofile-jwt","offline_access","phone"]'  \
+kcadm.sh create clients -r kdo -s clientId=kdo -s secret=kubedo -s 'optionalClientScopes=["address","microprofile-jwt","offline_access","phone"]'  \
 -s 'defaultClientScopes=["acr","email","openid","groups","profile"]' -s 'redirectUris=["*"]' -s implicitFlowEnabled=true \
 --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 
-kcadm.sh update clients/kdo1 -r kdo -s 'defaultClientScopes=["openid","groups"]' --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+kcadm.sh update clients/kdo -r kdo -s 'defaultClientScopes=["openid","groups"]' --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 
 
-# 4. 添加默认集群管理员kdo平台并设置密码，kdo平台的密码和KeyCloak管理员的密码保持一致
+# 4. 添加平台管理员用户 admin，密码与 Keycloak 管理员保持一致
 kcadm.sh create users -s username=admin -r kdo -s email=admin@kube-do.dev -s emailVerified=true -s enabled=true  --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 kcadm.sh set-password  --username admin -r kdo --new-password $KEYCLOAK_ADMIN_PASSWORD --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
 

@@ -18,6 +18,22 @@ nav_order: 5
 
 ---
 
+## 对象关系
+
+```mermaid
+flowchart LR
+    A[外部客户端] --> B[路由 Ingress]
+    B --> C[服务 Service]
+    C --> D[容器组 Pod]
+    D --> E[持久卷声明 PVC]
+    E --> F[持久卷 PV]
+    F --> G[存储类 StorageClass]
+    H[无状态应用 Deployment] --> D
+    I[有状态应用 StatefulSet] --> D
+    C --> J[集群内服务发现]
+    D --> K[配置文件与密钥]
+```
+
 ## 快速开始
 
 ### 暴露应用端口（创建 Service）

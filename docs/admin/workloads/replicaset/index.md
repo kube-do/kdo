@@ -8,6 +8,10 @@ nav_order: 2
 
 **ReplicaSet（RS）** 是 Kubernetes 底层的副本控制器，确保运行的 Pod 副本数量始终与期望值一致。它是 Deployment 的底层实现，通常不直接使用，而是通过 Deployment 来管理。
 
+![副本集列表与详情](imgs/replicaset-page.svg)
+
+*图：副本集列表与选中副本集的 Pod 详情。*
+
 ### 核心作用
 
 - ✅ **确保副本数量**：自动维持指定数量的 Pod 副本
@@ -98,6 +102,25 @@ ReplicaSet 持续监控集群中匹配 `selector` 的 Pod：
 2. **状态同步**：检查每个 Pod 的 `.status.phase`（Running? Ready?）
 3. **缺失副本**：如果某个 Pod 被删除或崩溃，创建新 Pod 补足数量
 4. **多余副本**：如果 Pod 数量超过 `replicas`，删除多余的（按创建时间）
+
+## 副本调和流程
+
+```mermaid
+flowchart TD
+    A[ReplicaSet 期望 replicas] --> B[控制器统计匹配 selector 的 Pod]
+    B --> C{当前副本数与期望值比较}
+    C -->|少于期望| D[按模板创建新 Pod]
+    C -->|多于期望| E[删除多余 Pod]
+    C -->|相等| F[保持稳定]
+    D --> G[更新 status 与事件]
+    E --> G
+    F --> G
+    H[Pod 异常退出] --> B
+    I[修改 replicas 或模板] --> B
+    J[Deployment 创建 ReplicaSet] --> A
+```
+
+ReplicaSet 只保证数量一致，不提供版本历史与滚动更新；需要发布新版本时应修改上层 Deployment，由其创建新的 ReplicaSet。
 
 ---
 

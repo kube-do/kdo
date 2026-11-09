@@ -17,6 +17,29 @@ User Preferences 是 Che Dashboard 中的个人设置页面，用于配置默认
 3. 选择 **User Preferences**
 
 ![user-preferences.png](imgs/user-preferences.png)
+## 配置生效流程
+
+```mermaid
+flowchart TD
+    A[用户菜单进入 User Preferences] --> B[Container Registries<br/>私有镜像仓库凭据]
+    A --> C[Git Services 与 Personal Access Tokens]
+    A --> D[Git Config 与 SSH Keys]
+    A --> E[AI Provider Keys]
+    B --> F[保存到用户命名空间]
+    C --> F
+    D --> F
+    E --> F
+    F --> G[新建或启动工作区]
+    G --> H[注入镜像凭据与 Git 认证]
+    G --> I[生成 SSH 配置与 Git 身份]
+    G --> J[通过环境变量注入 AI 密钥]
+    H --> K[Workspace 内克隆 / 推送 / 拉取镜像]
+    I --> K
+    J --> L[Workspace 内启用 AI 编码工具]
+```
+
+偏好按用户保存，作用范围是该用户之后创建或重启的所有 Workspace；正在运行的 Workspace 不会自动读取新配置，需要重启后生效。
+
 ## 选项说明
 
 User Preferences 页面包含以下 Tab：

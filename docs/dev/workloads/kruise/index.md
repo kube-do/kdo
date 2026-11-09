@@ -17,6 +17,31 @@ KDO 平台在原生 Kubernetes 工作负载之外，集成了 [OpenKruise](https
 
 入口：**开发者界面 → 工作负载 → CloneSet / Kruise StatefulSet**（位于 `有状态应用(StatefulSet)` 之后）；**管理员界面 → 工作负载**分区同样提供这两个入口。
 
+![CloneSet 发布面板](imgs/kruise-rollout-panel.svg)
+
+*图：CloneSet 的副本状态、分批发布进度与容器组版本列表。*
+
+## 发布流程
+
+```mermaid
+flowchart TD
+    B{apps.kruise.io 是否可用}
+    B -->|否| C[隐藏增强工作负载入口]
+    B -->|是| D[显示 CloneSet 与 Kruise StatefulSet 菜单]
+    D --> E{选择类型}
+    E -->|无状态| F[创建 CloneSet]
+    E -->|有状态| G[创建 Kruise StatefulSet]
+    F --> H[设置副本数与分批发布策略]
+    G --> H
+    H --> I[创建或更新容器组]
+    I --> J{更新镜像时}
+    J -->|原地升级| K[仅替换容器镜像 不重建容器组]
+    J -->|分批发布| L[按批次逐步替换并控制最大不可用]
+    K --> M{发布是否异常}
+    L --> M
+    M -->|是| N[暂停发布或回滚历史版本]
+    M -->|否| O[完成发布并保留历史版本]
+```
 
 ## CloneSet
 

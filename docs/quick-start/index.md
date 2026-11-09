@@ -21,6 +21,24 @@ nav_order: 15
 
 ---
 
+## 工作流程
+
+```mermaid
+flowchart TD
+    A[了解 KDO 核心能力] --> B{是否已有 Kubernetes 集群}
+    B -->|没有| C[路径 A<br/>安装 Kubernetes 后安装 KDO]
+    B -->|已有| D[路径 B<br/>配置 OIDC 后安装 KDO]
+    C --> E[使用默认账号登录控制台]
+    D --> E
+    E --> F[准备 Git 仓库与 Dockerfile]
+    F --> G[从 Git 仓库创建应用]
+    G --> H[推送代码触发 PipelineRun]
+    H --> I[查看构建日志与运行状态]
+    I --> J[访问 dev 环境验证应用]
+```
+
+---
+
 ## 核心功能概览
 
 KDO 围绕两大用户角色提供能力：
@@ -89,7 +107,7 @@ KDO 围绕两大用户角色提供能力：
 
 如果已有合规的 Kubernetes 集群，仅需安装 KDO 平台：
 
-1. [根据 OIDC 平台配置 Kubernetes 认证](/docs/install/kubernetes/#根据oidc平台设置kubernetes)
+1. [根据 OIDC 平台配置 Kubernetes 认证](/docs/install/#根据oidc平台设置kubernetes)
 2. [安装 KDO 平台](/docs/install/kdo/)
 
 👉 推荐：已有集群生产环境
@@ -211,8 +229,8 @@ git push
 
 ### Q: 安装后控制台无法访问？
 
-- 检查 KDO 服务是否运行：`kubectl get pods -n kdo`
-- 检查端口是否正确：`kubectl get svc -n kdo` 查看 `kdo-console` 的 NodePort
+- 检查 KDO 服务是否运行：`kubectl get pods -n kubedo-system`
+- 检查端口是否正确：`kubectl get svc -n kubedo-system` 查看 `console` 的 NodePort
 - 检查防火墙是否放行 30080 端口
 - 确保 /etc/hosts 已配置域名解析（如果使用域名）
 

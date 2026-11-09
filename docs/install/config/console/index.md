@@ -148,6 +148,23 @@ Console 的核心设计是一个**统一的反向代理网关**。所有前端 A
 
 ---
 
+## 工作流程
+
+```mermaid
+flowchart TD
+    A[用户打开 Console 页面] --> B{是否已登录}
+    B -->|否| C[重定向 Keycloak 登录页]
+    C --> D[Keycloak 返回 Authorization Code]
+    D --> E[Bridge 换取并加密存储 Token]
+    E --> F[进入控制台]
+    B -->|是| F
+    F --> G[API 请求进入 Bridge]
+    G --> H[认证中间件校验 Session]
+    H --> I[CSRF 校验敏感操作]
+    I --> J[按路径与集群路由<br/>注入 Bearer Token]
+    J --> K[代理到 K8s API 或监控服务]
+    K --> L[返回结果给浏览器]
+```
 
 ---
 
@@ -244,13 +261,6 @@ auth:
 - **RoleBinding**：授权认证用户
 
 ---
-
-## 配置加载优先级
-
-Console 配置按以下优先级加载（高优先级覆盖低优先级）：
-1. **命令行参数**（最高优先级）
-2. **环境变量**（以 `BRIDGE_` 为前缀，例如 `BRIDGE_LISTEN`）
-3. **YAML 配置文件**（通过 `--config` 指定）
 
 ## 配置方式
 

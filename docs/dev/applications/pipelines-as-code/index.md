@@ -1,7 +1,7 @@
 ---
 title: Pipelines as Code 配置与使用指南
 parent: 应用管理
-nav_order: 4
+nav_order: 5
 ---
 
 ## 目录
@@ -21,6 +21,10 @@ nav_order: 4
 ### 1.1 概述
 
 Pipelines as Code 是 Tekton Pipelines 的一个子系统，允许集群管理员和具有相应权限的用户将流水线模板定义为源代码 Git 仓库的一部分。当配置的 Git 仓库发生源代码推送（push）或拉取请求（pull request / merge request）时，Pipelines as Code 会自动运行流水线并将执行状态报告回 Git 提供商平台。
+
+![Pipelines as Code 配置面板](imgs/repository-pac-panel.svg)
+
+*图：Repository 自定义资源、事件匹配注解与最近 PipelineRun 状态的关系。*
 
 ### 1.2 主要特性
 
@@ -65,11 +69,28 @@ Tekton Pipelines 执行流水线
 状态报告回 Git 提供商（Checks Tab / PR 评论）
 ```
 
+用流程图表示同一过程：
+
+```mermaid
+flowchart TD
+    A[开发者推送代码或创建 PR] --> B[Git 提供商发送 Webhook 事件]
+    B --> C[Pipelines as Code 接收并校验事件]
+    C --> D[按 URL 与分支匹配 Repository CR]
+    D --> E{事件注解是否匹配}
+    E -->|否| F[忽略本次事件]
+    E -->|是| G[读取 .tekton 目录中的 PipelineRun 定义]
+    G --> H[在 Repository 所在命名空间创建 PipelineRun]
+    H --> I[Tekton Pipelines 调度并执行任务]
+    I --> J[任务 Pod 完成构建与部署]
+    J --> K[状态回报 Git 提供商]
+    K --> L[PR 检查状态或评论更新]
+```
+
 **详细步骤说明**：
 
 1. **配置集成**：集群管理员首先将 Pipelines as Code 与 Git 仓库提供商（如 GitHub、GitLab）集成，配置 Webhook 或 GitHub App。
 
-2. **创建 Repository CR**：在 Kubedo 命名空间中创建 `Repository` 自定义资源（CR），其中包含：
+2. **创建 Repository CR**：在应用所在命名空间中创建 `Repository` 自定义资源（CR），其中包含：
    - 要监听的 Git 仓库 URL
    - Git 提供商的认证信息（Secret 引用）
    - Webhook Secret 引用
@@ -101,7 +122,7 @@ spec:
 
 ## 第二章 安装与配置
 
-### 2.1 在 Kdo 上安装 Pipelines as Code
+### 2.1 在 KDO 上安装 Pipelines as Code
 
 Pipelines as Code 随 Tekton Pipelines Operator 一同安装，默认安装在 `pipelines-as-code` 命名空间中。
 
@@ -256,7 +277,7 @@ GitHub App 是推荐的集成方式，它将 Tekton Pipelines 与基于 Git 的�
 #### 3.1.1 使用命令行界面配置
 
 **先决条件**：
-- 以集群管理员身份登录 Kdo Platform 集群
+- 以集群管理员身份登录 KDO 平台集群
 - 已安装带 `tkn pac` 插件的 `tkn` CLI
 
 **步骤**：
@@ -310,7 +331,7 @@ tkn pac bootstrap github-app --github-api-url https://github.com/enterprises/exa
    | 字段 | 值 |
    |---|---|
    | GitHub Application Name | `Tekton Pipelines` |
-   | Homepage URL | KdoConsole URL |
+   | Homepage URL | KDO Console URL |
    | Webhook URL | Pipelines as Code 路由或 Ingress URL |
 
    获取路由 URL：
@@ -362,7 +383,7 @@ tkn pac bootstrap github-app --github-api-url https://github.com/enterprises/exa
 
 - 将要使用 Pipelines as Code 的仓库安装该 App
 
-**第四步：在 Kdo中创建 Secret**
+**第四步：在 KDO 中创建 Secret**
 
 ```bash
 kubectl -n pipelines-as-code create secret generic pipelines-as-code-secret \
@@ -391,7 +412,7 @@ Pipelines as Code 使用 GitHub App 生成访问 token，默认仅限定到包�
 | 仓库级别配置 | 不需要管理员权限 | 将 token 扩展到与原始仓库同一命名空间的仓库列表 |
 
 **先决条件**：
-- 对 Kdo集群有管理员访问权限（或对仓库级别配置有仓库管理员权限）
+- 对 KDO 集群有管理员访问权限（或对仓库级别配置有仓库管理员权限）
 - 已为集群配置 Pipelines as Code GitHub App
 - 知道要扩展的额外仓库名称
 - 额外仓库必须在 GitHub 组织或账号中已存在
@@ -512,7 +533,7 @@ echo https://$(kubectl get ingresss -n pipelines-as-code pipelines-as-code-contr
      - Pull requests
      - Pushes
 
-3. 创建 KdoSecret：
+3. 创建 KDO Secret：
 
 ```bash
 kubectl -n target-namespace create secret generic github-webhook-config \
@@ -687,7 +708,7 @@ tkn pac create repo
    - **Title**：例如 "Pipelines as Code"
    - **URL**：Pipelines as Code 控制器 URL
    - **事件**：勾选 `Repository: Push`、`Pull Request: Created`、`Pull Request: Updated`、`Pull Request: Comment created`
-3. 创建 KdoSecret：
+3. 创建 KDO Secret：
 
 ```bash
 kubectl -n target-namespace create secret generic bitbucket-cloud-token \
@@ -773,7 +794,7 @@ echo https://$(kubectl get ingress -n pipelines-as-code pipelines-as-code-contro
    - **Secret**：`openssl rand -hex 20` 生成
    - **事件**：勾选 `Repository: Push`、`Repository: Modified`、`Pull Request: Opened`、`Pull Request: Source branch updated`、`Pull Request: Comment added`
 
-3. 创建 KdoSecret：
+3. 创建 KDO Secret：
 
 ```bash
 kubectl -n target-namespace create secret generic bitbucket-datacenter-webhook-config \
@@ -1150,7 +1171,7 @@ spec:
 
 Pipelines as Code 解析器注解用于引用 `Task` 和 `Pipeline` CR 定义。解析器从注解中指定的位置获取定义，并自动将其包含到生成的 `PipelineRun` CR 中。
 
-> **注意**：Kdo 已弃用 Tekton Hub 公共实例（`hub.tekton.dev`），将在未来版本中移除。请使用 [Artifact Hub](https://artifacthub.io) 替代。
+> **注意**：KDO 已弃用 Tekton Hub 公共实例（`hub.tekton.dev`），将在未来版本中移除。请使用 [Artifact Hub](https://artifacthub.io) 替代。
 
 #### 5.4.1 远程任务注解
 

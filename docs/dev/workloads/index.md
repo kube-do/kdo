@@ -26,6 +26,29 @@ nav_order: 3
 
 ---
 
+## 工作负载关系
+
+```mermaid
+flowchart TD
+    A[工作负载] --> B[容器组 Pod]
+    A --> C[无状态应用 Deployment]
+    A --> D[有状态应用 StatefulSet]
+    A --> E[守护进程集 DaemonSet]
+    A --> F[任务 Job]
+    A --> G[计划任务 CronJob]
+    A --> H[CloneSet]
+    A --> I[Kruise StatefulSet]
+    C --> B
+    D --> B
+    E --> B
+    F --> B
+    G --> F
+    H --> B
+    I --> B
+    B --> J[组件拓扑展示依赖关系]
+    A --> K[启动 停止 重启 扩缩与 YAML 编辑]
+```
+
 ## 功能特性
 
 - ✅ **可视化创建**：通过表单填写参数，自动生成 YAML

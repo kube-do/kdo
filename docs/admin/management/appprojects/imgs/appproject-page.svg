@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="840" viewBox="0 0 1200 840" role="img" aria-labelledby="title desc">
+  <title id="title">应用项目列表与创建表单示意图</title>
+  <desc id="desc">页面上半部分为应用项目列表，下半部分为新建应用项目表单，包含名称、显示名称、描述、启用的环境与项目负责人。</desc>
+
+  <rect width="1200" height="840" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">KDO Console</text>
+  <text x="190" y="35" font-family="sans-serif" font-size="13" fill="#9aa0a6">管理员界面 / 管理 / 应用项目</text>
+  <circle cx="1104" cy="28" r="10" fill="#3c3f44"/>
+  <circle cx="1146" cy="28" r="10" fill="#3c3f44"/>
+
+  <!-- Heading -->
+  <text x="48" y="106" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">应用项目</text>
+  <text x="48" y="134" font-family="sans-serif" font-size="14" fill="#6a6e73">以项目为单位组织成员、环境、命名空间与应用。</text>
+  <rect x="996" y="86" width="156" height="36" rx="4" fill="#0066cc"/>
+  <text x="1028" y="109" font-family="sans-serif" font-size="14" fill="#ffffff">新建应用项目</text>
+
+  <!-- Project list -->
+  <rect x="48" y="160" width="1104" height="292" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <rect x="64" y="178" width="1072" height="34" fill="#f0f0f0"/>
+  <text x="96" y="200" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">名称</text>
+  <text x="300" y="200" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">显示名称</text>
+  <text x="500" y="200" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">启用的环境</text>
+  <text x="760" y="200" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">项目负责人</text>
+  <text x="960" y="200" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">命名空间</text>
+
+  <text x="96" y="254" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">shop</text>
+  <text x="300" y="254" font-family="sans-serif" font-size="13" fill="#151515">电商平台</text>
+  <rect x="500" y="238" width="42" height="22" rx="11" fill="#e7f1fa"/>
+  <text x="511" y="253" font-family="sans-serif" font-size="11" fill="#004080">dev</text>
+  <rect x="548" y="238" width="42" height="22" rx="11" fill="#e7f1fa"/>
+  <text x="559" y="253" font-family="sans-serif" font-size="11" fill="#004080">test</text>
+  <rect x="596" y="238" width="48" height="22" rx="11" fill="#e7f1fa"/>
+  <text x="607" y="253" font-family="sans-serif" font-size="11" fill="#004080">prod</text>
+  <text x="760" y="254" font-family="sans-serif" font-size="13" fill="#151515">zhang.san</text>
+  <text x="960" y="254" font-family="sans-serif" font-size="13" fill="#151515">shop</text>
+  <line x1="64" y1="272" x2="1136" y2="272" stroke="#e0e0e0"/>
+
+  <text x="96" y="314" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">payment</text>
+  <text x="300" y="314" font-family="sans-serif" font-size="13" fill="#151515">支付服务</text>
+  <rect x="500" y="298" width="42" height="22" rx="11" fill="#e7f1fa"/>
+  <text x="511" y="313" font-family="sans-serif" font-size="11" fill="#004080">dev</text>
+  <rect x="548" y="298" width="42" height="22" rx="11" fill="#e7f1fa"/>
+  <text x="559" y="313" font-family="sans-serif" font-size="11" fill="#004080">test</text>
+  <rect x="596" y="298" width="54" height="22" rx="11" fill="#e7f1fa"/>
+  <text x="607" y="313" font-family="sans-serif" font-size="11" fill="#004080">stage</text>
+  <text x="760" y="314" font-family="sans-serif" font-size="13" fill="#151515">li.si</text>
+  <text x="960" y="314" font-family="sans-serif" font-size="13" fill="#151515">payment</text>
+  <line x1="64" y1="332" x2="1136" y2="332" stroke="#e0e0e0"/>
+
+  <text x="96" y="374" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">data-platform</text>
+  <text x="300" y="374" font-family="sans-serif" font-size="13" fill="#151515">数据平台</text>
+  <rect x="500" y="358" width="42" height="22" rx="11" fill="#e7f1fa"/>
+  <text x="511" y="373" font-family="sans-serif" font-size="11" fill="#004080">dev</text>
+  <rect x="548" y="358" width="48" height="22" rx="11" fill="#e7f1fa"/>
+  <text x="559" y="373" font-family="sans-serif" font-size="11" fill="#004080">prod</text>
+  <text x="760" y="374" font-family="sans-serif" font-size="13" fill="#151515">wang.wu</text>
+  <text x="960" y="374" font-family="sans-serif" font-size="13" fill="#151515">data-platform</text>
+
+  <text x="72" y="428" font-family="sans-serif" font-size="12" fill="#6a6e73">创建项目时会自动创建同名命名空间；环境对应的命名空间由平台按 dev/test/stage/prod 生成。</text>
+
+  <!-- Create form -->
+  <rect x="48" y="476" width="1104" height="292" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="510" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">新建应用项目</text>
+  <text x="72" y="532" font-family="sans-serif" font-size="12" fill="#6a6e73">名称创建后不可修改，环境可在项目创建后继续调整。</text>
+
+  <text x="72" y="562" font-family="sans-serif" font-size="12" fill="#6a6e73">名称</text>
+  <rect x="72" y="570" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="592" font-family="sans-serif" font-size="13" fill="#151515">demo-project</text>
+
+  <text x="396" y="562" font-family="sans-serif" font-size="12" fill="#6a6e73">显示名称</text>
+  <rect x="396" y="570" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="410" y="592" font-family="sans-serif" font-size="13" fill="#151515">演示项目</text>
+
+  <text x="720" y="562" font-family="sans-serif" font-size="12" fill="#6a6e73">项目负责人</text>
+  <rect x="720" y="570" width="408" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="734" y="592" font-family="sans-serif" font-size="13" fill="#151515">zhang.san</text>
+  <text x="1108" y="592" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <text x="72" y="630" font-family="sans-serif" font-size="12" fill="#6a6e73">描述</text>
+  <rect x="72" y="638" width="1056" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="660" font-family="sans-serif" font-size="13" fill="#151515">用于演示项目、环境与应用的映射关系</text>
+
+  <text x="72" y="698" font-family="sans-serif" font-size="12" fill="#6a6e73">启用的环境</text>
+  <rect x="160" y="686" width="16" height="16" rx="3" fill="#0066cc"/>
+  <text x="184" y="699" font-family="sans-serif" font-size="13" fill="#151515">开发 dev</text>
+  <rect x="286" y="686" width="16" height="16" rx="3" fill="#0066cc"/>
+  <text x="310" y="699" font-family="sans-serif" font-size="13" fill="#151515">测试 test</text>
+  <rect x="412" y="686" width="16" height="16" rx="3" fill="#0066cc"/>
+  <text x="436" y="699" font-family="sans-serif" font-size="13" fill="#151515">预发 stage</text>
+  <rect x="548" y="686" width="16" height="16" rx="3" fill="#0066cc"/>
+  <text x="572" y="699" font-family="sans-serif" font-size="13" fill="#151515">生产 prod</text>
+
+  <rect x="72" y="726" width="72" height="30" rx="4" fill="#0066cc"/>
+  <text x="94" y="746" font-family="sans-serif" font-size="12" fill="#ffffff">创建</text>
+  <rect x="156" y="726" width="72" height="30" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="178" y="746" font-family="sans-serif" font-size="12" fill="#0066cc">取消</text>
+
+  <text x="48" y="812" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

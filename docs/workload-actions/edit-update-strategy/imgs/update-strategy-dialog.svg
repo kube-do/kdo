@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">编辑更新策略弹窗示意图</title>
+  <desc id="desc">弹窗选择 RollingUpdate 或 Recreate，设置 maxUnavailable 与 maxSurge，并展示滚动结果预览与 PDB 校验提示。</desc>
+
+  <rect width="1200" height="820" fill="#f3f4f6"/>
+
+  <text x="48" y="64" font-family="sans-serif" font-size="26" font-weight="700" fill="#151515">编辑更新策略弹窗</text>
+  <text x="48" y="92" font-family="sans-serif" font-size="13" fill="#6a6e73">选择滚动更新或重新创建，并设置 maxUnavailable 与 maxSurge。</text>
+
+  <rect x="200" y="116" width="800" height="620" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="232" y="160" font-family="sans-serif" font-size="20" font-weight="700" fill="#151515">编辑更新策略</text>
+  <text x="232" y="182" font-family="sans-serif" font-size="12" fill="#6a6e73">myapp · Deployment · 当前副本数 3</text>
+  <text x="964" y="160" font-family="sans-serif" font-size="18" fill="#6a6e73">×</text>
+  <line x1="200" y1="200" x2="1000" y2="200" stroke="#e0e0e0"/>
+
+  <text x="232" y="232" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">策略类型</text>
+
+  <rect x="232" y="244" width="352" height="84" rx="6" fill="#f5f9ff" stroke="#0066cc"/>
+  <circle cx="256" cy="286" r="8" fill="#0066cc"/>
+  <circle cx="256" cy="286" r="3" fill="#ffffff"/>
+  <text x="282" y="278" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">滚动更新 RollingUpdate</text>
+  <text x="282" y="300" font-family="sans-serif" font-size="11" fill="#6a6e73">逐步替换 Pod，更新期间服务不中断（推荐）</text>
+
+  <rect x="604" y="244" width="352" height="84" rx="6" fill="#ffffff" stroke="#d2d2d2"/>
+  <circle cx="628" cy="286" r="8" fill="#ffffff" stroke="#8a8d90"/>
+  <text x="654" y="278" font-family="sans-serif" font-size="14" fill="#151515">重新创建 Recreate</text>
+  <text x="654" y="300" font-family="sans-serif" font-size="11" fill="#6a6e73">先删除全部旧 Pod，再创建新 Pod</text>
+
+  <text x="232" y="372" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">最大不可用 maxUnavailable</text>
+  <rect x="232" y="384" width="180" height="40" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="246" y="409" font-family="sans-serif" font-size="13" fill="#151515">25%</text>
+  <text x="232" y="444" font-family="sans-serif" font-size="11" fill="#6a6e73">数量或百分比</text>
+
+  <text x="440" y="372" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">最大激增 maxSurge</text>
+  <rect x="440" y="384" width="180" height="40" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="454" y="409" font-family="sans-serif" font-size="13" fill="#151515">25%</text>
+  <text x="440" y="444" font-family="sans-serif" font-size="11" fill="#6a6e73">额外创建的 Pod 上限</text>
+
+  <rect x="232" y="470" width="736" height="104" rx="6" fill="#f5f9ff"/>
+  <text x="252" y="498" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">滚动结果预览</text>
+  <text x="252" y="522" font-family="sans-serif" font-size="12" fill="#151515">期望副本数 3，maxUnavailable 25% 取整为 1，maxSurge 25% 取整为 1。</text>
+  <text x="252" y="546" font-family="sans-serif" font-size="12" fill="#151515">更新期间最多 1 个不可用，最多同时运行 4 个 Pod，始终至少 2 个可用。</text>
+
+  <text x="232" y="602" font-family="sans-serif" font-size="12" fill="#3e8635">✓ 参数合法：maxUnavailable 与 maxSurge 不能同时为 0。</text>
+  <text x="232" y="626" font-family="sans-serif" font-size="12" fill="#7a5200">! 若 PDB 设置 minAvailable=2，则 maxUnavailable 应不大于副本数减 minAvailable。</text>
+  <text x="232" y="650" font-family="sans-serif" font-size="11" fill="#6a6e73">选择 Recreate 时，更新期间服务会完全不可用。</text>
+
+  <rect x="756" y="674" width="100" height="38" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="784" y="698" font-family="sans-serif" font-size="13" fill="#0066cc">取消</text>
+  <rect x="868" y="674" width="100" height="38" rx="4" fill="#0066cc"/>
+  <text x="892" y="698" font-family="sans-serif" font-size="13" fill="#ffffff">添加</text>
+
+  <text x="48" y="802" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

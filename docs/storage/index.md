@@ -15,6 +15,28 @@ nav_order: 9
 
 ![storage.png](imgs/storage.png)
 
+## 生命周期
+
+```mermaid
+flowchart TD
+    A[管理员创建 StorageClass] --> B[用户创建 PVC<br/>声明容量与访问模式]
+    B --> C{是否存在匹配的 PV}
+    C -->|静态供应| D[绑定已有 PV]
+    C -->|动态供应| E[Provisioner 创建 PV]
+    D --> F[PVC 进入 Bound 状态]
+    E --> F
+    F --> G[Pod 通过 volumes 引用 PVC]
+    G --> H[Kubelet 将卷挂载到容器路径]
+    H --> I{Pod 是否被删除}
+    I -->|否| H
+    I -->|是| J[PVC 保留 数据不丢失]
+    J --> K{是否删除 PVC}
+    K -->|否| G
+    K -->|是| L{PV 回收策略}
+    L -->|Retain| M[PV 变为 Released<br/>由管理员手工处理]
+    L -->|Delete| N[删除 PV 与后端存储资源]
+```
+
 ## 存储概念
 
 1. **持久性卷 (PersistentVolume PV):** 持久性卷 是集群中的一块存储(可以是网络存储或者本地存储)，它由管理员设置或通过动态供应自动创建。PV 是一个集群资源，独立于任何单个 Pod 的生命周期存在。PV 可以基于[多种后端存储](#持久性卷类型)提供。
@@ -92,7 +114,7 @@ Kubernetes 中的存储访问模式(Access Modes)定义了 PersistentVolume(PV) 
 
 {: .note }
 在 Kubernetes 中，PersistentVolumeClaim (PVC) 的回收策略是通过与之关联的 PersistentVolume (PV) 的 persistentVolumeReclaimPolicy 字段来定义的。
-当 PVC 被删除时，PV 上设置的回收策略决定了如何处理底层存储资源。以下是三种可能的回收策略：
+当 PVC 被删除时，PV 上设置的回收策略决定了如何处理底层存储资源。以下是两种常见的回收策略：
 
 1. **Retain（保留）** 当 PVC 被删除后，PV 仍然存在，并且其状态变为 "Released"。这意味着数据卷还没有被清理或重新分配给其他 PVC。管理员需要手动回收资源，包括备份、清除数据或者删除 PV。
 使用场景：适合那些希望对数据进行手动管理的情况，比如数据库等有状态应用。
@@ -120,7 +142,7 @@ Kubernetes 卷快照（Volume Snapshots）功能允许用户创建现有 Persist
 2. **卷快照类(VolumeSnapshotClass)**: 是 Kubernetes 中用于定义卷快照(Volume Snapshot)行为的资源。它类似于 StorageClass，为用户提供了一种方式来配置和管理不同类型的卷快照。每个 VolumeSnapshotClass 都关联了一个特定的存储后端，并且可以包含有关如何创建和管理该类型快照的参数。
 
 ![](imgs/volume-snapshot-class.png)
-3. **卷快照类型(VolumeSnapshotContent)**: 类似于 PV 和 PVC 的关系，它是 VolumeSnapshot 的底层实现，通常由系统自动生成或由管理员手动创建。
+3. **卷快照内容(VolumeSnapshotContent)**: 类似于 PV 和 PVC 的关系，它是 VolumeSnapshot 的底层实现，通常由系统自动生成或由管理员手动创建。
 
 ![](imgs/volume-snapshot-content.png)
 
@@ -131,7 +153,7 @@ Kubernetes 卷快照（Volume Snapshots）功能允许用户创建现有 Persist
 
 ![](imgs/create-snapshot.gif)
 
-1. **确保 存储类(StorageClass) 支持快照:** 首先，确认你的 `StorageClass` 是否支持快照功能。这通常涉及到设置 `allowVolumeExpansion: true` 和指定正确的 provisioner，例如 AWS EBS、GCE PD 或者 CSI（Container Storage Interface）兼容的存储提供者。
+1. **确保 存储类(StorageClass) 支持快照:** 首先，确认你的 `StorageClass` 是否支持快照功能。这通常要求 StorageClass 对应的 CSI 驱动支持卷快照，并已安装快照控制器与 `VolumeSnapshotClass`；例如 AWS EBS、GCE PD 或其他 CSI（Container Storage Interface）兼容的存储提供者。
 2. **定义 卷快照 对象:** 通过菜单创建卷快照对象
 3. **应用 卷快照 定义:** 通过菜单提交快照定义给 Kubernetes API 服务器。
 4. **验证快照状态:** 查看快照的状态。当状态变为 "ReadyToUse" 时，说明快照已经成功创建。

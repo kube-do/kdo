@@ -25,6 +25,27 @@ KDO Console 提供图形化的**多集群管理**能力。所有被纳管的集�
 - **主集群（local-cluster）**：控制面所在的集群，使用控制器的 ServiceAccount 访问，不依赖 kubeconfig；其监控/告警 URL 未显式配置时由 Console 的 `monitoringInfo` 默认值提供。
 - **托管集群**：通过 kubeconfig 纳管的其他集群。Console 转发用户 OIDC Token 访问目标集群，因此目标集群的 apiserver 必须信任与主集群相同的 OIDC 颁发者。
 
+## 集群纳管流程
+
+```mermaid
+flowchart TD
+    A[管理员添加集群] --> B[填写名称与 kubeconfig]
+    B --> C[填写各组件 URL]
+    C --> D[校验 kubeconfig 可解析可连接]
+    D --> E{具备集群管理员权限}
+    E -->|否| F[阻止保存并提示原因]
+    E -->|是| G{OIDC 参数与主集群一致}
+    G -->|否| F
+    G -->|是| H[保存 Cluster CR]
+    H --> I[写入管理员 kubeconfig Secret]
+    I --> J[每 5 分钟探测组件]
+    J --> K[写回 conditions 与 components]
+    K --> L[列表与详情展示状态]
+    L --> M[删除时执行 finalizer 清理]
+```
+
+校验不通过时不会创建或更新对象；保存成功后，`status` 由 KDC Controller 持续回写，Console 只负责展示与触发操作。
+
 ## Cluster CRD 字段
 
 ### spec

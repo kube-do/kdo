@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+  <title id="title">副本集列表与详情示意图</title>
+  <desc id="desc">页面上方提示副本集由 Deployment 创建，中间为副本集列表，下方为选中副本集的 Pod、YAML 与事件标签页。</desc>
+
+  <rect width="1200" height="780" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">KDO Console</text>
+  <text x="190" y="35" font-family="sans-serif" font-size="13" fill="#9aa0a6">管理员界面 / 工作负载 / 副本集</text>
+  <circle cx="1104" cy="28" r="10" fill="#3c3f44"/>
+  <circle cx="1146" cy="28" r="10" fill="#3c3f44"/>
+
+  <!-- Heading -->
+  <text x="48" y="106" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">副本集</text>
+  <text x="48" y="134" font-family="sans-serif" font-size="14" fill="#6a6e73">查看 Deployment 创建的副本集及其管理的 Pod。</text>
+
+  <!-- Info banner -->
+  <rect x="48" y="154" width="1104" height="46" rx="4" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="64" y="175" font-family="sans-serif" font-size="12" fill="#004080">副本集通常由 Deployment 自动创建，KDO 暂不提供创建入口。</text>
+  <text x="64" y="191" font-family="sans-serif" font-size="11" fill="#004080">如需维护副本数，请在上层 Deployment 中调整，由 Deployment 生成新的副本集。</text>
+
+  <!-- Table -->
+  <rect x="48" y="214" width="1104" height="240" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <rect x="64" y="232" width="1072" height="34" fill="#f0f0f0"/>
+  <text x="96" y="254" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">名称</text>
+  <text x="400" y="254" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">命名空间</text>
+  <text x="560" y="254" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">副本数</text>
+  <text x="680" y="254" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">镜像</text>
+  <text x="940" y="254" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">创建时间</text>
+
+  <text x="96" y="308" font-family="sans-serif" font-size="14" font-weight="700" fill="#0066cc">web-7d9f8c</text>
+  <text x="400" y="308" font-family="sans-serif" font-size="13" fill="#151515">shop</text>
+  <text x="560" y="308" font-family="sans-serif" font-size="13" fill="#151515">3 / 3</text>
+  <text x="680" y="308" font-family="sans-serif" font-size="13" fill="#151515">nginx:1.27</text>
+  <text x="940" y="308" font-family="sans-serif" font-size="13" fill="#6a6e73">2026-11-08 10:12</text>
+  <line x1="64" y1="326" x2="1136" y2="326" stroke="#e0e0e0"/>
+
+  <text x="96" y="362" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">web-5c8b7d</text>
+  <text x="400" y="362" font-family="sans-serif" font-size="13" fill="#151515">shop</text>
+  <text x="560" y="362" font-family="sans-serif" font-size="13" fill="#151515">2 / 2</text>
+  <text x="680" y="362" font-family="sans-serif" font-size="13" fill="#151515">nginx:1.26</text>
+  <text x="940" y="362" font-family="sans-serif" font-size="13" fill="#6a6e73">2026-11-01 09:30</text>
+  <line x1="64" y1="380" x2="1136" y2="380" stroke="#e0e0e0"/>
+
+  <text x="96" y="416" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">api-6f9d4c</text>
+  <text x="400" y="416" font-family="sans-serif" font-size="13" fill="#151515">payment</text>
+  <text x="560" y="416" font-family="sans-serif" font-size="13" font-weight="700" fill="#c9190b">1 / 2</text>
+  <text x="680" y="416" font-family="sans-serif" font-size="13" fill="#151515">api:2.3.1</text>
+  <text x="940" y="416" font-family="sans-serif" font-size="13" fill="#6a6e73">2026-11-09 08:05</text>
+
+  <!-- Detail -->
+  <rect x="48" y="474" width="1104" height="250" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="506" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">web-7d9f8c</text>
+  <text x="72" y="526" font-family="sans-serif" font-size="11" fill="#6a6e73">shop · nginx:1.27 · 由 Deployment web 创建</text>
+
+  <text x="72" y="562" font-family="sans-serif" font-size="13" font-weight="700" fill="#0066cc">容器组</text>
+  <text x="152" y="562" font-family="sans-serif" font-size="13" fill="#6a6e73">YAML</text>
+  <text x="212" y="562" font-family="sans-serif" font-size="13" fill="#6a6e73">事件</text>
+  <line x1="72" y1="574" x2="1128" y2="574" stroke="#e0e0e0"/>
+
+  <rect x="64" y="588" width="1072" height="30" fill="#f0f0f0"/>
+  <text x="88" y="608" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">Pod 名称</text>
+  <text x="480" y="608" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">状态</text>
+  <text x="640" y="608" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">节点</text>
+  <text x="920" y="608" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">重启次数</text>
+
+  <text x="88" y="646" font-family="sans-serif" font-size="13" fill="#151515">web-7d9f8c-abcde</text>
+  <rect x="480" y="630" width="72" height="22" rx="11" fill="#e7f5ec"/>
+  <text x="496" y="645" font-family="sans-serif" font-size="11" fill="#1e4f18">Running</text>
+  <text x="640" y="646" font-family="sans-serif" font-size="13" fill="#151515">node-1</text>
+  <text x="920" y="646" font-family="sans-serif" font-size="13" fill="#151515">0</text>
+  <line x1="64" y1="662" x2="1136" y2="662" stroke="#e0e0e0"/>
+
+  <text x="88" y="692" font-family="sans-serif" font-size="13" fill="#151515">web-7d9f8c-fghij</text>
+  <rect x="480" y="676" width="72" height="22" rx="11" fill="#e7f5ec"/>
+  <text x="496" y="691" font-family="sans-serif" font-size="11" fill="#1e4f18">Running</text>
+  <text x="640" y="692" font-family="sans-serif" font-size="13" fill="#151515">node-2</text>
+  <text x="920" y="692" font-family="sans-serif" font-size="13" fill="#151515">0</text>
+
+  <text x="48" y="752" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

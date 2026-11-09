@@ -15,6 +15,26 @@ nav_order: 2
 
 ![](imgs/ingress.png)
 
+## 创建路由流程
+
+```mermaid
+flowchart TD
+    A[进入网络存储并选择路由] --> B[点击新建路由]
+    B --> C{编辑方式}
+    C -->|表单视图| D[填写名称 路由类型 主机名与路径]
+    C -->|YAML 视图| E[直接编辑 Ingress 清单]
+    D --> F[选择后端服务与目标端口]
+    F --> G{是否配置 TLS}
+    G -->|否| H[提交创建 Ingress]
+    G -->|已有 Secret| I[选择现有 TLS Secret]
+    G -->|KdcCertificate| J[自动填充主机名并生成目标 Secret]
+    I --> H
+    J --> K[先创建或复用 TLS Secret]
+    K --> H
+    E --> H
+    H --> L[路由控制器接收规则]
+    L --> M[流量转发到服务再到达容器组]
+```
 
 ## 新增路由
 

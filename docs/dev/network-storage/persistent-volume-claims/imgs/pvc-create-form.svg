@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">持久卷声明创建表单示意图</title>
+  <desc id="desc">左侧为名称、存储类型、访问模式、容量与挂载路径表单，右侧为绑定状态与 PVC 生命周期提示。</desc>
+
+  <rect width="1200" height="760" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">KDO 控制台</text>
+  <text x="990" y="35" font-family="sans-serif" font-size="12" fill="#9aa0a6">网络与存储 / 持久卷声明</text>
+
+  <!-- Heading -->
+  <text x="48" y="110" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">添加持久卷声明</text>
+  <text x="48" y="136" font-family="sans-serif" font-size="14" fill="#6a6e73">声明容量与访问模式，由存储类供应持久卷并挂载到容器组。</text>
+
+  <!-- Form card -->
+  <rect x="48" y="164" width="700" height="520" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="198" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">存储需求</text>
+
+  <text x="72" y="244" font-family="sans-serif" font-size="12" fill="#6a6e73">名称 *</text>
+  <rect x="72" y="252" width="280" height="34" rx="4" fill="#ffffff" stroke="#0066cc" stroke-width="2"/>
+  <text x="86" y="274" font-family="sans-serif" font-size="13" fill="#151515">myapp-data</text>
+
+  <text x="372" y="244" font-family="sans-serif" font-size="12" fill="#6a6e73">存储类型</text>
+  <rect x="372" y="252" width="352" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="386" y="274" font-family="sans-serif" font-size="13" fill="#151515">nfs-client</text>
+  <text x="700" y="274" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <text x="72" y="316" font-family="sans-serif" font-size="12" fill="#6a6e73">访问模式</text>
+  <circle cx="80" cy="334" r="7" fill="#ffffff" stroke="#0066cc" stroke-width="2"/>
+  <circle cx="80" cy="334" r="3" fill="#0066cc"/>
+  <text x="96" y="339" font-family="sans-serif" font-size="12" fill="#151515">ReadWriteOnce</text>
+
+  <circle cx="260" cy="334" r="7" fill="#ffffff" stroke="#8a8d90"/>
+  <text x="276" y="339" font-family="sans-serif" font-size="12" fill="#151515">ReadOnlyMany</text>
+
+  <circle cx="432" cy="334" r="7" fill="#ffffff" stroke="#8a8d90"/>
+  <text x="448" y="339" font-family="sans-serif" font-size="12" fill="#151515">ReadWriteMany</text>
+
+  <text x="72" y="384" font-family="sans-serif" font-size="12" fill="#6a6e73">容量</text>
+  <rect x="72" y="392" width="200" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="414" font-family="sans-serif" font-size="13" fill="#151515">10Gi</text>
+
+  <text x="300" y="384" font-family="sans-serif" font-size="12" fill="#6a6e73">挂载路径</text>
+  <rect x="300" y="392" width="424" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="314" y="414" font-family="monospace" font-size="12" fill="#151515">/data</text>
+
+  <text x="72" y="456" font-family="sans-serif" font-size="12" fill="#6a6e73">挂载目标</text>
+  <rect x="72" y="464" width="652" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="486" font-family="sans-serif" font-size="13" fill="#151515">Deployment / myapp</text>
+  <text x="700" y="486" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <text x="72" y="534" font-family="sans-serif" font-size="11" fill="#6a6e73">提示：只有 ReadWriteMany 的存储类才支持多副本同时读写。</text>
+  <text x="72" y="556" font-family="sans-serif" font-size="11" fill="#6a6e73">扩容需要存储类开启 allowVolumeExpansion。</text>
+
+  <rect x="72" y="620" width="86" height="32" rx="4" fill="#0066cc"/>
+  <text x="103" y="641" font-family="sans-serif" font-size="13" fill="#ffffff">确定</text>
+  <rect x="170" y="620" width="86" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="201" y="641" font-family="sans-serif" font-size="13" fill="#0066cc">取消</text>
+
+  <!-- Binding card -->
+  <rect x="772" y="164" width="380" height="250" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="796" y="198" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">绑定状态</text>
+
+  <rect x="796" y="212" width="62" height="22" rx="11" fill="#e7f5ec" stroke="#3e8635"/>
+  <text x="812" y="227" font-family="sans-serif" font-size="11" fill="#1e4f18">Bound</text>
+  <text x="872" y="228" font-family="sans-serif" font-size="11" fill="#6a6e73">已绑定持久卷</text>
+
+  <text x="796" y="264" font-family="sans-serif" font-size="11" fill="#6a6e73">PVC</text>
+  <text x="890" y="264" font-family="monospace" font-size="12" fill="#151515">myapp-data</text>
+
+  <text x="796" y="292" font-family="sans-serif" font-size="11" fill="#6a6e73">PV</text>
+  <text x="890" y="292" font-family="monospace" font-size="12" fill="#151515">pvc-8f3c2a</text>
+
+  <text x="796" y="320" font-family="sans-serif" font-size="11" fill="#6a6e73">存储类</text>
+  <text x="890" y="320" font-family="sans-serif" font-size="12" fill="#151515">nfs-client</text>
+
+  <text x="796" y="348" font-family="sans-serif" font-size="11" fill="#6a6e73">访问模式</text>
+  <text x="890" y="348" font-family="sans-serif" font-size="12" fill="#151515">ReadWriteOnce</text>
+
+  <text x="796" y="376" font-family="sans-serif" font-size="11" fill="#6a6e73">容量</text>
+  <text x="890" y="376" font-family="sans-serif" font-size="12" fill="#151515">10Gi</text>
+
+  <!-- Lifecycle card -->
+  <rect x="772" y="438" width="380" height="246" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="796" y="472" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">生命周期</text>
+
+  <circle cx="802" cy="500" r="9" fill="#e7f1fa"/>
+  <text x="798" y="504" font-family="sans-serif" font-size="10" fill="#004080">1</text>
+  <text x="820" y="504" font-family="sans-serif" font-size="11" fill="#151515">创建 PVC，由存储类供应 PV</text>
+
+  <circle cx="802" cy="534" r="9" fill="#e7f1fa"/>
+  <text x="798" y="538" font-family="sans-serif" font-size="10" fill="#004080">2</text>
+  <text x="820" y="538" font-family="sans-serif" font-size="11" fill="#151515">挂载到容器组并读写数据</text>
+
+  <circle cx="802" cy="568" r="9" fill="#e7f1fa"/>
+  <text x="798" y="572" font-family="sans-serif" font-size="10" fill="#004080">3</text>
+  <text x="820" y="572" font-family="sans-serif" font-size="11" fill="#151515">容器组删除后 PVC 与数据保留</text>
+
+  <circle cx="802" cy="602" r="9" fill="#e7f1fa"/>
+  <text x="798" y="606" font-family="sans-serif" font-size="10" fill="#004080">4</text>
+  <text x="820" y="606" font-family="sans-serif" font-size="11" fill="#151515">删除 PVC 时按回收策略处理</text>
+
+  <text x="796" y="644" font-family="sans-serif" font-size="11" fill="#6a6e73">Retain 保留底层存储，Delete 一并删除，</text>
+  <text x="796" y="662" font-family="sans-serif" font-size="11" fill="#6a6e73">删除前请确认没有容器组正在挂载。</text>
+
+  <text x="48" y="736" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

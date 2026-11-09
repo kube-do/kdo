@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">用户管理页面示意图</title>
+  <desc id="desc">页面左侧为用户、组、服务账号等标签页与用户列表，右侧为编辑用户面板，包含基本信息与通知设置。</desc>
+
+  <rect width="1200" height="800" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">KDO Console</text>
+  <text x="190" y="35" font-family="sans-serif" font-size="13" fill="#9aa0a6">管理员界面 / 用户管理</text>
+  <circle cx="1104" cy="28" r="10" fill="#3c3f44"/>
+  <circle cx="1146" cy="28" r="10" fill="#3c3f44"/>
+
+  <!-- Heading -->
+  <text x="48" y="106" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">用户管理</text>
+  <text x="48" y="134" font-family="sans-serif" font-size="14" fill="#6a6e73">管理用户、组、服务账号及其 RBAC 绑定。</text>
+  <rect x="1008" y="86" width="144" height="36" rx="4" fill="#0066cc"/>
+  <text x="1040" y="109" font-family="sans-serif" font-size="14" fill="#ffffff">新建用户</text>
+
+  <!-- Tabs -->
+  <text x="48" y="178" font-family="sans-serif" font-size="14" font-weight="700" fill="#0066cc">用户</text>
+  <text x="112" y="178" font-family="sans-serif" font-size="14" fill="#6a6e73">组</text>
+  <text x="160" y="178" font-family="sans-serif" font-size="14" fill="#6a6e73">服务账号</text>
+  <text x="260" y="178" font-family="sans-serif" font-size="14" fill="#6a6e73">角色</text>
+  <text x="324" y="178" font-family="sans-serif" font-size="14" fill="#6a6e73">角色绑定</text>
+  <rect x="48" y="188" width="44" height="3" rx="1" fill="#0066cc"/>
+  <line x1="48" y1="191" x2="668" y2="191" stroke="#e0e0e0"/>
+
+  <!-- User table -->
+  <rect x="48" y="204" width="620" height="500" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <rect x="64" y="220" width="588" height="34" fill="#f0f0f0"/>
+  <text x="88" y="242" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">用户名</text>
+  <text x="240" y="242" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">显示名</text>
+  <text x="376" y="242" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">用户组</text>
+  <text x="516" y="242" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">状态</text>
+
+  <text x="88" y="294" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">zhang.san</text>
+  <text x="240" y="294" font-family="sans-serif" font-size="13" fill="#151515">张三</text>
+  <text x="376" y="294" font-family="sans-serif" font-size="13" fill="#6a6e73">dev-team</text>
+  <rect x="516" y="278" width="58" height="22" rx="11" fill="#e7f5ec"/>
+  <text x="529" y="293" font-family="sans-serif" font-size="11" fill="#1e4f18">Enabled</text>
+  <line x1="64" y1="312" x2="652" y2="312" stroke="#e0e0e0"/>
+
+  <text x="88" y="354" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">li.si</text>
+  <text x="240" y="354" font-family="sans-serif" font-size="13" fill="#151515">李四</text>
+  <text x="376" y="354" font-family="sans-serif" font-size="13" fill="#6a6e73">ops-team</text>
+  <rect x="516" y="338" width="58" height="22" rx="11" fill="#e7f5ec"/>
+  <text x="529" y="353" font-family="sans-serif" font-size="11" fill="#1e4f18">Enabled</text>
+  <line x1="64" y1="372" x2="652" y2="372" stroke="#e0e0e0"/>
+
+  <text x="88" y="414" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">wang.wu</text>
+  <text x="240" y="414" font-family="sans-serif" font-size="13" fill="#151515">王五</text>
+  <text x="376" y="414" font-family="sans-serif" font-size="13" fill="#6a6e73">dev-team</text>
+  <rect x="516" y="398" width="64" height="22" rx="11" fill="#f0f0f0"/>
+  <text x="529" y="413" font-family="sans-serif" font-size="11" fill="#4f5255">Disabled</text>
+  <line x1="64" y1="432" x2="652" y2="432" stroke="#e0e0e0"/>
+
+  <text x="88" y="474" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">zhao.liu</text>
+  <text x="240" y="474" font-family="sans-serif" font-size="13" fill="#151515">赵六</text>
+  <text x="376" y="474" font-family="sans-serif" font-size="13" fill="#6a6e73">qa-team</text>
+  <rect x="516" y="458" width="58" height="22" rx="11" fill="#e7f5ec"/>
+  <text x="529" y="473" font-family="sans-serif" font-size="11" fill="#1e4f18">Enabled</text>
+  <line x1="64" y1="492" x2="652" y2="492" stroke="#e0e0e0"/>
+
+  <text x="88" y="534" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">svc-deployer</text>
+  <text x="240" y="534" font-family="sans-serif" font-size="13" fill="#6a6e73">服务账号</text>
+  <text x="376" y="534" font-family="sans-serif" font-size="13" fill="#6a6e73">ops-team</text>
+  <rect x="516" y="518" width="58" height="22" rx="11" fill="#e7f1fa"/>
+  <text x="529" y="533" font-family="sans-serif" font-size="11" fill="#004080">System</text>
+
+  <text x="72" y="620" font-family="sans-serif" font-size="12" fill="#6a6e73">用户与组的身份展示优先使用显示名，缺失时回退用户名或组名。</text>
+  <text x="72" y="642" font-family="sans-serif" font-size="12" fill="#6a6e73">点击用户可编辑通知设置、组成员关系与角色绑定。</text>
+
+  <!-- Edit panel -->
+  <rect x="692" y="204" width="460" height="500" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="716" y="238" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">编辑用户</text>
+  <text x="716" y="258" font-family="sans-serif" font-size="12" fill="#6a6e73">zhang.san · 张三</text>
+  <line x1="716" y1="274" x2="1128" y2="274" stroke="#e0e0e0"/>
+
+  <text x="716" y="304" font-family="sans-serif" font-size="12" fill="#6a6e73">显示名</text>
+  <rect x="716" y="312" width="412" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="730" y="334" font-family="sans-serif" font-size="13" fill="#151515">张三</text>
+
+  <text x="716" y="376" font-family="sans-serif" font-size="12" fill="#6a6e73">邮箱</text>
+  <rect x="716" y="384" width="412" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="730" y="406" font-family="sans-serif" font-size="13" fill="#151515">zhang.san@example.com</text>
+
+  <text x="716" y="450" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">通知设置</text>
+  <text x="716" y="470" font-family="sans-serif" font-size="11" fill="#6a6e73">与通知中心的用户偏好共用同一套配置。</text>
+
+  <text x="716" y="498" font-family="sans-serif" font-size="12" fill="#6a6e73">IM 账号</text>
+  <rect x="716" y="506" width="412" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="730" y="527" font-family="sans-serif" font-size="13" fill="#151515">wecom:zhang.san</text>
+
+  <text x="716" y="562" font-family="sans-serif" font-size="12" fill="#6a6e73">事件类别</text>
+  <rect x="716" y="570" width="412" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="730" y="591" font-family="sans-serif" font-size="13" fill="#151515">构建、部署、告警、审批</text>
+
+  <text x="716" y="622" font-family="sans-serif" font-size="12" fill="#6a6e73">严重级别阈值</text>
+  <rect x="716" y="630" width="412" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="730" y="651" font-family="sans-serif" font-size="13" fill="#151515">warning 及以上</text>
+
+  <rect x="716" y="672" width="80" height="30" rx="4" fill="#0066cc"/>
+  <text x="740" y="692" font-family="sans-serif" font-size="12" fill="#ffffff">保存</text>
+  <rect x="808" y="672" width="72" height="30" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="830" y="692" font-family="sans-serif" font-size="12" fill="#0066cc">取消</text>
+
+  <text x="48" y="772" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

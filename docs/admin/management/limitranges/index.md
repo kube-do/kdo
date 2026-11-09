@@ -8,12 +8,35 @@ nav_order: 5
 
 **LimitRange** 用于为命名空间设置容器资源请求（requests）和限制（limits）的默认值、最小值和最大值。它确保新创建的 Pod 符合资源规范，防止某个容器申请过多或过少资源，从而维护集群稳定性和公平性。
 
+![创建限制范围表单](imgs/limitrange-form.svg)
+
+*图：创建限制范围表单中的资源约束区域。*
+
 ### 为什么需要 LimitRange？
 
 - ✅ **默认值**：开发者忘记设置资源限制时，自动填充合理的默认值
 - ✅ **约束边界**：防止申请过小（导致 QoS 过低）或过大（浪费资源）
 - ✅ **配额前置**：配合 ResourceQuota，确保单个容器不会耗尽命名空间总配额
 - ✅ **规范统一**：团队内资源配置标准化
+
+## 约束生效流程
+
+```mermaid
+flowchart TD
+    A[提交 Pod 或容器定义] --> B[准入控制器读取 LimitRange]
+    B --> C{是否显式设置 requests 与 limits}
+    C -->|否| D[注入 defaultRequest 与 default]
+    C -->|是| E[保留显式值]
+    D --> F{是否满足 min 与 max}
+    E --> F
+    F -->|否| G[拒绝创建并返回原因]
+    F -->|是| H{limits 与 requests 比例是否超过 maxRatio}
+    H -->|否| G
+    H -->|是| I[通过准入并创建 Pod]
+    I --> J[已运行 Pod 不受后续修改影响]
+```
+
+LimitRange 只在新 Pod 创建时参与校验与默认值注入；修改 LimitRange 不会回溯调整已经运行的 Pod。
 
 ---
 

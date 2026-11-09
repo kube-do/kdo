@@ -12,6 +12,10 @@ nav_order: 2
 - **Operator 生命周期**：安装、升级、删除 Operator
 - **系统 Helm Chart**：KDO 平台自身的组件部署
 
+![应用管理页面](imgs/application-management.svg)
+
+*图：应用管理页面入口与 Helm 应用发布列表。*
+
 ### 核心组件对比
 
 | 管理类型 | 描述 | 适用场景 | 管理者 |
@@ -19,6 +23,29 @@ nav_order: 2
 | **Helm 应用** | 通过 Helm Chart 部署的社区或自定义应用 | 中间件（MySQL、Redis、Kafka）、第三方服务 | 管理员/开发者 |
 | **OperatorHub** | 浏览和安装来自 OperatorHub.io 的 Operators | 扩展 Kubernetes API，管理复杂应用（如数据库 Operator） | 管理员 |
 | **已安装 Operators** | 查看和管理集群中已安装的 Operators |  Operators CR 实例管理、升级、卸载 | 管理员/高级用户 |
+
+## 应用交付流程
+
+```mermaid
+flowchart TD
+    A[进入应用管理] --> B{选择交付方式}
+    B --> C[Helm 应用]
+    B --> D[OperatorHub]
+    B --> E[已安装 Operators]
+    C --> F[选择 Helm 仓库与 Chart 版本]
+    F --> G[填写 values 参数]
+    G --> H[执行 helm install 或 upgrade]
+    D --> I[选择 Operator 与批准策略]
+    I --> J[创建 Subscription]
+    J --> K[OLM 部署 Operator 并生成 CSV]
+    K --> L[安装 Operator 提供的 CRD]
+    L --> M[创建 CR 实例]
+    H --> N[应用运行与维护]
+    M --> N
+    E --> M
+```
+
+Helm 应用与 Operator 最终都以运行中的工作负载或自定义资源形式落地，区别在于 Operator 由 OLM 负责订阅、升级与生命周期管理。
 
 ---
 
@@ -72,7 +99,7 @@ OperatorHub 提供了数百个经过认证的生产级 Operators。管理员可�
 4. 等待 Operator 部署完成
 
 **Operator Catalog：**
-KDO 使用 ` OperatorHub` 的社区 catalog，也支持添加私有 catalog（Red Hat Marketplace、自定义）。
+KDO 使用 `OperatorHub` 的社区 catalog，也支持添加私有 catalog（Red Hat Marketplace、自定义）。
 
 **管理员职责：**
 - 定期更新 catalog 源，获取最新 Operator 版本

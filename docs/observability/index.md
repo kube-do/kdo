@@ -36,6 +36,28 @@ nav_order: 5
 
 > **典型场景**：节点故障通知、部署事件通知、告警收敛
 
+## 能力地图
+
+```mermaid
+flowchart TD
+    A[可观测性中心] --> B[监控 Monitoring]
+    A --> C[日志 Logging]
+    A --> D[事件 Event]
+    A --> E[监控大屏]
+    B --> F[Prometheus 指标采集与 TSDB 存储]
+    B --> G[Grafana 仪表盘<br/>集群总览 / 集群详情]
+    C --> H[Vector 采集与 Loki 日志存储]
+    C --> I[全局日志检索<br/>命名空间 / 容器组 / 内容]
+    D --> J[集群事件列表与资源事件标签]
+    F --> K[Alertmanager 告警规则]
+    H --> K
+    K --> L[邮件 / 钉钉 / 企业微信 / Webhook]
+    D --> L
+    E --> M[资源监控 / 应用监控视图]
+```
+
+监控、日志与事件共用同一套采集与通知链路：指标和日志分别落入 Prometheus 与 Loki，由 Grafana 统一展示；事件来自 API Server，与告警一起进入通知渠道。
+
 ## 快速入门
 
 ### 1️⃣ 前置条件

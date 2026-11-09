@@ -14,6 +14,26 @@ parent: 工作负载操作
 - ✅ **提升稳定性**：避免手动扩缩容延迟或遗漏
 - ✅ **指标驱动**：基于真实指标而非猜测
 
+## 工作流程
+
+```mermaid
+flowchart TD
+    A[Deployment 运行并设置 requests] --> B[metrics-server 采集 Pod 指标]
+    B --> C[HPA 控制器每 15 秒查询指标]
+    C --> D[计算所需副本数<br/>当前副本乘以利用率除以目标]
+    D --> E{存在多个指标}
+    E -->|是| F[分别计算后取最大值]
+    E -->|否| G[使用单一指标结果]
+    F --> H[按 minReplicas 与 maxReplicas 截断]
+    G --> H
+    H --> I[更新 Deployment 的 replicas]
+    I --> J[Deployment 创建或删除 Pod]
+    J --> K{Pod 是否 Ready}
+    K -->|是| L[流量按 Service 分发]
+    K -->|否| M[检查调度 资源与镜像]
+    M --> C
+```
+
 ---
 
 ## 快速开始
@@ -74,7 +94,7 @@ kubectl top pods -n <namespace>
 
 ### 多指标 HPA
 
-Kubernetes 1.23+ 支持同时监控多个指标，取**各指标计算副本数的最大值**作为最终调整值。
+HPA 支持同时配置多个指标（`autoscaling/v2` 自 Kubernetes 1.23 起正式稳定），取**各指标计算副本数的最大值**作为最终调整值。
 
 例如：
 - CPU 利用率 100% → 需要 4 副本

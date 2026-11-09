@@ -18,6 +18,26 @@ nav_order: 8
 | **任务运行 (TaskRun)** | 任务的执行实例 | 左侧菜单第8项 |
 | **流水线资源 (PipelineResource)** | 定义流水线的输入/输出（如 Git 仓库、镜像名称） | 左侧菜单第8项 |
 
+## 流水线执行流程
+
+```mermaid
+flowchart TD
+    A[定义 Pipeline] --> B[引用可复用 Task]
+    B --> C[创建 PipelineRun]
+    C --> D[生成 TaskRun 与 Runner Pod]
+    D --> E[执行 build test deploy 等步骤]
+    E --> F{是否需要人工审批}
+    F -->|是| G[ApprovalTask 等待审批]
+    G --> H{审批是否通过}
+    H -->|否| I[PipelineRun 失败或终止]
+    H -->|是| J[继续部署步骤]
+    F -->|否| J
+    J --> K[写回清单并触发部署运行]
+    K --> L[记录日志 状态与发布历史]
+```
+
+Pipeline 只描述流程，PipelineRun 才是一次具体执行；审批节点会阻塞后续 Task，直到满足审批人数要求。
+
 ---
 
 ## 快速导航

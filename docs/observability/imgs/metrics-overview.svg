@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="856" viewBox="0 0 1200 856" role="img" aria-labelledby="title desc">
+  <title id="title">指标页面示意图</title>
+  <desc id="desc">页面上方为集群数量、CPU、内存与存储四项汇总，中部为流量分布与功能入口，下方为集群详情中的健康指标、资源使用与节点状况。</desc>
+
+  <rect width="1200" height="856" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="32" y="34" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">KDO 控制台</text>
+  <text x="180" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">主页</text>
+  <text x="240" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">工作负载</text>
+  <text x="320" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">观测</text>
+  <circle cx="1104" cy="28" r="10" fill="#3c3f44"/>
+  <circle cx="1146" cy="28" r="10" fill="#3c3f44"/>
+
+  <!-- Heading -->
+  <text x="48" y="112" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">指标 · 集群总览</text>
+  <text x="48" y="142" font-family="sans-serif" font-size="14" fill="#6a6e73">集群与平台资源监控、流量分布及集群详情入口</text>
+
+  <!-- KPI cards -->
+  <g>
+    <rect x="48" y="168" width="258" height="100" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+    <text x="66" y="194" font-family="sans-serif" font-size="12" fill="#6a6e73">集群数量</text>
+    <text x="66" y="228" font-family="sans-serif" font-size="24" font-weight="700" fill="#151515">3 个</text>
+    <text x="66" y="250" font-family="sans-serif" font-size="11" fill="#3e8635">全部健康</text>
+  </g>
+  <g>
+    <rect x="330" y="168" width="258" height="100" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+    <text x="348" y="194" font-family="sans-serif" font-size="12" fill="#6a6e73">CPU 使用</text>
+    <text x="348" y="228" font-family="sans-serif" font-size="24" font-weight="700" fill="#151515">62%</text>
+    <text x="348" y="250" font-family="sans-serif" font-size="11" fill="#6a6e73">已分配 128 核</text>
+  </g>
+  <g>
+    <rect x="612" y="168" width="258" height="100" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+    <text x="630" y="194" font-family="sans-serif" font-size="12" fill="#6a6e73">内存使用</text>
+    <text x="630" y="228" font-family="sans-serif" font-size="24" font-weight="700" fill="#151515">71%</text>
+    <text x="630" y="250" font-family="sans-serif" font-size="11" fill="#6a6e73">已分配 512 GiB</text>
+  </g>
+  <g>
+    <rect x="894" y="168" width="258" height="100" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+    <text x="912" y="194" font-family="sans-serif" font-size="12" fill="#6a6e73">存储使用</text>
+    <text x="912" y="228" font-family="sans-serif" font-size="24" font-weight="700" fill="#151515">48%</text>
+    <text x="912" y="250" font-family="sans-serif" font-size="11" fill="#6a6e73">已分配 8 TiB</text>
+  </g>
+
+  <!-- Traffic card -->
+  <rect x="48" y="292" width="700" height="248" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="68" y="322" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">流量分布</text>
+  <text x="68" y="344" font-family="sans-serif" font-size="12" fill="#6a6e73">访问链路：域名 → 应用 → 团队 → 集群</text>
+
+  <rect x="68" y="384" width="130" height="56" rx="4" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="133" y="408" font-family="sans-serif" font-size="13" font-weight="700" fill="#004080" text-anchor="middle">域名</text>
+  <text x="133" y="428" font-family="sans-serif" font-size="11" fill="#004080" text-anchor="middle">42 个入口</text>
+
+  <line x1="200" y1="412" x2="220" y2="412" stroke="#0066cc"/>
+  <polygon points="220,412 212,408 212,416" fill="#0066cc"/>
+
+  <rect x="228" y="384" width="130" height="56" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="293" y="408" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515" text-anchor="middle">应用</text>
+  <text x="293" y="428" font-family="sans-serif" font-size="11" fill="#6a6e73" text-anchor="middle">12 个应用</text>
+
+  <line x1="360" y1="412" x2="380" y2="412" stroke="#0066cc"/>
+  <polygon points="380,412 372,408 372,416" fill="#0066cc"/>
+
+  <rect x="388" y="384" width="130" height="56" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="453" y="408" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515" text-anchor="middle">团队</text>
+  <text x="453" y="428" font-family="sans-serif" font-size="11" fill="#6a6e73" text-anchor="middle">4 个团队</text>
+
+  <line x1="520" y1="412" x2="540" y2="412" stroke="#0066cc"/>
+  <polygon points="540,412 532,408 532,416" fill="#0066cc"/>
+
+  <rect x="548" y="384" width="130" height="56" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="613" y="408" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515" text-anchor="middle">集群</text>
+  <text x="613" y="428" font-family="sans-serif" font-size="11" fill="#6a6e73" text-anchor="middle">prod-cluster</text>
+
+  <text x="68" y="482" font-family="sans-serif" font-size="12" fill="#151515">热门路径：web.example.com → shop 应用 → 电商团队 → prod-cluster</text>
+  <text x="68" y="508" font-family="sans-serif" font-size="11" fill="#6a6e73">流量突增或下降时，可下钻到应用与团队视图</text>
+
+  <!-- Entry card -->
+  <rect x="772" y="292" width="380" height="248" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="792" y="322" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">功能入口</text>
+
+  <rect x="792" y="348" width="340" height="40" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="808" y="373" font-family="sans-serif" font-size="13" fill="#151515">应用大屏</text>
+  <text x="1104" y="373" font-family="sans-serif" font-size="14" fill="#6a6e73">›</text>
+
+  <rect x="792" y="396" width="340" height="40" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="808" y="421" font-family="sans-serif" font-size="13" fill="#151515">系统大屏</text>
+  <text x="1104" y="421" font-family="sans-serif" font-size="14" fill="#6a6e73">›</text>
+
+  <rect x="792" y="444" width="340" height="40" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="808" y="469" font-family="sans-serif" font-size="13" fill="#151515">集群管理</text>
+  <text x="1104" y="469" font-family="sans-serif" font-size="14" fill="#6a6e73">›</text>
+
+  <rect x="792" y="492" width="340" height="40" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="808" y="517" font-family="sans-serif" font-size="13" fill="#151515">集群巡检</text>
+  <text x="1104" y="517" font-family="sans-serif" font-size="14" fill="#6a6e73">›</text>
+
+  <!-- Cluster detail card -->
+  <rect x="48" y="564" width="1104" height="244" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="68" y="594" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">集群详情 · prod-cluster</text>
+  <text x="68" y="616" font-family="sans-serif" font-size="12" fill="#6a6e73">健康指标、组件健康、资源使用、网络与节点状况</text>
+
+  <!-- Health column -->
+  <text x="68" y="648" font-family="sans-serif" font-size="12" fill="#6a6e73">健康指标</text>
+  <rect x="68" y="656" width="280" height="12" rx="6" fill="#e0e0e0"/>
+  <rect x="68" y="656" width="207" height="12" rx="6" fill="#3e8635"/>
+  <rect x="275" y="656" width="50" height="12" fill="#c58c00"/>
+  <rect x="325" y="656" width="23" height="12" rx="6" fill="#c9190b"/>
+  <text x="68" y="690" font-family="sans-serif" font-size="11" fill="#3e8635">正常 74%</text>
+  <text x="176" y="690" font-family="sans-serif" font-size="11" fill="#c58c00">警告 18%</text>
+  <text x="276" y="690" font-family="sans-serif" font-size="11" fill="#c9190b">异常 8%</text>
+
+  <text x="68" y="722" font-family="sans-serif" font-size="12" fill="#6a6e73">组件健康</text>
+  <text x="68" y="744" font-family="sans-serif" font-size="13" fill="#151515">128 个组件，3 个异常</text>
+
+  <!-- Resource column -->
+  <text x="400" y="648" font-family="sans-serif" font-size="12" fill="#6a6e73">资源使用</text>
+  <text x="400" y="662" font-family="sans-serif" font-size="11" fill="#151515">CPU 62%</text>
+  <rect x="400" y="668" width="320" height="10" rx="5" fill="#e0e0e0"/>
+  <rect x="400" y="668" width="198" height="10" rx="5" fill="#0066cc"/>
+
+  <text x="400" y="700" font-family="sans-serif" font-size="11" fill="#151515">内存 71%</text>
+  <rect x="400" y="706" width="320" height="10" rx="5" fill="#e0e0e0"/>
+  <rect x="400" y="706" width="227" height="10" rx="5" fill="#0066cc"/>
+
+  <text x="400" y="736" font-family="sans-serif" font-size="11" fill="#6a6e73">网络带宽</text>
+  <polyline points="400,776 440,764 480,770 520,752 560,758 600,744 640,750 680,738 720,746" fill="none" stroke="#0066cc" stroke-width="2"/>
+
+  <!-- Node column -->
+  <text x="772" y="648" font-family="sans-serif" font-size="12" fill="#6a6e73">节点状况</text>
+  <text x="772" y="672" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">节点</text>
+  <text x="948" y="672" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">状态</text>
+  <text x="1044" y="672" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">CPU</text>
+
+  <text x="772" y="696" font-family="sans-serif" font-size="11" fill="#151515">worker-01</text>
+  <text x="948" y="696" font-family="sans-serif" font-size="11" fill="#3e8635">正常</text>
+  <text x="1044" y="696" font-family="sans-serif" font-size="11" fill="#151515">58%</text>
+
+  <text x="772" y="720" font-family="sans-serif" font-size="11" fill="#151515">worker-02</text>
+  <text x="948" y="720" font-family="sans-serif" font-size="11" fill="#3e8635">正常</text>
+  <text x="1044" y="720" font-family="sans-serif" font-size="11" fill="#151515">46%</text>
+
+  <text x="772" y="744" font-family="sans-serif" font-size="11" fill="#151515">worker-03</text>
+  <text x="948" y="744" font-family="sans-serif" font-size="11" fill="#c58c00">警告</text>
+  <text x="1044" y="744" font-family="sans-serif" font-size="11" fill="#c58c00">87%</text>
+
+  <text x="772" y="768" font-family="sans-serif" font-size="11" fill="#151515">control-plane-01</text>
+  <text x="948" y="768" font-family="sans-serif" font-size="11" fill="#3e8635">正常</text>
+  <text x="1044" y="768" font-family="sans-serif" font-size="11" fill="#151515">31%</text>
+
+  <!-- Footer hint -->
+  <text x="48" y="832" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

@@ -15,11 +15,31 @@ nav_order: 7
 已有Kubernetes集群的情况：如果您已经有了一套运行中的Kubernetes集群，则可以直接在其上安装KDO平台。这种方式简化了部署流程，使得您能够迅速利用现有的资源来管理和扩展应用
 
 
+## 工作流程
+
+```mermaid
+flowchart TD
+    A[开始安装 KDO 平台] --> B{是否已有可用的<br/>Kubernetes 集群}
+    B -->|没有| C[准备 Linux 节点<br/>RHEL 9 或 Ubuntu 22.04]
+    C --> D[使用 KubeKey 安装 Kubernetes<br/>写入 OIDC 认证参数]
+    B -->|已有| E[确认集群版本<br/>v1.28 及以上]
+    D --> F{是否已有<br/>OIDC 身份平台}
+    E --> F
+    F -->|没有| G[安装 Keycloak<br/>创建 realm kdo]
+    F -->|已有| H[修改 kube-apiserver<br/>对接现有 OIDC]
+    G --> H
+    H --> I[下载并定制 install 脚本<br/>设置 KC_PASS 与 OIDC 变量]
+    I --> J[运行 kdo-install.sh<br/>传入 NODE_IP 与默认域名]
+    J --> K[检查 kubedo-system 中的 Pod]
+    K --> L[通过 NodePort 30080 访问控制台]
+```
+
 ## 在现存的Linux操作系统安装kdo平台
 
-要在现有的Linux操作系统上安装KDO平台，推荐使用REHL9(AlmaLinux 9/Rockey 9)或Ubuntu 22.04及以上版本。旧版本的操作系统由于内核较老，可能无法支持某些新特性。主要分为以下两个部分：
+要在现有的Linux操作系统上安装KDO平台，推荐使用RHEL 9（AlmaLinux 9/Rocky 9）或Ubuntu 22.04及以上版本。旧版本的操作系统由于内核较老，可能无法支持某些新特性。主要分为以下三个部分：
 1. [安装Kubernetes集群](./kubernetes)
-2. [安装KDO平台](./kdo)
+2. [安装Keycloak](./keycloak)
+3. [安装KDO平台](./kdo)
 
 
 ## 在现存的Kubernetes集群上安装kdo平台

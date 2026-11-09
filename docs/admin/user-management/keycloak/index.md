@@ -15,6 +15,26 @@ KDO平台和Kubernetes的身份认证协议是基于[OpenID Connect(OIDC)](#open
 
 ![](img/auth-arch.svg)
 
+## OIDC 登录流程
+
+```mermaid
+flowchart TD
+    A[用户访问 KDO 控制台] --> B[重定向到 Keycloak 登录]
+    B --> C[输入用户名与密码]
+    C --> D{凭证正确且用户已启用}
+    D -->|否| E[登录失败并记录事件]
+    D -->|是| F[签发 id_token 与 access_token]
+    F --> G[控制台校验 JWT 并识别用户]
+    G --> H[读取 Realm 角色与 Client 角色]
+    H --> I[映射为 Kubernetes 用户与组]
+    I --> J[API Server 执行 RBAC 鉴权]
+    J --> K[进入控制台并按权限展示资源]
+    L[管理员重置密码或强制登出] --> M[会话失效并需重新登录]
+    M --> B
+```
+
+Keycloak 只负责认证与角色来源，真正决定资源访问范围的是 Kubernetes 侧的 RBAC 绑定。
+
 ##  OpenID Connect（OIDC）介绍
 1. OAuth（Open Authorization）是一个关于授权（authorization）的开放网络标准，允许用户授权第三方应用访问他们存储在其他服务提供者上的信息，而不需要将用户名和密码提供给第三方应用。OAuth 在全世界得到了广泛的应用，目前的版本是 2.0 。
 2. OpenID Connect (OIDC) 是一种身份验证协议，基于 OAuth 2.0 系列规范。OAuth2 提供了 access_token 来解决授权第三方客户端访问受保护资源的问题，OpenID Connect 在这个基础上提供了 id_token 来解决第三方客户端标识用户身份的问题。
@@ -51,7 +71,7 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 | **Clients** | 客户端管理，配置接入 Keycloak 的应用程序（如 `kdo`） |
 | **Events** | 事件日志，查看登录、注销等操作记录 |
 
-![](img/kc-console-nav.png)
+![Keycloak 管理控制台](img/keycloak-realm.png)
 
 ## 用户管理
 
@@ -194,7 +214,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 3. 左侧 `Available Roles` 列表中选择要分配的角色
 4. 点击 `>>` 按钮将角色移动到 `Assigned Roles` 列表
 
-![](img/kc-client-role-mapping.png)
+![客户端角色映射](img/kc-role-mapping.png)
 
 #### 查看已分配角色
 
@@ -262,7 +282,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 2. 在 `Group Membership` 列表中选择要退出的组
 3. 点击 `<<` 按钮将用户移出该组
 
-![](img/kc-user-leave-group.png)
+![用户组成员](img/kc-user-join-group.png)
 
 {: .note }
 用户可以同时属于多个组。组的权限会自动继承给组内的所有用户，无需为每个用户单独配置。
@@ -277,7 +297,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 3. 在 `Realm Roles` 区域选择要分配的角色
 4. 点击 `>>` 按钮完成分配
 
-![](img/kc-group-role-mapping.png)
+![组角色映射](img/kc-role-mapping.png)
 
 {: .important }
 组角色分配与用户角色分配的关系：
@@ -321,7 +341,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 2. 点击页面底部的 `Sign out all sessions` 按钮
 3. 这将终止该用户的所有活跃会话
 
-![](img/kc-logout-all-sessions.png)
+![用户会话](img/kc-user-sessions.png)
 
 {: .note }
 以下场景建议强制用户登出：
