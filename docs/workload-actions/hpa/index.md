@@ -1,6 +1,7 @@
 ---
 title: 容器组水平自动扩缩(HPA)
 parent: 工作负载操作
+nav_order: 2
 ---
 
 ## 介绍

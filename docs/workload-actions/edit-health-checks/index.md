@@ -1,6 +1,7 @@
 ---
 title: 设置健康检查
 parent: 工作负载操作
+nav_order: 5
 ---
 
 ## 介绍

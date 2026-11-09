@@ -2,6 +2,7 @@
 title: 源码持续交付
 description: 本节将会介绍如何在 kdo 上实现源码持续交付
 parent: 持续交付
+nav_order: 3
 keywords:
 - 源码
 - 持续交付

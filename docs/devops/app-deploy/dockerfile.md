@@ -1,6 +1,7 @@
 ---
 title: Dockerfile
 parent: 部署应用
+nav_order: 7
 description: 在 KDO 上通过 Dockerfile 部署应用
 ---
 

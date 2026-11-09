@@ -25,8 +25,8 @@ nav_order: 5
 - [管理存储类](/docs/storage/) - 创建、编辑 StorageClass
 - [查看持久卷](/docs/storage/) - 集群 PV 概览和状态
 - [管理卷快照](/docs/storage/) - 创建快照、恢复数据
-- 容量规划（待完善） - 存储资源使用趋势分析
-- CSI 驱动维护（待完善） - 安装、升级 CSI 插件
+- [PVC 扩容与容量管理](/docs/storage/) - 调整存储容量与使用趋势
+- [CSI 驱动与存储类](/docs/storage/) - 安装、升级 CSI 插件
 
 ### 访问路径
 

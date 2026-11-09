@@ -2,6 +2,7 @@
 title: 持续交付
 description: 本章节介绍如何使用 kdo 进行持续交付
 parent: DevOps
+nav_order: 3
 keywords:
 - 持续交付
 - Continuous Delivery

@@ -1,18 +1,18 @@
 ---
-title: Kdo Web控制台
+title: KDO Web 控制台
 parent: 集群配置
 nav_order: 1
 ---
 
 
 
-# Kdo Console 项目介绍与架构说明
+# KDO Console 项目介绍与架构说明
 
 ## 项目简介
 
-Kdo Console 是一个**多集群 Kubernetes 管理平台**。它不仅是 K8s API 的友好 Web UI，更是一个涵盖认证、监控、日志、应用生命周期管理、镜像仓库、多集群联邦的综合性管理控制台。
+KDO Console 是一个**多集群 Kubernetes 管理平台**。它不仅是 K8s API 的友好 Web UI，更是一个涵盖认证、监控、日志、应用生命周期管理、镜像仓库、多集群联邦的综合性管理控制台。
 
-Kdo Console 运行在**kubedo-system**这个namespace，deployment名字是**console**。
+KDO Console 运行在**kubedo-system**这个namespace，deployment名字是**console**。
 
 ---
 
@@ -329,7 +329,7 @@ servingInfo:
 | `consoleBasePath` | string | `--base-path` | Console 基础路径，默认 `/`。必须以 `/` 开头和结尾 |
 | `k8sMode` | string | `--k8s-mode` | Kubernetes 模式。`in-cluster`（集群内运行）或 `off-cluster`（集群外开发）。默认 `in-cluster` |
 | `k8sModeOffClusterEndpoint` | string | `--k8s-mode-off-cluster-endpoint` | 集群外模式时，Kubernetes API Server 的访问地址。示例：`https://10.255.0.180:6443` |
-| `k8sModeOffClusterSkipVerifyTls` | bool | `--k8s-mode-off-cluster-skip-verify-tls` | 开发模式。设为 `true` 跳过 K8s API Server 的 TLS 证书验证 |
+| `k8sModeOffClusterSkipVerifyTls` | bool | `--k8s-mode-off-cluster-skip-verify-tls` | 开发模式。设为 `true` 跳过 K8s API Server 的 TLS 证书验证（当前版本对应的命令行 flag 已被注释，配置后不会生效） |
 | `publicDir` | string | `--public-dir` | 前端静态资源文件目录。默认 `./frontend/public/dist`。生产部署为 `/opt/bridge/static` |
 | `masterPublicURL` | string | `--k8s-public-endpoint` | Kubernetes API Server 的公共端点，默认使用 `k8s-mode-off-cluster-endpoint` 的值 |
 | `controlPlaneTopology` | string | `--control-plane-topology-mode` | 控制面拓扑模式。可选值：`External`、`HighlyAvailable`、`HighlyAvailableArbiter`、`DualReplica`、`SingleReplica` |
@@ -360,7 +360,7 @@ clusterInfo:
 | `clientSecret` | string | `--user-auth-oidc-client-secret` | OIDC Client Secret。与 `clientSecretFile` 二选一 |
 | `clientSecretFile` | string | `--user-auth-oidc-client-secret-file` | OIDC Client Secret 文件路径。与 `clientSecret` 二选一 |
 | `issuerURL` | string | `--user-auth-oidc-issuer-url` | OIDC Issuer URL。**必须与 kube-apiserver 的 `--oidc-issuer-url` 参数一致**。当 `userAuth=oidc` 时必填 |
-| `oidcIssuer` | string | → `user-auth-oidc-issuer-url` | OIDC Issuer URL（别名，与 `issuerURL` 功能相同） |
+| `oidcIssuer` | string | → `user-auth-oidc-issuer-url` | OIDC Issuer URL（兼容字段，Console 仍会读取；建议迁移到 `issuerURL`，KDC 只读取 `issuerURL`） |
 | `oidcExtraScopes` | []string | `--user-auth-oidc-token-scopes` | 额外的 OIDC scope 列表，将附加到默认的 `openid,email,profile,groups` 之后 |
 | `oidcOCLoginCommand` | string | `--user-auth-oidc-oc-login-command` | 在 Console "复制登录命令" 对话框中显示的外部 OC 登录命令 |
 | `oauthEndpointCAFile` | string | `--user-auth-oidc-ca-file` | OIDC/OAuth2 Issuer 的 CA 证书 PEM 文件路径 |
@@ -429,7 +429,7 @@ monitoringInfo:
 
 | 字段 | 类型 | 说明 |
 |------|------|------|
-| `managedClusterConfigFile` | string | 托管集群配置文件的路径（YAML 格式），用于配置多集群环境 |
+| `managedClusterConfigFile` | string | 托管集群配置文件的路径（YAML 格式），用于配置多集群环境。该字段属于遗留（legacy）配置，不适合通过界面管理，建议保留文件中的值 |
 
 **托管集群配置项**（在配置文件中定义）：
 | 字段 | 类型 | 说明 |

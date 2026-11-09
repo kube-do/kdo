@@ -133,9 +133,9 @@ Kubernetes 本身并不直接管理用户账户；相反，它依赖外部的认
 服务账号以 ServiceAccount 对象的形式存在于 API 服务器中。
 
 ### 服务账号具有以下属性：
-1. **名字空间限定:** 每个服务账号都与一个 Kubernetes 名字空间绑定。 每个名字空间在创建时，会获得一个名为 default 的 ServiceAccount。
+1. **命名空间限定:** 每个服务账号都与一个 Kubernetes 命名空间绑定。 每个命名空间在创建时，会获得一个名为 default 的 ServiceAccount。
 2. **轻量级:** 服务账号存在于集群中，并在 Kubernetes API 中定义。你可以快速创建服务账号以支持特定任务。
-3. **可移植性:** 复杂的容器化工作负载的配置包中可能包括针对系统组件的服务账号定义。 服务账号的轻量级性质和名字空间作用域的身份使得这类配置可移植。
+3. **可移植性:** 复杂的容器化工作负载的配置包中可能包括针对系统组件的服务账号定义。 服务账号的轻量级性质和命名空间作用域的身份使得这类配置可移植。
 
 ![](imgs/serviceaccounts.png)
 
@@ -146,10 +146,10 @@ Kubernetes RBAC 的角色(Role)或 集群角色(ClusterRole) 中包含一组代�
 
 ### Role/ClusterRole区别
 
-1. 角色(Role) 总是用来在某个名字空间内设置访问权限； 在你创建 角色(Role) 时，你必须指定该 角色(Role) 所属的名字空间。
-2. 集群角色(ClusterRole) 则是一个集群作用域的资源。这两种资源的名字不同（Role 和 ClusterRole） 是因为 Kubernetes 对象要么是名字空间作用域的，要么是集群作用域的，不可两者兼具。 
-3. 集群角色(ClusterRole) 有若干用法。你可以用它来： 定义对某名字空间域对象的访问权限，并将在个别名字空间内被授予访问权限； 为名字空间作用域的对象设置访问权限，并被授予跨所有名字空间的访问权限； 
-4. 为集群作用域的资源定义访问权限。 如果你希望在名字空间内定义角色，应该使用 角色(Role)； 如果你希望定义集群范围的角色，应该使用 集群角色(ClusterRole)。
+1. 角色(Role) 总是用来在某个命名空间内设置访问权限； 在你创建 角色(Role) 时，你必须指定该 角色(Role) 所属的命名空间。
+2. 集群角色(ClusterRole) 则是一个集群作用域的资源。这两种资源的名字不同（Role 和 ClusterRole） 是因为 Kubernetes 对象要么是命名空间作用域的，要么是集群作用域的，不可两者兼具。
+3. 集群角色(ClusterRole) 有若干用法。你可以用它来： 定义对某命名空间域对象的访问权限，并将在个别命名空间内被授予访问权限； 为命名空间作用域的对象设置访问权限，并被授予跨所有命名空间的访问权限；
+4. 为集群作用域的资源定义访问权限。 如果你希望在命名空间内定义角色，应该使用 角色(Role)； 如果你希望定义集群范围的角色，应该使用 集群角色(ClusterRole)。
 
 ![](imgs/roles.png)
 
@@ -158,16 +158,16 @@ Kubernetes RBAC 的角色(Role)或 集群角色(ClusterRole) 中包含一组代�
 ![](imgs/role.png)
 
 
-## RoleBinding和ClusterRoleBinding管理 
+## RoleBinding和ClusterRoleBinding管理
 
 {: .note }
-角色绑定(RoleBinding)是将角色中定义的权限赋予一个或者一组用户。它包含若干主体（Subject),比如用户、组或服务账户的列表和对这些主体所获得的角色的引用。 
+角色绑定(RoleBinding)是将角色中定义的权限赋予一个或者一组用户。它包含若干主体（Subject),比如用户、组或服务账户的列表和对这些主体所获得的角色的引用。
 
 ### RoleBinding/ClusterRoleBinding区别
 
-1. 角色绑定(RoleBinding)在指定的名字空间中执行授权，而 集群角色绑定(ClusterRoleBinding) 在集群范围执行授权。
-2. 一个 角色绑定(RoleBinding)可以引用同一的名字空间中的任何 Role。 或者，一个 角色绑定(RoleBinding) 可以引用某 集群角色(ClusterRole) 并将该 集群角色(ClusterRole) 绑定到 角色绑定(RoleBinding) 所在的名字空间。 
-3. 如果你希望将某 集群角色(ClusterRole) 绑定到集群中所有名字空间，你要使用 集群角色绑定(ClusterRoleBinding)。 角色绑定(RoleBinding) 或 集群角色绑定(ClusterRoleBinding) 对象的名称必须是合法的路径分段名称。
+1. 角色绑定(RoleBinding)在指定的命名空间中执行授权，而 集群角色绑定(ClusterRoleBinding) 在集群范围执行授权。
+2. 一个 角色绑定(RoleBinding)可以引用同一的命名空间中的任何 Role。 或者，一个 角色绑定(RoleBinding) 可以引用某 集群角色(ClusterRole) 并将该 集群角色(ClusterRole) 绑定到 角色绑定(RoleBinding) 所在的命名空间。
+3. 如果你希望将某 集群角色(ClusterRole) 绑定到集群中所有命名空间，你要使用 集群角色绑定(ClusterRoleBinding)。 角色绑定(RoleBinding) 或 集群角色绑定(ClusterRoleBinding) 对象的名称必须是合法的路径分段名称。
 
 ![](imgs/rolebindings.png)
 

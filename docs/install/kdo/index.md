@@ -1,6 +1,6 @@
 ---
-title: 安装KDO平台
-parent: 在Linux平台安装
+title: 安装 KDO 平台
+parent: 在 Linux 平台安装
 nav_order: 2
 ---
 

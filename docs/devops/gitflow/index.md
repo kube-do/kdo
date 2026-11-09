@@ -1,6 +1,7 @@
 ---
-title: KDO平台结合GitFlow进行应用开发
+title: KDO 平台结合 GitFlow 进行应用开发
 parent: DevOps
+nav_order: 2
 ---
 
 

@@ -1,6 +1,7 @@
 ---
 title: 应用模版持续交付
 parent: 持续交付
+nav_order: 2
 description: 本节将会介绍如何在 kdo 上实现应用模版持续交付
 keywords:
 - 应用模版

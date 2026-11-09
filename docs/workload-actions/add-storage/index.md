@@ -1,6 +1,7 @@
 ---
 title: 添加存储
 parent: 工作负载操作
+nav_order: 3
 ---
 
 ## 介绍

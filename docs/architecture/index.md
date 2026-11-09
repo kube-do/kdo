@@ -1,5 +1,5 @@
 ---
-title: KDO平台整体架构
+title: KDO 平台整体架构
 nav_order: 14
 ---
 

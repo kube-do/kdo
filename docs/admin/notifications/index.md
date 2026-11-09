@@ -80,15 +80,16 @@ flowchart TD
 
 ## 事件类型
 
-**Event types** 标签页展示通知服务提供的事件类型及其分类，例如：
+**Event types** 标签页展示通知服务提供的事件类型及其分类，当前包括：
 
-| 类别 | 示例事件 |
+| 类别 | 事件类型 |
 |------|----------|
-| 构建 | 构建开始、构建成功、构建失败 |
-| 部署 | 部署成功、部署失败、回滚 |
-| 应用 | 环境创建、应用创建、应用删除 |
-| 告警 | 告警触发、告警恢复 |
-| 审批 | 审批待处理、审批通过、审批拒绝 |
+| 流水线 | `build.started`、`build.succeeded`、`build.failed`、`build.cancelled`、`deploy.started`、`deploy.succeeded`、`deploy.failed`、`deploy.cancelled` |
+| 应用 | `application.alerting`、`application.resolved` |
+| 系统 | `platform.announcement`、`maintenance.scheduled`、`system.test` |
+| 安全 | `security.alert`、`security.vulnerability` |
+| 配额 | `quota.warning`、`quota.exceeded` |
+| 审批 | `approval.pending`、`approval.approved`、`approval.rejected` |
 
 该页面为只读视图，事件类型由通知服务定义。规则和用户偏好中可引用的事件以此列表为准。
 

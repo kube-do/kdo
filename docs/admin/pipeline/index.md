@@ -47,7 +47,7 @@ Pipeline 只描述流程，PipelineRun 才是一次具体执行；审批节点�
 - [查看流水线定义](/docs/dev/applications/pipelines/) - 了解现有流水线的结构
 - [监控流水线运行](/docs/dev/applications/pipelines/) - 跟踪 CI/CD 执行状态
 - [管理任务模板](/docs/dev/applications/pipelines/) - 创建可复用的步骤
-- 配置流水线触发器（待完善） - Webhook 自动触发
+- [配置流水线触发器](/docs/dev/applications/pipelines-as-code/) - Webhook 自动触发
 
 ---
 

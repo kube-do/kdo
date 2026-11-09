@@ -1,7 +1,7 @@
 ---
-title: NodeJS 前后端项目部署
+title: Node.js 前后端项目部署
 parent: 部署应用
-description: 在 KDO 上通过源代码部署 NodeJS 前端项目和后端项目。例如 Vue、React 等前端项目和 Express、Koa 等后端项目。
+description: 在 KDO 上通过源代码部署 Node.js 前端项目和后端项目。例如 Vue、React 等前端项目和 Express、Koa 等后端项目。
 keywords:
 nav_order: 4
 ---

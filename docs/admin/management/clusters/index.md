@@ -209,6 +209,6 @@ kubectl get cluster k8s1 -o jsonpath='{.status.conditions}'
 
 ## 相关链接
 
-- [Kdo Web 控制台配置](/docs/install/config/console/) — `monitoringInfo` 等默认 URL 配置
+- [KDO Web 控制台配置](/docs/install/config/console/) — `monitoringInfo` 等默认 URL 配置
 - [应用项目 (AppProject)](/docs/admin/management/appprojects/) — 项目与多环境管理
 - [管理首页](/docs/admin/management/)

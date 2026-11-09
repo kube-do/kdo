@@ -1,6 +1,6 @@
 ---
 title: 集群配置
-parent: 在Linux平台安装
+parent: 在 Linux 平台安装
 nav_order: 3
 ---
 
@@ -23,4 +23,4 @@ flowchart TD
     I --> J[用户通过 OIDC 登录控制台]
 ```
 
-配置加载优先级从高到低为命令行参数、`BRIDGE_` 前缀环境变量、YAML 配置文件。详细字段与部署清单见 [Kdo Web控制台](./console/)。
+配置加载优先级从高到低为命令行参数、`BRIDGE_` 前缀环境变量、YAML 配置文件。详细字段与部署清单见 [KDO Web 控制台](./console/)。

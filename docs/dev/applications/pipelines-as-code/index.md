@@ -1,5 +1,5 @@
 ---
-title: Pipelines as Code 配置与使用指南
+title: Pipelines as Code
 parent: 应用管理
 nav_order: 5
 ---
@@ -1715,7 +1715,7 @@ tkn pac --help
 |---|-----------------------------------------------------------------------------------|
 | `tkn pac bootstrap` | 安装和配置 Pipelines as Code（GitHub/GitHub Enterprise）                                 |
 | `tkn pac bootstrap --nightly` | 安装 nightly 版本                                                                     |
-| `tkn pac bootstrap --route-url <public_url_to_ingress_spec>` | 覆盖 Kdo路由 URL。默认自动检测 Kdo路由；如无 Kdo集群，会要求提供指向 Ingress 端点的公共 URL |
+| `tkn pac bootstrap --route-url <public_url_to_ingress_spec>` | 覆盖 KDO 路由 URL。默认自动检测 KDO 路由；如无 KDO 集群，会要求提供指向 Ingress 端点的公共 URL |
 | `tkn pac bootstrap github-app` | 创建 GitHub 应用和 pipelines-as-code 命名空间中的 Secret                                     |
 
 **repository 命令**：

@@ -12,14 +12,14 @@ nav_order: 3
 
 | 类型 | 描述 | 适用场景 |
 |------|------|----------|
-| **Pod** | 最基本的部署单元，一个或多个容器的组合 | 一次性任务、调试 |
-| **Deployment** | 管理无状态应用，支持滚动更新、回滚 | Web 服务、API 服务 |
-| **StatefulSet** | 管理有状态应用，提供稳定的网络标识和持久化存储 | 数据库、消息队列 |
-| **DaemonSet** | 在每个节点上运行一个 Pod副本 | 日志收集、监控 Agent |
-| **Job** | 运行一次性任务到完成 | 数据迁移、批处理 |
-| **CronJob** | 定时运行的 Job | 定时备份、定时任务 |
-| **CloneSet** | OpenKruise 增强工作负载，支持原地升级、分批发布 | 无状态应用的高效发布 |
-| **Kruise StatefulSet** | OpenKruise 增强版 StatefulSet，支持原地升级 | 有状态应用的高级发布 |
+| [**Pod**](/docs/dev/workloads/pods/) | 最基本的部署单元，一个或多个容器的组合 | 一次性任务、调试 |
+| [**Deployment**](/docs/dev/workloads/deployments/) | 管理无状态应用，支持滚动更新、回滚 | Web 服务、API 服务 |
+| [**StatefulSet**](/docs/dev/workloads/statefulsets/) | 管理有状态应用，提供稳定的网络标识和持久化存储 | 数据库、消息队列 |
+| [**DaemonSet**](/docs/admin/workloads/daemonsets/) | 在每个节点上运行一个 Pod 副本 | 日志收集、监控 Agent |
+| [**Job**](/docs/dev/workloads/jobs/) | 运行一次性任务到完成 | 数据迁移、批处理 |
+| [**CronJob**](/docs/dev/workloads/cronjobs/) | 定时运行的 Job | 定时备份、定时任务 |
+| [**CloneSet**](/docs/dev/workloads/kruise/) | OpenKruise 增强工作负载，支持原地升级、分批发布 | 无状态应用的高效发布 |
+| [**Kruise StatefulSet**](/docs/dev/workloads/kruise/) | OpenKruise 增强版 StatefulSet，支持原地升级 | 有状态应用的高级发布 |
 
 {: .note }
 **CloneSet** 与 **Kruise StatefulSet** 属于 OpenKruise（API 组 `apps.kruise.io`），**仅在集群已安装 OpenKruise 时显示**。详情参见 [OpenKruise 工作负载](/docs/dev/workloads/kruise/)。

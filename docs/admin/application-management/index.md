@@ -56,8 +56,8 @@ Helm 应用与 Operator 最终都以运行中的工作负载或自定义资源�
 - [安装 Helm 应用](/docs/dev/applications/helm/) - 通过 Chart 快速部署中间件
 - [从 OperatorHub 安装 Operator](/docs/admin/application-management/operator-hub/) - 搜索并订阅 Operators
 - [管理已安装的 Operators](/docs/admin/application-management/operators/) - 查看版本、升级、删除
-- 配置 Helm 仓库（待完善） - 添加自定义 Chart 源
-- Operator 最佳实践（待完善） - 权限、升级策略
+- [配置 Helm 仓库](/docs/dev/applications/helm/) - 添加自定义 Chart 源
+- [Operator 权限与升级](/docs/admin/application-management/operators/) - 权限、升级策略
 
 ---
 

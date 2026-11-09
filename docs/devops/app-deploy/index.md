@@ -1,7 +1,7 @@
 ---
 title: 部署应用
 parent: DevOps
-nav_order: 3
+nav_order: 5
 description: 在 KDO 上部署应用
 keywords:
 - 在 KDO 上部署应用

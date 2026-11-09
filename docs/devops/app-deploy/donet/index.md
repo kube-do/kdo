@@ -1,7 +1,7 @@
 ---
-title: .NetCore 项目部署
+title: .NET 项目部署
 parent: 部署应用
-description: 在 KDO 上通过源码部署 .NetCore 项目
+description: 在 KDO 上通过源码部署 .NET 项目
 nav_order: 6
 ---
 

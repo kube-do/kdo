@@ -1,6 +1,6 @@
 ---
-title: 安装Kubernetes
-parent: 在Linux平台安装
+title: 安装 Kubernetes
+parent: 在 Linux 平台安装
 nav_order: 1
 ---
 
@@ -199,7 +199,7 @@ state = "/run/containerd"
       conf_template = ""
     [plugins."io.containerd.grpc.v1.cri".registry]
       [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
-        # docker.io仓库的国内加速地址，，和kubernetes安装配置文件一致。
+        # docker.io仓库的国内加速地址，和kubernetes安装配置文件一致。
         [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
           endpoint = ["https://docker.1ms.run", "https://registry-1.docker.io"]
         # 自建镜像仓库，和kubernetes安装配置文件一致，如果已经有认证的harbor镜像仓库，这里可以不需要配置。

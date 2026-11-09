@@ -129,7 +129,6 @@ URL 校验通过后，展开 **Git Repo Options** 手风琴可配置：
 
 详细说明见 [打开 IDE 与工厂加载](/docs/ide/ide-loader/)。
 
-<!-- 截图：创建工作区页面（占位，待补充） -->
 
 ## FAQ
 

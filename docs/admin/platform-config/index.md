@@ -182,6 +182,6 @@ Console 与 KDC 的配置相互独立：
 
 ## 相关链接
 
-- [Kdo Web 控制台配置](/docs/install/config/console/)
+- [KDO Web 控制台配置](/docs/install/config/console/)
 - [用户管理](/docs/admin/user-management/)
 - [权限管理](/docs/rbac/)

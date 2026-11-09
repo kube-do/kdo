@@ -1,6 +1,7 @@
 ---
 title: 编辑更新策略
 parent: 工作负载操作
+nav_order: 6
 ---
 
 ## 介绍

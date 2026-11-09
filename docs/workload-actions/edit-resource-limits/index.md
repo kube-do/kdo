@@ -1,6 +1,7 @@
 ---
 title: 编辑资源限制
 parent: 工作负载操作
+nav_order: 4
 ---
 
 ## 介绍

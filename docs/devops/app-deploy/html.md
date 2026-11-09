@@ -1,6 +1,7 @@
 ---
 title: 静态HTML
 parent: 部署应用
+nav_order: 8
 description: 在 KDO 上通过源代码部署静态HTML项目
 ---
 

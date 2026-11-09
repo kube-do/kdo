@@ -87,7 +87,6 @@ PAT 支持以下 Git 服务商（默认 GitHub）：
 
 3. 点击保存，令牌保存成功后在列表中显示
 
-<!-- 截图：Personal Access Tokens Tab（占位，待补充） -->
 
 配置完成后即可从私有仓库创建 Workspace，并在 Workspace 内正常推送代码。
 

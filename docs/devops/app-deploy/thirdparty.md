@@ -1,6 +1,7 @@
 ---
 title: 第三方服务部署
 parent: 部署应用
+nav_order: 9
 description: 讲解KDO支持第三方服务的创建方式和流程
 ---
 
