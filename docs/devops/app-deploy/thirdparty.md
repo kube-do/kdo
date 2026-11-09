@@ -50,7 +50,7 @@ flowchart TD
 ### Kubernetes
 
 在 **应用视图 -> 添加组件 -> 第三方组件** 中，选择服务注册方式为 `Kubernetes`，
-1. 填写 `Namespace` ，默认为当前团队所在 `Namespace`
+1. 填写 `Namespace` ，默认为当前项目所在 `Namespace`
 2. 填写 `Service` ，`Service` 应属于上边填写的 `Namespace`
 3. 创建组件
 

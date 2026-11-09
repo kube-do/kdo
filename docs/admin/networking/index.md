@@ -11,6 +11,7 @@ nav_order: 4
 ## 管理员网络菜单
 1. [服务](/docs/dev/network-storage/services/)
 2. [路由](/docs/dev/network-storage/ingresses/)
+3. [网络策略](/docs/admin/networking/networkpolicies/)
 
 ## 功能地图
 

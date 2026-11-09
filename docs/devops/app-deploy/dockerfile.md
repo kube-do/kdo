@@ -28,7 +28,7 @@ KDO 在源码检测阶段会读取 [Dockerfile](https://docs.docker.com/engine/r
 
 ### 私有仓库
 
-如果 `Dockerfile` 中使用私有镜像，在`团队管理 -> 镜像仓库授权信息`，填写私有镜像仓库的域名、用户名和密码，保存后再次构建，即可构建成功。
+如果 `Dockerfile` 中使用私有镜像，在平台的镜像仓库授权信息中，填写私有镜像仓库的域名、用户名和密码，保存后再次构建，即可构建成功。
 
 ## 构建与部署流程
 
@@ -37,7 +37,7 @@ flowchart TD
     A[提交含 Dockerfile 的代码] --> B[识别代码类型为 Dockerfile]
     B --> C[读取 ENV ARG EXPOSE VOLUME]
     C --> D{基础镜像是否来自私有仓库}
-    D -->|是| E[在团队管理配置镜像仓库授权]
+    D -->|是| E[配置镜像仓库授权]
     D -->|否| F[执行 docker build]
     E --> F
     F --> G[支持多阶段构建与 ARG 参数]

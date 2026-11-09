@@ -5,7 +5,7 @@ nav_order: 3
 ---
 
 
-### [访问应用项目详情](/docs/devops/project-manage#项目管理)
+入口：[访问应用项目详情](/docs/devops/project-manage#项目管理)。
 
 **AppProject** 是 KDO 的项目模型：创建项目时会生成同名命名空间，并按启用的环境创建对应的环境命名空间。项目成员、角色与资源配额都围绕这些命名空间生效。
 

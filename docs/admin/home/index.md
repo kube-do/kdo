@@ -79,7 +79,7 @@ flowchart TD
 
 ### 资源管理建议
 
-- 📊 为每个团队/项目创建独立 Namespace
+- 📊 为每个项目创建独立 Namespace
 - 📊 设置 ResourceQuota 防止资源滥用
 - 📊 使用 LimitRange 规范容器资源请求/限制
 - 📊 定期检查节点资源使用率，及时扩容
