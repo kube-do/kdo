@@ -22,7 +22,7 @@ Kdo Console 运行在**kubedo-system**这个namespace，deployment名字是**con
 - 对所有 K8s 核心资源（Pod、Deployment、Service、ConfigMap、Secret 等）的 CRUD
 - 内置 YAML 编辑器（Monaco Editor），支持资源创建与编辑
 - Pod 日志实时查看、Web Terminal 远程登录、文件上传下载
-- 跨命名空间资源搜索（按名称或 IP）
+- 跨集群全局资源搜索（按名称、IP/CIDR、命名空间、标签、应用、状态）
 
 ###   多集群管理
 - 通过自定义 CRD `Cluster`（`kube-do.cn/v1`）纳管多个 K8s 集群
@@ -54,6 +54,15 @@ Kdo Console 运行在**kubedo-system**这个namespace，deployment名字是**con
 
 ###   镜像仓库管理
 - 集成 Harbor 镜像仓库，支持镜像查询与推送配置
+
+###  平台配置管理
+- 管理员界面提供图形化 **Platform configuration**（`/platform-config`），维护 Console 与 KDC 的配置
+- 支持表单/YAML 双模式、变更预览、校验结果、保存后同步状态，以及 Console/KDC 分别重启
+- 需要 `kubedo-system/console` ConfigMap 的 update 权限
+
+###   通知中心
+- 管理通知渠道（企业微信、钉钉、飞书、Webhook）、事件类型、平台公告与通知记录
+- 用户可绑定 IM 账号并配置事件类别、严重级别、静默时段与汇总方式
 
 ---
 

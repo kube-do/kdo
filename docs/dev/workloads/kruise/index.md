@@ -50,6 +50,8 @@ Kruise StatefulSet 与 Kubernetes 内置的 `有状态应用(StatefulSet)` **同
 {: .note }
 CloneSet 与 Kruise StatefulSet 的详情页右上角 **操作** 菜单提供常用操作（如扩缩容、重启、删除等），与原生工作负载的操作菜单风格一致。
 
+- 拓扑视图与操作菜单会按工作负载模型正确解析 CRD 引用，CloneSet/Kruise StatefulSet 的扩缩容入口可以正常使用。
+
 
 ## 与原生工作负载的对比
 

@@ -25,6 +25,23 @@ Kubernetes 启动时会创建四个初始名字空间：
 3. **kube-public** 所有的客户端（包括未经身份验证的客户端）都可以读取该名字空间。 该名字空间主要预留为集群使用，以便某些资源需要在整个集群中可见可读。 该名字空间的公共属性只是一种约定而非要求。
 4. **kube-system** 该名字空间用于 `Kubernetes` 系统创建的对象。
 
+### 系统命名空间与默认显示
+
+控制台会把以下命名空间视为**系统命名空间**，默认从命名空间下拉中隐藏，并在列表中标记为 Default：
+
+| 前缀/名称 | 说明 |
+|-----------|------|
+| `kube-*` | Kubernetes 系统命名空间，如 `kube-system`、`kube-public`、`kube-node-lease` |
+| `kubedo`、`kubedo-*` | KDO 平台组件命名空间，如 `kubedo-system`、`kubedo-notification` |
+| `openshift-*` | OpenShift 组件命名空间 |
+| `kubernetes-*` | Kubernetes 保留命名空间 |
+| `default`、`openshift` | 默认/平台命名空间 |
+
+需要查看或切换到这些命名空间时，可以在命名空间下拉中手动选择，或直接通过 URL 访问。
+
+{: .note }
+早期版本在 `default` 命名空间会显示 OpenShift SCC（Security Context Constraints）安全提示。由于 SCC 是 OpenShift 专属概念，在标准 Kubernetes 上并不适用，该提示已移除，避免误导。
+
 ### 命名空间感知命令
 使用 `kubectl` 命令时，你可以通过 -n 或 --namespace 参数来指定操作的命名空间。如果不指定，它将会作用于默认命名空间。
 你可以使用`kubectl config set-context --current --namespace=<namespace_name>`来更改当前上下文的命名空间。

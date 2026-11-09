@@ -13,7 +13,7 @@ nav_order: 1
 
 在KDO平台里面，标准的应用是指基于[Pipelines as Code](#pipelines-as-code介绍)方式创建的应用。
 通过[Pipelines as Code](#pipelines-as-code介绍)的方法，KDO对接 `Git` 代码仓库，直接从源代码仓库创建应用组件。
-目前 KDO 支持和`GitHub`、`GitLab`、`Gitee`、`Gitea` 这四种Git仓库进行对接。
+目前 KDO 支持和`GitHub`、`GitLab`、`Gitee`、`Gitea`、`阿里云 Codeup` 这五种 Git 仓库进行对接。
 
 只需`Git URL`和用户的`Git Token`就可以自动生成支持**多环境和多分支**的流水线，流水线支持**自动构建与自动部署**，功能非常强大。
 ![pipeline.png](imgs/application.png)
@@ -46,7 +46,7 @@ nav_order: 1
 
 ### 源码与开发信息
 
-- **Git 提供商 / Git 仓库地址 / 访问 Token**：用于对接 `GitHub`、`GitLab`、`Gitee`、`Gitea` 等代码仓库。
+- **Git 提供商 / Git 仓库地址 / 访问 Token**：用于对接 `GitHub`、`GitLab`、`Gitee`、`Gitea`、`阿里云 Codeup` 等代码仓库。
 - **开发信息（开发语言 / 开发版本 / 开发模板）**：三个下拉**级联**选择。
   - **开发语言**下拉只列出 **kubedo 命名空间**中已经可用的语言。
   - 选择语言后，**开发版本**只显示该语言可用的版本；**开发模板**只显示该语言+版本可用的框架模板。
@@ -62,8 +62,15 @@ nav_order: 1
 ### Webhook 与仓库初始化
 
 {: .note }
-- Webhook 支持 `GitHub`、`GitLab`、`Gitee`、`Bitbucket` 等提供商，控制台会根据所选提供商展示对应的 Token 权限与触发事件说明。
+- Webhook 支持 `GitHub`、`GitLab`、`Gitee`、`Bitbucket`、`阿里云 Codeup` 等提供商，控制台会根据所选提供商展示对应的 Token 权限与触发事件说明。
 - 仓库初始化与 **Webhook 挂载已经解耦**：**Webhook 创建/挂载失败不会阻断源码仓库的初始化**，可以稍后再补齐 Webhook。
+
+#### 阿里云 Codeup
+
+- 无需单独选择提供商：填写 `codeup.aliyun.com` 的仓库地址后，控制台会自动识别为 Codeup。
+- 访问 Token 需要使用 **Codeup 个人访问令牌**，并具备仓库读写权限与 Webhook 管理权限；建议设置 30 天过期并定期轮换。
+- Codeup 不允许浏览器直接调用其 Webhook 接口，因此 Webhook 由 Console 后端代理由创建（`/api/dev-console/webhooks/codeup`），不需要在 Codeup 控制台手工配置。
+- 支持的事件包括推送、Tag 推送、合并请求与评论事件；表单中可直接查看事件说明。
 
 ### 从 Git 导入应用 (/import)
 
@@ -187,6 +194,39 @@ KDO Pipelines-as-Code相关的文件都是存储在应用的代码仓库，其�
 流水线的编辑支持`图形化`和`YAML文件`方式，请参考[嵌入流水线](/docs/dev/applications/pipelines/#嵌入流水线)。
 
 ![管理分支流水线](imgs/manageBranch.gif)
+
+### 发布历史与回滚
+
+{: .note }
+在 **分支流水线** 页面打开某个分支/环境的 **发布历史（Release history）** 抽屉，可以查看该环境下所有已部署的镜像版本，并回滚到任意历史版本。
+
+抽屉标题格式为 `Release history: <分支> → <环境>`，包含两个标签页：
+
+| 标签页 | 说明 |
+|:-------|:-----|
+| 构建历史 | 按清单提交展示历史版本，含镜像 Tag、提交信息、时间、构建/部署状态 |
+| 手动指定 | 手动输入要回滚的 Image tag |
+
+构建历史的每一行包含：
+
+- **Image tag**：部署使用的镜像版本；
+- **Commit**：触发本次构建的源码提交标题，副行显示源码提交与写回提交的短 SHA；
+- **Time**：构建/部署时间；
+- **Status**：构建或部署状态；
+- **Current**：当前正在使用的版本会带 Current 标记；
+- 构建成功/失败、部署成功/失败等状态标签。
+
+回滚步骤：
+
+1. 在构建历史中选择目标版本，或切换到 **手动指定** 输入 Image tag；
+2. 点击回滚，确认弹窗显示 `Roll back to <tag>?`；
+3. 确认后，平台会提交清单变更并自动触发部署流水线；
+4. 页面提示 `Rollback committed and the deploy pipeline was triggered.`。
+
+{: .note }
+- 发布历史通过清单提交记录版本，因此可以看到源码提交与写回提交的对应关系（`Kubedo-Source-Commit` / `Kubedo-Source-Title` trailer）。
+- 如果当前 Git 提供商不支持回滚所需的写回能力，页面会给出提示，此时可以手动更新镜像 Tag 或 YAML。
+- 回滚只会改变目标环境的镜像版本，不会修改其他环境。
 
 ### 管理流水线运行
 
