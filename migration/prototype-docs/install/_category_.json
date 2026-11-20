@@ -1,0 +1,5 @@
+{
+  "label": "安装与升级",
+  "position": 2,
+  "link": {"type": "doc", "id": "install/index"}
+}

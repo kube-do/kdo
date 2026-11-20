@@ -1,0 +1,5 @@
+{
+  "label": "监控",
+  "position": 1,
+  "link": {"type": "doc", "id": "observability/monitoring/index"}
+}

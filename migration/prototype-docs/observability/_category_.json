@@ -1,0 +1,5 @@
+{
+  "label": "可观测性",
+  "position": 5,
+  "link": {"type": "doc", "id": "observability/index"}
+}

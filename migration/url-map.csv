@@ -1,0 +1,114 @@
+old_path,old_url,title,new_path,new_url,status,action,owner,priority,notes
+docs/admin/index.md,/docs/admin/,管理员界面,docs/admin/index.md,/docs/admin/,200,keep,docs-admin,P1,
+docs/admin/application-management/index.md,/docs/admin/application-management/,应用管理(管理员),docs/admin/operators/index.md,/docs/admin/operators/,301,merge-into,docs-admin,P1,合并到管理员 Operator 入口
+docs/admin/application-management/operator-hub/index.md,/docs/admin/application-management/operator-hub/,OperatorHub,docs/admin/operators/operator-hub/index.md,/docs/admin/operators/operator-hub/,301,move,docs-admin,P1,
+docs/admin/application-management/operators/index.md,/docs/admin/application-management/operators/,安装的 Operators,docs/admin/operators/installed/index.md,/docs/admin/operators/installed/,301,move,docs-admin,P1,
+docs/admin/home/index.md,/docs/admin/home/,主页,docs/admin/overview/index.md,/docs/admin/overview/,301,move,docs-admin,P1,管理员主页并入概览
+docs/admin/management/index.md,/docs/admin/management/,管理,docs/admin/overview/index.md,/docs/admin/overview/,301,merge-into,docs-admin,P1,管理入口拆分到 clusters/namespaces
+docs/admin/management/appprojects/index.md,/docs/admin/management/appprojects/,应用项目(AppProject),docs/admin/namespaces/appprojects/index.md,/docs/admin/namespaces/appprojects/,301,move,docs-admin,P1,
+docs/admin/management/clusters/index.md,/docs/admin/management/clusters/,集群管理(Cluster),docs/admin/clusters/index.md,/docs/admin/clusters/,301,move,docs-admin,P0,
+docs/admin/management/customresourcedefinitions/index.md,/docs/admin/management/customresourcedefinitions/,自定义资源定义(CRD),docs/admin/namespaces/crd/index.md,/docs/admin/namespaces/crd/,301,move,docs-admin,P1,
+docs/admin/management/kdccertificates/index.md,/docs/admin/management/kdccertificates/,证书管理(KdcCertificate),docs/admin/maintenance/certificates/index.md,/docs/admin/maintenance/certificates/,301,move,docs-admin,P1,
+docs/admin/management/limitranges/index.md,/docs/admin/management/limitranges/,限制范围(LimitRange),docs/admin/namespaces/limit-ranges/index.md,/docs/admin/namespaces/limit-ranges/,301,move,docs-admin,P1,
+docs/admin/management/namespaces/index.md,/docs/admin/management/namespaces/,命名空间(Namespace),docs/admin/namespaces/index.md,/docs/admin/namespaces/,301,move,docs-admin,P1,
+docs/admin/management/nodes/index.md,/docs/admin/management/nodes/,节点(Node),docs/admin/clusters/nodes/index.md,/docs/admin/clusters/nodes/,301,move,docs-admin,P1,
+docs/admin/management/resourcequotas/index.md,/docs/admin/management/resourcequotas/,资源配额(ResourceQuota),docs/admin/namespaces/resource-quotas/index.md,/docs/admin/namespaces/resource-quotas/,301,move,docs-admin,P1,
+docs/admin/networking/index.md,/docs/admin/networking/,网络,docs/admin/networking/index.md,/docs/admin/networking/,200,keep,docs-admin,P1,
+docs/admin/networking/networkpolicies/index.md,/docs/admin/networking/networkpolicies/,网络策略,docs/admin/networking/network-policies/index.md,/docs/admin/networking/network-policies/,301,move,docs-admin,P1,英文 slug 统一
+docs/admin/notifications/index.md,/docs/admin/notifications/,通知中心,docs/admin/notifications/index.md,/docs/admin/notifications/,200,keep,docs-admin,P1,
+docs/admin/observe/index.md,/docs/admin/observe/,观测平台（管理员）,docs/observability/index.md,/docs/observability/,301,merge-into,docs-observability,P1,删除重复入口
+docs/admin/pipeline/index.md,/docs/admin/pipeline/,流水线,docs/developer/delivery/pipelines/index.md,/docs/developer/delivery/pipelines/,301,merge-into,docs-dev,P1,管理员流水线并入交付域
+docs/admin/platform-config/index.md,/docs/admin/platform-config/,平台配置编辑器,docs/admin/platform-config/index.md,/docs/admin/platform-config/,200,keep,docs-admin,P1,
+docs/admin/storage/index.md,/docs/admin/storage/,存储,docs/admin/storage/index.md,/docs/admin/storage/,200,keep,docs-admin,P1,
+docs/admin/user-management/index.md,/docs/admin/user-management/,用户管理,docs/admin/access-control/index.md,/docs/admin/access-control/,301,merge-into,docs-admin,P0,与 RBAC 合并
+docs/admin/user-management/keycloak/index.md,/docs/admin/user-management/keycloak/,Keycloak 用户管理,docs/admin/access-control/keycloak/index.md,/docs/admin/access-control/keycloak/,301,move,docs-admin,P1,
+docs/admin/workloads/index.md,/docs/admin/workloads/,工作负载(管理员),docs/admin/workloads/index.md,/docs/admin/workloads/,200,keep,docs-admin,P1,仅保留系统级工作负载
+docs/admin/workloads/daemonsets/index.md,/docs/admin/workloads/daemonsets/,守护进程集(DaemonSet),docs/admin/workloads/daemonsets/index.md,/docs/admin/workloads/daemonsets/,200,keep,docs-admin,P1,
+docs/admin/workloads/replicaset/index.md,/docs/admin/workloads/replicaset/,副本集(ReplicaSet),docs/admin/workloads/replicaset/index.md,/docs/admin/workloads/replicaset/,200,keep,docs-admin,P1,
+docs/aiops/index.md,/docs/aiops/,AI 智能助手,docs/developer/ai-assistant/index.md,/docs/developer/ai-assistant/,301,move,docs-dev,P2,
+docs/analysis/console-changes-2026-10.md,/docs/analysis/console-changes-2026-10/,,,,410,internal,docs-platform,P2,内部分析移出公开站点
+docs/analysis/console-changes-2026-11.md,/docs/analysis/console-changes-2026-11/,,,,410,internal,docs-platform,P2,内部分析移出公开站点
+docs/analysis/kdo-comprehensive-analysis-2026-05-21.md,/docs/analysis/kdo-comprehensive-analysis-2026-05-21/,,,,410,internal,docs-platform,P2,内部分析移出公开站点
+docs/architecture/index.md,/docs/architecture/,KDO 平台整体架构,docs/architecture/index.md,/docs/architecture/,200,keep,docs-arch,P2,
+docs/dev/index.md,/docs/dev/,开发者界面,docs/developer/index.md,/docs/developer/,301,move,docs-dev,P0,
+docs/dev/applications/index.md,/docs/dev/applications/,应用管理,docs/developer/applications/index.md,/docs/developer/applications/,301,move,docs-dev,P0,
+docs/dev/applications/add/index.md,/docs/dev/applications/add/,手动镜像应用,docs/developer/applications/manual-image/index.md,/docs/developer/applications/manual-image/,301,move,docs-dev,P1,
+docs/dev/applications/builds/index.md,/docs/dev/applications/builds/,镜像构建,docs/developer/applications/image-builds/index.md,/docs/developer/applications/image-builds/,301,move,docs-dev,P1,
+docs/dev/applications/helm/index.md,/docs/dev/applications/helm/,Helm 应用,docs/developer/applications/helm/index.md,/docs/developer/applications/helm/,301,move,docs-dev,P1,
+docs/dev/applications/pipelines-as-code/index.md,/docs/dev/applications/pipelines-as-code/,Pipelines as Code,docs/developer/delivery/pac/index.md,/docs/developer/delivery/pac/,301,move,docs-dev,P0,PAC 5 页后续收敛为 3 页
+docs/dev/applications/pipelines-as-code/git-integration.md,/docs/dev/applications/pipelines-as-code/git-integration/,Git 仓库托管服务集成,docs/developer/delivery/pac/git-integration/index.md,/docs/developer/delivery/pac/git-integration/,301,move,docs-dev,P1,后续拆分通用/GitHub/GitLab/Gitee/Codeup
+docs/dev/applications/pipelines-as-code/install.md,/docs/dev/applications/pipelines-as-code/install/,安装与配置,docs/developer/delivery/pac/install/index.md,/docs/developer/delivery/pac/install/,301,move,docs-dev,P1,
+docs/dev/applications/pipelines-as-code/manage-and-reference.md,/docs/dev/applications/pipelines-as-code/manage-and-reference/,运行管理与命令参考,docs/developer/delivery/pac/manage/index.md,/docs/developer/delivery/pac/manage/,301,move,docs-dev,P1,后续拆分运行管理/命令参考
+docs/dev/applications/pipelines-as-code/repository-and-pipelinerun.md,/docs/dev/applications/pipelines-as-code/repository-and-pipelinerun/,Repository 与 PipelineRun,docs/developer/delivery/pac/repository-and-pipelinerun/index.md,/docs/developer/delivery/pac/repository-and-pipelinerun/,301,move,docs-dev,P1,后续拆分 Repository/PipelineRun/分支环境
+docs/dev/applications/pipelines/index.md,/docs/dev/applications/pipelines/,流水线,docs/developer/delivery/pipelines/index.md,/docs/developer/delivery/pipelines/,301,move,docs-dev,P1,
+docs/dev/applications/repository/index.md,/docs/dev/applications/repository/,Git应用,docs/developer/applications/git/index.md,/docs/developer/applications/git/,301,move,docs-dev,P0,核心样板页之一
+docs/dev/configurations/index.md,/docs/dev/configurations/,配置管理,docs/developer/configuration/index.md,/docs/developer/configuration/,301,move,docs-dev,P1,
+docs/dev/configurations/configmaps/index.md,/docs/dev/configurations/configmaps/,配置映射(ConfigMap),docs/developer/configuration/configmaps/index.md,/docs/developer/configuration/configmaps/,301,move,docs-dev,P1,
+docs/dev/configurations/secrets/index.md,/docs/dev/configurations/secrets/,保密字典(Secret),docs/developer/configuration/secrets/index.md,/docs/developer/configuration/secrets/,301,move,docs-dev,P1,
+docs/dev/global-search/index.md,/docs/dev/global-search/,全局资源搜索,docs/developer/overview/global-search/index.md,/docs/developer/overview/global-search/,301,move,docs-dev,P1,
+docs/dev/home/index.md,/docs/dev/home/,开发者主页,docs/developer/overview/index.md,/docs/developer/overview/,301,move,docs-dev,P1,
+docs/dev/home/env/index.md,/docs/dev/home/env/,环境概览,docs/developer/overview/environments/index.md,/docs/developer/overview/environments/,301,move,docs-dev,P1,
+docs/dev/network-storage/index.md,/docs/dev/network-storage/,网络与存储,docs/developer/network-storage/index.md,/docs/developer/network-storage/,301,move,docs-dev,P1,
+docs/dev/network-storage/ingresses/index.md,/docs/dev/network-storage/ingresses/,路由(Ingress),docs/developer/network-storage/ingress/index.md,/docs/developer/network-storage/ingress/,301,move,docs-dev,P1,
+docs/dev/network-storage/persistent-volume-claims/index.md,/docs/dev/network-storage/persistent-volume-claims/,持久卷声明(PVC),docs/developer/network-storage/pvc/index.md,/docs/developer/network-storage/pvc/,301,move,docs-dev,P1,
+docs/dev/network-storage/services/index.md,/docs/dev/network-storage/services/,服务(Service),docs/developer/network-storage/service/index.md,/docs/developer/network-storage/service/,301,move,docs-dev,P1,
+docs/dev/observe/index.md,/docs/dev/observe/,观测平台（开发者）,docs/observability/index.md,/docs/observability/,301,merge-into,docs-observability,P1,删除重复入口
+docs/dev/workloads/index.md,/docs/dev/workloads/,工作负载,docs/developer/workloads/index.md,/docs/developer/workloads/,301,move,docs-dev,P1,
+docs/dev/workloads/cronjobs/index.md,/docs/dev/workloads/cronjobs/,计划任务(CronJob),docs/developer/workloads/cronjobs/index.md,/docs/developer/workloads/cronjobs/,301,move,docs-dev,P1,
+docs/dev/workloads/deployments/index.md,/docs/dev/workloads/deployments/,无状态应用(Deployment),docs/developer/workloads/deployments/index.md,/docs/developer/workloads/deployments/,301,move,docs-dev,P0,核心样板页之一
+docs/dev/workloads/hpa/index.md,/docs/dev/workloads/hpa/,水平容器组自动缩放器(HPA),docs/developer/workload-operations/hpa/index.md,/docs/developer/workload-operations/hpa/,301,merge-into,docs-dev,P1,与 workload-actions/hpa 合并
+docs/dev/workloads/jobs/index.md,/docs/dev/workloads/jobs/,任务(Job),docs/developer/workloads/jobs/index.md,/docs/developer/workloads/jobs/,301,move,docs-dev,P1,
+docs/dev/workloads/kruise/index.md,/docs/dev/workloads/kruise/,OpenKruise 工作负载,docs/developer/workloads/kruise/index.md,/docs/developer/workloads/kruise/,301,move,docs-dev,P1,
+docs/dev/workloads/pods/index.md,/docs/dev/workloads/pods/,容器组(Pod),docs/developer/workloads/pods/index.md,/docs/developer/workloads/pods/,301,move,docs-dev,P1,
+docs/dev/workloads/statefulsets/index.md,/docs/dev/workloads/statefulsets/,有状态应用(StatefulSet),docs/developer/workloads/statefulsets/index.md,/docs/developer/workloads/statefulsets/,301,move,docs-dev,P1,
+docs/dev/workloads/topology/index.md,/docs/dev/workloads/topology/,组件拓扑,docs/developer/workloads/topology/index.md,/docs/developer/workloads/topology/,301,move,docs-dev,P1,
+docs/devops/index.md,/docs/devops/,DevOps,docs/developer/index.md,/docs/developer/,301,merge-into,docs-dev,P1,DevOps 入口并入开发指南
+docs/devops/app-deploy/index.md,/docs/devops/app-deploy/,部署应用,docs/developer/applications/languages/index.md,/docs/developer/applications/languages/,301,move,docs-dev,P2,9 个语言页后续合并去重
+docs/devops/app-deploy/dockerfile.md,/docs/devops/app-deploy/dockerfile/,Dockerfile,docs/developer/applications/languages/dockerfile/index.md,/docs/developer/applications/languages/dockerfile/,301,move,docs-dev,P2,
+docs/devops/app-deploy/donet/index.md,/docs/devops/app-deploy/donet/,.NET 项目部署,docs/developer/applications/languages/dotnet/index.md,/docs/developer/applications/languages/dotnet/,301,move,docs-dev,P2,
+docs/devops/app-deploy/golang/index.md,/docs/devops/app-deploy/golang/,Golang 项目部署,docs/developer/applications/languages/golang/index.md,/docs/developer/applications/languages/golang/,301,move,docs-dev,P2,
+docs/devops/app-deploy/html.md,/docs/devops/app-deploy/html/,静态HTML,docs/developer/applications/languages/static-html/index.md,/docs/developer/applications/languages/static-html/,301,move,docs-dev,P2,
+docs/devops/app-deploy/java/index.md,/docs/devops/app-deploy/java/,Java 项目部署,docs/developer/applications/languages/java/index.md,/docs/developer/applications/languages/java/,301,move,docs-dev,P2,
+docs/devops/app-deploy/nodejs/index.md,/docs/devops/app-deploy/nodejs/,Node.js 前后端项目部署,docs/developer/applications/languages/nodejs/index.md,/docs/developer/applications/languages/nodejs/,301,move,docs-dev,P2,
+docs/devops/app-deploy/php/index.md,/docs/devops/app-deploy/php/,PHP 项目部署,docs/developer/applications/languages/php/index.md,/docs/developer/applications/languages/php/,301,move,docs-dev,P2,
+docs/devops/app-deploy/python/index.md,/docs/devops/app-deploy/python/,Python 项目部署,docs/developer/applications/languages/python/index.md,/docs/developer/applications/languages/python/,301,move,docs-dev,P2,
+docs/devops/app-deploy/sonarqube.md,/docs/devops/app-deploy/sonarqube/,SonarQube 静态扫描,docs/developer/applications/quality/sonarqube/index.md,/docs/developer/applications/quality/sonarqube/,301,move,docs-dev,P2,
+docs/devops/app-deploy/thirdparty.md,/docs/devops/app-deploy/thirdparty/,第三方服务部署,docs/developer/applications/third-party/index.md,/docs/developer/applications/third-party/,301,move,docs-dev,P2,
+docs/devops/continuous/index.md,/docs/devops/continuous/,持续交付,docs/developer/best-practices/continuous-delivery/index.md,/docs/developer/best-practices/continuous-delivery/,301,move,docs-dev,P1,
+docs/devops/continuous/multi-env/index.md,/docs/devops/continuous/multi-env/,多环境持续交付,docs/developer/best-practices/continuous-delivery/multi-env/index.md,/docs/developer/best-practices/continuous-delivery/multi-env/,301,move,docs-dev,P1,
+docs/devops/continuous/ram/index.md,/docs/devops/continuous/ram/,应用模版持续交付,docs/developer/best-practices/continuous-delivery/application-templates/index.md,/docs/developer/best-practices/continuous-delivery/application-templates/,301,move,docs-dev,P1,
+docs/devops/continuous/source-code/index.md,/docs/devops/continuous/source-code/,源码持续交付,docs/developer/best-practices/continuous-delivery/source-code/index.md,/docs/developer/best-practices/continuous-delivery/source-code/,301,move,docs-dev,P1,
+docs/devops/gitflow/index.md,/docs/devops/gitflow/,KDO 平台结合 GitFlow 进行应用开发,docs/developer/best-practices/gitflow/index.md,/docs/developer/best-practices/gitflow/,301,move,docs-dev,P1,后续拆分概念/操作/示例
+docs/devops/introduce/index.md,/docs/devops/introduce/,KDO DevOps介绍,docs/developer/overview/devops/index.md,/docs/developer/overview/devops/,301,move,docs-dev,P1,
+docs/devops/project-manage/index.md,/docs/devops/project-manage/,项目管理,docs/developer/projects/index.md,/docs/developer/projects/,301,move,docs-dev,P0,
+docs/ide/index.md,/docs/ide/,云开发环境,docs/developer/dev-environments/che/index.md,/docs/developer/dev-environments/che/,301,move,docs-dev,P1,
+docs/ide/backup-and-restore/index.md,/docs/ide/backup-and-restore/,备份与恢复,docs/developer/dev-environments/che/backup-restore/index.md,/docs/developer/dev-environments/che/backup-restore/,301,move,docs-dev,P2,
+docs/ide/create-workspace/index.md,/docs/ide/create-workspace/,创建工作区,docs/developer/dev-environments/che/create-workspace/index.md,/docs/developer/dev-environments/che/create-workspace/,301,move,docs-dev,P1,
+docs/ide/ide-loader/index.md,/docs/ide/ide-loader/,打开 IDE 与工厂加载,docs/developer/dev-environments/che/ide-loader/index.md,/docs/developer/dev-environments/che/ide-loader/,301,move,docs-dev,P2,
+docs/ide/personal-access-tokens/index.md,/docs/ide/personal-access-tokens/,个人访问令牌(Personal Access Tokens),docs/developer/dev-environments/tokens/index.md,/docs/developer/dev-environments/tokens/,301,move,docs-dev,P1,
+docs/ide/user-preferences/index.md,/docs/ide/user-preferences/,用户偏好设置(User Preferences),docs/developer/dev-environments/che/user-preferences/index.md,/docs/developer/dev-environments/che/user-preferences/,301,move,docs-dev,P2,
+docs/ide/workspace-management/index.md,/docs/ide/workspace-management/,工作区管理,docs/developer/dev-environments/che/workspace-management/index.md,/docs/developer/dev-environments/che/workspace-management/,301,move,docs-dev,P1,
+docs/install/index.md,/docs/install/,在 Linux 平台安装,docs/install/index.md,/docs/install/,200,keep,docs-install,P0,
+docs/install/config/index.md,/docs/install/config/,集群配置,docs/install/config/index.md,/docs/install/config/,200,keep,docs-install,P1,
+docs/install/config/console/index.md,/docs/install/config/console/,KDO Web 控制台,docs/admin/platform-config/index.md,/docs/admin/platform-config/,301,merge-into,docs-admin,P1,操作与配置参考拆分
+docs/install/kdo/index.md,/docs/install/kdo/,安装 KDO 平台,docs/install/kdo/index.md,/docs/install/kdo/,200,keep,docs-install,P0,核心样板页之一
+docs/install/keycloak/index.md,/docs/install/keycloak/,安装 Keycloak,docs/install/keycloak/index.md,/docs/install/keycloak/,200,keep,docs-install,P0,
+docs/install/kubernetes/index.md,/docs/install/kubernetes/,安装 Kubernetes,docs/install/kubernetes/index.md,/docs/install/kubernetes/,200,keep,docs-install,P0,
+docs/observability/index.md,/docs/observability/,观测平台,docs/observability/index.md,/docs/observability/,200,keep,docs-observability,P1,
+docs/observability/events/index.md,/docs/observability/events/,事件(Event),docs/observability/events/index.md,/docs/observability/events/,200,keep,docs-observability,P1,
+docs/observability/logging/index.md,/docs/observability/logging/,日志(Logging),docs/observability/logging/index.md,/docs/observability/logging/,200,keep,docs-observability,P1,
+docs/observability/monitoring/index.md,/docs/observability/monitoring/,监控(Monitoring),docs/observability/monitoring/index.md,/docs/observability/monitoring/,200,keep,docs-observability,P0,核心样板页之一
+docs/observability/monitoring/alertmanager/index.md,/docs/observability/monitoring/alertmanager/,告警配置,docs/observability/alerting/index.md,/docs/observability/alerting/,301,move,docs-observability,P0,1499 行，后续拆分告警配置/规则参考/通知渠道/排障
+docs/observability/monitoring/dashboards/index.md,/docs/observability/monitoring/dashboards/,仪表盘(Dashboard),docs/observability/dashboards/index.md,/docs/observability/dashboards/,301,move,docs-observability,P1,
+docs/quick-start/index.md,/docs/quick-start/,快速入门,docs/quick-start/index.md,/docs/quick-start/,200,keep,docs-dev,P0,核心样板页之一
+docs/rbac/index.md,/docs/rbac/,权限管理,docs/admin/access-control/rbac/index.md,/docs/admin/access-control/rbac/,301,move,docs-admin,P0,与用户管理合并
+docs/storage/index.md,/docs/storage/,云原生存储,docs/admin/storage/index.md,/docs/admin/storage/,301,merge-into,docs-admin,P1,PVC 归开发者，后端归管理员
+docs/terminal/index.md,/docs/terminal/,命令行模式(AI Agent),docs/developer/dev-environments/terminal/index.md,/docs/developer/dev-environments/terminal/,301,move,docs-dev,P1,529 行，后续拆分 CloudShell/LocalShell/文件传输/排障
+docs/workload-actions/index.md,/docs/workload-actions/,工作负载操作,docs/developer/workload-operations/index.md,/docs/developer/workload-operations/,301,move,docs-dev,P1,
+docs/workload-actions/add-storage/index.md,/docs/workload-actions/add-storage/,添加存储,docs/developer/workload-operations/add-storage/index.md,/docs/developer/workload-operations/add-storage/,301,move,docs-dev,P1,
+docs/workload-actions/edit-health-checks/index.md,/docs/workload-actions/edit-health-checks/,设置健康检查,docs/developer/workload-operations/health-checks/index.md,/docs/developer/workload-operations/health-checks/,301,move,docs-dev,P1,
+docs/workload-actions/edit-pod-count/index.md,/docs/workload-actions/edit-pod-count/,设置副本数,docs/developer/workload-operations/scale/index.md,/docs/developer/workload-operations/scale/,301,move,docs-dev,P1,
+docs/workload-actions/edit-resource-limits/index.md,/docs/workload-actions/edit-resource-limits/,编辑资源限制,docs/developer/workload-operations/resource-limits/index.md,/docs/developer/workload-operations/resource-limits/,301,move,docs-dev,P1,
+docs/workload-actions/edit-update-strategy/index.md,/docs/workload-actions/edit-update-strategy/,编辑更新策略,docs/developer/workload-operations/update-strategy/index.md,/docs/developer/workload-operations/update-strategy/,301,move,docs-dev,P1,
+docs/workload-actions/hpa/index.md,/docs/workload-actions/hpa/,容器组水平自动扩缩(HPA),docs/developer/workload-operations/hpa/index.md,/docs/developer/workload-operations/hpa/,301,merge-into,docs-dev,P1,与 dev/workloads/hpa 合并
+docs/workload-actions/pdb/index.md,/docs/workload-actions/pdb/,容器组中断预算(PDB),docs/developer/workload-operations/pdb/index.md,/docs/developer/workload-operations/pdb/,301,move,docs-dev,P1,
