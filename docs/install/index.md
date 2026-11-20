@@ -74,7 +74,7 @@ spec:
     # 在末尾添加以下参数；如果已经存在，需要修改为一致的值
     - --oidc-client-id=kdo
     - --oidc-groups-claim=groups
-    - --oidc-groups-prefix=kdo:
+    - '--oidc-groups-prefix=kdo:'
     - --oidc-issuer-url=https://${NodeIP}:30443/realms/kdo
     - --oidc-username-claim=preferred_username
     - --oidc-username-prefix=-

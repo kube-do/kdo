@@ -77,7 +77,7 @@ spec:
       # 如果已经有oidc认证平台，需要修改对应参数，查看文档https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication/#openid-connect-tokens  
       - oidc-client-id=kdo
       - oidc-groups-claim=groups
-    - oidc-groups-prefix=kdo:
+      - 'oidc-groups-prefix=kdo:'
       - oidc-issuer-url=https://10.255.1.32:30443/realms/kdo
       - oidc-ca-file=/etc/kubernetes/pki/ca.crt
       - oidc-username-claim=preferred_username
@@ -148,7 +148,7 @@ spec:
       # 如果已经有oidc认证平台，需要修改对应参数，查看文档https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication/#openid-connect-tokens
       - oidc-client-id=kdo
       - oidc-groups-claim=groups
-    - oidc-groups-prefix=kdo:
+      - 'oidc-groups-prefix=kdo:'
       - oidc-issuer-url=https://10.255.1.31:30443/realms/kdo
       - oidc-ca-file=/etc/kubernetes/pki/ca.crt
       - oidc-username-claim=preferred_username

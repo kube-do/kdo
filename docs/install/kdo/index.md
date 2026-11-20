@@ -38,18 +38,10 @@ flowchart TD
 
 ## 获取 kdo-install
 
-从发布页下载对应架构的二进制，或从源码构建：
+从发布页下载对应架构的二进制：
 
 ```shell
-git clone https://gitee.com/kube-do/kdo.git
-cd kdo
-make build
-```
-
-构建产物为 `installer/bin/kdo-install`。将二进制复制到控制面节点，例如：
-
-```shell
-install -m 0755 installer/bin/kdo-install /usr/local/bin/kdo-install
+wget https://gitee.com/kube-do/docs/releases/download/latest/kdo-install
 ```
 
 ## 生成配置文件
