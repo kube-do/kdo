@@ -3,14 +3,12 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll site to Pages
+# 旧 Jekyll 站点的回滚入口。
+# 生产已切换到 Vercel + Docusaurus，这里只保留手动触发，避免双部署分叉。
+name: Legacy Jekyll rollback (manual)
 
 on:
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+  # 需要回滚时在 Actions 页手动触发。
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages

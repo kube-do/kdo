@@ -1,0 +1,38 @@
+{
+  "name": "kdo-docs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "KDO 官方文档站（Docusaurus）",
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "node migration/sync-downloads.mjs && docusaurus start",
+    "build": "node migration/sync-downloads.mjs && docusaurus build",
+    "serve": "docusaurus serve",
+    "clear": "docusaurus clear",
+    "sync:downloads": "node migration/sync-downloads.mjs",
+    "migrate": "node migration/migrate-stage-a.mjs && node migration/optimize-assets.mjs && node migration/sync-downloads.mjs",
+    "optimize": "node migration/optimize-assets.mjs",
+    "check:urls": "node migration/check-url-parity.mjs"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@docusaurus/theme-mermaid": "3.10.2",
+    "@easyops-cn/docusaurus-search-local": "0.55.3",
+    "@mdx-js/react": "^3.0.0",
+    "@mermaid-js/layout-elk": "^1.0.2",
+    "clsx": "^2.1.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.10.2",
+    "@docusaurus/tsconfig": "3.10.2",
+    "sharp": "^0.35.5",
+    "typescript": "~5.6.2"
+  },
+  "engines": {
+    "node": ">=18.0"
+  },
+  "packageManager": "pnpm@12.18.0"
+}

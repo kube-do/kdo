@@ -14,3 +14,13 @@ _site/
 .bundle/
 vendor/
 .idea/
+
+# Docusaurus
+node_modules/
+.docusaurus/
+build/
+.cache-loader/
+
+# Downloadable files copied from the repository root at build/start time
+static/kdo-developer.tar.gz
+static/agent-setup*.sh

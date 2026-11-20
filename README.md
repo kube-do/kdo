@@ -1,110 +1,154 @@
 # KDO Platform Documentation
 
-这是 **KDO (Kubedo DevOps)** 平台的官方文档站点。
+这是 **KDO（Kubedo DevOps）** 平台的官方文档站点。
 
 **在线访问：** https://docs.kube-do.cn
 
 ---
 
-## 🚀 快速导航
+## 技术栈
 
-### 开发者
-- [📖 开发者指南](/docs/dev/) - 应用创建、流水线、工作负载管理
-- [🏠 开发者控制台](/docs/dev/home/) - 平台界面导览
-- [🔧 应用管理](/docs/dev/applications/) - Git应用、Helm、镜像构建
-- [🔄 CI/CD 流水线](/docs/dev/applications/pipelines/) - Tekton 配置与使用
-- [📊 可观测性](/docs/observability/) - 监控、日志、告警
-
-### 管理员
-- [⚙️ 管理员手册](/docs/admin/) - 集群管理、用户权限
-- [🔐 RBAC 权限](/docs/rbac/) - 基于角色的访问控制
-- [📦 安装指南](/docs/install/) - KDO 平台部署步骤
-- [🔌 终端访问](/docs/terminal/) - CloudShell 与 LocalShell
-- [☁️ 云开发环境](/docs/ide/) - Eclipse Che 浏览器即用 IDE
-
-### 概念与参考
-- [🏗️ 系统架构](/docs/architecture/) - 核心组件与技术栈
-- [📊 可观测性](/docs/observability/) - 监控、日志、告警
-- [🛠️ 工作负载操作](/docs/workload-actions/) - 扩缩容、HPA、资源限制、健康检查
+- **静态站点生成器：** [Docusaurus 3](https://docusaurus.io/)
+- **内容格式：** Markdown / MDX
+- **搜索：** `@easyops-cn/docusaurus-search-local`（中文分词）
+- **图表：** Mermaid
+- **运行时：** Node.js 22+、pnpm 12
+- **部署：** Vercel
 
 ---
 
-## 🏗️ 项目结构
+## 本地开发
 
+```bash
+pnpm install
+pnpm start
 ```
-kdo/
-├── docs/                    # 文档源码 (Markdown)
-│   ├── quick-start/         # 快速入门
-│   ├── install/             # 安装部署（含集群配置）
-│   ├── architecture/        # 系统架构
-│   ├── dev/                 # 开发者中心（应用/工作负载/配置/网络存储/观测入口）
-│   ├── admin/               # 管理员手册（集群管理/用户/工作负载/观测入口）
+
+打开 http://localhost:3000。
+
+生产构建与本地预览：
+
+```bash
+pnpm build
+pnpm serve
+```
+
+重新生成内容与优化资源：
+
+```bash
+pnpm migrate
+```
+
+`pnpm migrate` 会依次执行 `migration/migrate-stage-a.mjs`、`migration/optimize-assets.mjs` 和 `migration/sync-downloads.mjs`：
+- 从 `docs/` 生成 `site-docs/`
+- GIF 转 MP4 + WebP poster，输出到 `static/media/`
+- PNG 转 WebP 并限宽
+- 删除未引用图片并合并重复图片
+- 把根目录的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 同步到 `static/`，保证站点根路径可下载
+
+`pnpm start`、`pnpm build` 也会先执行 `sync:downloads`。`kdo-developer.tar.gz` 和 `agent-setup*.sh` 仍以仓库根目录为唯一源文件，`static/` 下的副本是构建产物，不提交。
+
+构建门禁：
+
+- `onBrokenLinks: throw`
+- `onBrokenAnchors: throw`
+- 构建后运行 `node migration/check-url-parity.mjs`
+
+---
+
+## 目录结构
+
+```text
+.
+├── site-docs/               # Docusaurus 文档内容（URL 前缀 /docs/）
+│   ├── quick-start/         # 快速开始
+│   ├── install/             # 安装与升级
+│   ├── dev/                 # 开发者指南
+│   ├── admin/               # 管理员指南
 │   ├── devops/              # DevOps 实践
-│   ├── observability/       # 可观测性专题（监控/日志/事件/大屏/指标）
-│   ├── workload-actions/    # 工作负载操作手册
+│   ├── observability/       # 可观测性
+│   ├── workload-actions/    # 工作负载操作
 │   ├── rbac/                # 权限管理
 │   ├── storage/             # 存储
 │   ├── terminal/            # 终端
-│   ├── ide/                 # 云开发环境 (Eclipse Che)
-│   ├── aiops/               # 智能运维
-│   └── ...
-├── _config.yml             # Jekyll 配置
-├── index.md                # 文档站首页
-├── Gemfile                 # Ruby 依赖
-└── vercel.json             # Vercel 部署配置
+│   ├── ide/                 # 云开发环境
+│   ├── aiops/               # AI 智能助手
+│   └── architecture/        # 架构与原理
+├── migration/               # URL 映射、迁移脚本、parity 检查
+├── docs/                    # 旧 Jekyll 内容（迁移期保留，用于回滚）
+├── src/                     # 首页、样式
+├── static/                  # 静态资源
+├── docusaurus.config.ts
+├── sidebars.ts
+└── vercel.json
 ```
 
 ---
 
-## 🖥️ 本地预览
+## 迁移状态
 
-在本地构建和预览文档站点：
+当前处于方案中的 **阶段 A：同构迁移**。
 
-```bash
-# 1. 安装依赖
-bundle install
+- 旧站 113 个页面已全部登记在 `migration/url-map.csv`。
+- 110 个页面已迁移到 `site-docs/`，URL 保持 `/docs/...` 不变。
+- 3 篇 `docs/analysis/*` 内部分析计划 410 下线，不进入构建。
+- 旧 Jekyll 内容保留在 `docs/`，GitHub Pages 工作流改为手动回滚入口。
+- 图片治理后构建产物约 **38 MB**：`site-docs/` 约 9 MB，`static/media/` 约 8 MB。
+- 阶段 B 将按 `migration/url-map.csv` 调整 IA，并为旧 URL 配置 301。
 
-# 2. 启动开发服务器
-bundle exec jekyll serve
+> `site-docs/` 和 `static/media/` 是提交到仓库的构建输入。Vercel 只执行 `pnpm build`，不会在云端运行 `pnpm migrate`；修改 `docs/` 后请在本地执行 `pnpm migrate`，并提交生成结果。`static/` 下的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 是 `pnpm build` 自动生成的副本，不提交。
 
-# 3. 访问 http://localhost:4000
+---
+
+## 文档约定
+
+- 页面使用简体中文。
+- 每页 frontmatter 至少包含：
+
+```yaml
+---
+title: 页面标题
+description: 一句话说明
+doc_type: how-to
+audience: [developer]
+owner: docs-dev
+last_reviewed: 2026-11-20
+status: migrated
+---
 ```
 
+- 提示块使用 Docusaurus admonition：
+
+```markdown
+:::note
+说明文字
+:::
+```
+
+- 标题锚点优先使用显式英文 ID，避免中文锚点在跳转时失效：
+
+```markdown
+## 创建应用 {#create-application}
+```
+
+- 图片放在页面同目录的 `imgs/` 下；`pnpm migrate` 会把 GIF 转成 MP4 + WebP poster，并把 PNG 转成 WebP。
+- 视频放在 `static/media/`，页面中使用 `/media/docs/...` 绝对路径，避免 Docusaurus 把视频误判为文档路由。
+- 不再使用 Jekyll 的 `{: .note }`、`{:toc}`、`parent`、`nav_order`。
+
 ---
 
-## 📦 技术栈
+## 贡献
 
-- **静态站点生成器：** [Jekyll](https://jekyllrb.com/)
-- **文档主题：** [Just the Docs](https://just-the-docs.github.io/)
-- **包管理：** Bundler
-- **部署：** GitHub Pages / Vercel
-
----
-
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request 来改进文档！
+欢迎提交 Issue 和 Pull Request。
 
 1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
+2. 创建分支：`git checkout -b docs/your-topic`
+3. 本地运行 `pnpm start` 预览
+4. 提交前执行 `pnpm build && node migration/check-url-parity.mjs`
 5. 开启 Pull Request
 
 ---
 
-## 📄 许可证
+## 许可证
 
 本项目文档采用 [MIT License](LICENSE) 许可证。
-
----
-
-## 📞 支持
-
-- 查看 [常见问题](/docs/admin/) 获取帮助
-- 提交 [Issue](https://github.com/kube-do/kdo/issues) 反馈问题
-- 联系 KDO 平台运维团队
-
----
-
-**KDO Platform** - 让云原生应用管理更简单 ✨
