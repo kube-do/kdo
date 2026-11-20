@@ -2,7 +2,7 @@
 
 本目录存放 URL 映射、迁移脚本和校验工具，不是文档内容。
 
-## 阶段 A / B 已落地
+## 阶段 A / B 已完成
 
 - `migrate-stage-a.mjs`：把 `docs/` 同构迁移到 `site-docs/`，保持旧 URL。
 - `migrate-stage-b.mjs`：按 `url-map.csv` 调整 IA，移动页面与资源、重写绝对/相对链接、重建分类、兼容旧锚点。
@@ -13,8 +13,10 @@
 - 当前结果：`site-docs/` 共 106 篇 Markdown，9 个顶层栏目；19 个保持页、91 个 301、3 个 410。
 - 图片治理后：`site-docs/` 约 11 MB，`static/media/` 约 8 MB，构建产物约 38 MB。
 
+**`site-docs/` 现在是唯一内容源，日常直接编辑。**
+
 ```bash
-pnpm migrate
+pnpm migrate          # 资源治理 + 下载同步 + redirects 生成
 pnpm build
 node migration/check-url-parity.mjs
 ```
@@ -22,14 +24,18 @@ node migration/check-url-parity.mjs
 `pnpm migrate` 等价于：
 
 ```bash
-node migration/migrate-stage-a.mjs
-node migration/migrate-stage-b.mjs
 node migration/optimize-assets.mjs
 node migration/sync-downloads.mjs
 node migration/generate-vercel-redirects.mjs
 ```
 
-注意：阶段 A 会清空并重建 `site-docs/`，阶段 B 在其上做 IA 移动；优化脚本会重建 `static/media/docs/`。不要直接手改这些生成目录后重跑；源内容仍以 `docs/` 为准，阶段 B 切换后再反转。
+`docs/` 是旧 Jekyll 内容归档，只用于回溯。需要从旧源重建时使用：
+
+```bash
+pnpm migrate:legacy
+```
+
+`migrate:legacy` 会重新执行阶段 A/B 并**覆盖** `site-docs/`，日常不要运行。
 
 ## 文件
 

@@ -39,12 +39,12 @@ pnpm serve
 pnpm migrate
 ```
 
-`pnpm migrate` 会依次执行：
-- `migration/migrate-stage-a.mjs`：从 `docs/` 生成 `site-docs/`，保持旧 URL
-- `migration/migrate-stage-b.mjs`：按 `url-map.csv` 调整 IA，并重写站内链接
+`site-docs/` 是当前唯一内容源，日常直接编辑。`pnpm migrate` 只做资源治理和构建辅助：
 - `migration/optimize-assets.mjs`：GIF 转 MP4 + WebP poster，PNG 转 WebP，删除未引用图片并合并重复图片
 - `migration/sync-downloads.mjs`：把根目录的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 同步到 `static/`
 - `migration/generate-vercel-redirects.mjs`：从 `redirects.csv` 生成 `vercel.json` 的 301
+
+`docs/` 是旧 Jekyll 内容归档，仅用于回溯；`pnpm migrate:legacy` 会从 `docs/` 重新生成 `site-docs/`，会覆盖当前内容，日常不要运行。
 
 `pnpm start`、`pnpm build` 也会先执行 `sync:downloads`。`kdo-developer.tar.gz` 和 `agent-setup*.sh` 仍以仓库根目录为唯一源文件，`static/` 下的副本是构建产物，不提交。
 
@@ -71,7 +71,7 @@ pnpm migrate
 │   ├── release-notes/       # 发布说明
 │   └── contributing/        # 贡献指南
 ├── migration/               # URL 映射、迁移脚本、parity 检查
-├── docs/                    # 旧 Jekyll 内容（迁移期保留，用于回滚）
+├── docs/                    # 旧 Jekyll 内容归档（只读，不再作为内容源）
 ├── src/                     # 首页、样式
 ├── static/                  # 静态资源
 ├── docusaurus.config.ts
