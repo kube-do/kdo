@@ -1,9 +1,0 @@
-{
-  "label": "管理",
-  "position": 9,
-  "collapsed": false,
-  "link": {
-    "type": "doc",
-    "id": "admin/management/index"
-  }
-}

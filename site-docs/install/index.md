@@ -126,7 +126,7 @@ KDO 平台默认创建项目 `kdo`，包含 `开发(dev)`、`测试(test)`、`�
 
 | 控制台 | 功能 | 默认访问地址 | 账号 |
 | --- | --- | --- | --- |
-| KDO 平台控制台 [管理员页面](/docs/admin) [开发者页面](/docs/dev) | KDO 整体功能管理 | `http://${NODE_IP}:30080`，例如 <http://10.22.1.20:30080> | Keycloak 管理员，见访问信息文件 |
+| KDO 平台控制台 [管理员页面](/docs/admin) [开发者页面](/docs/developer/) | KDO 整体功能管理 | `http://${NODE_IP}:30080`，例如 <http://10.22.1.20:30080> | Keycloak 管理员，见访问信息文件 |
 | Keycloak 控制台 | OIDC 认证管理、用户管理 | `https://${NODE_IP}:30443`，例如 <https://10.22.1.20:30443> | `admin`，密码见访问信息文件 |
 | Harbor 控制台 | 镜像仓库管理 | `http://${NODE_IP}:30002`，例如 <http://10.22.1.20:30002> | `admin`，密码见访问信息文件 |
 | Grafana 控制台 | 告警、监控、日志高级功能 | `http://grafana.${DEFAULT_DOMAIN}`，例如 <http://grafana.kube-do.dev> | `admin`，密码见访问信息文件 |

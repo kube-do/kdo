@@ -1,0 +1,9 @@
+{
+  "label": "部署应用",
+  "position": 5,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "developer/applications/languages/index"
+  }
+}

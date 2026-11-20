@@ -178,6 +178,6 @@ flowchart TD
 
 ## 相关链接
 
-- [项目管理](/docs/devops/project-manage/)
+- [项目管理](/docs/developer/projects/)
 - [平台配置编辑器](/docs/admin/platform-config/)
-- [权限管理](/docs/rbac/)
+- [权限管理](/docs/admin/access-control/rbac/)

@@ -123,7 +123,7 @@ flowchart TD
 
 ## Console（Bridge）服务器
 
-Console 基于 OpenShift Console（Bridge）改造，是 KDO 平台的**唯一入口网关**，集前端 SPA 与后端代理于一体。详见 [Console 配置与部署](/docs/install/config/console/)。
+Console 基于 OpenShift Console（Bridge）改造，是 KDO 平台的**唯一入口网关**，集前端 SPA 与后端代理于一体。详见 [Console 配置与部署](/docs/admin/platform-config/)。
 
 ### 前端 SPA
 

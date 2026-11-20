@@ -73,11 +73,21 @@ const config: Config = {
       },
       items: [
         {to: '/docs/quick-start/', label: '开始', position: 'left'},
-        {to: '/docs/dev/', label: '开发', position: 'left'},
+        {to: '/docs/developer/', label: '开发', position: 'left'},
         {to: '/docs/admin/', label: '管理', position: 'left'},
         {to: '/docs/observability/', label: '可观测', position: 'left'},
         {to: '/docs/install/', label: '安装', position: 'left'},
-        {to: '/docs/architecture/', label: '架构', position: 'left'},
+        {to: '/docs/reference/', label: '参考', position: 'left'},
+        {
+          type: 'dropdown',
+          label: '更多',
+          position: 'left',
+          items: [
+            {to: '/docs/architecture/', label: '架构'},
+            {to: '/docs/release-notes/', label: '发布说明'},
+            {to: '/docs/contributing/', label: '贡献指南'},
+          ],
+        },
         {
           href: 'https://github.com/kube-do/kdo',
           label: 'GitHub',
@@ -93,15 +103,16 @@ const config: Config = {
           items: [
             {label: '快速开始', to: '/docs/quick-start/'},
             {label: '安装 KDO', to: '/docs/install/kdo/'},
-            {label: '创建 Git 应用', to: '/docs/dev/applications/repository/'},
+            {label: '创建 Git 应用', to: '/docs/developer/applications/git/'},
           ],
         },
         {
           title: '参考',
           items: [
             {label: '架构与原理', to: '/docs/architecture/'},
-            {label: '工作负载', to: '/docs/dev/workloads/'},
+            {label: '工作负载', to: '/docs/developer/workloads/'},
             {label: '可观测性', to: '/docs/observability/'},
+            {label: '参考手册', to: '/docs/reference/'},
           ],
         },
         {

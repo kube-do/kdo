@@ -18,17 +18,17 @@ status: migrated
 :::
 
 ## 管理员工作负载菜单
-1. [组件拓扑](/docs/dev/workloads/topology/)
-2. [容器组(Pod)](/docs/dev/workloads/pods/)
-3. [无状态(Deployment)](/docs/dev/workloads/deployments/)
-4. [有状态(StatefulSet)](/docs/dev/workloads/statefulsets/)
+1. [组件拓扑](/docs/developer/workloads/topology/)
+2. [容器组(Pod)](/docs/developer/workloads/pods/)
+3. [无状态(Deployment)](/docs/developer/workloads/deployments/)
+4. [有状态(StatefulSet)](/docs/developer/workloads/statefulsets/)
 5. [守护进程集(DaemonSet)](daemonsets)
 6. [副本集(ReplicaSet)](replicaset)
-7. [定时任务(CronJob)](/docs/dev/workloads/cronjobs/)
-8. [任务(Job)](/docs/dev/workloads/jobs/)
-9. [保密字典(Secret)](/docs/dev/configurations/secrets/)
-10. [配置映射(ConfigMap)](/docs/dev/configurations/configmaps/)
-11. [水平容器组自动缩放器(HPA)](/docs/dev/workloads/hpa/)
+7. [定时任务(CronJob)](/docs/developer/workloads/cronjobs/)
+8. [任务(Job)](/docs/developer/workloads/jobs/)
+9. [保密字典(Secret)](/docs/developer/configuration/secrets/)
+10. [配置映射(ConfigMap)](/docs/developer/configuration/configmaps/)
+11. [水平容器组自动缩放器(HPA)](/docs/developer/workload-operations/hpa/)
 
 ## 功能地图
 

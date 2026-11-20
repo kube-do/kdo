@@ -28,7 +28,7 @@ flowchart TD
     I --> J[用户通过 OIDC 登录控制台]
 ```
 
-配置加载优先级从高到低为命令行参数、`BRIDGE_` 前缀环境变量、YAML 配置文件。详细字段与部署清单见 [KDO Web 控制台](./console/)。
+配置加载优先级从高到低为命令行参数、`BRIDGE_` 前缀环境变量、YAML 配置文件。详细字段与部署清单见 [KDO Web 控制台](../../admin/platform-config/)。
 
 ## 与安装器配置的区别
 

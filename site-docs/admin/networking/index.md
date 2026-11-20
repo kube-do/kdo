@@ -14,9 +14,9 @@ status: migrated
 管理员的网络界面主要增加了网络策略页面。
 
 ## 管理员网络菜单
-1. [服务](/docs/dev/network-storage/services/)
-2. [路由](/docs/dev/network-storage/ingresses/)
-3. [网络策略](/docs/admin/networking/networkpolicies/)
+1. [服务](/docs/developer/network-storage/service/)
+2. [路由](/docs/developer/network-storage/ingress/)
+3. [网络策略](/docs/admin/networking/network-policies/)
 
 ## 功能地图
 

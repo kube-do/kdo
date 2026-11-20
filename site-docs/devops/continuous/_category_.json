@@ -1,9 +1,0 @@
-{
-  "label": "持续交付",
-  "position": 3,
-  "collapsed": false,
-  "link": {
-    "type": "doc",
-    "id": "devops/continuous/index"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "label": "工作负载",
-  "position": 3,
-  "collapsed": false,
-  "link": {
-    "type": "doc",
-    "id": "dev/workloads/index"
-  }
-}

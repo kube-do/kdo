@@ -1,0 +1,9 @@
+{
+  "label": "开发指南",
+  "position": 3,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "developer/index"
+  }
+}

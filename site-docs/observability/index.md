@@ -67,7 +67,7 @@ flowchart TD
 ### 1️⃣ 前置条件
 
 - KDO 平台已成功部署（参考[安装指南](/docs/install/)）
-- 您具有 `admin` 或 `devops` 角色权限（参考[RBAC 文档](/docs/rbac/)）
+- 您具有 `admin` 或 `devops` 角色权限（参考[RBAC 文档](/docs/admin/access-control/rbac/)）
 - 集群节点已安装必要的监控代理（通常由平台自动部署）
 
 ### 2️⃣ 首次访问

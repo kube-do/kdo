@@ -10,8 +10,9 @@
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",
     "sync:downloads": "node migration/sync-downloads.mjs",
-    "migrate": "node migration/migrate-stage-a.mjs && node migration/optimize-assets.mjs && node migration/sync-downloads.mjs",
+    "migrate": "node migration/migrate-stage-a.mjs && node migration/migrate-stage-b.mjs && node migration/optimize-assets.mjs && node migration/sync-downloads.mjs && node migration/generate-vercel-redirects.mjs",
     "optimize": "node migration/optimize-assets.mjs",
+    "redirects": "node migration/generate-vercel-redirects.mjs",
     "check:urls": "node migration/check-url-parity.mjs"
   },
   "dependencies": {

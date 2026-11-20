@@ -4,5 +4,462 @@
   "installCommand": "pnpm install",
   "buildCommand": "pnpm build",
   "outputDirectory": "build",
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/docs/admin/application-management/",
+      "destination": "/docs/admin/operators/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/application-management/operator-hub/",
+      "destination": "/docs/admin/operators/operator-hub/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/application-management/operators/",
+      "destination": "/docs/admin/operators/installed/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/home/",
+      "destination": "/docs/admin/overview/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/management/",
+      "destination": "/docs/admin/overview/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/management/appprojects/",
+      "destination": "/docs/admin/namespaces/appprojects/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/management/clusters/",
+      "destination": "/docs/admin/clusters/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/management/customresourcedefinitions/",
+      "destination": "/docs/admin/namespaces/crd/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/management/kdccertificates/",
+      "destination": "/docs/admin/maintenance/certificates/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/management/limitranges/",
+      "destination": "/docs/admin/namespaces/limit-ranges/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/management/namespaces/",
+      "destination": "/docs/admin/namespaces/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/management/nodes/",
+      "destination": "/docs/admin/clusters/nodes/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/management/resourcequotas/",
+      "destination": "/docs/admin/namespaces/resource-quotas/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/networking/networkpolicies/",
+      "destination": "/docs/admin/networking/network-policies/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/observe/",
+      "destination": "/docs/observability/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/pipeline/",
+      "destination": "/docs/developer/delivery/pipelines/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/user-management/",
+      "destination": "/docs/admin/access-control/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/admin/user-management/keycloak/",
+      "destination": "/docs/admin/access-control/keycloak/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/aiops/",
+      "destination": "/docs/developer/ai-assistant/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/",
+      "destination": "/docs/developer/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/applications/",
+      "destination": "/docs/developer/applications/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/applications/add/",
+      "destination": "/docs/developer/applications/manual-image/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/applications/builds/",
+      "destination": "/docs/developer/applications/image-builds/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/applications/helm/",
+      "destination": "/docs/developer/applications/helm/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/applications/pipelines-as-code/",
+      "destination": "/docs/developer/delivery/pac/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/applications/pipelines-as-code/git-integration/",
+      "destination": "/docs/developer/delivery/pac/git-integration/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/applications/pipelines-as-code/install/",
+      "destination": "/docs/developer/delivery/pac/install/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/applications/pipelines-as-code/manage-and-reference/",
+      "destination": "/docs/developer/delivery/pac/manage/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/applications/pipelines-as-code/repository-and-pipelinerun/",
+      "destination": "/docs/developer/delivery/pac/repository-and-pipelinerun/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/applications/pipelines/",
+      "destination": "/docs/developer/delivery/pipelines/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/applications/repository/",
+      "destination": "/docs/developer/applications/git/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/configurations/",
+      "destination": "/docs/developer/configuration/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/configurations/configmaps/",
+      "destination": "/docs/developer/configuration/configmaps/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/configurations/secrets/",
+      "destination": "/docs/developer/configuration/secrets/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/global-search/",
+      "destination": "/docs/developer/overview/global-search/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/home/",
+      "destination": "/docs/developer/overview/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/home/env/",
+      "destination": "/docs/developer/overview/environments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/network-storage/",
+      "destination": "/docs/developer/network-storage/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/network-storage/ingresses/",
+      "destination": "/docs/developer/network-storage/ingress/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/network-storage/persistent-volume-claims/",
+      "destination": "/docs/developer/network-storage/pvc/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/network-storage/services/",
+      "destination": "/docs/developer/network-storage/service/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/observe/",
+      "destination": "/docs/observability/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/workloads/",
+      "destination": "/docs/developer/workloads/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/workloads/cronjobs/",
+      "destination": "/docs/developer/workloads/cronjobs/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/workloads/deployments/",
+      "destination": "/docs/developer/workloads/deployments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/workloads/hpa/",
+      "destination": "/docs/developer/workload-operations/hpa/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/workloads/jobs/",
+      "destination": "/docs/developer/workloads/jobs/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/workloads/kruise/",
+      "destination": "/docs/developer/workloads/kruise/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/workloads/pods/",
+      "destination": "/docs/developer/workloads/pods/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/workloads/statefulsets/",
+      "destination": "/docs/developer/workloads/statefulsets/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/dev/workloads/topology/",
+      "destination": "/docs/developer/workloads/topology/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/",
+      "destination": "/docs/developer/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/app-deploy/",
+      "destination": "/docs/developer/applications/languages/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/app-deploy/dockerfile/",
+      "destination": "/docs/developer/applications/languages/dockerfile/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/app-deploy/donet/",
+      "destination": "/docs/developer/applications/languages/dotnet/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/app-deploy/golang/",
+      "destination": "/docs/developer/applications/languages/golang/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/app-deploy/html/",
+      "destination": "/docs/developer/applications/languages/static-html/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/app-deploy/java/",
+      "destination": "/docs/developer/applications/languages/java/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/app-deploy/nodejs/",
+      "destination": "/docs/developer/applications/languages/nodejs/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/app-deploy/php/",
+      "destination": "/docs/developer/applications/languages/php/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/app-deploy/python/",
+      "destination": "/docs/developer/applications/languages/python/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/app-deploy/sonarqube/",
+      "destination": "/docs/developer/applications/quality/sonarqube/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/app-deploy/thirdparty/",
+      "destination": "/docs/developer/applications/third-party/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/continuous/",
+      "destination": "/docs/developer/best-practices/continuous-delivery/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/continuous/multi-env/",
+      "destination": "/docs/developer/best-practices/continuous-delivery/multi-env/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/continuous/ram/",
+      "destination": "/docs/developer/best-practices/continuous-delivery/application-templates/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/continuous/source-code/",
+      "destination": "/docs/developer/best-practices/continuous-delivery/source-code/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/gitflow/",
+      "destination": "/docs/developer/best-practices/gitflow/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/introduce/",
+      "destination": "/docs/developer/overview/devops/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/devops/project-manage/",
+      "destination": "/docs/developer/projects/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/ide/",
+      "destination": "/docs/developer/dev-environments/che/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/ide/backup-and-restore/",
+      "destination": "/docs/developer/dev-environments/che/backup-restore/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/ide/create-workspace/",
+      "destination": "/docs/developer/dev-environments/che/create-workspace/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/ide/ide-loader/",
+      "destination": "/docs/developer/dev-environments/che/ide-loader/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/ide/personal-access-tokens/",
+      "destination": "/docs/developer/dev-environments/tokens/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/ide/user-preferences/",
+      "destination": "/docs/developer/dev-environments/che/user-preferences/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/ide/workspace-management/",
+      "destination": "/docs/developer/dev-environments/che/workspace-management/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/install/config/console/",
+      "destination": "/docs/admin/platform-config/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/observability/monitoring/alertmanager/",
+      "destination": "/docs/observability/alerting/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/observability/monitoring/dashboards/",
+      "destination": "/docs/observability/dashboards/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/rbac/",
+      "destination": "/docs/admin/access-control/rbac/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/storage/",
+      "destination": "/docs/admin/storage/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/terminal/",
+      "destination": "/docs/developer/dev-environments/terminal/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/workload-actions/",
+      "destination": "/docs/developer/workload-operations/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/workload-actions/add-storage/",
+      "destination": "/docs/developer/workload-operations/add-storage/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/workload-actions/edit-health-checks/",
+      "destination": "/docs/developer/workload-operations/health-checks/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/workload-actions/edit-pod-count/",
+      "destination": "/docs/developer/workload-operations/scale/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/workload-actions/edit-resource-limits/",
+      "destination": "/docs/developer/workload-operations/resource-limits/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/workload-actions/edit-update-strategy/",
+      "destination": "/docs/developer/workload-operations/update-strategy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/workload-actions/hpa/",
+      "destination": "/docs/developer/workload-operations/hpa/",
+      "statusCode": 301
+    },
+    {
+      "source": "/docs/workload-actions/pdb/",
+      "destination": "/docs/developer/workload-operations/pdb/",
+      "statusCode": 301
+    }
+  ]
 }

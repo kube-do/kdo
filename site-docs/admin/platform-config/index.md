@@ -181,7 +181,7 @@ Console 与 KDC 的配置相互独立：
 
 ### 页面提示无权限
 
-需要 `kubedo-system/console` ConfigMap 的 update 权限。请联系集群管理员在 [权限管理](/docs/rbac/) 中授权。
+需要 `kubedo-system/console` ConfigMap 的 update 权限。请联系集群管理员在 [权限管理](/docs/admin/access-control/rbac/) 中授权。
 
 ### YAML 中的字段在表单里看不到
 
@@ -193,6 +193,6 @@ Console 与 KDC 的配置相互独立：
 
 ## 相关链接
 
-- [KDO Web 控制台配置](/docs/install/config/console/)
-- [用户管理](/docs/admin/user-management/)
-- [权限管理](/docs/rbac/)
+- [KDO Web 控制台配置](/docs/admin/platform-config/)
+- [用户管理](/docs/admin/access-control/)
+- [权限管理](/docs/admin/access-control/rbac/)

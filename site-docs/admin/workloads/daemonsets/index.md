@@ -250,6 +250,6 @@ spec:
 ## 相关链接
 
 - [Kubernetes DaemonSet 官方文档](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
-- [Kubernetes 节点管理](/docs/admin/management/nodes/)
+- [Kubernetes 节点管理](/docs/admin/clusters/nodes/)
 - [Kubernetes 污点与容忍](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/)
-- [工作负载操作（Pod、Deployment 等）](/docs/dev/workloads/)
+- [工作负载操作（Pod、Deployment 等）](/docs/developer/workloads/)

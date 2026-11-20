@@ -6,7 +6,7 @@ const cards = [
   {
     title: '我要开发',
     description: '创建项目、接入 Git 仓库、构建镜像、部署应用。',
-    to: '/docs/dev/',
+    to: '/docs/developer/',
     label: '进入开发指南',
   },
   {

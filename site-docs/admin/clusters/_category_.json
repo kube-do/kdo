@@ -1,0 +1,9 @@
+{
+  "label": "集群管理(Cluster)",
+  "position": 7,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "admin/clusters/index"
+  }
+}

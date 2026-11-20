@@ -1,0 +1,9 @@
+{
+  "label": "架构",
+  "position": 7,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "architecture/index"
+  }
+}
