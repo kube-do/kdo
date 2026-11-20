@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">镜像构建应用创建表单示意图</title>
+  <desc id="desc">左侧为源码地址、开发语言、Dockerfile 路径、构建参数与部署参数，右侧为构建流水线步骤与构建日志。</desc>
+
+  <rect width="1200" height="800" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">KDO 控制台</text>
+  <text x="1010" y="35" font-family="sans-serif" font-size="12" fill="#9aa0a6">应用管理 / 镜像构建</text>
+
+  <!-- Heading -->
+  <text x="48" y="110" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">新建镜像构建应用</text>
+  <text x="48" y="136" font-family="sans-serif" font-size="14" fill="#6a6e73">从 Git 仓库构建镜像，推送后应用 kubernetes 目录中的部署清单。</text>
+
+  <!-- Form card -->
+  <rect x="48" y="164" width="700" height="580" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="198" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">源码与构建配置</text>
+  <text x="72" y="220" font-family="sans-serif" font-size="12" fill="#6a6e73">仓库需要包含 Dockerfile，可选包含 kubernetes 目录。</text>
+
+  <!-- Git URL -->
+  <text x="72" y="250" font-family="sans-serif" font-size="12" fill="#6a6e73">Git 仓库地址 *</text>
+  <rect x="72" y="258" width="652" height="34" rx="4" fill="#ffffff" stroke="#0066cc" stroke-width="2"/>
+  <text x="86" y="280" font-family="monospace" font-size="13" fill="#151515">https://github.com/example/myapp.git</text>
+
+  <!-- Token / language -->
+  <text x="72" y="316" font-family="sans-serif" font-size="12" fill="#6a6e73">Git Token *</text>
+  <rect x="72" y="324" width="320" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="346" font-family="sans-serif" font-size="13" fill="#6a6e73">••••••••••••</text>
+
+  <text x="416" y="316" font-family="sans-serif" font-size="12" fill="#6a6e73">开发语言</text>
+  <rect x="416" y="324" width="308" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="430" y="346" font-family="sans-serif" font-size="13" fill="#151515">Java</text>
+  <text x="700" y="346" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <!-- Port / dockerfile / context -->
+  <text x="72" y="382" font-family="sans-serif" font-size="12" fill="#6a6e73">应用端口 *</text>
+  <rect x="72" y="390" width="150" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="412" font-family="sans-serif" font-size="13" fill="#151515">8080</text>
+
+  <text x="246" y="382" font-family="sans-serif" font-size="12" fill="#6a6e73">Dockerfile 路径</text>
+  <rect x="246" y="390" width="200" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="260" y="412" font-family="monospace" font-size="12" fill="#151515">docker/Dockerfile</text>
+
+  <text x="470" y="382" font-family="sans-serif" font-size="12" fill="#6a6e73">构建上下文</text>
+  <rect x="470" y="390" width="254" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="484" y="412" font-family="monospace" font-size="12" fill="#151515">.</text>
+
+  <!-- Build args -->
+  <text x="72" y="448" font-family="sans-serif" font-size="12" fill="#6a6e73">构建参数（每行一个 KEY=VALUE）</text>
+  <rect x="72" y="456" width="652" height="74" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="480" font-family="monospace" font-size="12" fill="#151515">MAVEN_OPTS=-DskipTests</text>
+  <text x="86" y="500" font-family="monospace" font-size="12" fill="#151515">APP_ENV=production</text>
+
+  <!-- Deploy params -->
+  <text x="72" y="556" font-family="sans-serif" font-size="12" fill="#6a6e73">命名空间 *</text>
+  <rect x="72" y="564" width="280" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="586" font-family="sans-serif" font-size="13" fill="#151515">cc-dev</text>
+
+  <text x="368" y="556" font-family="sans-serif" font-size="12" fill="#6a6e73">副本数</text>
+  <rect x="368" y="564" width="120" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="382" y="586" font-family="sans-serif" font-size="13" fill="#151515">1</text>
+
+  <text x="504" y="556" font-family="sans-serif" font-size="12" fill="#6a6e73">资源限制</text>
+  <rect x="504" y="564" width="220" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="518" y="586" font-family="sans-serif" font-size="12" fill="#6a6e73">100m / 128Mi</text>
+
+  <text x="72" y="636" font-family="sans-serif" font-size="11" fill="#6a6e73">提示：构建上下文与 Dockerfile 路径均相对于仓库根目录。</text>
+
+  <!-- Buttons -->
+  <rect x="72" y="694" width="86" height="32" rx="4" fill="#0066cc"/>
+  <text x="103" y="715" font-family="sans-serif" font-size="13" fill="#ffffff">添加</text>
+  <rect x="170" y="694" width="86" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="201" y="715" font-family="sans-serif" font-size="13" fill="#0066cc">取消</text>
+
+  <!-- Pipeline card -->
+  <rect x="772" y="164" width="380" height="300" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="796" y="198" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">构建流水线</text>
+
+  <circle cx="802" cy="228" r="10" fill="#e7f1fa"/>
+  <text x="798" y="232" font-family="sans-serif" font-size="11" fill="#004080">1</text>
+  <text x="822" y="232" font-family="sans-serif" font-size="13" fill="#151515">克隆代码仓库</text>
+
+  <circle cx="802" cy="278" r="10" fill="#e7f1fa"/>
+  <text x="798" y="282" font-family="sans-serif" font-size="11" fill="#004080">2</text>
+  <text x="822" y="282" font-family="sans-serif" font-size="13" fill="#151515">执行 docker build</text>
+
+  <circle cx="802" cy="328" r="10" fill="#e7f1fa"/>
+  <text x="798" y="332" font-family="sans-serif" font-size="11" fill="#004080">3</text>
+  <text x="822" y="332" font-family="sans-serif" font-size="13" fill="#151515">推送镜像到内置 Harbor</text>
+
+  <circle cx="802" cy="378" r="10" fill="#e7f1fa"/>
+  <text x="798" y="382" font-family="sans-serif" font-size="11" fill="#004080">4</text>
+  <text x="822" y="382" font-family="sans-serif" font-size="13" fill="#151515">应用部署清单</text>
+
+  <line x1="802" y1="238" x2="802" y2="268" stroke="#d2d2d2" stroke-width="2"/>
+  <line x1="802" y1="288" x2="802" y2="318" stroke="#d2d2d2" stroke-width="2"/>
+  <line x1="802" y1="338" x2="802" y2="368" stroke="#d2d2d2" stroke-width="2"/>
+
+  <text x="796" y="424" font-family="sans-serif" font-size="11" fill="#6a6e73">执行记录写入流水线运行页面，可查看每个任务的日志。</text>
+
+  <!-- Log card -->
+  <rect x="772" y="488" width="380" height="256" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="796" y="520" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">构建日志</text>
+  <rect x="796" y="534" width="332" height="126" rx="4" fill="#f3f4f6"/>
+
+  <text x="810" y="558" font-family="monospace" font-size="11" fill="#151515">[1/4] cloning repository ...</text>
+  <text x="810" y="578" font-family="monospace" font-size="11" fill="#151515">[2/4] docker build -t myapp-build .</text>
+  <text x="810" y="598" font-family="monospace" font-size="11" fill="#151515">[3/4] pushing image to harbor</text>
+  <text x="810" y="618" font-family="monospace" font-size="11" fill="#151515">[4/4] applying kubernetes manifests</text>
+  <text x="810" y="642" font-family="monospace" font-size="11" fill="#3e8635">build succeeded</text>
+
+  <rect x="796" y="676" width="86" height="24" rx="12" fill="#e7f5ec"/>
+  <text x="808" y="692" font-family="sans-serif" font-size="11" fill="#1e4f18">构建成功</text>
+  <text x="898" y="692" font-family="sans-serif" font-size="11" fill="#6a6e73">耗时 2m18s</text>
+  <text x="1016" y="692" font-family="sans-serif" font-size="12" fill="#0066cc">查看日志 ›</text>
+
+  <text x="48" y="776" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

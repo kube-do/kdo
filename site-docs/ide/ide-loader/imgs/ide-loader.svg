@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="872" viewBox="0 0 1200 872" role="img" aria-labelledby="title desc">
+  <title id="title">IDE 加载器页面示意图</title>
+  <desc id="desc">页面上方为仓库、分支、编辑器与 AI 提供商信息，中部为进度、日志、事件三个标签页与五步加载向导，右侧为状态摘要和启动停止操作。</desc>
+
+  <rect width="1200" height="872" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="32" y="34" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">KDO 控制台</text>
+  <text x="180" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">云开发环境</text>
+  <text x="280" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">Che Dashboard</text>
+  <circle cx="1104" cy="28" r="10" fill="#3c3f44"/>
+  <circle cx="1146" cy="28" r="10" fill="#3c3f44"/>
+
+  <!-- Heading -->
+  <text x="48" y="112" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">创建工作区</text>
+  <text x="48" y="142" font-family="sans-serif" font-size="14" fill="#6a6e73">工厂加载 · /load-factory?url=git@github.com:team/shop.git</text>
+  <rect x="1000" y="112" width="152" height="32" rx="16" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="1022" y="133" font-family="sans-serif" font-size="12" fill="#004080">工厂模式</text>
+
+  <!-- Info strip -->
+  <rect x="48" y="168" width="1104" height="64" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="68" y="192" font-family="sans-serif" font-size="11" fill="#6a6e73">仓库</text>
+  <text x="68" y="212" font-family="sans-serif" font-size="13" fill="#151515">team/shop</text>
+  <text x="330" y="192" font-family="sans-serif" font-size="11" fill="#6a6e73">分支</text>
+  <text x="330" y="212" font-family="sans-serif" font-size="13" fill="#151515">main</text>
+  <text x="592" y="192" font-family="sans-serif" font-size="11" fill="#6a6e73">编辑器</text>
+  <text x="592" y="212" font-family="sans-serif" font-size="13" fill="#151515">Che Code</text>
+  <text x="854" y="192" font-family="sans-serif" font-size="11" fill="#6a6e73">AI 提供商</text>
+  <text x="854" y="212" font-family="sans-serif" font-size="13" fill="#151515">deepseek</text>
+
+  <!-- Main card -->
+  <rect x="48" y="252" width="760" height="560" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <rect x="68" y="264" width="88" height="26" rx="4" fill="#0066cc"/>
+  <text x="96" y="282" font-family="sans-serif" font-size="12" fill="#ffffff">进度</text>
+  <rect x="164" y="264" width="88" height="26" rx="4" fill="#f5f5f5" stroke="#d2d2d2"/>
+  <text x="192" y="282" font-family="sans-serif" font-size="12" fill="#6a6e73">日志</text>
+  <rect x="260" y="264" width="88" height="26" rx="4" fill="#f5f5f5" stroke="#d2d2d2"/>
+  <text x="288" y="282" font-family="sans-serif" font-size="12" fill="#6a6e73">事件</text>
+
+  <line x1="92" y1="342" x2="92" y2="630" stroke="#d2d2d2" stroke-width="2"/>
+
+  <!-- Step 1 -->
+  <circle cx="92" cy="330" r="12" fill="#3e8635"/>
+  <text x="87" y="335" font-family="sans-serif" font-size="12" fill="#ffffff">✓</text>
+  <text x="120" y="328" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">初始化</text>
+  <text x="120" y="346" font-family="sans-serif" font-size="11" fill="#6a6e73">校验 URL、来源信任与创建策略</text>
+
+  <!-- Step 2 -->
+  <circle cx="92" cy="402" r="12" fill="#3e8635"/>
+  <text x="87" y="407" font-family="sans-serif" font-size="12" fill="#ffffff">✓</text>
+  <text x="120" y="400" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">检查运行工作区数量限制</text>
+  <text x="120" y="418" font-family="sans-serif" font-size="11" fill="#6a6e73">未超过平台允许的运行中工作区上限</text>
+
+  <!-- Step 3 -->
+  <circle cx="92" cy="474" r="12" fill="#0066cc"/>
+  <text x="120" y="472" font-family="sans-serif" font-size="13" font-weight="700" fill="#004080">创建工作区</text>
+  <text x="120" y="490" font-family="sans-serif" font-size="11" fill="#0066cc">获取 devfile → 检查现有工作区 → 等待 SCC 权限 → 应用 devfile</text>
+
+  <!-- Step 4 -->
+  <circle cx="92" cy="570" r="12" fill="#ffffff" stroke="#d2d2d2" stroke-width="2"/>
+  <text x="120" y="568" font-family="sans-serif" font-size="13" font-weight="700" fill="#8a8d90">等待工作区启动</text>
+  <text x="120" y="586" font-family="sans-serif" font-size="11" fill="#8a8d90">等待工作区容器就绪</text>
+
+  <!-- Step 5 -->
+  <circle cx="92" cy="642" r="12" fill="#ffffff" stroke="#d2d2d2" stroke-width="2"/>
+  <text x="120" y="640" font-family="sans-serif" font-size="13" font-weight="700" fill="#8a8d90">打开 IDE</text>
+  <text x="120" y="658" font-family="sans-serif" font-size="11" fill="#8a8d90">在新标签页打开 Che Code</text>
+
+  <text x="68" y="714" font-family="sans-serif" font-size="12" fill="#6a6e73">总体进度</text>
+  <text x="780" y="714" font-family="sans-serif" font-size="12" fill="#0066cc" text-anchor="end">45%</text>
+  <rect x="68" y="724" width="692" height="8" rx="4" fill="#e0e0e0"/>
+  <rect x="68" y="724" width="311" height="8" rx="4" fill="#0066cc"/>
+
+  <text x="68" y="762" font-family="sans-serif" font-size="11" fill="#6a6e73">首次启动需要拉取开发镜像并初始化持久化卷，通常耗时 2-3 分钟；镜像缓存后再次启动会明显加快。</text>
+  <text x="68" y="784" font-family="sans-serif" font-size="11" fill="#6a6e73">非进度标签页激活时，错误以提示条形式显示，可切换到日志或事件查看详情。</text>
+
+  <!-- Side card -->
+  <rect x="832" y="252" width="320" height="560" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="852" y="284" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">状态摘要</text>
+
+  <text x="852" y="322" font-family="sans-serif" font-size="11" fill="#6a6e73">状态</text>
+  <text x="1000" y="322" font-family="sans-serif" font-size="12" fill="#c58c00">创建中</text>
+  <text x="852" y="356" font-family="sans-serif" font-size="11" fill="#6a6e73">进度</text>
+  <text x="1000" y="356" font-family="sans-serif" font-size="12" fill="#151515">45%</text>
+  <text x="852" y="390" font-family="sans-serif" font-size="11" fill="#6a6e73">已用时</text>
+  <text x="1000" y="390" font-family="sans-serif" font-size="12" fill="#151515">01:20</text>
+  <text x="852" y="424" font-family="sans-serif" font-size="11" fill="#6a6e73">工作区</text>
+  <text x="1000" y="424" font-family="sans-serif" font-size="12" fill="#151515">shop-main</text>
+  <text x="852" y="458" font-family="sans-serif" font-size="11" fill="#6a6e73">命名空间</text>
+  <text x="1000" y="458" font-family="sans-serif" font-size="12" fill="#151515">che-user-jiangzy</text>
+  <text x="852" y="492" font-family="sans-serif" font-size="11" fill="#6a6e73">存储类型</text>
+  <text x="1000" y="492" font-family="sans-serif" font-size="12" fill="#151515">per-workspace</text>
+  <text x="852" y="526" font-family="sans-serif" font-size="11" fill="#6a6e73">编辑器镜像</text>
+  <text x="1000" y="526" font-family="sans-serif" font-size="12" fill="#151515">che-code:latest</text>
+
+  <line x1="832" y1="552" x2="1152" y2="552" stroke="#e0e0e0"/>
+  <text x="852" y="580" font-family="sans-serif" font-size="12" font-weight="700" fill="#151515">工作区操作</text>
+  <rect x="852" y="596" width="120" height="32" rx="4" fill="#f5f5f5" stroke="#d2d2d2"/>
+  <text x="896" y="617" font-family="sans-serif" font-size="12" fill="#8a8d90">启动</text>
+  <rect x="984" y="596" width="120" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="1028" y="617" font-family="sans-serif" font-size="12" fill="#0066cc">停止</text>
+
+  <text x="852" y="664" font-family="sans-serif" font-size="11" fill="#6a6e73">右上角 ⋮ 菜单按当前状态启用</text>
+  <text x="852" y="686" font-family="sans-serif" font-size="11" fill="#6a6e73">启动或停止工作区</text>
+
+  <rect x="852" y="716" width="280" height="56" rx="4" fill="#fdf3e3" stroke="#c58c00"/>
+  <text x="868" y="740" font-family="sans-serif" font-size="11" fill="#7a5200">首次拉取镜像较慢</text>
+  <text x="868" y="760" font-family="sans-serif" font-size="11" fill="#7a5200">请耐心等待，勿重复创建</text>
+
+  <!-- Footer hint -->
+  <text x="48" y="848" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

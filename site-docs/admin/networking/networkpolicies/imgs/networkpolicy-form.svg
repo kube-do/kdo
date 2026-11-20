@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="920" viewBox="0 0 1200 920" role="img" aria-labelledby="title desc">
+  <title id="title">创建网络策略表单示意图</title>
+  <desc id="desc">表单包含名称、命名空间、策略类型、Pod 选择器，以及按来源选择器和端口配置的入口规则与出口规则。</desc>
+
+  <rect width="1200" height="920" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">KDO Console</text>
+  <text x="190" y="35" font-family="sans-serif" font-size="13" fill="#9aa0a6">管理员界面 / 网络 / 网络策略</text>
+  <circle cx="1104" cy="28" r="10" fill="#3c3f44"/>
+  <circle cx="1146" cy="28" r="10" fill="#3c3f44"/>
+
+  <!-- Heading -->
+  <text x="48" y="106" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">创建网络策略</text>
+  <text x="48" y="134" font-family="sans-serif" font-size="14" fill="#6a6e73">使用标签选择器定义 Pod 的入站与出站访问规则。</text>
+
+  <!-- Basic info -->
+  <rect x="48" y="160" width="1104" height="170" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="192" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">基本信息</text>
+
+  <text x="72" y="222" font-family="sans-serif" font-size="12" fill="#6a6e73">名称</text>
+  <rect x="72" y="230" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="252" font-family="sans-serif" font-size="13" fill="#151515">allow-frontend-to-backend</text>
+
+  <text x="396" y="222" font-family="sans-serif" font-size="12" fill="#6a6e73">命名空间</text>
+  <rect x="396" y="230" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="410" y="252" font-family="sans-serif" font-size="13" fill="#151515">default</text>
+  <text x="666" y="252" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <text x="72" y="294" font-family="sans-serif" font-size="12" fill="#6a6e73">策略类型</text>
+  <rect x="72" y="302" width="90" height="32" rx="4" fill="#0066cc"/>
+  <text x="97" y="323" font-family="sans-serif" font-size="13" fill="#ffffff">Ingress</text>
+  <rect x="168" y="302" width="90" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="196" y="323" font-family="sans-serif" font-size="13" fill="#151515">Egress</text>
+  <rect x="264" y="302" width="90" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="292" y="323" font-family="sans-serif" font-size="13" fill="#151515">Both</text>
+
+  <!-- Pod selector -->
+  <rect x="48" y="350" width="1104" height="110" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="382" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">Pod 选择器</text>
+  <rect x="72" y="398" width="120" height="26" rx="13" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="84" y="416" font-family="sans-serif" font-size="12" fill="#004080">app=backend</text>
+  <rect x="200" y="398" width="96" height="26" rx="13" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="212" y="416" font-family="sans-serif" font-size="12" fill="#004080">env=prod</text>
+  <rect x="308" y="398" width="88" height="26" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="318" y="416" font-family="sans-serif" font-size="12" fill="#0066cc">＋ 添加标签</text>
+  <text x="72" y="444" font-family="sans-serif" font-size="11" fill="#6a6e73">策略只对同时匹配这些标签的 Pod 生效。</text>
+
+  <!-- Ingress rules -->
+  <rect x="48" y="480" width="1104" height="226" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="512" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">入口规则</text>
+
+  <rect x="72" y="526" width="120" height="30" rx="4" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="84" y="546" font-family="sans-serif" font-size="12" fill="#004080">Pod 选择器</text>
+  <rect x="200" y="526" width="150" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="212" y="546" font-family="sans-serif" font-size="12" fill="#6a6e73">命名空间选择器</text>
+  <rect x="358" y="526" width="90" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="376" y="546" font-family="sans-serif" font-size="12" fill="#6a6e73">IP 块</text>
+
+  <text x="72" y="586" font-family="sans-serif" font-size="12" fill="#6a6e73">标签键</text>
+  <rect x="72" y="594" width="180" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="614" font-family="sans-serif" font-size="13" fill="#151515">app</text>
+
+  <text x="270" y="586" font-family="sans-serif" font-size="12" fill="#6a6e73">标签值</text>
+  <rect x="270" y="594" width="180" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="284" y="614" font-family="sans-serif" font-size="13" fill="#151515">frontend</text>
+
+  <text x="470" y="586" font-family="sans-serif" font-size="12" fill="#6a6e73">协议</text>
+  <rect x="470" y="594" width="120" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="484" y="614" font-family="sans-serif" font-size="13" fill="#151515">TCP</text>
+  <text x="566" y="614" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <text x="608" y="586" font-family="sans-serif" font-size="12" fill="#6a6e73">端口</text>
+  <rect x="608" y="594" width="120" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="622" y="614" font-family="sans-serif" font-size="13" fill="#151515">8080</text>
+
+  <rect x="752" y="594" width="88" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="762" y="614" font-family="sans-serif" font-size="12" fill="#0066cc">＋ 添加端口</text>
+
+  <text x="72" y="660" font-family="sans-serif" font-size="11" fill="#6a6e73">多个来源之间为 OR 关系；来源与端口同时匹配时才放行。</text>
+  <rect x="72" y="670" width="88" height="28" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="82" y="688" font-family="sans-serif" font-size="12" fill="#0066cc">＋ 添加规则</text>
+
+  <!-- Egress rules -->
+  <rect x="48" y="726" width="1104" height="90" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="758" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">出口规则</text>
+  <rect x="150" y="738" width="66" height="24" rx="12" fill="#f0f0f0"/>
+  <text x="162" y="754" font-family="sans-serif" font-size="11" fill="#4f5255">未配置</text>
+  <text x="72" y="790" font-family="sans-serif" font-size="11" fill="#6a6e73">未配置出口规则时不限制出站；展开后可添加目标命名空间、Pod 或 CIDR。</text>
+
+  <!-- Actions -->
+  <rect x="72" y="846" width="88" height="30" rx="4" fill="#0066cc"/>
+  <text x="96" y="866" font-family="sans-serif" font-size="12" fill="#ffffff">创建</text>
+  <rect x="172" y="846" width="72" height="30" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="194" y="866" font-family="sans-serif" font-size="12" fill="#0066cc">取消</text>
+
+  <text x="48" y="892" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

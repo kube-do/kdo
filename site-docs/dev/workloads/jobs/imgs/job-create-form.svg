@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+  <title id="title">任务创建表单与执行状态示意图</title>
+  <desc id="desc">左侧为名称、并行数、完成数、镜像、命令与重试配置，右侧为执行进度与由任务创建的容器组列表。</desc>
+
+  <rect width="1200" height="780" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">KDO 控制台</text>
+  <text x="1010" y="35" font-family="sans-serif" font-size="12" fill="#9aa0a6">工作负载 / 任务</text>
+
+  <!-- Heading -->
+  <text x="48" y="110" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">新建任务</text>
+  <text x="48" y="136" font-family="sans-serif" font-size="14" fill="#6a6e73">并行数控制同时运行的容器组，完成数控制累计成功数量。</text>
+
+  <!-- Form card -->
+  <rect x="48" y="164" width="680" height="560" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="198" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">任务配置</text>
+
+  <text x="72" y="244" font-family="sans-serif" font-size="12" fill="#6a6e73">名称 *</text>
+  <rect x="72" y="252" width="300" height="34" rx="4" fill="#ffffff" stroke="#0066cc" stroke-width="2"/>
+  <text x="86" y="274" font-family="sans-serif" font-size="13" fill="#151515">db-migrate</text>
+
+  <text x="392" y="244" font-family="sans-serif" font-size="12" fill="#6a6e73">重启策略</text>
+  <rect x="392" y="252" width="312" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="406" y="274" font-family="sans-serif" font-size="13" fill="#151515">OnFailure</text>
+  <text x="680" y="274" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <text x="72" y="316" font-family="sans-serif" font-size="12" fill="#6a6e73">并行数</text>
+  <rect x="72" y="324" width="120" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="346" font-family="sans-serif" font-size="13" fill="#151515">1</text>
+
+  <text x="212" y="316" font-family="sans-serif" font-size="12" fill="#6a6e73">完成数</text>
+  <rect x="212" y="324" width="120" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="226" y="346" font-family="sans-serif" font-size="13" fill="#151515">1</text>
+
+  <text x="352" y="316" font-family="sans-serif" font-size="12" fill="#6a6e73">重试上限</text>
+  <rect x="352" y="324" width="160" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="366" y="346" font-family="sans-serif" font-size="13" fill="#151515">6</text>
+
+  <text x="532" y="316" font-family="sans-serif" font-size="12" fill="#6a6e73">完成后 TTL</text>
+  <rect x="532" y="324" width="172" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="546" y="346" font-family="sans-serif" font-size="13" fill="#151515">3600 秒</text>
+
+  <text x="72" y="388" font-family="sans-serif" font-size="12" fill="#6a6e73">容器镜像 *</text>
+  <rect x="72" y="396" width="632" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="418" font-family="monospace" font-size="12" fill="#151515">mysql:8.0</text>
+
+  <text x="72" y="448" font-family="sans-serif" font-size="12" fill="#6a6e73">命令</text>
+  <rect x="72" y="456" width="632" height="74" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="480" font-family="monospace" font-size="11" fill="#151515">sh -c "mysql -h db app &lt; schema.sql"</text>
+  <text x="86" y="502" font-family="monospace" font-size="11" fill="#6a6e73"># 命令需前台运行，退出码 0 表示成功</text>
+
+  <text x="72" y="552" font-family="sans-serif" font-size="12" fill="#6a6e73">环境变量</text>
+  <rect x="72" y="560" width="632" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="582" font-family="monospace" font-size="12" fill="#151515">DB_HOST=mysql.prod.svc</text>
+
+  <rect x="72" y="660" width="86" height="32" rx="4" fill="#0066cc"/>
+  <text x="103" y="681" font-family="sans-serif" font-size="13" fill="#ffffff">添加</text>
+  <rect x="170" y="660" width="86" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="201" y="681" font-family="sans-serif" font-size="13" fill="#0066cc">取消</text>
+
+  <!-- Status card -->
+  <rect x="752" y="164" width="400" height="260" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="776" y="198" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">执行状态</text>
+
+  <rect x="776" y="212" width="76" height="22" rx="11" fill="#e7f5ec" stroke="#3e8635"/>
+  <text x="792" y="227" font-family="sans-serif" font-size="11" fill="#1e4f18">Complete</text>
+
+  <text x="776" y="264" font-family="sans-serif" font-size="11" fill="#6a6e73">成功数</text>
+  <text x="900" y="264" font-family="sans-serif" font-size="12" fill="#151515">1 / 1</text>
+  <text x="776" y="292" font-family="sans-serif" font-size="11" fill="#6a6e73">并行数</text>
+  <text x="900" y="292" font-family="sans-serif" font-size="12" fill="#151515">1</text>
+  <text x="776" y="320" font-family="sans-serif" font-size="11" fill="#6a6e73">用时</text>
+  <text x="900" y="320" font-family="sans-serif" font-size="12" fill="#151515">18s</text>
+
+  <rect x="776" y="344" width="352" height="10" rx="5" fill="#e0e0e0"/>
+  <rect x="776" y="344" width="352" height="10" rx="5" fill="#3e8635"/>
+  <text x="776" y="378" font-family="sans-serif" font-size="11" fill="#3e8635">全部完成，容器组保留以便查看日志。</text>
+
+  <!-- Pods card -->
+  <rect x="752" y="448" width="400" height="276" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="776" y="482" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">容器组</text>
+
+  <text x="776" y="512" font-family="sans-serif" font-size="11" fill="#6a6e73">名称</text>
+  <text x="1052" y="512" font-family="sans-serif" font-size="11" fill="#6a6e73">状态</text>
+  <line x1="776" y1="522" x2="1128" y2="522" stroke="#e0e0e0"/>
+
+  <text x="776" y="548" font-family="monospace" font-size="11" fill="#151515">db-migrate-7xk2p</text>
+  <rect x="1048" y="534" width="80" height="20" rx="10" fill="#e7f5ec"/>
+  <text x="1056" y="548" font-family="sans-serif" font-size="10" fill="#1e4f18">Succeeded</text>
+
+  <line x1="776" y1="562" x2="1128" y2="562" stroke="#e0e0e0"/>
+  <text x="776" y="588" font-family="monospace" font-size="11" fill="#151515">db-migrate-5m8qz</text>
+  <rect x="1048" y="574" width="62" height="20" rx="10" fill="#faeae8"/>
+  <text x="1060" y="588" font-family="sans-serif" font-size="10" fill="#8a1207">Failed</text>
+
+  <line x1="776" y1="602" x2="1128" y2="602" stroke="#e0e0e0"/>
+  <text x="776" y="628" font-family="sans-serif" font-size="11" fill="#6a6e73">失败的容器组会按 backoffLimit 重试。</text>
+  <text x="776" y="650" font-family="sans-serif" font-size="11" fill="#6a6e73">任务完成后可查看日志与事件。</text>
+
+  <text x="776" y="692" font-family="sans-serif" font-size="12" fill="#0066cc">查看日志 ›</text>
+
+  <text x="48" y="756" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1020" viewBox="0 0 1200 1020" role="img" aria-labelledby="title desc">
+  <title id="title">健康检查设置弹窗示意图</title>
+  <desc id="desc">弹窗包含存活探针与就绪探针开关、HTTP GET 等检测方式、路径端口与五项探针参数，以及校验提示和添加按钮。</desc>
+
+  <rect width="1200" height="1020" fill="#f3f4f6"/>
+
+  <text x="48" y="64" font-family="sans-serif" font-size="26" font-weight="700" fill="#151515">健康检查设置弹窗</text>
+  <text x="48" y="92" font-family="sans-serif" font-size="13" fill="#6a6e73">为容器启用存活探针与就绪探针，选择检测方式并调整探测参数。</text>
+
+  <rect x="120" y="116" width="960" height="830" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="152" y="160" font-family="sans-serif" font-size="20" font-weight="700" fill="#151515">添加/编辑健康检查</text>
+  <text x="152" y="182" font-family="sans-serif" font-size="12" fill="#6a6e73">myapp · Deployment · 容器 myapp</text>
+  <text x="1042" y="160" font-family="sans-serif" font-size="18" fill="#6a6e73">×</text>
+  <line x1="120" y1="200" x2="1080" y2="200" stroke="#e0e0e0"/>
+
+  <text x="152" y="232" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">启用探针</text>
+
+  <rect x="152" y="244" width="290" height="58" rx="6" fill="#f5f9ff" stroke="#0066cc"/>
+  <rect x="168" y="262" width="16" height="16" rx="3" fill="#0066cc"/>
+  <text x="178" y="274" font-family="sans-serif" font-size="10" fill="#ffffff">✓</text>
+  <text x="196" y="270" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">存活探针 Liveness</text>
+  <text x="196" y="290" font-family="sans-serif" font-size="11" fill="#6a6e73">失败后重启容器</text>
+
+  <rect x="462" y="244" width="290" height="58" rx="6" fill="#f5f9ff" stroke="#0066cc"/>
+  <rect x="478" y="262" width="16" height="16" rx="3" fill="#0066cc"/>
+  <text x="488" y="274" font-family="sans-serif" font-size="10" fill="#ffffff">✓</text>
+  <text x="506" y="270" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">就绪探针 Readiness</text>
+  <text x="506" y="290" font-family="sans-serif" font-size="11" fill="#6a6e73">失败后从 Service 端点移除</text>
+
+  <rect x="772" y="244" width="290" height="58" rx="6" fill="#ffffff" stroke="#d2d2d2"/>
+  <rect x="788" y="262" width="16" height="16" rx="3" fill="#ffffff" stroke="#8a8d90"/>
+  <text x="816" y="270" font-family="sans-serif" font-size="14" fill="#151515">启动探针 Startup（可选）</text>
+  <text x="816" y="290" font-family="sans-serif" font-size="11" fill="#6a6e73">保护启动较慢的应用</text>
+
+  <text x="152" y="340" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">检测方式</text>
+  <rect x="152" y="352" width="140" height="36" rx="4" fill="#0066cc"/>
+  <text x="176" y="375" font-family="sans-serif" font-size="12" fill="#ffffff">HTTP GET</text>
+  <rect x="292" y="352" width="140" height="36" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="316" y="375" font-family="sans-serif" font-size="12" fill="#151515">容器命令</text>
+  <rect x="432" y="352" width="140" height="36" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="456" y="375" font-family="sans-serif" font-size="12" fill="#151515">TCP 套接字</text>
+
+  <text x="152" y="412" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">路径</text>
+  <rect x="152" y="422" width="260" height="38" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="166" y="446" font-family="sans-serif" font-size="13" fill="#151515">/health</text>
+  <text x="440" y="412" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">端口</text>
+  <rect x="440" y="422" width="180" height="38" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="454" y="446" font-family="sans-serif" font-size="13" fill="#151515">8080</text>
+  <text x="648" y="412" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">HTTP 成功码</text>
+  <rect x="648" y="422" width="180" height="38" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="662" y="446" font-family="sans-serif" font-size="13" fill="#151515">200</text>
+  <text x="852" y="446" font-family="sans-serif" font-size="11" fill="#6a6e73">端口填容器内部端口</text>
+
+  <line x1="152" y1="492" x2="1048" y2="492" stroke="#f0f0f0"/>
+
+  <text x="152" y="524" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">探针参数</text>
+  <text x="300" y="524" font-family="sans-serif" font-size="11" fill="#6a6e73">以下参数同时应用到已启用的探针</text>
+
+  <rect x="152" y="538" width="896" height="310" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+
+  <text x="172" y="566" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">参数</text>
+  <text x="382" y="566" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">字段名</text>
+  <text x="646" y="566" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">值</text>
+  <text x="790" y="566" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">说明</text>
+
+  <rect x="160" y="578" width="880" height="52" rx="3" fill="#fafafa"/>
+  <text x="172" y="610" font-family="sans-serif" font-size="13" fill="#151515">初始延迟</text>
+  <text x="382" y="610" font-family="monospace" font-size="12" fill="#6a6e73">initialDelaySeconds</text>
+  <rect x="632" y="588" width="96" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="662" y="608" font-family="sans-serif" font-size="13" fill="#151515">30</text>
+  <text x="790" y="610" font-family="sans-serif" font-size="12" fill="#6a6e73">容器启动后等待 30 秒开始探测</text>
+
+  <rect x="160" y="630" width="880" height="52" rx="3" fill="#ffffff"/>
+  <text x="172" y="662" font-family="sans-serif" font-size="13" fill="#151515">检测周期</text>
+  <text x="382" y="662" font-family="monospace" font-size="12" fill="#6a6e73">periodSeconds</text>
+  <rect x="632" y="640" width="96" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="662" y="660" font-family="sans-serif" font-size="13" fill="#151515">10</text>
+  <text x="790" y="662" font-family="sans-serif" font-size="12" fill="#6a6e73">每隔 10 秒执行一次探测</text>
+
+  <rect x="160" y="682" width="880" height="52" rx="3" fill="#fafafa"/>
+  <text x="172" y="714" font-family="sans-serif" font-size="13" fill="#151515">超时时间</text>
+  <text x="382" y="714" font-family="monospace" font-size="12" fill="#6a6e73">timeoutSeconds</text>
+  <rect x="632" y="692" width="96" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="662" y="712" font-family="sans-serif" font-size="13" fill="#151515">5</text>
+  <text x="790" y="714" font-family="sans-serif" font-size="12" fill="#6a6e73">单次探测最长等待 5 秒</text>
+
+  <rect x="160" y="734" width="880" height="52" rx="3" fill="#ffffff"/>
+  <text x="172" y="766" font-family="sans-serif" font-size="13" fill="#151515">成功阈值</text>
+  <text x="382" y="766" font-family="monospace" font-size="12" fill="#6a6e73">successThreshold</text>
+  <rect x="632" y="744" width="96" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="662" y="764" font-family="sans-serif" font-size="13" fill="#151515">1</text>
+  <text x="790" y="766" font-family="sans-serif" font-size="12" fill="#6a6e73">连续成功 1 次即视为健康</text>
+
+  <rect x="160" y="786" width="880" height="52" rx="3" fill="#fafafa"/>
+  <text x="172" y="818" font-family="sans-serif" font-size="13" fill="#151515">失败阈值</text>
+  <text x="382" y="818" font-family="monospace" font-size="12" fill="#6a6e73">failureThreshold</text>
+  <rect x="632" y="796" width="96" height="30" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="662" y="816" font-family="sans-serif" font-size="13" fill="#151515">3</text>
+  <text x="790" y="818" font-family="sans-serif" font-size="12" fill="#6a6e73">连续失败 3 次判定为不健康</text>
+
+  <text x="152" y="872" font-family="sans-serif" font-size="12" fill="#3e8635">✓ 参数校验通过：端口 8080 在容器端口范围内，成功阈值与失败阈值均为正整数。</text>
+  <text x="152" y="894" font-family="sans-serif" font-size="12" fill="#7a5200">! 失败阈值 3 表示连续 3 次失败后才重启或摘除流量，可避免偶发抖动造成误判。</text>
+
+  <rect x="812" y="900" width="100" height="36" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="844" y="923" font-family="sans-serif" font-size="13" fill="#0066cc">取消</text>
+  <rect x="924" y="900" width="124" height="36" rx="4" fill="#0066cc"/>
+  <text x="960" y="923" font-family="sans-serif" font-size="13" fill="#ffffff">添加</text>
+
+  <text x="48" y="1002" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

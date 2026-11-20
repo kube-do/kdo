@@ -1,0 +1,9 @@
+{
+  "label": "工作负载操作",
+  "position": 6,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "workload-actions/index"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "label": "应用管理(管理员)",
+  "position": 2,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "admin/application-management/index"
+  }
+}

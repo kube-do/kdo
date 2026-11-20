@@ -1,0 +1,9 @@
+{
+  "label": "云开发环境",
+  "position": 11,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "ide/index"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "label": "集群配置",
+  "position": 3,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "install/config/index"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "label": "Pipelines as Code",
+  "position": 5,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "dev/applications/pipelines-as-code/index"
+  }
+}

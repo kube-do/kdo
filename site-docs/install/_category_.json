@@ -1,0 +1,9 @@
+{
+  "label": "在 Linux 平台安装",
+  "position": 7,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "install/index"
+  }
+}

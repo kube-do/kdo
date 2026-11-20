@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">工作负载操作菜单示意图</title>
+  <desc id="desc">左侧为工作负载列表与行内操作按钮，右侧为展开的操作菜单，包含启停、重启、副本数、更新策略、健康检查、资源限制、存储和事件。</desc>
+
+  <rect width="1200" height="760" fill="#f3f4f6"/>
+
+  <text x="48" y="64" font-family="sans-serif" font-size="26" font-weight="700" fill="#151515">工作负载操作菜单</text>
+  <text x="48" y="92" font-family="sans-serif" font-size="13" fill="#6a6e73">在开发者界面 → 工作负载列表中选择资源，通过行内操作或顶部批量操作打开操作菜单。</text>
+
+  <!-- Workload list card -->
+  <rect x="48" y="120" width="700" height="568" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="154" font-family="sans-serif" font-size="16" font-weight="700" fill="#151515">工作负载列表</text>
+
+  <rect x="72" y="170" width="420" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="192" font-family="sans-serif" font-size="12" fill="#8a8d90">搜索名称或标签</text>
+  <rect x="508" y="170" width="100" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="522" y="192" font-family="sans-serif" font-size="12" fill="#151515">全部类型</text>
+  <text x="588" y="192" font-family="sans-serif" font-size="11" fill="#6a6e73">▾</text>
+  <rect x="624" y="170" width="100" height="34" rx="4" fill="#0066cc"/>
+  <text x="650" y="192" font-family="sans-serif" font-size="12" fill="#ffffff">批量操作 ▾</text>
+
+  <text x="72" y="246" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">名称</text>
+  <text x="360" y="246" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">状态</text>
+  <text x="470" y="246" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">副本</text>
+  <text x="640" y="246" font-family="sans-serif" font-size="12" font-weight="700" fill="#6a6e73">操作</text>
+  <line x1="72" y1="258" x2="724" y2="258" stroke="#e0e0e0"/>
+
+  <!-- Row 1 -->
+  <rect x="60" y="266" width="676" height="70" rx="4" fill="#f5f9ff"/>
+  <text x="72" y="294" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">myapp</text>
+  <text x="72" y="314" font-family="sans-serif" font-size="11" fill="#6a6e73">Deployment · kdo/dev</text>
+  <rect x="360" y="282" width="72" height="24" rx="12" fill="#e7f5ec"/>
+  <text x="377" y="298" font-family="sans-serif" font-size="12" fill="#1e4f18">Running</text>
+  <text x="470" y="298" font-family="sans-serif" font-size="13" fill="#151515">3 / 3</text>
+  <rect x="620" y="278" width="96" height="32" rx="4" fill="#0066cc"/>
+  <text x="640" y="299" font-family="sans-serif" font-size="12" fill="#ffffff">操作 ▾</text>
+
+  <!-- Row 2 -->
+  <text x="72" y="370" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">api</text>
+  <text x="72" y="390" font-family="sans-serif" font-size="11" fill="#6a6e73">StatefulSet · kdo/test</text>
+  <rect x="360" y="358" width="72" height="24" rx="12" fill="#e7f5ec"/>
+  <text x="377" y="374" font-family="sans-serif" font-size="12" fill="#1e4f18">Running</text>
+  <text x="470" y="374" font-family="sans-serif" font-size="13" fill="#151515">2 / 2</text>
+  <rect x="620" y="354" width="96" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="640" y="375" font-family="sans-serif" font-size="12" fill="#0066cc">操作 ▾</text>
+  <line x1="72" y1="404" x2="724" y2="404" stroke="#e0e0e0"/>
+
+  <!-- Row 3 -->
+  <text x="72" y="446" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">worker</text>
+  <text x="72" y="466" font-family="sans-serif" font-size="11" fill="#6a6e73">DaemonSet · kubedo-system</text>
+  <rect x="360" y="434" width="72" height="24" rx="12" fill="#e7f5ec"/>
+  <text x="377" y="450" font-family="sans-serif" font-size="12" fill="#1e4f18">Running</text>
+  <text x="470" y="450" font-family="sans-serif" font-size="13" fill="#151515">5 / 5</text>
+  <rect x="620" y="430" width="96" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="640" y="451" font-family="sans-serif" font-size="12" fill="#0066cc">操作 ▾</text>
+  <line x1="72" y1="480" x2="724" y2="480" stroke="#e0e0e0"/>
+
+  <!-- Row 4 -->
+  <text x="72" y="522" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">batch-job</text>
+  <text x="72" y="542" font-family="sans-serif" font-size="11" fill="#6a6e73">Job · kdo/dev</text>
+  <rect x="360" y="510" width="82" height="24" rx="12" fill="#e7f5ec"/>
+  <text x="374" y="526" font-family="sans-serif" font-size="12" fill="#1e4f18">Completed</text>
+  <text x="470" y="526" font-family="sans-serif" font-size="13" fill="#151515">1 / 1</text>
+  <rect x="620" y="506" width="96" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="640" y="527" font-family="sans-serif" font-size="12" fill="#0066cc">操作 ▾</text>
+  <line x1="72" y1="556" x2="724" y2="556" stroke="#e0e0e0"/>
+
+  <!-- Row 5 -->
+  <text x="72" y="598" font-family="sans-serif" font-size="14" font-weight="700" fill="#151515">cron</text>
+  <text x="72" y="618" font-family="sans-serif" font-size="11" fill="#6a6e73">CronJob · kdo/stage</text>
+  <rect x="360" y="586" width="82" height="24" rx="12" fill="#f0f0f0"/>
+  <text x="374" y="602" font-family="sans-serif" font-size="12" fill="#4f5255">Suspended</text>
+  <text x="470" y="602" font-family="sans-serif" font-size="13" fill="#151515">0 / 0</text>
+  <rect x="620" y="582" width="96" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="640" y="603" font-family="sans-serif" font-size="12" fill="#0066cc">操作 ▾</text>
+
+  <text x="72" y="662" font-family="sans-serif" font-size="11" fill="#6a6e73">勾选多行后使用顶部批量操作，可对多个工作负载执行同一操作。</text>
+
+  <!-- Action menu card -->
+  <rect x="776" y="120" width="376" height="568" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="800" y="154" font-family="sans-serif" font-size="16" font-weight="700" fill="#151515">操作菜单</text>
+  <text x="800" y="178" font-family="sans-serif" font-size="12" fill="#6a6e73">myapp · Deployment · kdo/dev</text>
+
+  <rect x="792" y="196" width="344" height="44" rx="4" fill="#e7f1fa"/>
+  <circle cx="810" cy="218" r="9" fill="#ffffff" stroke="#0066cc"/>
+  <circle cx="810" cy="218" r="3" fill="#0066cc"/>
+  <text x="830" y="223" font-family="sans-serif" font-size="13" fill="#004080">启动 / 停止</text>
+
+  <text x="830" y="267" font-family="sans-serif" font-size="13" fill="#151515">重启</text>
+  <line x1="800" y1="284" x2="1128" y2="284" stroke="#f0f0f0"/>
+  <text x="830" y="311" font-family="sans-serif" font-size="13" fill="#151515">编辑副本数</text>
+  <text x="830" y="355" font-family="sans-serif" font-size="13" fill="#151515">编辑更新策略</text>
+  <text x="830" y="399" font-family="sans-serif" font-size="13" fill="#151515">添加或编辑健康检查</text>
+  <text x="830" y="443" font-family="sans-serif" font-size="13" fill="#151515">编辑资源限制</text>
+  <text x="830" y="487" font-family="sans-serif" font-size="13" fill="#151515">添加存储</text>
+  <text x="830" y="531" font-family="sans-serif" font-size="13" fill="#151515">查看事件</text>
+
+  <text x="800" y="590" font-family="sans-serif" font-size="11" fill="#6a6e73">部分操作仅对特定工作负载类型显示，</text>
+  <text x="800" y="608" font-family="sans-serif" font-size="11" fill="#6a6e73">例如副本数仅适用于 Deployment 与 StatefulSet。</text>
+  <text x="800" y="634" font-family="sans-serif" font-size="11" fill="#6a6e73">提交后可在事件或流水线运行页面跟踪进度。</text>
+
+  <text x="48" y="742" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

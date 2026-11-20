@@ -1,0 +1,9 @@
+{
+  "label": "开发者主页",
+  "position": 1,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "dev/home/index"
+  }
+}

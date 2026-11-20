@@ -1,0 +1,9 @@
+{
+  "label": "配置管理",
+  "position": 4,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "dev/configurations/index"
+  }
+}

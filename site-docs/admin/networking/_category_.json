@@ -1,0 +1,9 @@
+{
+  "label": "网络",
+  "position": 4,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "admin/networking/index"
+  }
+}

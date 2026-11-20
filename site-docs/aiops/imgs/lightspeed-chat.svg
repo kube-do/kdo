@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="904" viewBox="0 0 1200 904" role="img" aria-labelledby="title desc">
+  <title id="title">AI 智能助手对话示意图</title>
+  <desc id="desc">左侧为容器组列表与附加资源对象说明，右侧为 Kubernetes Lightspeed 对话窗口，包含已附加资源、问答内容、反馈按钮与输入框。</desc>
+
+  <rect width="1200" height="904" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="32" y="34" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">KDO 控制台</text>
+  <text x="180" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">工作负载</text>
+  <text x="256" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">容器组</text>
+  <circle cx="1104" cy="28" r="10" fill="#3c3f44"/>
+  <circle cx="1146" cy="28" r="10" fill="#3c3f44"/>
+
+  <!-- Page heading -->
+  <text x="48" y="112" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">Pods</text>
+  <text x="48" y="142" font-family="sans-serif" font-size="14" fill="#6a6e73">kubedo-system · 3 个容器组</text>
+
+  <!-- Pod rows -->
+  <rect x="48" y="168" width="600" height="64" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="194" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">web-7d9f8c-abcde</text>
+  <text x="72" y="214" font-family="sans-serif" font-size="11" fill="#6a6e73">Running · 重启 4 次 · 节点 worker-01</text>
+  <rect x="548" y="184" width="76" height="24" rx="12" fill="#faeae8"/>
+  <text x="560" y="200" font-family="sans-serif" font-size="11" fill="#8a1207">CrashLoop</text>
+
+  <rect x="48" y="244" width="600" height="64" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="270" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">api-6c8d7f-fghij</text>
+  <text x="72" y="290" font-family="sans-serif" font-size="11" fill="#6a6e73">Running · 重启 0 次 · 节点 worker-02</text>
+  <rect x="548" y="260" width="76" height="24" rx="12" fill="#e7f5ec"/>
+  <text x="566" y="276" font-family="sans-serif" font-size="11" fill="#1e4f18">Running</text>
+
+  <rect x="48" y="320" width="600" height="64" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="346" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">db-0</text>
+  <text x="72" y="366" font-family="sans-serif" font-size="11" fill="#6a6e73">Running · 重启 1 次 · 节点 worker-03</text>
+  <rect x="548" y="336" width="76" height="24" rx="12" fill="#fdf3e3"/>
+  <text x="566" y="352" font-family="sans-serif" font-size="11" fill="#7a5200">Pending</text>
+
+  <!-- Attach hint -->
+  <rect x="48" y="404" width="600" height="120" rx="6" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="68" y="430" font-family="sans-serif" font-size="14" font-weight="700" fill="#004080">附加资源对象</text>
+  <text x="68" y="456" font-family="sans-serif" font-size="12" fill="#151515">1. 在资源列表或详情页打开 Lightspeed 对话窗口</text>
+  <text x="68" y="480" font-family="sans-serif" font-size="12" fill="#151515">2. 点击 Add，选择当前 Pod 或告警作为上下文</text>
+  <text x="68" y="504" font-family="sans-serif" font-size="12" fill="#151515">3. 输入问题并提交，AI 将结合对象状态作答</text>
+
+  <!-- Config summary -->
+  <rect x="48" y="544" width="600" height="200" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="68" y="574" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">AI 助手配置</text>
+  <text x="68" y="596" font-family="sans-serif" font-size="11" fill="#6a6e73">来自 kubedo-system/olsconfig 与 openai Secret</text>
+
+  <text x="68" y="626" font-family="sans-serif" font-size="12" fill="#6a6e73">LLM 提供商</text>
+  <text x="200" y="626" font-family="sans-serif" font-size="12" fill="#151515">openai · deepseek-v4-flash</text>
+
+  <text x="68" y="650" font-family="sans-serif" font-size="12" fill="#6a6e73">文档索引</text>
+  <text x="200" y="650" font-family="sans-serif" font-size="12" fill="#151515">ocp-product-docs-4_19</text>
+
+  <text x="68" y="674" font-family="sans-serif" font-size="12" fill="#6a6e73">MCP 服务器</text>
+  <text x="200" y="674" font-family="sans-serif" font-size="12" fill="#151515">openshift · stdio</text>
+
+  <text x="68" y="698" font-family="sans-serif" font-size="12" fill="#6a6e73">对话缓存</text>
+  <text x="200" y="698" font-family="sans-serif" font-size="12" fill="#151515">memory · 1000 条</text>
+
+  <text x="68" y="722" font-family="sans-serif" font-size="12" fill="#6a6e73">TLS 与认证</text>
+  <text x="200" y="722" font-family="sans-serif" font-size="12" fill="#3e8635">证书已配置 · 认证开启</text>
+
+  <!-- Chat panel -->
+  <rect x="680" y="140" width="472" height="700" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <rect x="680" y="140" width="472" height="56" rx="6" fill="#151515"/>
+  <text x="700" y="166" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">Kubernetes Lightspeed</text>
+  <text x="700" y="184" font-family="sans-serif" font-size="11" fill="#c9ccd1">云原生 AI 智能助手</text>
+  <text x="1116" y="176" font-family="sans-serif" font-size="18" fill="#c9ccd1">×</text>
+
+  <rect x="700" y="212" width="310" height="30" rx="15" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="714" y="232" font-family="sans-serif" font-size="11" fill="#004080">已附加：Pod/web-7d9f8c-abcde</text>
+  <text x="1036" y="232" font-family="sans-serif" font-size="11" fill="#0066cc">清除</text>
+
+  <!-- User message -->
+  <rect x="860" y="258" width="272" height="52" rx="6" fill="#e7f1fa"/>
+  <text x="876" y="280" font-family="sans-serif" font-size="12" fill="#151515">这个 Pod 为什么处于</text>
+  <text x="876" y="300" font-family="sans-serif" font-size="12" fill="#151515">CrashLoopBackOff 状态？</text>
+
+  <!-- AI answer -->
+  <rect x="700" y="326" width="432" height="300" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="716" y="352" font-family="sans-serif" font-size="12" font-weight="700" fill="#151515">可能原因</text>
+  <text x="716" y="376" font-family="sans-serif" font-size="12" fill="#151515">1. 启动命令执行后立即退出</text>
+  <text x="716" y="400" font-family="sans-serif" font-size="12" fill="#151515">2. 依赖的配置或密钥缺失</text>
+  <text x="716" y="424" font-family="sans-serif" font-size="12" fill="#151515">3. 探针超时导致反复重启</text>
+
+  <text x="716" y="456" font-family="sans-serif" font-size="12" font-weight="700" fill="#151515">建议排查</text>
+  <text x="716" y="480" font-family="monospace" font-size="11" fill="#004080">kubectl logs web-7d9f8c-abcde --previous</text>
+  <text x="716" y="502" font-family="monospace" font-size="11" fill="#004080">kubectl describe pod web-7d9f8c-abcde</text>
+
+  <text x="716" y="534" font-family="sans-serif" font-size="11" fill="#6a6e73">参考：产品文档 4.19 · 容器组故障排查</text>
+  <text x="716" y="558" font-family="sans-serif" font-size="11" fill="#6a6e73">上下文：对话历史 + Pod 状态 + 文档索引</text>
+  <text x="716" y="582" font-family="sans-serif" font-size="11" fill="#6a6e73">集群实时信息由 MCP 服务器 openshift 提供</text>
+  <line x1="700" y1="600" x2="1132" y2="600" stroke="#f0f0f0"/>
+  <text x="716" y="618" font-family="sans-serif" font-size="10" fill="#8a8d90">回答由 AI 生成，执行前请核对命令与对象名称</text>
+
+  <!-- Feedback -->
+  <text x="700" y="652" font-family="sans-serif" font-size="11" fill="#6a6e73">这条回答有帮助吗？</text>
+  <rect x="880" y="636" width="76" height="26" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="896" y="653" font-family="sans-serif" font-size="11" fill="#151515">有帮助</text>
+  <rect x="966" y="636" width="76" height="26" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="980" y="653" font-family="sans-serif" font-size="11" fill="#151515">无帮助</text>
+
+  <!-- Input -->
+  <rect x="700" y="712" width="432" height="48" rx="6" fill="#ffffff" stroke="#0066cc"/>
+  <text x="716" y="741" font-family="sans-serif" font-size="13" fill="#9aa0a6">Send a message</text>
+  <rect x="1000" y="770" width="132" height="32" rx="4" fill="#0066cc"/>
+  <text x="1036" y="791" font-family="sans-serif" font-size="12" fill="#ffffff">Submit</text>
+  <text x="700" y="824" font-family="sans-serif" font-size="10" fill="#8a8d90">Enter 发送 · Shift+Enter 换行 · 可附加资源或告警</text>
+
+  <!-- Footer hint -->
+  <text x="48" y="880" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="880" viewBox="0 0 1200 880" role="img" aria-labelledby="title desc">
+  <title id="title">创建守护进程集表单示意图</title>
+  <desc id="desc">表单包含名称与命名空间、节点选择器与容忍度，以及容器镜像、端口、环境变量和资源请求限制。</desc>
+
+  <rect width="1200" height="880" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="48" y="35" font-family="sans-serif" font-size="16" font-weight="700" fill="#ffffff">KDO Console</text>
+  <text x="190" y="35" font-family="sans-serif" font-size="13" fill="#9aa0a6">管理员界面 / 工作负载 / 守护进程集</text>
+  <circle cx="1104" cy="28" r="10" fill="#3c3f44"/>
+  <circle cx="1146" cy="28" r="10" fill="#3c3f44"/>
+
+  <!-- Heading -->
+  <text x="48" y="106" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">创建守护进程集</text>
+  <text x="48" y="134" font-family="sans-serif" font-size="14" fill="#6a6e73">在每个匹配的节点上运行一个 Pod 副本。</text>
+
+  <!-- Basic info -->
+  <rect x="48" y="160" width="1104" height="140" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="192" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">基本信息</text>
+
+  <text x="72" y="222" font-family="sans-serif" font-size="12" fill="#6a6e73">名称</text>
+  <rect x="72" y="230" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="252" font-family="sans-serif" font-size="13" fill="#151515">fluentd-agent</text>
+
+  <text x="396" y="222" font-family="sans-serif" font-size="12" fill="#6a6e73">命名空间</text>
+  <rect x="396" y="230" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="410" y="252" font-family="sans-serif" font-size="13" fill="#151515">logging</text>
+  <text x="666" y="252" font-family="sans-serif" font-size="12" fill="#6a6e73">▾</text>
+
+  <!-- Scheduling -->
+  <rect x="48" y="320" width="1104" height="190" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="352" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">调度设置</text>
+
+  <text x="72" y="382" font-family="sans-serif" font-size="12" fill="#6a6e73">节点选择器 key</text>
+  <rect x="72" y="390" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="412" font-family="sans-serif" font-size="13" fill="#151515">node-role.kubernetes.io/worker</text>
+
+  <text x="396" y="382" font-family="sans-serif" font-size="12" fill="#6a6e73">value</text>
+  <rect x="396" y="390" width="300" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="410" y="412" font-family="sans-serif" font-size="13" fill="#151515">空值表示按标签存在匹配</text>
+
+  <text x="720" y="382" font-family="sans-serif" font-size="12" fill="#6a6e73">匹配行为</text>
+  <rect x="720" y="390" width="408" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="734" y="412" font-family="sans-serif" font-size="13" fill="#151515">仅调度到匹配节点；留空表示所有节点</text>
+
+  <text x="72" y="460" font-family="sans-serif" font-size="12" fill="#6a6e73">容忍度 key</text>
+  <rect x="72" y="468" width="200" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="488" font-family="sans-serif" font-size="13" fill="#151515">node-role.kubernetes.io/master</text>
+
+  <text x="288" y="460" font-family="sans-serif" font-size="12" fill="#6a6e73">operator</text>
+  <rect x="288" y="468" width="140" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="302" y="488" font-family="sans-serif" font-size="13" fill="#151515">Exists</text>
+
+  <text x="444" y="460" font-family="sans-serif" font-size="12" fill="#6a6e73">effect</text>
+  <rect x="444" y="468" width="160" height="32" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="458" y="488" font-family="sans-serif" font-size="13" fill="#151515">NoSchedule</text>
+
+  <rect x="620" y="468" width="88" height="32" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="630" y="488" font-family="sans-serif" font-size="12" fill="#0066cc">＋ 添加</text>
+
+  <!-- Container -->
+  <rect x="48" y="530" width="1104" height="250" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="72" y="562" font-family="sans-serif" font-size="17" font-weight="700" fill="#151515">容器配置</text>
+
+  <text x="72" y="592" font-family="sans-serif" font-size="12" fill="#6a6e73">容器镜像</text>
+  <rect x="72" y="600" width="420" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="622" font-family="sans-serif" font-size="13" fill="#151515">fluent/fluentd:v1.14</text>
+
+  <text x="520" y="592" font-family="sans-serif" font-size="12" fill="#6a6e73">端口</text>
+  <rect x="520" y="600" width="140" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="534" y="622" font-family="sans-serif" font-size="13" fill="#151515">24224</text>
+
+  <text x="680" y="592" font-family="sans-serif" font-size="12" fill="#6a6e73">容器名称</text>
+  <rect x="680" y="600" width="448" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="694" y="622" font-family="sans-serif" font-size="13" fill="#151515">fluentd</text>
+
+  <text x="72" y="660" font-family="sans-serif" font-size="12" fill="#6a6e73">环境变量</text>
+  <rect x="72" y="668" width="420" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="86" y="690" font-family="sans-serif" font-size="13" fill="#151515">FLUENTD_CONF=fluent.conf</text>
+
+  <text x="520" y="660" font-family="sans-serif" font-size="12" fill="#6a6e73">资源请求 CPU</text>
+  <rect x="520" y="668" width="140" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="534" y="690" font-family="sans-serif" font-size="13" fill="#151515">100m</text>
+
+  <text x="680" y="660" font-family="sans-serif" font-size="12" fill="#6a6e73">资源请求内存</text>
+  <rect x="680" y="668" width="140" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="694" y="690" font-family="sans-serif" font-size="13" fill="#151515">256Mi</text>
+
+  <text x="520" y="724" font-family="sans-serif" font-size="12" fill="#6a6e73">资源限制 CPU</text>
+  <rect x="520" y="732" width="140" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="534" y="754" font-family="sans-serif" font-size="13" fill="#151515">200m</text>
+
+  <text x="680" y="724" font-family="sans-serif" font-size="12" fill="#6a6e73">资源限制内存</text>
+  <rect x="680" y="732" width="140" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="694" y="754" font-family="sans-serif" font-size="13" fill="#151515">512Mi</text>
+
+  <!-- Actions -->
+  <rect x="72" y="794" width="88" height="30" rx="4" fill="#0066cc"/>
+  <text x="96" y="814" font-family="sans-serif" font-size="12" fill="#ffffff">添加</text>
+  <rect x="172" y="794" width="72" height="30" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="194" y="814" font-family="sans-serif" font-size="12" fill="#0066cc">取消</text>
+
+  <text x="48" y="852" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>

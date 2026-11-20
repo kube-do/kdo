@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1008" viewBox="0 0 1200 1008" role="img" aria-labelledby="title desc">
+  <title id="title">Alertmanager 配置详情页示意图</title>
+  <desc id="desc">页面包含 Details 与 YAML 标签页，依次展示告警路由、全局配置、模板、抑制规则与接收器五个区块，右侧为 Secret 名称。</desc>
+
+  <rect width="1200" height="1008" fill="#f3f4f6"/>
+
+  <!-- Masthead -->
+  <rect width="1200" height="56" fill="#151515"/>
+  <text x="32" y="34" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff">KDO 控制台</text>
+  <text x="180" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">管理员</text>
+  <text x="248" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">集群设置</text>
+  <text x="336" y="34" font-family="sans-serif" font-size="12" fill="#c9ccd1">配置</text>
+  <circle cx="1104" cy="28" r="10" fill="#3c3f44"/>
+  <circle cx="1146" cy="28" r="10" fill="#3c3f44"/>
+
+  <!-- Heading -->
+  <text x="48" y="112" font-family="sans-serif" font-size="28" font-weight="700" fill="#151515">Alertmanager 配置</text>
+  <text x="48" y="142" font-family="sans-serif" font-size="14" fill="#6a6e73">图形化编辑告警路由、全局配置与接收器，保存后由 Alertmanager 热加载</text>
+
+  <rect x="900" y="112" width="252" height="32" rx="4" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="916" y="133" font-family="sans-serif" font-size="12" fill="#004080">Secret · alertmanager-main</text>
+
+  <!-- Tabs -->
+  <rect x="48" y="168" width="100" height="34" rx="4" fill="#0066cc"/>
+  <text x="76" y="190" font-family="sans-serif" font-size="13" fill="#ffffff">Details</text>
+  <rect x="148" y="168" width="80" height="34" rx="4" fill="#ffffff" stroke="#d2d2d2"/>
+  <text x="174" y="190" font-family="sans-serif" font-size="13" fill="#151515">YAML</text>
+
+  <!-- Alert routing -->
+  <rect x="48" y="216" width="1104" height="118" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="68" y="246" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">Alert routing</text>
+  <rect x="1052" y="226" width="80" height="28" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="1078" y="245" font-family="sans-serif" font-size="12" fill="#0066cc">Edit</text>
+
+  <text x="68" y="274" font-family="sans-serif" font-size="11" fill="#6a6e73">Group by</text>
+  <text x="68" y="294" font-family="sans-serif" font-size="13" fill="#151515">namespace</text>
+  <text x="288" y="274" font-family="sans-serif" font-size="11" fill="#6a6e73">Group wait</text>
+  <text x="288" y="294" font-family="sans-serif" font-size="13" fill="#151515">30s</text>
+  <text x="508" y="274" font-family="sans-serif" font-size="11" fill="#6a6e73">Group interval</text>
+  <text x="508" y="294" font-family="sans-serif" font-size="13" fill="#151515">5m</text>
+  <text x="728" y="274" font-family="sans-serif" font-size="11" fill="#6a6e73">Repeat interval</text>
+  <text x="728" y="294" font-family="sans-serif" font-size="13" fill="#151515">12h</text>
+  <text x="948" y="274" font-family="sans-serif" font-size="11" fill="#6a6e73">默认接收器</text>
+  <text x="948" y="294" font-family="sans-serif" font-size="13" fill="#151515">Default</text>
+
+  <!-- Global configuration -->
+  <rect x="48" y="350" width="1104" height="118" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="68" y="380" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">Global configuration</text>
+  <rect x="1052" y="360" width="80" height="28" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="1078" y="379" font-family="sans-serif" font-size="12" fill="#0066cc">Edit</text>
+
+  <text x="68" y="408" font-family="sans-serif" font-size="12" fill="#6a6e73">Resolve timeout</text>
+  <text x="228" y="408" font-family="sans-serif" font-size="13" fill="#151515">5m</text>
+  <text x="68" y="432" font-family="sans-serif" font-size="12" fill="#6a6e73">WeChat Corp ID</text>
+  <text x="228" y="432" font-family="sans-serif" font-size="13" fill="#151515">ww5aff790d58ffe139</text>
+  <text x="68" y="456" font-family="sans-serif" font-size="12" fill="#6a6e73">SMTP Smarthost</text>
+  <text x="228" y="456" font-family="sans-serif" font-size="13" fill="#151515">smtp.example.com:587</text>
+  <text x="700" y="408" font-family="sans-serif" font-size="11" fill="#6a6e73">包含 secret、key、token 的字段以 •••••••• 显示</text>
+
+  <!-- Templates -->
+  <rect x="48" y="484" width="1104" height="76" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="68" y="514" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">Templates</text>
+  <rect x="1060" y="492" width="72" height="24" rx="12" fill="#f0f0f0"/>
+  <text x="1078" y="508" font-family="sans-serif" font-size="11" fill="#4f5255">只读</text>
+  <text x="68" y="542" font-family="monospace" font-size="12" fill="#151515">/etc/alertmanager/config/wechat.tmpl</text>
+
+  <!-- Inhibit rules -->
+  <rect x="48" y="576" width="1104" height="126" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="68" y="606" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">Inhibit rules</text>
+  <rect x="980" y="586" width="152" height="28" rx="4" fill="#0066cc"/>
+  <text x="996" y="605" font-family="sans-serif" font-size="12" fill="#ffffff">Create inhibit rule</text>
+
+  <text x="68" y="638" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">Source</text>
+  <text x="400" y="638" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">Target</text>
+  <text x="700" y="638" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">Equal</text>
+  <text x="968" y="638" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">Actions</text>
+
+  <rect x="68" y="652" width="130" height="24" rx="12" fill="#e7f1fa" stroke="#0066cc"/>
+  <text x="80" y="669" font-family="sans-serif" font-size="11" fill="#004080">severity=critical</text>
+  <rect x="400" y="652" width="130" height="24" rx="12" fill="#fdf3e3" stroke="#c58c00"/>
+  <text x="412" y="669" font-family="sans-serif" font-size="11" fill="#7a5200">severity=warning</text>
+  <text x="700" y="669" font-family="sans-serif" font-size="12" fill="#151515">namespace</text>
+  <rect x="968" y="652" width="60" height="24" rx="4" fill="#ffffff" stroke="#0066cc"/>
+  <text x="986" y="669" font-family="sans-serif" font-size="11" fill="#0066cc">Edit</text>
+  <rect x="1036" y="652" width="64" height="24" rx="4" fill="#ffffff" stroke="#c9190b"/>
+  <text x="1050" y="669" font-family="sans-serif" font-size="11" fill="#c9190b">Delete</text>
+
+  <!-- Receivers -->
+  <rect x="48" y="718" width="1104" height="240" rx="6" fill="#ffffff" stroke="#e0e0e0"/>
+  <text x="68" y="748" font-family="sans-serif" font-size="15" font-weight="700" fill="#151515">Receivers</text>
+  <rect x="1010" y="728" width="122" height="28" rx="4" fill="#0066cc"/>
+  <text x="1024" y="747" font-family="sans-serif" font-size="12" fill="#ffffff">Create receiver</text>
+
+  <text x="68" y="782" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">Name</text>
+  <text x="340" y="782" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">Integration type</text>
+  <text x="620" y="782" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">Routing labels</text>
+  <text x="1000" y="782" font-family="sans-serif" font-size="11" font-weight="700" fill="#6a6e73">Actions</text>
+  <line x1="48" y1="794" x2="1152" y2="794" stroke="#e0e0e0"/>
+
+  <text x="68" y="824" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">Default</text>
+  <text x="340" y="824" font-family="sans-serif" font-size="12" fill="#151515">webhook</text>
+  <text x="620" y="824" font-family="sans-serif" font-size="12" fill="#6a6e73">All（default receiver）</text>
+  <text x="1004" y="824" font-family="sans-serif" font-size="16" fill="#6a6e73">⋮</text>
+  <line x1="48" y1="842" x2="1152" y2="842" stroke="#f0f0f0"/>
+
+  <text x="68" y="872" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">Critical</text>
+  <text x="340" y="872" font-family="sans-serif" font-size="12" fill="#151515">email</text>
+  <text x="620" y="872" font-family="sans-serif" font-size="12" fill="#6a6e73">severity=critical</text>
+  <text x="1004" y="872" font-family="sans-serif" font-size="16" fill="#6a6e73">⋮</text>
+  <line x1="48" y1="890" x2="1152" y2="890" stroke="#f0f0f0"/>
+
+  <text x="68" y="920" font-family="sans-serif" font-size="13" font-weight="700" fill="#151515">Watchdog</text>
+  <text x="340" y="920" font-family="sans-serif" font-size="12" fill="#c58c00">未配置，点击 Configure</text>
+  <text x="620" y="920" font-family="sans-serif" font-size="12" fill="#6a6e73">—</text>
+  <text x="1004" y="920" font-family="sans-serif" font-size="16" fill="#6a6e73">⋮</text>
+  <line x1="48" y1="938" x2="1152" y2="938" stroke="#f0f0f0"/>
+
+  <!-- Footer hint -->
+  <text x="48" y="984" font-family="sans-serif" font-size="11" fill="#8a8d90">示意图，仅用于说明页面结构与操作区域，不代表实际界面像素。</text>
+</svg>
