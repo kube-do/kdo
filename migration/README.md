@@ -2,14 +2,16 @@
 
 本目录存放 URL 映射、迁移脚本和校验工具，不是文档内容。
 
-## 阶段 A 已落地
+## 阶段 A / B 已落地
 
-- `migrate-stage-a.mjs`：把 `docs/` 同构迁移到 `site-docs/`，保持 URL 不变。
+- `migrate-stage-a.mjs`：把 `docs/` 同构迁移到 `site-docs/`，保持旧 URL。
+- `migrate-stage-b.mjs`：按 `url-map.csv` 调整 IA，移动页面与资源、重写绝对/相对链接、重建分类、兼容旧锚点。
 - `optimize-assets.mjs`：资源治理，删除未引用图片、合并重复图片、GIF 转 MP4 + WebP poster、PNG 转 WebP。
-- `check-url-parity.mjs`：构建后检查旧 URL 是否都有产物，410 页面是否已排除。
 - `sync-downloads.mjs`：把根目录的 `kdo-developer.tar.gz` 与 `agent-setup*.sh` 复制到 `static/`，保证站点根路径可下载。
-- 当前结果：110 个页面迁移，3 个 `docs/analysis/*` 页面 410，`/docs/` 入口页新增。
-- 图片治理后：`site-docs/` 约 9 MB，`static/media/` 约 8 MB，构建产物约 38 MB。
+- `generate-vercel-redirects.mjs`：从 `redirects.csv` 生成 `vercel.json` 的 301 重定向。
+- `check-url-parity.mjs`：构建后检查 200/301/410 与 `vercel.json` 重定向是否一致。
+- 当前结果：`site-docs/` 共 106 篇 Markdown，9 个顶层栏目；19 个保持页、91 个 301、3 个 410。
+- 图片治理后：`site-docs/` 约 11 MB，`static/media/` 约 8 MB，构建产物约 38 MB。
 
 ```bash
 pnpm migrate
@@ -21,11 +23,13 @@ node migration/check-url-parity.mjs
 
 ```bash
 node migration/migrate-stage-a.mjs
+node migration/migrate-stage-b.mjs
 node migration/optimize-assets.mjs
 node migration/sync-downloads.mjs
+node migration/generate-vercel-redirects.mjs
 ```
 
-注意：迁移脚本会清空并重建 `site-docs/`，优化脚本会重建 `static/media/docs/`。不要直接手改这两个生成目录后重跑；源内容仍以 `docs/` 为准，阶段 B 切换后再反转。
+注意：阶段 A 会清空并重建 `site-docs/`，阶段 B 在其上做 IA 移动；优化脚本会重建 `static/media/docs/`。不要直接手改这些生成目录后重跑；源内容仍以 `docs/` 为准，阶段 B 切换后再反转。
 
 ## 文件
 
@@ -36,9 +40,11 @@ node migration/sync-downloads.mjs
 | `url-map.md` | 可读版映射表，按栏目分组 |
 | `redirects.csv` | 只包含 301/410 的重定向清单 |
 | `migrate-stage-a.mjs` | Jekyll -> Docusaurus 同构迁移脚本 |
+| `migrate-stage-b.mjs` | IA 移动、链接重写、分类重建、锚点兼容 |
 | `optimize-assets.mjs` | 图片去重、去未引用、GIF -> MP4、PNG -> WebP |
 | `sync-downloads.mjs` | 同步根目录下载文件到 `static/` |
-| `check-url-parity.mjs` | 构建产物 URL parity 检查 |
+| `generate-vercel-redirects.mjs` | 从 `redirects.csv` 生成 301 |
+| `check-url-parity.mjs` | 构建产物 URL parity 与 redirects 一致性检查 |
 | `prototype-docs/` | 首批 5 篇样板页，保留作设计参考 |
 
 ## 资源治理
@@ -80,13 +86,14 @@ node migration/generate-url-map.mjs
 
 ## 后续
 
-1. 用 `redirects.csv` 生成 `vercel.json` 的 `redirects`。
-2. 用 `url-map.csv` 驱动 `migrate/links.ts` 重写站内链接。
-3. 上线前跑 URL parity：旧 URL 全部 200 或 301 到预期新 URL。
-4. 410 页面确认已从构建中排除，并评估 git 历史清理。
+1. 内容 PR 继续合并 `merge-into` 页面正文，当前阶段 B 只做跳转，未做正文合并。
+2. 410 页面确认已从构建中排除，并评估 git 历史清理。
+3. 上线前跑 URL parity：旧 URL 全部 301 到预期新 URL，新 URL 全部 200。
+4. 继续把构建体积压到 30 MB 以内。
 
 ## 注意
 
-- 映射表是“迁移后 URL”的约定，不代表页面内容已经迁移。
+- 映射表是“迁移后 URL”的约定，不代表页面内容已经合并完成。
 - 合并页（`merge-into`）需要确认新页面确实覆盖旧内容后再删除旧页。
+- 阶段 B 会重写绝对链接和相对链接；新增页面如果引用旧目录，仍需手动检查。
 - `redirects.csv` 中 410 记录的目标为空，Vercel 原生 redirects 不直接支持 410；正式上线时需要用中间页或边缘函数实现，或在构建层排除并返回 404/410。

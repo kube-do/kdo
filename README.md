@@ -39,12 +39,12 @@ pnpm serve
 pnpm migrate
 ```
 
-`pnpm migrate` 会依次执行 `migration/migrate-stage-a.mjs`、`migration/optimize-assets.mjs` 和 `migration/sync-downloads.mjs`：
-- 从 `docs/` 生成 `site-docs/`
-- GIF 转 MP4 + WebP poster，输出到 `static/media/`
-- PNG 转 WebP 并限宽
-- 删除未引用图片并合并重复图片
-- 把根目录的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 同步到 `static/`，保证站点根路径可下载
+`pnpm migrate` 会依次执行：
+- `migration/migrate-stage-a.mjs`：从 `docs/` 生成 `site-docs/`，保持旧 URL
+- `migration/migrate-stage-b.mjs`：按 `url-map.csv` 调整 IA，并重写站内链接
+- `migration/optimize-assets.mjs`：GIF 转 MP4 + WebP poster，PNG 转 WebP，删除未引用图片并合并重复图片
+- `migration/sync-downloads.mjs`：把根目录的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 同步到 `static/`
+- `migration/generate-vercel-redirects.mjs`：从 `redirects.csv` 生成 `vercel.json` 的 301
 
 `pnpm start`、`pnpm build` 也会先执行 `sync:downloads`。`kdo-developer.tar.gz` 和 `agent-setup*.sh` 仍以仓库根目录为唯一源文件，`static/` 下的副本是构建产物，不提交。
 
@@ -63,17 +63,13 @@ pnpm migrate
 ├── site-docs/               # Docusaurus 文档内容（URL 前缀 /docs/）
 │   ├── quick-start/         # 快速开始
 │   ├── install/             # 安装与升级
-│   ├── dev/                 # 开发者指南
+│   ├── developer/           # 开发者指南
 │   ├── admin/               # 管理员指南
-│   ├── devops/              # DevOps 实践
 │   ├── observability/       # 可观测性
-│   ├── workload-actions/    # 工作负载操作
-│   ├── rbac/                # 权限管理
-│   ├── storage/             # 存储
-│   ├── terminal/            # 终端
-│   ├── ide/                 # 云开发环境
-│   ├── aiops/               # AI 智能助手
-│   └── architecture/        # 架构与原理
+│   ├── architecture/        # 架构与原理
+│   ├── reference/           # 参考手册
+│   ├── release-notes/       # 发布说明
+│   └── contributing/        # 贡献指南
 ├── migration/               # URL 映射、迁移脚本、parity 检查
 ├── docs/                    # 旧 Jekyll 内容（迁移期保留，用于回滚）
 ├── src/                     # 首页、样式
@@ -87,14 +83,15 @@ pnpm migrate
 
 ## 迁移状态
 
-当前处于方案中的 **阶段 A：同构迁移**。
+当前已完成 **阶段 A：同构迁移** 和 **阶段 B：IA 重构 + 301**。
 
 - 旧站 113 个页面已全部登记在 `migration/url-map.csv`。
-- 110 个页面已迁移到 `site-docs/`，URL 保持 `/docs/...` 不变。
-- 3 篇 `docs/analysis/*` 内部分析计划 410 下线，不进入构建。
+- `site-docs/` 共 106 篇 Markdown，顶层收敛为 9 个栏目：`quick-start`、`install`、`developer`、`admin`、`observability`、`architecture`、`reference`、`release-notes`、`contributing`。
+- 19 个 URL 保持不变，91 个旧 URL 已配置 301，3 篇 `docs/analysis/*` 内部分析不进入构建。
+- `vercel.json` 的 91 条重定向由 `migration/redirects.csv` 生成。
 - 旧 Jekyll 内容保留在 `docs/`，GitHub Pages 工作流改为手动回滚入口。
-- 图片治理后构建产物约 **38 MB**：`site-docs/` 约 9 MB，`static/media/` 约 8 MB。
-- 阶段 B 将按 `migration/url-map.csv` 调整 IA，并为旧 URL 配置 301。
+- 图片治理后构建产物约 **38 MB**：`site-docs/` 约 11 MB，`static/media/` 约 8 MB。
+- 3 篇内部分析的 410 仍需在 Vercel 侧用中间页或边缘函数实现。
 
 > `site-docs/` 和 `static/media/` 是提交到仓库的构建输入。Vercel 只执行 `pnpm build`，不会在云端运行 `pnpm migrate`；修改 `docs/` 后请在本地执行 `pnpm migrate`，并提交生成结果。`static/` 下的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 是 `pnpm build` 自动生成的副本，不提交。
 
