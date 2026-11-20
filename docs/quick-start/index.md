@@ -32,8 +32,8 @@ flowchart TD
     D --> E
     E --> F[准备 Git 仓库与 Dockerfile]
     F --> G[从 Git 仓库创建应用]
-    G --> H[推送代码触发 PipelineRun]
-    H --> I[查看构建日志与运行状态]
+    G --> H[推送代码触发构建 PipelineRun]
+    H --> I[构建成功写回并自动部署]
     I --> J[访问 dev 环境验证应用]
 ```
 
@@ -181,7 +181,7 @@ git push -u origin main
    - **分支**：`main`
    - **凭证**：Git Token 或 SSH Key
 5. 平台自动创建：
-   - `.tekton/` 流水线（构建 + 部署）
+   - `.tekton/` 构建流水线（部署由构建成功后的清单写回自动触发）
    - 多环境：`dev`、`test`、`stage`、`prod`
 6. 点击 **创建**
 
@@ -197,12 +197,12 @@ git push
 在 KDO 控制台：
 
 1. 进入应用详情 → **流水线运行**
-2. 看到新的 PipelineRun 正在执行
+2. 看到新的**构建** PipelineRun 正在执行
 3. 点击查看日志，等待状态变为 `Succeeded`
 
 ### 步骤 4：访问应用
 
-构建成功后，应用会自动部署到 `dev` 环境：
+构建成功且 `gitops-writeback` 写回清单后（`changed=true`），平台会自动创建部署运行并发布到 `dev` 环境：
 
 1. 进入 **开发者界面 → 项目 → kdo → dev**
 2. 找到 `my-first-app`，查看访问 URL

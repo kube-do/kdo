@@ -179,7 +179,7 @@ kind: PipelineRun
 metadata:
   name: maven-build
   annotations:
-    # 引用 Tekton Hub 中的 git-clone 任务
+    # 引用集群内预置的 git-clone Task
     pipelinesascode.tekton.dev/task: "[git-clone]"
     # 匹配 pull request 事件
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
@@ -224,7 +224,7 @@ spec:
 
 | 注解 | 说明 |
 |---|---|
-| `pipelinesascode.tekton.dev/task` | 从 Tekton Hub 引用 `git-clone` 任务 |
+| `pipelinesascode.tekton.dev/task` | 引用集群内预置的 `git-clone` Task |
 | `pipelinesascode.tekton.dev/on-event` | 匹配 pull request（或 merge request）事件 |
 | `pipelinesascode.tekton.dev/on-target-branch` | 指定 PR 目标为 `main` 或 `release` 分支时触发 |
 | `pipelinesascode.tekton.dev/on-path-changed` | 仅在 `src` 目录下的文件有变更时触发 |
@@ -287,7 +287,7 @@ spec:
 
 Pipelines as Code 解析器注解用于引用 `Task` 和 `Pipeline` CR 定义。解析器从注解中指定的位置获取定义，并自动将其包含到生成的 `PipelineRun` CR 中。
 
-> **注意**：KDO 已弃用 Tekton Hub 公共实例（`hub.tekton.dev`），将在未来版本中移除。请使用 [Artifact Hub](https://artifacthub.io) 替代。
+> **注意**：KDO 的构建 Task 由平台预置在 `kubedo` 命名空间（如 `git-clone`、`buildah`、`maven`、`gitops-writeback`）。推荐用 `resolver: cluster` 或 Repository 的 `pipelinesascode.tekton.dev/task` 注解引用，不依赖公网 Tekton Hub / Artifact Hub。
 
 ### 5.4.1 远程任务注解
 

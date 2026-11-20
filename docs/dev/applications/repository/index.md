@@ -15,7 +15,7 @@ nav_order: 1
 通过[Pipelines as Code](#pipelines-as-code介绍)的方法，KDO对接 `Git` 代码仓库，直接从源代码仓库创建应用组件。
 目前 KDO 支持和`GitHub`、`GitLab`、`Gitee`、`Gitea`、`阿里云 Codeup` 这五种 Git 仓库进行对接。
 
-只需`Git URL`和用户的`Git Token`就可以自动生成支持**多环境和多分支**的流水线，流水线支持**自动构建与自动部署**，功能非常强大。
+只需`Git URL`和用户的`Git Token`就可以自动生成支持**多环境和多分支**的流水线，流水线默认**自动构建**；构建成功且清单有变化（`gitops-writeback` 输出 `changed=true`）时，平台自动创建部署运行。
 ![pipeline.png](imgs/application.png)
 
 [Pipelines as Code详情](../pipelines-as-code/index.md)
@@ -32,11 +32,12 @@ flowchart TD
     F --> G[生成 devfile.yaml]
     G --> H[生成 docker/Dockerfile]
     H --> I[生成 kubernetes 部署清单]
-    I --> J[按环境生成 .tekton 流水线定义]
+    I --> J[按环境生成 .tekton 构建流水线定义]
     J --> K[挂载 Webhook 到代码仓库]
-    K --> L[推送或 PR 触发 PipelineRun]
-    L --> M[构建镜像并部署到目标环境]
-    M --> N[状态回报到 Git 提供商]
+    K --> L[推送或 PR 触发构建 PipelineRun]
+    L --> M[构建镜像并由 gitops-writeback 写回清单]
+    M --> N[构建成功且清单变化时自动创建部署运行]
+    N --> O[状态回报到 Git 提供商]
 ```
 
 ## 创建Git应用
@@ -139,7 +140,7 @@ KDO Pipelines-as-Code的架构主要由以下组件构成：
 2. **流水线定义解析：** `Pipelines-as-Code Controller `从代码仓库中读取流水线定义文件(如 .tekton/pipeline.yaml、kubernetes/deployment.yaml、docker/Dockerfile 等)。
 这些文件定义了流水线的分支、任务、步骤和参数，部署的集群和环境等信息。
 
-3. **流水线触发：** `Pipelines-as-Code Controller` 将流水线定义转换为 Tekton 资源（如 [PipelineRun](/docs/dev/applications/pipelines#pipelinerun) 和 [TaskRun](/docs/dev/applications/pipelines#taskrun)）。`Tekton Controller`接收到这些资源后，开始在 Kubernetes 集群中调度和执行任务。
+3. **流水线触发：** `Pipelines-as-Code Controller` 将流水线定义转换为 Tekton 资源（如 [PipelineRun](/docs/dev/applications/pipelines#pipelinerun) 和 [TaskRun](/docs/dev/applications/pipelines#taskrun)），`Tekton Controller` 调度并执行**构建**任务。构建模板末尾由 `gitops-writeback` 写回镜像 tag；构建成功且清单变化时，PAC Controller 会另起部署运行。
 
 4. **任务执行：** `Tekton` 在 `Kubernetes` 集群中创建 `容器组(Pod)` 来执行流水线任务。 每个任务可以包含多个步骤，每个步骤运行在一个容器中。
 

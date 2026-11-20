@@ -58,8 +58,7 @@ flowchart TD
 - [监控 (Monitoring)](/docs/observability/monitoring/) - 指标采集、监控面板、告警规则
 - [日志 (Logging)](/docs/observability/logging/) - 日志收集、检索与保留策略
 - [事件 (Events)](/docs/observability/events/) - Kubernetes 事件采集与查看
-- [监控大屏](/docs/observability/large-screen/) - Grafana 大屏
-- [指标 (Metrics)](/docs/observability/metrics/) - PromQL 查询与指标说明
+- [监控概览](/docs/observability/monitoring/) - 仪表盘、告警与指标说明
 
 ## 与管理员观测平台的区别
 

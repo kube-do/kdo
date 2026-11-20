@@ -131,6 +131,6 @@ spec:
 
 ## 2.5 其他资源
 
-- [安装 Tekton Pipelines](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines/1.22/html/installing_openshift_pipelines/index)
-- [安装 tkn CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines/1.22/html/installing_openshift_pipelines/installing-tkn)
-- [Tekton Pipelines 发布说明](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines/1.22/html/release_notes/index)
+- [安装 Tekton Pipelines](https://tekton.dev/docs/installation/)
+- [安装 tkn CLI](https://tekton.dev/docs/cli/)
+- [Tekton Pipelines 发布说明](https://github.com/tektoncd/pipeline/releases)

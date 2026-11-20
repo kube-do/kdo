@@ -21,7 +21,7 @@ Pipelines as Code 支持以下功能：
 - **事件驱动**：支持 GitHub pull request 和 commit 事件触发。
 - **评论操作**：支持通过 PR/MR 评论中的命令操作流水线，例如 `/retest`。
 - **事件过滤**：支持 Git 事件过滤，可为不同事件定义不同的流水线。
-- **自动任务解析**：自动解析 Tekton Pipelines 中的任务，支持本地任务、Tekton Hub 和远程 URL。
+- **自动任务解析**：自动解析 Tekton Pipelines 中的任务，支持集群内 Task（`kubedo` 命名空间）、本地任务和远程 URL。
 - **GitHub Blob/Objects API**：通过 GitHub Blob 和 Objects API 检索配置。
 - **访问控制**：支持基于 GitHub 组织的 ACL（访问控制列表），或使用 Prow 风格的 `OWNERS` 文件进行权限控制。
 - **CLI 工具**：`tkn pac` CLI 插件，用于管理引导和 Pipelines as Code 仓库。
@@ -48,11 +48,13 @@ Pipelines as Code webhook 端点接收事件
        ↓
 匹配 Repository CR（通过 URL、分支等规则）
        ↓
-控制器在 Repository CR 所在命名空间创建 PipelineRun CR
+控制器在 Repository CR 所在命名空间创建**构建** PipelineRun CR
        ↓
-Tekton Pipelines 执行流水线
+Tekton Pipelines 执行构建，gitops-writeback 写回镜像 tag
        ↓
-状态报告回 Git 提供商（Checks Tab / PR 评论）
+构建成功且 changed=true → PAC Controller 创建部署 PipelineRun
+       ↓
+部署运行 apply 清单并回报状态到 Git 提供商（Checks Tab / PR 评论）
 ```
 
 用流程图表示同一过程：
@@ -66,10 +68,13 @@ flowchart TD
     E -->|否| F[忽略本次事件]
     E -->|是| G[读取 .tekton 目录中的 PipelineRun 定义]
     G --> H[在 Repository 所在命名空间创建 PipelineRun]
-    H --> I[Tekton Pipelines 调度并执行任务]
-    I --> J[任务 Pod 完成构建与部署]
-    J --> K[状态回报 Git 提供商]
-    K --> L[PR 检查状态或评论更新]
+    H --> I[Tekton Pipelines 调度并执行构建任务]
+    I --> J[gitops-writeback 写回镜像 tag]
+    J --> K{构建成功且 changed=true}
+    K -->|否| L[不部署，直接回报状态]
+    K -->|是| M[PAC Controller 创建部署 PipelineRun]
+    M --> N[kubectl apply 清单并等待 rollout]
+    N --> O[状态回报 Git 提供商]
 ```
 
 **详细步骤说明**：

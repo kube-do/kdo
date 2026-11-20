@@ -115,8 +115,8 @@ Task 也是独立的 Kubernetes CRD，可以被多个 Pipeline 引用。
 KDO 的 **应用（Application）** 自动生成流水线，无需管理员手动创建：
 
 - 开发者创建应用时选择源码仓库
-- 平台自动生成 `.tekton/` 目录中的 Pipeline 定义
-- 推送代码自动触发构建、测试、部署
+- 平台自动生成 `.tekton/` 目录中的**构建** Pipeline 定义
+- 推送代码自动触发构建、测试；构建成功且清单有变化时自动部署
 
 **管理员只需：**
 - 确保 Tekton 组件正常运行
@@ -233,7 +233,7 @@ tasks:
 如果构建成功但没有出现部署运行，依次检查：
 
 1. `gitops-writeback` 任务的结果是否为 `changed=true`（`changed=false` 表示清单没有变化，不会部署）；
-2. Controller 日志中是否有 `forbidden` 报错，确认 `pipelines-as-code-watcher` 服务账号具备 `pipelineruns` 的 `create` 权限；
+2. Controller 日志中是否有 `forbidden` 报错，确认 `pipelines-as-code-controller` 服务账号具备 `pipelineruns` 的 `create` 权限；
 3. 部署模板 ConfigMap 是否存在；
 4. 清单中的镜像是否带有版本 tag。
 
@@ -241,7 +241,7 @@ tasks:
 
 ```bash
 curl -X POST "http://pipelines-as-code-controller.pipelines-as-code.svc:8080/manual?cluster=<集群>&namespace=<项目>&repository=<应用>&branch=<分支>&appEnv=<环境>&deploy=yes" \
-  -H "X-Webhook-Secret: ${WEBHOOK_SECRET}"
+  -H "Authorization: Bearer ${USER_TOKEN}"
 ```
 
 详情参考 [源码持续交付](/docs/devops/continuous/source-code/#构建写回与自动部署)。

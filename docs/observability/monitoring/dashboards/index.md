@@ -9,7 +9,7 @@ nav_order: 2
 
 ## 介绍
 {: .note }
-本页介绍 KDO 监控中 Grafana 仪表盘的浏览、筛选、查看、分享与权限。集群资源总览、健康巡检和指标口径请参阅 [指标](/docs/observability/metrics/)；告警规则、联络点和通知策略请参阅 [监控](/docs/observability/monitoring/)。
+本页介绍 KDO 监控中 Grafana 仪表盘的浏览、筛选、查看、分享与权限。集群资源总览、健康巡检和指标口径请参阅 [监控概览](/docs/observability/monitoring/)；告警规则、联络点和通知策略请参阅 [监控](/docs/observability/monitoring/)。
 
 ![dashboards.gif](imgs/dashboards.gif)
 
@@ -88,7 +88,7 @@ flowchart TD
 - **Share → Snapshot**：生成只读快照，适合发给没有集群权限的同事。
 - **Share → Embed**：获取可嵌入其他页面的链接。
 - **Export CSV**：导出表格面板数据；**Export JSON**：导出仪表盘定义，便于备份或导入其他环境。
-- 应用大屏和系统大屏的入口见 [指标](/docs/observability/metrics/) 页面。
+- 应用大屏和系统大屏的入口见 [监控概览](/docs/observability/monitoring/) 页面。
 
 ## 面板告警
 
@@ -130,7 +130,7 @@ Viewer 权限不能保存修改；即使是 Editor，也需要点击保存并确
 
 ## 相关文档
 
-- [指标](/docs/observability/metrics/)
+- [监控概览](/docs/observability/monitoring/)
 - [监控与告警](/docs/observability/monitoring/)
 - [日志](/docs/observability/logging/)
 - [事件中心](/docs/observability/events/)
