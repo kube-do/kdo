@@ -38,3 +38,41 @@ flowchart TD
 ```
 
 <video class="doc-video" controls muted loop autoplay playsinline preload="metadata" poster="/media/docs/developer/imgs/dev-start-poster.webp" aria-label="开发者界面"><source src="/media/docs/developer/imgs/dev-start.mp4" type="video/mp4" /></video>
+
+## 能力地图与学习路径
+
+```mermaid
+flowchart TD
+    A[了解 KDO DevOps 概念] --> B[认识项目 环境 应用三层模型]
+    B --> C[部署第一个应用]
+    C --> D{选择创建方式}
+    D -->|源码| E[按语言模板创建 Git 应用]
+    D -->|镜像或 Helm| F[从镜像 Helm 或软件包创建]
+    E --> G[配置分支流水线与环境]
+    F --> G
+    G --> H[运行流水线并验证应用]
+    H --> I[配置源码持续交付]
+    I --> J[多环境交付与应用模板]
+    J --> K[按 GitFlow 规范协作开发]
+```
+
+建议按以下顺序阅读：
+
+1. **概念与模型**：[KDO DevOps 介绍](/docs/developer/overview/devops/)
+2. **创建应用**：[应用管理](/docs/developer/applications/)
+3. **流水线与交付**：[持续交付](/docs/developer/best-practices/continuous-delivery/)
+4. **项目与环境**：[项目管理](/docs/developer/projects/)
+5. **分支协作**：[GitFlow](/docs/developer/best-practices/gitflow/)
+
+日常开发通常从 **创建 Git 应用** 开始：选择代码仓库和语言模板，KDO 会生成构建与部署所需文件，并在代码推送后自动触发流水线。
+
+## 常用入口
+
+- [创建 Git 应用](/docs/developer/applications/git/)
+- [应用管理](/docs/developer/applications/)
+- [工作负载](/docs/developer/workloads/)
+- [工作负载操作](/docs/developer/workload-operations/)
+- [配置管理](/docs/developer/configuration/)
+- [网络与存储](/docs/developer/network-storage/)
+- [终端与开发环境](/docs/developer/dev-environments/terminal/)
+- [AI 助手](/docs/developer/ai-assistant/)

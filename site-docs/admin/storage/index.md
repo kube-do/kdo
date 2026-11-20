@@ -60,26 +60,66 @@ Kubernetes 存储采用**两级模型**：
 
 **推荐：** 使用动态供应，简化开发者体验。
 
-## 存储供应流程
+## 存储生命周期
 
 ```mermaid
 flowchart TD
-    A[开发者创建 PVC] --> B{是否指定 StorageClass}
-    B -->|是| C[动态供应创建 PV]
-    B -->|否| D{是否存在默认 StorageClass}
-    D -->|是| C
-    D -->|否| E[PVC 保持 Pending]
-    C --> F[PV 与 PVC 绑定]
-    F --> G[Pod 挂载存储]
-    G --> H[创建 VolumeSnapshot 备份]
-    H --> I[从快照恢复新 PVC]
-    F --> J{是否需要扩容}
-    J -->|是| K[编辑 PVC 增加容量]
-    K --> L[StorageClass 允许扩容并扩展后端]
-    F --> M[按 reclaimPolicy 回收 PV]
+    A[管理员创建 StorageClass] --> B[用户创建 PVC<br/>声明容量与访问模式]
+    B --> C{是否存在匹配的 PV}
+    C -->|静态供应| D[绑定已有 PV]
+    C -->|动态供应| E[Provisioner 创建 PV]
+    D --> F[PVC 进入 Bound 状态]
+    E --> F
+    F --> G[Pod 通过 volumes 引用 PVC]
+    G --> H[Kubelet 将卷挂载到容器路径]
+    H --> I{Pod 是否被删除}
+    I -->|否| H
+    I -->|是| J[PVC 保留，数据不丢失]
+    J --> K{是否删除 PVC}
+    K -->|否| G
+    K -->|是| L{PV 回收策略}
+    L -->|Retain| M[PV 变为 Released<br/>由管理员手工处理]
+    L -->|Delete| N[删除 PV 与后端存储资源]
 ```
 
-静态供应需要管理员先创建 PV，动态供应则由 StorageClass 自动完成；两条路径最终都要经过 PV 与 PVC 绑定后才能被 Pod 挂载。
+静态供应需要管理员先创建 PV，动态供应则由 StorageClass 自动完成；两条路径最终都要经过 PV 与 PVC 绑定后才能被 Pod 挂载。删除 PVC 后，数据是否保留取决于 PV 的回收策略。
+
+### 卷类型
+
+| 类型 | 生命周期 | 典型场景 |
+|---|---|---|
+| `EmptyDir` | 与 Pod 相同，Pod 删除即丢失 | 临时缓存、同 Pod 内容器共享 |
+| `HostPath` | 与节点绑定 | 开发调试、节点代理；生产慎用 |
+| `PV/PVC` | 独立于 Pod | 数据库、业务持久化数据 |
+| `ConfigMap` / `Secret` | 随对象存在 | 配置文件和敏感信息挂载 |
+| 云盘（EBS/ESSD 等） | 由云厂商管理 | 生产块存储 |
+| `CSI` | 由驱动管理 | 标准化接入第三方存储 |
+| `Local` | 与节点绑定 | 高性能本地盘；需考虑调度和可用性 |
+| `NFS` | 由 NFS 服务端管理 | KDO 默认存储，开发测试常用 |
+| CephFS / RBD / iSCSI 等 | 由企业存储管理 | 企业级共享或块存储 |
+
+### 访问模式
+
+| 模式 | 含义 | 典型场景 |
+|---|---|---|
+| `ReadWriteOnce` (RWO) | 单个节点以读写方式挂载 | 大多数块存储、单副本应用 |
+| `ReadOnlyMany` (ROX) | 多个节点以只读方式挂载 | 共享只读数据集、静态内容 |
+| `ReadWriteMany` (RWX) | 多个节点同时读写 | NFS、CephFS、分布式文件系统 |
+
+RWO 限制的是“挂载节点”，不是“Pod 数量”；同一节点上的多个 Pod 仍可能共享同一个 RWO 卷。需要多节点同时读写时必须使用支持 RWX 的后端。
+
+### 回收策略
+
+| 策略 | 删除 PVC 后的行为 | 适用场景 |
+|---|---|---|
+| `Retain` | PV 保留并变为 `Released`，需管理员手工清理或重新绑定 | 数据库等需要保留数据的场景 |
+| `Delete` | 删除 PV 及后端存储资源 | 临时数据、可重建环境 |
+
+动态供应的 PV 通常继承 StorageClass 的 `reclaimPolicy`，默认多为 `Delete`。对重要数据应在 StorageClass 或 PV 上显式设置为 `Retain`。
+
+### KDO 默认存储
+
+KDO 默认内置 NFS 存储，提供简单的网络存储方案，适合开发测试和对性能、安全要求不高的场景。生产环境建议使用企业级 CSI 存储，并根据数据重要性配置快照、备份和 `Retain` 策略。
 
 ---
 

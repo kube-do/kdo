@@ -173,6 +173,77 @@ Console 与 KDC 的配置相互独立：
 
 通过页面保存的配置写入 ConfigMap，由 Console 挂载后生效。直接修改 ConfigMap 或 Deployment 参数可能造成页面显示与实际运行配置不一致，建议统一通过本页面维护。
 
+## Console 配置参考
+
+Console 的完整配置保存在 `kubedo-system` 命名空间的 ConfigMap `console` 中，键为 `config.yaml`，容器内挂载到 `/opt/bridge/config.yaml`。页面表单、预览和 YAML 模式最终都写入这份配置。
+
+### 顶层结构
+
+```yaml
+apiVersion: console.kube-do.cn/v1
+kind: ConsoleConfig
+servingInfo: {}
+clusterInfo: {}
+auth: {}
+monitoringInfo: {}
+registry: {}
+```
+
+### servingInfo
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `bindAddress` | string | HTTP/HTTPS 监听地址，如 `http://0.0.0.0:9000` |
+| `certFile` | string | TLS 证书路径；`bindAddress` 使用 `https://` 时必填 |
+| `keyFile` | string | TLS 私钥路径；`bindAddress` 使用 `https://` 时必填 |
+| `redirectPort` | int | 主机名重定向监听端口 |
+
+### clusterInfo
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `consoleBaseAddress` | string | Console 对外访问地址，需与 Ingress 域名一致 |
+| `consoleBasePath` | string | 基础路径，默认 `/`，必须以 `/` 开头和结尾 |
+| `k8sMode` | string | `in-cluster` 或 `off-cluster` |
+| `k8sModeOffClusterEndpoint` | string | 集群外模式下的 Kubernetes API Server 地址 |
+| `publicDir` | string | 前端静态资源目录；生产环境通常为 `/opt/bridge/static` |
+
+### auth
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `userAuth` | string | 用户认证方式：`oidc`、`openshift` 或 `disabled`（仅开发） |
+| `k8sAuth` | string | Kubernetes API 认证方式，当前使用 `oidc` |
+| `clientID` | string | OIDC Client ID，必须与 API Server 的 `--oidc-client-id` 一致 |
+| `clientSecret` / `clientSecretFile` | string | OIDC Client Secret 或其文件路径，二选一 |
+| `issuerURL` | string | OIDC Issuer URL，必须与 API Server 的 `--oidc-issuer-url` 一致 |
+| `oidcExtraScopes` | []string | 附加 Scope，默认已包含 `openid,email,profile,groups` |
+| `logoutRedirect` | string | 退出登录后的跳转地址 |
+| `inactivityTimeoutSeconds` | int | 无操作登出时间；低于 300 秒会被忽略 |
+
+修改认证配置后必须确认 OIDC Provider、API Server 与 Console 三者的 Issuer、Client ID 和回调地址一致。
+
+### monitoringInfo
+
+常用字段包括 `k8sModeOffClusterThanos`、`k8sModeOffClusterAlertmanager`、`alertmanagerPublicURL`、`grafanaPublicURL`、`prometheusPublicURL` 和 `thanosPublicURL`。集群内模式下，Thanos 和 Alertmanager 通常使用集群内 Service 地址。
+
+### registry
+
+| 字段 | 类型 | 说明 |
+|---|---|---|
+| `registryURL` | string | Harbor 地址；内置环境可从 `harbor` 命名空间的 `harbor-core` ConfigMap 读取 |
+| `registryPassword` | string | Harbor 管理员密码；内置环境可从 `harbor-core` Secret 读取 |
+
+### managedClusterConfigFile
+
+`managedClusterConfigFile` 指向早期多集群配置文件，属于遗留配置，不建议通过界面频繁修改。当前推荐使用 `Cluster` CRD 在 **管理 → 集群** 页面动态纳管，详见[集群管理](/docs/admin/clusters/)。
+
+:::note
+
+页面表单只覆盖已知字段；未识别字段会保留在 YAML 中。字段含义以当前版本的 Preview 校验结果为准，升级后如出现新字段，优先使用 YAML 模式查看。
+
+:::
+
 ## 常见问题
 
 ### 保存后配置未生效

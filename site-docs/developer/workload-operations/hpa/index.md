@@ -1,6 +1,6 @@
 ---
-title: "水平容器组自动缩放器(HPA)"
-description: "在 Kubernetes 中， HorizontalPodAutoscaler 自动更新工作负载资源 （例如 Deployment 或者 StatefulSet ）， 目的是自动扩缩工作负载以满足需求。"
+title: "容器组水平自动扩缩（HPA）"
+description: "根据 CPU、内存或自定义指标自动调整 Deployment 或 StatefulSet 的副本数，实现按负载弹性伸缩。"
 sidebar_position: 8
 doc_type: explanation
 audience: [developer]
@@ -11,41 +11,257 @@ status: migrated
 
 ## 介绍
 
-:::note
+![HPA 示意图](imgs/hpa.png)
 
-在 Kubernetes 中，`HorizontalPodAutoscaler` 自动更新工作负载资源 （例如 `Deployment` 或者 `StatefulSet`）， 目的是自动扩缩工作负载以满足需求。
+**容器组水平自动扩缩（Horizontal Pod Autoscaler，HPA）** 根据 CPU、内存或其他自定义指标的利用率，自动调整 Deployment 或 StatefulSet 的副本数，实现弹性伸缩。
 
-:::
+![HPA 架构](imgs/hpa-arch.webp)
 
-1. 水平扩缩意味着对增加的负载的响应是部署更多的 Pod。 这与垂直(`Vertical`)扩缩不同，对于 `Kubernetes`， 垂直扩缩意味着将更多资源（例如：内存或 CPU）分配给已经为工作负载运行的 Pod。
-2. 如果负载减少，并且 `Pod` 的数量高于配置的最小值， `HorizontalPodAutoscaler` 会指示工作负载资源（`Deployment`、`StatefulSet` 或其他类似资源）缩减。
-3. 水平 `Pod` 自动扩缩不适用于无法扩缩的对象（例如：`DaemonSet`。）
-4. `HorizontalPodAutoscaler` 被实现为 `Kubernetes` API 资源和控制器。 资源决定了控制器的行为。 
-   在 `Kubernetes` 控制平面内运行的水平 Pod 自动扩缩控制器会定期调整其目标（例如：`Deployment`）的所需规模，以匹配观察到的指标， 例如，平均 CPU 利用率、平均内存利用率或你指定的任何其他自定义指标。
+### 为什么需要 HPA？
 
-## 扩缩容流程
+- **应对流量波动**：节假日促销、突发热点事件时自动扩容。
+- **节省成本**：低峰期自动缩容，减少资源占用。
+- **提升稳定性**：避免手动扩缩容延迟或遗漏。
+- **指标驱动**：基于真实指标而不是经验猜测。
+
+## 工作流程
 
 ```mermaid
 flowchart TD
-    A[指标采集] --> B[读取 CPU 内存或自定义指标]
-    B --> C[计算期望副本数]
-    C --> D{期望副本数是否等于当前副本数}
-    D -->|是| E[保持当前副本数]
-    D -->|否| F{是否在稳定窗口内}
-    F -->|是| E
-    F -->|否| G{期望副本数是否超过最大值}
-    G -->|是| H[按最大副本数扩缩]
-    G -->|否| I{是否低于最小值}
-    I -->|是| J[按最小副本数扩缩]
-    I -->|否| K[按计算结果扩缩]
-    H --> L[更新工作负载副本数]
-    J --> L
-    K --> L
-    L --> M[等待下一个评估周期]
-    E --> M
-    M --> A
+    A[Deployment 运行并设置 requests] --> B[metrics-server 采集 Pod 指标]
+    B --> C[HPA 控制器每 15 秒查询指标]
+    C --> D[计算所需副本数<br/>当前副本乘以利用率除以目标]
+    D --> E{存在多个指标}
+    E -->|是| F[分别计算后取最大值]
+    E -->|否| G[使用单一指标结果]
+    F --> H[按 minReplicas 与 maxReplicas 截断]
+    G --> H
+    H --> I[更新 Deployment 的 replicas]
+    I --> J[Deployment 创建或删除 Pod]
+    J --> K{Pod 是否 Ready}
+    K -->|是| L[流量按 Service 分发]
+    K -->|否| M[检查调度 资源与镜像]
+    M --> C
 ```
 
-![](imgs/hpas.webp)
+## 快速开始
 
-## [HPA更多信息](/docs/developer/workload-operations/hpa/)
+### 前提条件
+
+- 目标 Deployment 或 StatefulSet 已配置 **资源请求（requests）**。
+- 集群已安装 **metrics-server**，用于提供 CPU/内存指标。
+
+验证指标是否可用：
+
+```bash
+kubectl top nodes
+kubectl top pods -n <namespace>
+```
+
+### 启用 HPA
+
+1. 进入目标工作负载详情页。
+2. 点击 **操作** → **添加容器组水平自动扩缩（HPA）**。
+3. 填写表单：
+
+| 字段 | 说明 | 示例 |
+|---|---|---|
+| **HPA 名称** | 自动填充，可修改 | `myapp-hpa` |
+| **最小副本数** | HPA 不会缩容到低于此值 | `2` |
+| **最大副本数** | HPA 不会扩容到超过此值 | `10` |
+| **CPU 使用率目标** | CPU 利用率达到多少时扩容（%），留空则不监控 | `80` |
+| **内存使用率目标** | 内存利用率目标（%），留空则不监控 | `70` |
+
+4. 点击 **添加**。
+
+![添加 HPA](imgs/add-hpa.webp)
+
+:::note
+
+KDO 控制台当前只支持基于 CPU 和内存的 HPA。需要基于 QPS、队列长度等自定义指标时，请使用 `kubectl` 编辑 HPA YAML。
+
+:::
+
+### 查看 HPA 状态
+
+在 **工作负载操作** 页面或 HPA 列表可以查看：
+
+- 当前副本数 / 目标副本数
+- 当前 CPU 使用率 / 目标值
+- 当前内存使用率 / 目标值
+- 上次调整时间
+
+点击 HPA 名称查看详情和历史调整记录。
+
+## 详细说明
+
+### HPA 工作原理
+
+![HPA 工作流程](imgs/hpa-flow.webp)
+
+1. HPA 控制器定期（默认 15 秒）查询 metrics-server。
+2. 获取目标 Deployment 的 Pod 资源使用率。
+3. 计算所需副本数：
+   - `当前使用率 / 目标使用率 × 当前副本数`
+   - 例如目标 80%，实际 160%，当前 3 个副本，则需要约 6 个副本。
+4. 将 `Deployment.replicas` 调整到计算值，并限制在 `minReplicas` 与 `maxReplicas` 之间。
+5. Deployment 控制器执行滚动更新。
+
+### 多指标 HPA
+
+HPA 支持同时配置多个指标（`autoscaling/v2` 自 Kubernetes 1.23 起稳定），最终取**各指标计算副本数的最大值**。
+
+例如：
+
+- CPU 利用率 100% → 需要 4 个副本
+- 内存利用率 90% → 需要 5 个副本
+
+HPA 最终将副本数设置为 `5`。
+
+### 自定义指标
+
+除 CPU/内存外，HPA 还可以基于 QPS、队列长度等自定义指标扩缩容，需要额外配置：
+
+1. 安装 **Prometheus Adapter** 或其他 Metrics API 实现。
+2. 在 HPA 中添加 `Pods` 或 `Object` 类型的 `metrics`。
+3. 示例：
+
+```yaml
+metrics:
+- type: Pods
+  pods:
+    metric:
+      name: http_requests_per_second
+    target:
+      type: AverageValue
+      averageValue: 1000
+```
+
+## 典型配置
+
+### 场景 1：Web 应用，CPU 驱动
+
+```yaml
+minReplicas: 2
+maxReplicas: 10
+metrics:
+- type: Resource
+  resource:
+    name: cpu
+    target:
+      type: Utilization
+      averageUtilization: 80
+```
+
+行为：
+
+- CPU 平均使用率低于 80% → 逐步缩容到 2 个副本。
+- CPU 平均使用率高于 80% → 扩容，最多 10 个副本。
+
+### 场景 2：内存敏感应用
+
+```yaml
+minReplicas: 3
+maxReplicas: 20
+metrics:
+- type: Resource
+  resource:
+    name: memory
+    target:
+      type: Utilization
+      averageUtilization: 75
+```
+
+### 场景 3：多指标组合
+
+```yaml
+metrics:
+- type: Resource
+  resource:
+    name: cpu
+    target:
+      type: Utilization
+      averageUtilization: 70
+- type: Resource
+  resource:
+    name: memory
+    target:
+      type: Utilization
+      averageUtilization: 80
+```
+
+HPA 会分别计算 CPU 和内存所需副本数，取较大值。
+
+## 最佳实践
+
+### 参数设置
+
+- **minReplicas**：生产环境至少 2，保证高可用；开发环境可以设为 1。
+- **maxReplicas**：根据集群容量和业务峰值设置，预留约 20% 缓冲。
+- **目标利用率**：CPU 建议 60–80%，内存建议 70–85%。
+- **初始副本数**：创建 HPA 时，Deployment 副本数应位于 min/max 之间，否则 HPA 会立即调整。
+
+### 稳定性
+
+HPA 默认通过 `behavior` 控制扩缩容速度。可以显式设置缩容稳定窗口，避免副本数抖动：
+
+```yaml
+behavior:
+  scaleDown:
+    stabilizationWindowSeconds: 300
+    policies:
+    - type: Percent
+      value: 10
+      periodSeconds: 60
+```
+
+如果业务流量稳定，也可以提高目标利用率或缩小 min/max 范围。
+
+### 配合其他组件
+
+- **PDB**：HPA 缩容时，PodDisruptionBudget 可能阻止 Pod 被驱逐。
+- **ResourceQuota**：确保 maxReplicas 不会超过命名空间配额。
+- **ClusterAutoscaler**：节点资源不足时，由 ClusterAutoscaler 自动增加节点。
+
+## 故障排查
+
+### HPA 不扩缩
+
+```bash
+kubectl get hpa <name> -n <namespace>
+kubectl describe hpa <name> -n <namespace>
+kubectl get events -n <namespace> --field-selector involvedObject.name=<hpa-name>
+kubectl top pods -n <namespace> --label-selector=<deployment-label>
+```
+
+常见原因：
+
+- Deployment 副本数不在 min/max 范围，HPA 会立即调整。
+- metrics-server 未安装或没有数据。
+- Pod 未设置 requests，HPA 无法计算利用率。
+- 当前使用率低于目标且副本数已是最小值，或高于目标且已是最大值。
+
+### HPA 扩容后 Pod 调度失败
+
+- 节点 CPU/内存不足。
+- 节点选择器或污点不匹配。
+- 镜像拉取失败。
+
+此时 HPA 会持续尝试扩容，但 Pod 创建失败。需要解决调度问题或增加节点。
+
+### 暂时禁用 HPA
+
+删除 HPA 对象：
+
+```bash
+kubectl delete hpa <name> -n <namespace>
+```
+
+Deployment 副本数保持不变，只是不再自动调整。需要恢复时重新创建 HPA。
+
+## 相关链接
+
+- [Kubernetes HPA 官方文档](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
+- [Kubernetes 自定义指标 HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/)
+- [ClusterAutoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler)
+- [KDO 工作负载操作](/docs/developer/workload-operations/)
