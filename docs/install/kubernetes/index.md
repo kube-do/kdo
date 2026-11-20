@@ -77,9 +77,10 @@ spec:
       # 如果已经有oidc认证平台，需要修改对应参数，查看文档https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication/#openid-connect-tokens  
       - oidc-client-id=kdo
       - oidc-groups-claim=groups
+    - oidc-groups-prefix=kdo:
       - oidc-issuer-url=https://10.255.1.32:30443/realms/kdo
       - oidc-ca-file=/etc/kubernetes/pki/ca.crt
-      - oidc-username-claim=email
+      - oidc-username-claim=preferred_username
       - oidc-username-prefix=-
       # 事件保存24小时
       - event-ttl=24h0m0s      
@@ -147,9 +148,10 @@ spec:
       # 如果已经有oidc认证平台，需要修改对应参数，查看文档https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication/#openid-connect-tokens
       - oidc-client-id=kdo
       - oidc-groups-claim=groups
+    - oidc-groups-prefix=kdo:
       - oidc-issuer-url=https://10.255.1.31:30443/realms/kdo
       - oidc-ca-file=/etc/kubernetes/pki/ca.crt
-      - oidc-username-claim=email
+      - oidc-username-claim=preferred_username
       - oidc-username-prefix=-
       # 事件保存24小时
       - event-ttl=24h0m0s
@@ -208,3 +210,11 @@ state = "/run/containerd"
 ```
 
 安装好Kubernetes后，就可以去[安装KDO平台](/docs/install/kdo/)了。
+
+## OIDC 参数说明
+
+- `oidc-username-claim` 必须是 `preferred_username`，KDO 使用该字段作为用户名。
+- `oidc-groups-prefix` 必须是 `kdo:`，KDC 项目组权限依赖该前缀。
+- `oidc-ca-file` 是可选项。issuer 使用集群 CA 或私有 CA 时建议显式配置；使用公共可信证书时可省略。
+- 多 Master 节点的 `--oidc-*` 参数必须完全一致，否则用户在不同 apiserver 上会得到不同的身份信息。
+- 安装前可执行 `kdo-install apiserver-check -config kdo-install.yaml`，逐节点检查参数与一致性。

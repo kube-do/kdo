@@ -9,10 +9,11 @@ nav_order: 7
 
 
 {: .note }
-对于Linux环境下的安装，KDO平台既支持云端部署也支持本地部署，包括虚拟机和物理服务器等多种形式。
-安装KDO平台有两种主要模式：
-无现有Kubernetes集群的情况：如果您的环境中没有现成的Kubernetes集群，首先需要在Linux操作系统上安装Kubernetes集群。完成这一步骤后，再进行KDO平台的安装。这种方式适合希望从零开始构建整个云原生基础设施的用户。
-已有Kubernetes集群的情况：如果您已经有了一套运行中的Kubernetes集群，则可以直接在其上安装KDO平台。这种方式简化了部署流程，使得您能够迅速利用现有的资源来管理和扩展应用
+对于 Linux 环境下的安装，KDO 平台既支持云端部署也支持本地部署，包括虚拟机和物理服务器等多种形式。
+安装 KDO 平台有两种主要模式：
+
+- **无现有 Kubernetes 集群**：先在 Linux 上安装 Kubernetes，再安装 KDO 平台。
+- **已有 Kubernetes 集群**：确认集群版本满足要求，配置 kube-apiserver 的 OIDC 参数后直接安装 KDO 平台。
 
 
 ## 工作流程
@@ -25,79 +26,111 @@ flowchart TD
     B -->|已有| E[确认集群版本<br/>v1.28 及以上]
     D --> F{是否已有<br/>OIDC 身份平台}
     E --> F
-    F -->|没有| G[安装 Keycloak<br/>创建 realm kdo]
+    F -->|没有| G[由 kdo-install 自动安装 Keycloak<br/>创建 realm kdo]
     F -->|已有| H[修改 kube-apiserver<br/>对接现有 OIDC]
     G --> H
-    H --> I[下载并定制 install 脚本<br/>设置 KC_PASS 与 OIDC 变量]
-    I --> J[运行 kdo-install.sh<br/>传入 NODE_IP 与默认域名]
-    J --> K[检查 kubedo-system 中的 Pod]
-    K --> L[通过 NodePort 30080 访问控制台]
+    H --> I[准备 kdo-install 与 KDOConfig<br/>config init]
+    I --> J[apiserver-check / preflight]
+    J --> K[执行 install]
+    K --> L[查看 /root/kdo-access-info.txt]
+    L --> M[通过 NodePort 或 Ingress 访问控制台]
 ```
 
-## 在现存的Linux操作系统安装 KDO 平台
+## 在现有的 Linux 操作系统安装 KDO 平台
 
-要在现有的Linux操作系统上安装KDO平台，推荐使用RHEL 9（AlmaLinux 9/Rocky 9）或Ubuntu 22.04及以上版本。旧版本的操作系统由于内核较老，可能无法支持某些新特性。主要分为以下三个部分：
-1. [安装Kubernetes集群](./kubernetes)
-2. [安装Keycloak](./keycloak)
-3. [安装KDO平台](./kdo)
+推荐使用 RHEL 9（AlmaLinux 9/Rocky 9）或 Ubuntu 22.04 及以上版本。主要分为以下三个部分：
 
-
-## 在现存的Kubernetes集群上安装 KDO 平台
-
-如果已经有Kubernetes集群(v1.28以上)，只需要安装KDO平台，主要有两个部分：
-1. [根据OIDC平台设置Kubernetes](#根据oidc平台设置kubernetes)
-2. [安装KDO平台](./kdo)
+1. [安装 Kubernetes 集群](./kubernetes)
+2. [安装 Keycloak](./keycloak)
+3. [安装 KDO 平台](./kdo)
 
 
-## 根据OIDC平台设置Kubernetes
+## 在现有的 Kubernetes 集群上安装 KDO 平台
+
+如果已经有 Kubernetes 集群（v1.28 以上），只需要配置 OIDC 并安装 KDO 平台：
+
+1. [根据 OIDC 平台设置 Kubernetes](#根据oidc平台设置kubernetes)
+2. [安装 KDO 平台](./kdo)
+
+
+## 根据 OIDC 平台设置 Kubernetes
 
 {: .note }
-通过vim打开`/etc/kubernetes/manifests/kube-apiserver.yaml`这个文件，在`spec->containers->command`添加对应的OIDC的参数。
-如果是其他OIDC Provider，可以根据其提供的参数进行修改，[更多信息](https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication/)。
+通过 `vim` 打开 `/etc/kubernetes/manifests/kube-apiserver.yaml`，在 `spec.containers.command` 中添加 OIDC 参数。
+如果使用其他 OIDC Provider，请按其文档调整参数。[更多信息](https://kubernetes.io/zh-cn/docs/reference/access-authn-authz/authentication/)
+
 ```shell
 vim /etc/kubernetes/manifests/kube-apiserver.yaml
 ```
 
 ![](imgs/update-apiserver.png)
-### 修改API Server参数
+
+### 修改 API Server 参数
 
 ```yaml
 spec:
   containers:
   - command:
-    # 在末尾添加以下参数，如果已经存在，需要修改这些参数
-    - --oidc-ca-file=/etc/kubernetes/pki/ca.crt
+    # 在末尾添加以下参数；如果已经存在，需要修改为一致的值
     - --oidc-client-id=kdo
     - --oidc-groups-claim=groups
+    - --oidc-groups-prefix=kdo:
     - --oidc-issuer-url=https://${NodeIP}:30443/realms/kdo
-    - --oidc-username-claim=email
+    - --oidc-username-claim=preferred_username
     - --oidc-username-prefix=-
+    # 可选：issuer 使用私有 CA 时建议配置
+    - --oidc-ca-file=/etc/kubernetes/pki/ca.crt
 ```
-{: .warning }
-如果有多个Master节点，那每个Master节点都需要更改。
 
+{: .warning }
+如果有多个 Master 节点，每个 Master 节点都需要修改，并保证参数完全一致。
+
+安装器会通过 `kdo-install apiserver-check` 检查上述参数。`--oidc-ca-file` 不是强制项；未配置时使用系统根证书，安装了内置 Keycloak 的集群建议保留该参数。
 
 ## 平台组件访问
 
-{: .note }
-由于KDO是由多个开源组件组成的，所以需要通过不同的方式访问不同的组件，这里列出了KDO平台各个组件的访问地址。
-`KDO`、`Keycloak`、`Harbor`这些组件的控制台，是通过NODE_IP加端口访问，比如KDO平台控制台的默认访问地址是`http://$NODE_IP:30080`，
-Grafana这些组件的访问地址是域名访问，比如`Grafana`的默认访问地址是`http://grafana.${DEFAULT_DOMAIN}`，这些需要在`/etc/hosts`文件中(Windows是`C:\Windows\System32\drivers\etc\hosts`)添加域名解析，或者通过域名解析访问。
+KDO 由多个开源组件组成，默认通过 NodePort 访问。安装完成后，安装器会把实际地址、管理员账号和动态密码写入：
+
+```text
+/root/kdo-access-info.txt
+```
+
+NodePort 是默认访问方式。安装器还会额外创建 Ingress，地址形如 `https://console.<domain>`；使用前需要在 DNS 中添加记录，或在客户端 `/etc/hosts`（Windows 为 `C:\Windows\System32\drivers\etc\hosts`）中配置解析。
 
 ### 默认项目
-KDO平台默认创建了项目kdo, 里面有4个环境：`开发(dev)`、`测试(test)`、`预发(stage)`、`生产(prod)`。
-如果是内置的Keycloak平台，已经创建四个用户：项目管理员： `pa1`，项目开发者: `dev1`，项目测试人员: `qa1`, 项目运维人员: `ops1`, 他们的默认密码都是: `Kdo#2025`
-现在可以在项目[kdo创建一个应用](/docs/dev/applications/repository#创建应用)来体验KDO平台了。
 
-假设这个KDO集群的NODE_IP是**10.22.1.20**，默认域名后缀是**kube-do.dev**，那么访问地址如下：
+KDO 平台默认创建项目 `kdo`，包含 `开发(dev)`、`测试(test)`、`预发(stage)`、`生产(prod)` 四个环境。
 
+内置 Keycloak 会创建四个演示用户：
 
-| 控制台                                                  | 功能                   | 默认访问地址                                                            | 默认用户密码                                         |
-|:-----------------------------------------------------|:---------------------|:------------------------------------------------------------------|:-----------------------------------------------|
-| KDO平台控制台 [管理员页面介绍](/docs/admin) [开发者页面介绍](/docs/dev) | KDO整体功能管理            | `http://${NODE_IP}:30080` 比如： http://10.22.1.20:30080             | 管理员账号：admin/Kdo@Pass#2025 ， 开发者账号：pa1/Kdo#2025 |
-| Keycloak控制台                                          | OIDC认证管理、用户管理        | `https://${NODE_IP}:30443` 比如： https://10.22.1.20:30443 (需要HTTPS) | 管理员账号：admin/Kdo@Pass#2025                      |
-| Harbor控制台                                            | 镜像仓库管理，一般不用操作        | `http://${NODE_IP}:30002`比如： http://10.22.1.20:30002              | 管理员账号：admin/Kdo@Pass#2025                      |
-| [Grafana控制台](/docs/observability/monitoring)         | 告警管理、自定义监控、监控/日志高级功能 | `http://grafana.${DEFAULT_DOMAIN}` 比如： http://grafana.kube-do.dev | 管理员账号：`admin`，初始密码请参考部署配置；其他用户可通过 OIDC 登录            |
+| 用户 | 角色 |
+| --- | --- |
+| `pa1` | 项目管理员 |
+| `dev1` | 项目开发者 |
+| `qa1` | 项目测试人员 |
+| `ops1` | 项目运维人员 |
+
+这些用户的密码在安装时动态生成，记录在 `/root/kdo-access-info.txt` 的“演示用户”段落中，不再使用固定默认密码。
+
+假设集群的 `NODE_IP` 是 **10.22.1.20**，默认域名后缀是 **kube-do.dev**，访问地址如下：
+
+| 控制台 | 功能 | 默认访问地址 | 账号 |
+| --- | --- | --- | --- |
+| KDO 平台控制台 [管理员页面](/docs/admin) [开发者页面](/docs/dev) | KDO 整体功能管理 | `http://${NODE_IP}:30080`，例如 <http://10.22.1.20:30080> | Keycloak 管理员，见访问信息文件 |
+| Keycloak 控制台 | OIDC 认证管理、用户管理 | `https://${NODE_IP}:30443`，例如 <https://10.22.1.20:30443> | `admin`，密码见访问信息文件 |
+| Harbor 控制台 | 镜像仓库管理 | `http://${NODE_IP}:30002`，例如 <http://10.22.1.20:30002> | `admin`，密码见访问信息文件 |
+| Grafana 控制台 | 告警、监控、日志高级功能 | `http://grafana.${DEFAULT_DOMAIN}`，例如 <http://grafana.kube-do.dev> | `admin`，密码见访问信息文件 |
+
+Ingress 地址示例：
+
+| 组件 | 地址 |
+| --- | --- |
+| Console | `https://console.kube-do.dev` |
+| Keycloak | `https://keycloak.kube-do.dev` |
+| Harbor | `https://harbor.kube-do.dev` |
+| Grafana | `https://grafana.kube-do.dev` |
+| Pipelines as Code | `https://pac.kube-do.dev` |
+| MinIO Console | `https://minio.kube-do.dev` |
 
 {: .note }
-安装完成后请尽快修改上述默认密码，尤其是管理员账号。
+访问信息文件包含明文密码，权限为 `0600`。请妥善保管，并在首次登录后按组织安全要求修改管理员密码。

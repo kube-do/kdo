@@ -24,3 +24,7 @@ flowchart TD
 ```
 
 配置加载优先级从高到低为命令行参数、`BRIDGE_` 前缀环境变量、YAML 配置文件。详细字段与部署清单见 [KDO Web 控制台](./console/)。
+
+## 与安装器配置的区别
+
+`kdo-install.yaml` 是 KDO 平台的安装配置，负责集群、OIDC、凭据、访问地址和 Ingress；Console 自身的 `config.yaml` 负责前端运行时行为。两者层级不同：安装器会渲染 Console 的 Deployment/ConfigMap，但不会替代 Console 的业务配置。
