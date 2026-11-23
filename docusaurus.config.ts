@@ -1,3 +1,4 @@
+import path from 'node:path';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
@@ -50,6 +51,23 @@ const config: Config = {
   ],
 
   plugins: [
+    function elkLayoutStub() {
+      return {
+        name: 'elk-layout-stub',
+        configureWebpack() {
+          return {
+            resolve: {
+              alias: {
+                '@mermaid-js/layout-elk': path.join(
+                  process.cwd(),
+                  'src/shims/layout-elk.ts',
+                ),
+              },
+            },
+          };
+        },
+      };
+    },
     [
       '@easyops-cn/docusaurus-search-local',
       {

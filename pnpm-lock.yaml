@@ -174,16 +174,13 @@ importers:
         version: 3.10.2(@algolia/client-search@5.65.0)(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(@types/react@19.3.0)(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(search-insights@2.17.3)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3)
       '@docusaurus/theme-mermaid':
         specifier: 3.10.2
-        version: 3.10.2(@docusaurus/plugin-content-docs@3.10.2(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3))(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(@mermaid-js/layout-elk@1.0.2(mermaid@12.3.0))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3)
+        version: 3.10.2(@docusaurus/plugin-content-docs@3.10.2(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3))(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3)
       '@easyops-cn/docusaurus-search-local':
         specifier: 0.55.3
         version: 0.55.3(@docusaurus/theme-common@3.10.2(@docusaurus/plugin-content-docs@3.10.2(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5))(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3)
       '@mdx-js/react':
         specifier: ^3.0.0
         version: 3.1.1(@types/react@19.3.0)(react@19.3.1)
-      '@mermaid-js/layout-elk':
-        specifier: 1.0.2
-        version: 1.0.2(mermaid@12.3.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1776,12 +1773,6 @@ packages:
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
-
-  '@mermaid-js/layout-elk@1.0.2':
-    resolution: {integrity: sha512-S4mwtUWus25vTz/J0lfKMEBk34c+InNOIW2r0hTa8Texoe6+l6Tzh4paLpqAph3vorwZayd7AcWqIUMt8/+4pw==}
-    engines: {node: '>=22.12.0'}
-    peerDependencies:
-      mermaid: ^12.0.0
 
   '@mermaid-js/parser@2.0.1':
     resolution: {integrity: sha512-j37dj/h6p6pots1L7pLPPNuABEEu9WP4OYg9pW1g+nYG331j0+3canE9OagtYdytYvdSAMG+2fKU5cxep6LgjA==}
@@ -8098,7 +8089,7 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@docusaurus/theme-mermaid@3.10.2(@docusaurus/plugin-content-docs@3.10.2(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3))(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(@mermaid-js/layout-elk@1.0.2(mermaid@12.3.0))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3)':
+  '@docusaurus/theme-mermaid@3.10.2(@docusaurus/plugin-content-docs@3.10.2(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3))(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3)':
     dependencies:
       '@docusaurus/core': 3.10.2(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.6.3)
       '@docusaurus/module-type-aliases': 3.10.2(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.33))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.33)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sharp@0.35.5(@types/node@26.6.6))(supports-color@8.1.1)(svgo@3.3.5)
@@ -8109,8 +8100,6 @@ snapshots:
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
       tslib: 2.9.1
-    optionalDependencies:
-      '@mermaid-js/layout-elk': 1.0.2(mermaid@12.3.0)
     transitivePeerDependencies:
       - '@docusaurus/faster'
       - '@docusaurus/plugin-content-docs'
@@ -8728,16 +8717,6 @@ snapshots:
       '@types/mdx': 2.0.14
       '@types/react': 19.3.0
       react: 19.3.1
-
-  '@mermaid-js/layout-elk@1.0.2(mermaid@12.3.0)':
-    dependencies:
-      d3: 7.9.2
-      dagre-d3-es: 7.0.14
-      dayjs: 1.11.23
-      dompurify: 3.4.18
-      elkjs: 0.12.1
-      katex: 0.18.11
-      mermaid: 12.3.0
 
   '@mermaid-js/parser@2.0.1':
     dependencies:
