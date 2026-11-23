@@ -24,3 +24,6 @@ build/
 # Downloadable files copied from the repository root at build/start time
 static/kdo-developer.tar.gz
 static/agent-setup*.sh
+
+# Python cache
+__pycache__/

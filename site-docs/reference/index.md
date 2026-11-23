@@ -30,6 +30,7 @@ status: stable
 | HorizontalPodAutoscaler | 按 CPU、内存或自定义指标扩缩副本 | [HPA](/docs/developer/workload-operations/hpa/) |
 | KdcCertificate | Ingress TLS 证书的自动分发与替换 | [证书管理](/docs/admin/maintenance/certificates/) |
 | CustomResourceDefinition | 查看集群中安装的 CRD 及其版本 | [CRD](/docs/admin/namespaces/crd/) |
+| CRD 字段 | KDO 与 PAC 自定义资源的 Spec/Status 字段 | [CRD 参考](/docs/reference/crd/) |
 
 ## 配置参考
 
@@ -58,7 +59,8 @@ status: stable
 - 页面 frontmatter 的 `applies_to` 表示适用版本；未标注时默认适用于当前文档版本。
 - 升级前先阅读[发布说明](/docs/release-notes/)，确认行为变更、弃用项和回滚条件。
 - 跨版本的对象字段、配置项和 CLI 参数可能变化；涉及生产升级时，以对应版本的 Release Notes 和安装包中的 schema 为准。
-- 兼容矩阵、CRD 字段索引、OpenAPI、CLI 和配置 schema 将由代码生成，避免与 Console、PAC、KDC 实现漂移。
+- [CRD 参考](/docs/reference/crd/)由 KDC 与 PAC 的 CRD 清单生成；升级组件后应重新生成，避免字段漂移。
+- OpenAPI、CLI 和配置 schema 仍按代码生成方向补充。
 
 ## 约定
 
