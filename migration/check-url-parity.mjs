@@ -97,7 +97,7 @@ for (const source of redirects.keys()) {
 if (rows.some((row) => row.status === "410")) {
   const goneRewrite = (config.rewrites || []).find(
     (rewrite) =>
-      rewrite.source === "/docs/analysis/:path*" &&
+      rewrite.source === "/docs/analysis/(.*)" &&
       rewrite.destination === "/api/gone/"
   );
   if (!goneRewrite) {

@@ -108,4 +108,4 @@ node migration/generate-url-map.mjs
 - 映射表是“迁移后 URL”的约定，用于 301/410 和回归检查。
 - `site-docs/` 已是唯一内容源，`docs/` 只读；不要运行 `migrate:legacy`，除非需要从旧源重建。
 - 阶段 B 会重写绝对链接和相对链接；新增页面如果引用旧目录，仍需手动检查。
-- `redirects.csv` 中 410 记录的目标为空；`vercel.json` 使用 `/docs/analysis/:path*` -> `/api/gone` rewrite，静态 `pnpm serve` 不会执行该函数。
+- `redirects.csv` 中 410 记录的目标为空；`vercel.json` 使用 `/docs/analysis/(.*)` -> `/api/gone/` rewrite，静态 `pnpm serve` 不会执行该函数。
