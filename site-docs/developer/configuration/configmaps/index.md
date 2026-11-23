@@ -18,7 +18,7 @@ status: migrated
 
 :::
 
-![](imgs/configmaps.webp)
+![配置映射列表](imgs/configmaps.webp)
 
 :::warning
 
@@ -49,7 +49,7 @@ flowchart TD
 ```
 
 ## 查看配置映射
-![](imgs/configmap.webp)
+![配置映射详情](imgs/configmap.webp)
 
 ## 编辑配置映射
 
@@ -59,7 +59,7 @@ flowchart TD
 
 :::
 
-![](imgs/edit-configmap.webp)
+![编辑配置映射](imgs/edit-configmap.webp)
 
 
 
@@ -72,4 +72,4 @@ flowchart TD
 
 :::
 
-![](imgs/add-configmap-to-workload.webp)
+![在工作负载中使用配置映射](imgs/add-configmap-to-workload.webp)

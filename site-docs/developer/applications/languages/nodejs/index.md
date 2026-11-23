@@ -1,7 +1,7 @@
 ---
 title: "Node.js 前后端项目部署"
 description: "在 KDO 上通过源代码部署 Node.js 前端项目和后端项目。例如 Vue、React 等前端项目和 Express、Koa 等后端项目。"
-sidebar_position: 4
+sidebar_position: 5
 doc_type: explanation
 audience: [developer]
 owner: docs-ops

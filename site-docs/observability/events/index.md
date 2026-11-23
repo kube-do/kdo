@@ -1,7 +1,7 @@
 ---
 title: "事件（Event）"
 description: "Kubernetes 事件记录集群内资源的状态变化、调度、镜像拉取、挂载、健康检查等关键动作，是排查 Pod、节点、存储和网络问题的重要入口。"
-sidebar_position: 3
+sidebar_position: 5
 doc_type: explanation
 audience: [admin, developer]
 owner: docs-ops

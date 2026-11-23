@@ -1,7 +1,7 @@
 ---
 title: "集群管理(Cluster)"
 description: "KDO Console 提供图形化的 多集群管理 能力。所有被纳管的集群以 Cluster CRD（ kube-do.cn/v1 ）形式保存在 主集群 （管理集群）中，由 KDC Controller 负责调和，Console 提供列表、详情以及添加/编辑/删除操作。"
-sidebar_position: 7
+sidebar_position: 2
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

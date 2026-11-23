@@ -1,7 +1,7 @@
 ---
 title: "权限管理"
 description: "KDO平台的权限管理完全基于 Kubernetes 的基于角色的访问控制(RBAC)机制。因此，这部分内容主要针对Kubernetes的访问控制进行详细说明。 通过利用Kubernetes RBAC，KDO平台能够提供精细的权限管理，确保用户和应用程序仅能访问其被授权的资源，从而增强安全性并支持更灵活的角色与权限配置。"
-sidebar_position: 8
+sidebar_position: 2
 doc_type: explanation
 audience: [admin]
 owner: docs-admin
@@ -170,7 +170,7 @@ Kubernetes 本身并不直接管理用户账户；相反，它依赖外部的认
 2. **轻量级:** 服务账号存在于集群中，并在 Kubernetes API 中定义。你可以快速创建服务账号以支持特定任务。
 3. **可移植性:** 复杂的容器化工作负载的配置包中可能包括针对系统组件的服务账号定义。 服务账号的轻量级性质和命名空间作用域的身份使得这类配置可移植。
 
-![](imgs/serviceaccounts.webp)
+![服务账号列表](imgs/serviceaccounts.webp)
 
 ## Role和ClusterRole管理
 
@@ -187,11 +187,11 @@ Kubernetes RBAC 的角色(Role)或 集群角色(ClusterRole) 中包含一组代�
 3. 集群角色(ClusterRole) 有若干用法。你可以用它来： 定义对某命名空间域对象的访问权限，并将在个别命名空间内被授予访问权限； 为命名空间作用域的对象设置访问权限，并被授予跨所有命名空间的访问权限；
 4. 为集群作用域的资源定义访问权限。 如果你希望在命名空间内定义角色，应该使用 角色(Role)； 如果你希望定义集群范围的角色，应该使用 集群角色(ClusterRole)。
 
-![](imgs/roles.webp)
+![Role 与 ClusterRole 对比](imgs/roles.webp)
 
 ### 角色说明
 
-![](imgs/role.webp)
+![Role 详情](imgs/role.webp)
 
 
 ## RoleBinding和ClusterRoleBinding管理
@@ -208,11 +208,11 @@ Kubernetes RBAC 的角色(Role)或 集群角色(ClusterRole) 中包含一组代�
 2. 一个 角色绑定(RoleBinding)可以引用同一的命名空间中的任何 Role。 或者，一个 角色绑定(RoleBinding) 可以引用某 集群角色(ClusterRole) 并将该 集群角色(ClusterRole) 绑定到 角色绑定(RoleBinding) 所在的命名空间。
 3. 如果你希望将某 集群角色(ClusterRole) 绑定到集群中所有命名空间，你要使用 集群角色绑定(ClusterRoleBinding)。 角色绑定(RoleBinding) 或 集群角色绑定(ClusterRoleBinding) 对象的名称必须是合法的路径分段名称。
 
-![](imgs/rolebindings.webp)
+![RoleBinding 与 ClusterRoleBinding 对比](imgs/rolebindings.webp)
 
 ### 角色绑定说明
 
-![](imgs/rolebinding.webp)
+![RoleBinding 详情](imgs/rolebinding.webp)
 
 ### 创建角色绑定
 

@@ -1,5 +1,9 @@
 {
   "label": "最佳实践",
-  "position": 999,
-  "collapsed": false
+  "position": 10,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "developer/best-practices/index"
+  }
 }

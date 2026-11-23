@@ -1,7 +1,7 @@
 ---
 title: "Pipelines as Code"
 description: "Pipelines as Code 是 Tekton Pipelines 的一个子系统，允许集群管理员和具有相应权限的用户将流水线模板定义为源代码 Git 仓库的一部分。当配置的 Git 仓库发生源代码推送（push）或拉取请求（pull request / merge request）时，Pipelines as C"
-sidebar_position: 5
+sidebar_position: 2
 doc_type: explanation
 audience: [developer]
 owner: docs-dev

@@ -26,9 +26,9 @@ KDO CloudShell 是一种基于云的命令行界面（CLI），KDO CloudShell可
 
 ## 访问CloudShell命令行界面
 KDO CloudShell 集成在KDO的管理控制台中，点击KDO页面右上角的这个图标就可以访问
-![](img/open-terminal.png)
+![打开 CloudShell 命令行](img/open-terminal.png)
 如果是集群管理员，默认会创建`kubernetes-terminal`这个命名空间，其他用户可以选择对应[项目的命名空间](/docs/developer/projects/)
-![](img/create-terminal.webp)
+![创建 CloudShell 终端](img/create-terminal.webp)
 
 
 ## 使用AI-Agent
@@ -36,7 +36,7 @@ CloudShell集成了[Hermes Agent](https://github.com/NousResearch/hermes-agent),
 
 ## 打开CloudShell
 首先通过新tab的方式打开CloudShell，主要terminal内容比较多，建议使用`F11浏览器全屏模式`，便于访问。
-![](img/open-terminal-tab.webp)
+![CloudShell 标签页](img/open-terminal-tab.webp)
 
 ## 文件上传与下载
 
@@ -59,7 +59,7 @@ CloudShell（包括独立终端页面 `/terminal` 和页面底部弹出的 Cloud
 
 :::
 
-<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" poster="/media/docs/developer/dev-environments/terminal/img/hermas-setup-1-poster.webp"><source src="/media/docs/developer/dev-environments/terminal/img/hermas-setup-1.mp4" type="video/mp4" /></video>
+<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" aria-label="Hermes 终端环境配置第一步" poster="/media/docs/developer/dev-environments/terminal/img/hermas-setup-1-poster.webp"><source src="/media/docs/developer/dev-environments/terminal/img/hermas-setup-1.mp4" type="video/mp4" /></video>
 
 ## 配置消息通道
 
@@ -69,7 +69,7 @@ CloudShell（包括独立终端页面 `/terminal` 和页面底部弹出的 Cloud
 
 :::
 
-<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" poster="/media/docs/developer/dev-environments/terminal/img/hermas-setup-2-poster.webp"><source src="/media/docs/developer/dev-environments/terminal/img/hermas-setup-2.mp4" type="video/mp4" /></video>
+<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" aria-label="Hermes 终端环境配置第二步" poster="/media/docs/developer/dev-environments/terminal/img/hermas-setup-2-poster.webp"><source src="/media/docs/developer/dev-environments/terminal/img/hermas-setup-2.mp4" type="video/mp4" /></video>
 
 ### 验证Agent
 现在我们可以打开消息通道(比如企业微信)和Agent进行沟通了。

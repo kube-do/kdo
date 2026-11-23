@@ -46,7 +46,7 @@ flowchart TD
 
 :::
 
-<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" poster="/media/docs/developer/overview/imgs/env-poster.webp"><source src="/media/docs/developer/overview/imgs/env.mp4" type="video/mp4" /></video>
+<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" aria-label="环境概览" poster="/media/docs/developer/overview/imgs/env-poster.webp"><source src="/media/docs/developer/overview/imgs/env.mp4" type="video/mp4" /></video>
 
 
 ## 资源搜索
@@ -65,7 +65,7 @@ flowchart TD
 
 [全局资源搜索详细说明](/docs/developer/overview/global-search/)
 
-<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" poster="/media/docs/developer/overview/imgs/search-poster.webp"><source src="/media/docs/developer/overview/imgs/search.mp4" type="video/mp4" /></video>
+<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" aria-label="全局资源搜索" poster="/media/docs/developer/overview/imgs/search-poster.webp"><source src="/media/docs/developer/overview/imgs/search.mp4" type="video/mp4" /></video>
 
 
 ## 顶栏快捷入口

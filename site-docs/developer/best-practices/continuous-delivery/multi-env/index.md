@@ -1,6 +1,6 @@
 ---
 title: "多环境持续交付"
-description: "本节将会介绍如何在 kdo 上实现多环境持续交付"
+description: "介绍如何使用 KDO 应用模板和内部组件库，把同一应用发布到开发、测试、预发和生产等多个环境。"
 sidebar_position: 1
 doc_type: explanation
 audience: [developer]
@@ -20,7 +20,7 @@ status: migrated
 如下图所示，我们以后台管理系统为例，利用 kdo 应用模版实现多云多环境的持续交付，通常需要以下流程。
 
 <!-- ![multi-env-delivery](https://grstatic.oss-cn-shanghai.aliyuncs.com/docs/5.10/delivery/multi-env-delivery.jpg) -->
-![](https://static.goodrain.com/docs/5.11/delivery/continuous/source-code/multi-env-delivery.png)
+![KDO 多环境交付流程图](https://static.goodrain.com/docs/5.11/delivery/continuous/source-code/multi-env-delivery.png)
 
 1. 通过 kdo 对接多集群，可以对接私有云、公有云等。
 

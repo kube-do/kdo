@@ -1,7 +1,7 @@
 ---
 title: "手动镜像应用"
-description: "手动镜像应用 （Manual Image）适用于以下场景："
-sidebar_position: 6
+description: "手动镜像应用适用于已有镜像、外部镜像或需要自定义镜像的场景，本页介绍创建流程和配置项。"
+sidebar_position: 5
 doc_type: explanation
 audience: [developer]
 owner: docs-dev

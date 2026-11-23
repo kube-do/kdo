@@ -1,7 +1,7 @@
 ---
 title: "网络与存储"
 description: "在 KDO 平台， 网络 和 存储 是应用部署的两个核心基础设施。开发者界面集成了这两类资源的可视化管理能力，让你无需编写复杂的 YAML 即可配置服务的网络访问和持久化数据存储。"
-sidebar_position: 5
+sidebar_position: 6
 doc_type: explanation
 audience: [developer]
 owner: docs-dev

@@ -1,7 +1,7 @@
 ---
 title: "配置管理"
 description: "Kubernetes 提供了两种核心的配置资源： ConfigMap 和 Secret ，用于将应用配置与镜像解耦。KDO 平台提供了友好的界面来管理这些配置，开发者可以轻松创建、编辑和应用配置到工作负载中。"
-sidebar_position: 4
+sidebar_position: 5
 doc_type: explanation
 audience: [developer]
 owner: docs-dev

@@ -1,7 +1,7 @@
 ---
 title: "项目管理"
 description: "在软件开发过程中，项目、环境和应用这三个概念各自有着特定的意义，并且相互关联。"
-sidebar_position: 4
+sidebar_position: 3
 doc_type: explanation
 audience: [developer]
 owner: docs-ops

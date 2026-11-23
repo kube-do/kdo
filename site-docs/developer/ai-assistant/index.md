@@ -1,7 +1,7 @@
 ---
 title: "AI 智能助手"
 description: "KDO平台集成了 云原生 AI 智能助手 —— 一个基于生成式 AI 的智能虚拟助手。它直接嵌入在 Web 控制台中，用户可以通过自然语言与 AI 进行交互，获取关于 Kubernetes 及云原生应用的实时指导和帮助。"
-sidebar_position: 12
+sidebar_position: 11
 doc_type: explanation
 audience: [developer, admin]
 owner: docs-team
@@ -227,7 +227,7 @@ MCP 服务器（如 `openshift.py`）允许 Lightspeed 直接查询集群资源�
 2. 点击页面右下角的 **Kubernetes Lightspeed 图标**
 3. 对话窗口将在屏幕右下角展开
 
-![](imgs/kc-lightspeed-chat-open.webp)
+![打开 AI 对话窗口](imgs/kc-lightspeed-chat-open.webp)
 
 ### 提问方式
 
@@ -237,7 +237,7 @@ MCP 服务器（如 `openshift.py`）允许 Lightspeed 直接查询集群资源�
 2. 点击 `Submit` 按钮或按 `Enter` 发送
 3. Kubernetes Lightspeed 将基于您的问题返回回答
 
-![](imgs/kc-lightspeed-submit.webp)
+![提交 AI 问题](imgs/kc-lightspeed-submit.webp)
 
 #### 关联追问
 
@@ -271,7 +271,7 @@ MCP 服务器（如 `openshift.py`）允许 Lightspeed 直接查询集群资源�
 5. 输入问题并提交
 
 
-![](imgs/kc-lightspeed-attach-resource.webp)
+![附加资源对象](imgs/kc-lightspeed-attach-resource.webp)
 
 ### 故障排查告警
 

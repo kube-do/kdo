@@ -1,7 +1,7 @@
 ---
 title: "存储"
 description: "存储管理 模块面向集群管理员，提供持久化存储资源的全生命周期管理，包括持久卷（PV）、存储类（StorageClass）、卷快照（VolumeSnapshot）等。管理员负责底层存储后端的配置、维护和容量规划，为开发者提供稳定高效的存储服务。"
-sidebar_position: 5
+sidebar_position: 6
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

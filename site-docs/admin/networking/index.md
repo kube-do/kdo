@@ -1,7 +1,7 @@
 ---
 title: "网络"
-description: "管理员的网络界面主要增加了网络策略页面。"
-sidebar_position: 4
+description: "管理员网络视图在服务与路由之外提供 NetworkPolicy 管理，用于控制命名空间和 Pod 之间的入站、出站流量。"
+sidebar_position: 5
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

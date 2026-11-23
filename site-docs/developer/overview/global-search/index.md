@@ -1,7 +1,7 @@
 ---
 title: "全局资源搜索"
 description: "全局资源搜索 可以在多个集群、多个命名空间中快速定位资源，支持按 名称、IP 地址/CIDR、命名空间、标签、应用、状态 检索，并对模糊匹配结果按相关度排序。"
-sidebar_position: 7
+sidebar_position: 3
 doc_type: explanation
 audience: [developer]
 owner: docs-dev

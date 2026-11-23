@@ -18,7 +18,7 @@ KDO平台和Kubernetes的身份认证协议是基于[OpenID Connect(OIDC)](#open
 
 :::
 
-![](img/auth-arch.svg)
+![Keycloak 认证架构图](img/auth-arch.svg)
 
 ## OIDC 登录流程
 
@@ -58,10 +58,10 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 [Keycloak 控制台地址](/docs/install#平台组件访问)
 
 1. 访问 Keycloak 控制台,选择`Administration Console`,输入用户名和密码登录
-![](img/keycloak-login.webp)
+![Keycloak 登录页面](img/keycloak-login.webp)
 
 2. 登录后进入 Realm 管理页面，可以看到 Realm 列表，选择 `kdo`，就可以对KDO平台的用户进行管理了
-![](img/keycloak-realm.webp)
+![Keycloak Realm 列表](img/keycloak-realm.webp)
 
 ### 控制台导航说明
 
@@ -106,7 +106,7 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 ### 修改用户
 
 1. 登录 Keycloak 控制台，确认Realm是`kdo`, 选择 `Users`，选择 用户，点击 `Edit`
-![](img/kc-edit-user.webp)
+![编辑 Keycloak 用户](img/kc-edit-user.webp)
 
 2. 进入用户详情页后，可以看到多个管理标签页：
 
@@ -127,7 +127,7 @@ Keycloak 是一个开源的、现代的身份和访问管理解决方案，由 R
 
 ### 删除用户
 1. 登录 Keycloak 控制台，确认Realm是`kdo`, 选择 `Users`，选择 用户，点击 `Delete`，在Keycloak删除用户后，该用户将无法登录KDO平台。
-![](img/kc-delete-user.webp)
+![删除 Keycloak 用户确认](img/kc-delete-user.webp)
 
 :::warning
 
@@ -153,7 +153,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 2. 在 `Set Password` 区域输入新密码
 3. 点击 `Set Password` 或 `Save` 完成密码重置
 
-![](img/kc-reset-password.webp)
+![重置用户密码](img/kc-reset-password.webp)
 
 :::info
 
@@ -174,7 +174,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 3. 选择 `Brute Force Detection`（暴力破解检测）进行登录失败锁定配置
 4. 选择 `Password Policy`（密码策略）配置密码复杂度要求
 
-![](img/kc-password-policy.webp)
+![配置密码策略](img/kc-password-policy.webp)
 
 可配置的密码策略包括：
 
@@ -204,7 +204,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 3. 关闭开关即可禁用用户，开启即可重新启用
 4. 点击 `Save` 保存更改
 
-![](img/kc-user-enabled.webp)
+![启用或禁用用户](img/kc-user-enabled.webp)
 #### 邮箱验证
 
 :::note
@@ -218,7 +218,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 3. 开启表示邮箱已验证，关闭表示未验证
 4. 点击 `Save` 保存更改
 
-![](img/kc-email-verified.webp)
+![邮箱验证状态](img/kc-email-verified.webp)
 ### 角色分配
 
 :::note
@@ -234,7 +234,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 3. 点击 `>>` 按钮将角色移动到 `Assigned Roles` 列表
 4. 分配完成后，该用户即获得对应角色的权限
 
-![](img/kc-role-mapping.webp)
+![Realm 角色映射](img/kc-role-mapping.webp)
 
 :::warning
 
@@ -275,7 +275,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 
 :::note
 
-![](img/kc-create-group.webp)
+![创建用户组](img/kc-create-group.webp)
 
 :::
 组名称建议使用英文命名，以避免潜在的编码问题。创建后可以添加中文描述以便识别。
@@ -286,7 +286,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 2. 在组详情页的 `General` 标签页，可以修改组名称和描述
 3. 点击 `Save` 保存更改
 
-![](img/kc-edit-group.webp)
+![编辑用户组](img/kc-edit-group.webp)
 ### 删除用户组
 
 1. 在 `Groups` 列表中，选择要删除的组
@@ -316,7 +316,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 4. 点击 `>>` 按钮将用户添加到组中
 5. 已加入的组会显示在 `Group Membership` 列表中
 
-![](img/kc-user-join-group.webp)
+![将用户加入用户组](img/kc-user-join-group.webp)
 #### 将用户移出组
 
 1. 在用户详情页的 `Groups` 标签页
@@ -378,7 +378,7 @@ Keycloak 提供了完整的密码管理功能，包括重置密码、设置临�
 | **Expires** | 会话过期时间 |
 | **Clients** | 该会话关联的所有客户端 |
 
-![](img/kc-user-sessions.webp)
+![查看活跃会话](img/kc-user-sessions.webp)
 
 ### 强制用户登出
 

@@ -1,6 +1,6 @@
 ---
 title: "术语表"
-description: "KDO 平台、应用交付、运行时和访问控制中的常用术语。"
+description: "汇总 KDO 平台、应用交付、运行时、网络存储和访问控制中的常用术语与参考链接。"
 sidebar_position: 2
 doc_type: reference
 audience: [developer, admin]

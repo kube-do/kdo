@@ -1,7 +1,7 @@
 ---
 title: "工作负载(管理员)"
 description: "管理员 界面的工作负载菜单，相当于是 开发者 界面的工作负载和配置管理的集合，只是增加了一部分只有管理员才有权限操作的菜单"
-sidebar_position: 3
+sidebar_position: 4
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

@@ -1,7 +1,7 @@
 ---
 title: "持续交付"
-description: "本章节介绍如何使用 kdo 进行持续交付"
-sidebar_position: 3
+description: "从源码构建、GitOps 写回、多环境发布到应用模板，介绍 KDO 持续交付的完整链路和推荐实践。"
+sidebar_position: 2
 doc_type: explanation
 audience: [developer]
 owner: docs-ops

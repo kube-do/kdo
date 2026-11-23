@@ -1,7 +1,7 @@
 ---
 title: "云开发环境"
 description: "KDO 平台已集成 Eclipse Che，为开发者提供 浏览器即用的云开发环境（Cloud Development Environment, CDE） 。 无需在本地安装 IDE、配置依赖或克隆代码，只需浏览器即可在 Kubernetes 集群中完成编码、构建、测试与调试。"
-sidebar_position: 11
+sidebar_position: 2
 doc_type: explanation
 audience: [developer]
 owner: docs-dev

@@ -1,7 +1,7 @@
 ---
 title: "流水线"
 description: "KDO平台的流水线模块是基于Tekton实现的，Tekton 是一个强大、灵活的构建 CI/CD 流水线系统的开源框架，允许开发者构建、测试和发布应用。 Tekton 是云原生的，通过定义CRD，让用户快速灵活定义流水线。"
-sidebar_position: 2
+sidebar_position: 1
 doc_type: explanation
 audience: [developer]
 owner: docs-dev
@@ -74,7 +74,7 @@ Tekton 资源对象是构成 Tekton Pipelines 的核心组件，它们定义了 
 :::
 
 
-![](imgs/tekton.webp)
+![Tekton 资源对象关系](imgs/tekton.webp)
 
 ### Task
 **任务(Task)** 是执行具体工作单元的基本构建块。它定义了一组按顺序执行的步骤（Steps），每个步骤都是一个容器操作。可以接受参数 ([params](#params)) 和输出结果 (results)。支持声明工作区 ([workspaces](#workspaces)) 以便于数据共享。步骤之间可以互相传递数据。 

@@ -216,4 +216,4 @@ metrics:
 - [Kubernetes 资源管理官方文档](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 - [Kubernetes QoS 等级](https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/)
 - [Kubernetes HPA 文档](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
-- [Java 应用容器化最佳实践](https://kubernetes.io/docs/tutorials/configuration/configure-java-pod/)
+- [Kubernetes 容器配置](https://kubernetes.io/docs/tasks/configure-pod-container/)

@@ -1,7 +1,7 @@
 ---
 title: "创建并运行语言应用"
 description: "从 Git 源码创建语言应用、触发首次构建、查看运行状态并创建访问路由的通用流程。"
-sidebar_position: 2
+sidebar_position: 1
 doc_type: how-to
 audience: [developer]
 owner: docs-dev

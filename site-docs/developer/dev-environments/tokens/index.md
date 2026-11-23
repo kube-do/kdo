@@ -1,7 +1,7 @@
 ---
 title: "个人访问令牌(Personal Access Tokens)"
 description: "Personal Access Tokens（个人访问令牌，简称 PAT）用于让 Eclipse Che 访问你的 Git 仓库。在克隆 私有仓库 、从 Git 仓库创建 Workspace 以及 推送代码 时，都需要配置 PAT（或由管理员配置 OAuth）。"
-sidebar_position: 6
+sidebar_position: 3
 doc_type: explanation
 audience: [developer]
 owner: docs-dev

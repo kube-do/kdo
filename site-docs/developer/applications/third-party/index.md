@@ -1,7 +1,7 @@
 ---
 title: "第三方服务部署"
-description: "讲解KDO支持第三方服务的创建方式和流程"
-sidebar_position: 9
+description: "介绍在 KDO 中接入第三方服务的方式，包括外部地址、凭据、网络连通性和在应用环境中的使用限制。"
+sidebar_position: 7
 doc_type: how-to
 audience: [developer]
 owner: docs-ops

@@ -1,7 +1,7 @@
 ---
 title: "命令行模式(AI Agent)"
 description: "与其他容器云平台相比，KDO平台在命令行功能上表现出色，提供了强大的支持。 它不仅兼容 CloudShell ，还支持 LocalShell ，为运维人员和开发人员带来了极大的便利和高效的操作体验。 无论是云端还是本地环境，KDO平台都能满足多样化的需求，显著提升工作效率。"
-sidebar_position: 10
+sidebar_position: 1
 doc_type: explanation
 audience: [developer]
 owner: docs-dev

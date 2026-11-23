@@ -1,7 +1,7 @@
 ---
 title: "应用管理(管理员)"
 description: "应用管理 模块面向集群管理员，负责管理平台级别的应用组件和可插拔的 Kubernetes Operators。与开发者视角的应用（基于 Git 仓库的 CI/CD）不同，管理员的应用管理侧重于："
-sidebar_position: 2
+sidebar_position: 10
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

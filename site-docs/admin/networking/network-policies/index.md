@@ -303,6 +303,6 @@ NetworkPolicy 由 CNI 实现（如 Calico）在数据平面处理。简单的策
 ## 相关链接
 
 - [Kubernetes NetworkPolicy 官方文档](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
-- [Calico 网络策略指南](https://docs.projectcalico.org/security/network-policy/)
-- [Kubernetes 零信任网络模型](https://kubernetes.io/docs/concepts/security/network-policies/)
+- [Calico 网络策略指南](https://docs.tigera.io/calico/latest/network-policy/)
+- [Kubernetes 安全与零信任](https://kubernetes.io/docs/concepts/security/)
 - [KDO 开发者网络存储](/docs/developer/network-storage/)

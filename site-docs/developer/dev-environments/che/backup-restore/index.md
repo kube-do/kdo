@@ -1,5 +1,5 @@
 ---
-title: "备份与恢复"
+title: "Che 工作区备份与恢复"
 description: "Eclipse Che 的备份机制由 DevWorkspace Operator 根据集群配置自动创建，工作区停止时自动生成 备份镜像 。备份与恢复功能支持在同一集群恢复，也支持跨集群迁移。"
 sidebar_position: 4
 doc_type: explanation

@@ -1,7 +1,7 @@
 ---
 title: "限制范围(LimitRange)"
 description: "LimitRange 用于为命名空间设置容器资源请求（requests）和限制（limits）的默认值、最小值和最大值。它确保新创建的 Pod 符合资源规范，防止某个容器申请过多或过少资源，从而维护集群稳定性和公平性。"
-sidebar_position: 5
+sidebar_position: 4
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

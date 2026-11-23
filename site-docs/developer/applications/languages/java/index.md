@@ -1,7 +1,7 @@
 ---
 title: "Java 项目部署"
-description: "在 KDO 上通过源码部署 Java 项目"
-sidebar_position: 1
+description: "介绍 KDO 如何识别 Maven 项目、配置 Java 版本和 Maven 仓库、构建 Jar 或 War 并生成镜像，包含多模块和私服说明。"
+sidebar_position: 2
 doc_type: explanation
 audience: [developer]
 owner: docs-ops

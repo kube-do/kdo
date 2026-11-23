@@ -1,7 +1,7 @@
 ---
 title: "Golang 项目部署"
-description: "在 KDO 上通过源代码部署 Golang 项目"
-sidebar_position: 3
+description: "介绍 KDO 如何识别 Go 项目、配置 GOPROXY、选择 Go 版本、构建二进制并生成镜像，包含私有模块和 CGO 说明。"
+sidebar_position: 4
 doc_type: explanation
 audience: [developer]
 owner: docs-ops

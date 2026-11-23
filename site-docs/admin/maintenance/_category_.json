@@ -1,5 +1,9 @@
 {
-  "label": "运维与证书",
-  "position": 999,
-  "collapsed": false
+  "label": "运维与安全",
+  "position": 11,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "admin/maintenance/index"
+  }
 }

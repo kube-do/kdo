@@ -1,6 +1,6 @@
 ---
 title: "Trunk Based Development"
-description: "主干开发的分支模型、频繁集成、特性开关与最佳实践。"
+description: "介绍主干开发的分支模型、频繁集成、特性开关、发布策略和团队落地最佳实践。"
 sidebar_position: 5
 doc_type: explanation
 audience: [developer]

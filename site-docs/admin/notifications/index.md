@@ -1,7 +1,7 @@
 ---
 title: "通知中心"
 description: "通知中心 用于把平台事件（构建成功/失败、部署完成、告警、审批、环境异常等）按规则推送到企业微信、钉钉、飞书或 Webhook，并记录每次投递结果，便于追踪与补偿。"
-sidebar_position: 11
+sidebar_position: 8
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

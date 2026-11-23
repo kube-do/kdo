@@ -1,7 +1,7 @@
 ---
 title: "KDO 平台结合 GitFlow 进行应用开发"
 description: "在现代软件开发中，特别是多人协作的开发环境中，选择适合的 Git 分支策略对项目的成功至关重要。 不同的团队规模、项目复杂度和发布频率都可能需要不同的分支策略。 常见的 Git 分支策略包括 Git Flow、GitHub Flow 和 Trunk Based Development (主干开发)。 本文将深入分析这些"
-sidebar_position: 2
+sidebar_position: 1
 doc_type: explanation
 audience: [developer]
 owner: docs-ops

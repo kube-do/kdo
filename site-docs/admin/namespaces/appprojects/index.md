@@ -1,7 +1,7 @@
 ---
 title: "应用项目(AppProject)"
-description: "入口：访问应用项目详情。"
-sidebar_position: 3
+description: "应用项目（AppProject）将项目成员、命名空间和环境组织在一起，本页介绍创建、成员权限、环境命名空间和常见问题。"
+sidebar_position: 2
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

@@ -1,7 +1,7 @@
 ---
 title: "资源配额(ResourceQuota)"
 description: "资源配额( ResourceQuota ) 是 Kubernetes 中用于限制命名空间内资源总量的一种策略对象。 它允许集群管理员对每个命名空间设置资源使用上限，从而控制该命名空间内的资源消耗，确保整个集群的资源不会被单个命名空间耗尽。 这有助于在多租户环境中实现资源的公平分配和隔离。 更多信息, 请参考官方文档。"
-sidebar_position: 4
+sidebar_position: 3
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

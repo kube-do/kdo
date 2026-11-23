@@ -1,7 +1,7 @@
 ---
 title: ".NET 项目部署"
-description: "在 KDO 上通过源码部署 .NET 项目"
-sidebar_position: 6
+description: "介绍 KDO 如何识别 .NET 项目、选择 SDK 版本、还原 NuGet 包、发布产物并构建镜像，包含配置项和常见问题。"
+sidebar_position: 7
 doc_type: explanation
 audience: [developer]
 owner: docs-ops

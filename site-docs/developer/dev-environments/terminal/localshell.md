@@ -16,7 +16,7 @@ LocalShell主要用于促进本地环境与KDO平台之间的交互操作。例�
 
 ## 打开localshell
 LocalShell集成在KDO的管理控制台中，访问KDO页面右上角用户菜单，点击`复制登录命令`
-![](img/open-local-shell.png)
+![打开 LocalShell](img/open-local-shell.png)
 
 
 ## 下载命令行工具
@@ -24,7 +24,7 @@ LocalShell集成在KDO的管理控制台中，访问KDO页面右上角用户菜�
 打开页面，里面`Windows`、`Linux`、`Mac`各种操作系统的命令行工具，访问对应操作系统的链接，下载对应的命令行工具`oc`。
 确保有可执行的权限(linux/mac通过`chmod +x oc`设置，windows右键属性里设置`解除锁定`)，放置到对应的目录（注意：这里需要用到管理员的权限）
 比如:Windows是`C:\Windows\System32\`，Linux和Mac是 `/usr/bin/` 。
-![](img/windows-unlock.webp)
+![解除 Windows 文件锁定](img/windows-unlock.webp)
 
 ## oc 与 kubectl 对比
 

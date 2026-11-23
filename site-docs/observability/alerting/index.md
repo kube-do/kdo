@@ -1,7 +1,7 @@
 ---
 title: "告警配置（Alertmanager）"
 description: "在 KDO 控制台中配置告警路由、接收器、抑制规则和全局参数，把 Prometheus 告警发送到邮件、Webhook、Slack、企业微信或钉钉。"
-sidebar_position: 1
+sidebar_position: 2
 doc_type: how-to
 audience: [admin]
 owner: docs-ops

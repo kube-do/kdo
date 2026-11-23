@@ -1,7 +1,7 @@
 ---
 title: "仪表盘(Dashboard)"
 description: "本页介绍 KDO 监控中 Grafana 仪表盘的浏览、筛选、查看、分享与权限。集群资源总览、健康巡检和指标口径请参阅 监控概览；告警规则、联络点和通知策略请参阅 监控。"
-sidebar_position: 2
+sidebar_position: 3
 doc_type: explanation
 audience: [admin, developer]
 owner: docs-ops

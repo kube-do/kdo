@@ -41,7 +41,7 @@ flowchart TD
 
 ## 节点列表
 
-![](imgs/nodes.webp)
+![节点列表](imgs/nodes.webp)
 
 :::note
 
@@ -81,7 +81,7 @@ flowchart TD
 
 ## 节点详情
 
-![](imgs/node.webp)
+![节点详情](imgs/node.webp)
 
 点击对应的节点，可以打开节点页面，里面有以下菜单：
 
@@ -98,7 +98,7 @@ flowchart TD
 ### 节点终端
 
 
-![](imgs/node-terminal.webp)
+![节点终端](imgs/node-terminal.webp)
 
 节点的 **终端** 菜单会在节点上创建一个临时调试 Pod 并通过 `bash` 进入，效果类似 SSH。
 
@@ -115,7 +115,7 @@ flowchart TD
 
 :::
 
-![](imgs/actions.webp)
+![节点操作菜单](imgs/actions.webp)
 
 | 菜单          | 描述                         |
 |:------------|:---------------------------|

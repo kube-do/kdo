@@ -1,7 +1,7 @@
 ---
 title: "部署应用"
-description: "在 KDO 上部署应用"
-sidebar_position: 1
+description: "KDO 根据仓库中的语言特征文件自动识别项目类型，并生成对应的构建流水线；本页对比各语言模板和通用创建流程。"
+sidebar_position: 2
 doc_type: explanation
 audience: [developer]
 owner: docs-ops

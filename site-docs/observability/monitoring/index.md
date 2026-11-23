@@ -43,7 +43,7 @@ Dashboard 是一个可视化界面，展示各种指标的数据，在界面上�
 
 
 ## 监控告警架构
-<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" poster="/media/docs/observability/monitoring/imgs/prometheus-architecture-poster.webp"><source src="/media/docs/observability/monitoring/imgs/prometheus-architecture.mp4" type="video/mp4" /></video>
+<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" aria-label="Prometheus 告警架构" poster="/media/docs/observability/monitoring/imgs/prometheus-architecture-poster.webp"><source src="/media/docs/observability/monitoring/imgs/prometheus-architecture.mp4" type="video/mp4" /></video>
 
 从上图可以看到，整个 监控告警模块 可以分为四大部分，分别是：
 
@@ -78,9 +78,9 @@ flowchart TD
 `Grafana`是一个非常强大的开源监控和可视化工具，用于监控和可视化各种类型的数据，如应用程序、服务器、网络、数据库等。
 具体操作文档，请参考：[Grafana官方文档](https://grafana.org.cn/docs/grafana/latest/).
 
-![](imgs/login.webp)
+![Grafana 登录页面](imgs/login.webp)
 
-`Grafana` 的登录地址默认是 `http://grafana.${DEFAULT_DOMAIN}` 比如： http://grafana.kube-do.dev。
+`Grafana` 的登录地址默认是 `https://grafana.${DEFAULT_DOMAIN}`，例如 https://grafana.kube-do.dev。
 管理员账号默认为 `admin`，初始密码请参考部署配置或联系平台管理员；首次登录后请立即修改密码。
 普通用户需要通过`OAuth`登录，这个和`KDO`平台的登录方式一致，默认`Oauth`登录都是`Viewer`权限，可以通过管理员设置更多权限。
 
@@ -94,7 +94,7 @@ KDO的告警模块基于`Grafana`，提供了告警规则、告警通知和告�
 Grafana 警报定期查询数据源并评估警报规则中定义的条件
 如果条件被违反，则会触发警报实例
 触发（和已解决）的警报实例将发送以进行通知，可以直接发送到联系点，也可以通过通知策略发送以获得更大的灵活性
-![](imgs/how-notification-templates-works.webp)
+![Grafana 告警通知流程](imgs/how-notification-templates-works.webp)
 
 ### 设置报警规则
 警报规则由一个或多个查询和表达式组成，用于选择您要测量的数据。它包含触发警报的条件、确定规则评估频率的评估周期以及用于管理警报事件及其通知的其他选项
@@ -124,7 +124,7 @@ Grafana提供了多种通知方式，如邮件、企业微信、钉钉、Webhook
 
    可以通过测试来检查报警是否生效
 
-![](imgs/notification-routing.webp)
+![通知路由配置](imgs/notification-routing.webp)
 
 ### [如何配置通知](https://grafana.org.cn/docs/grafana/latest/alerting/configure-notifications/)
 
@@ -138,6 +138,6 @@ Grafana提供了多种通知方式，如邮件、企业微信、钉钉、Webhook
 ### 管理警报
 `Grafana` 警报功能提供监控警报和管理警报设置的功能。您可以获得警报的概览，跟踪警报状态的历史记录，并监控通知状态。
 这些可以帮助您开始在 `Grafana` 中调查警报问题，并提高警报实施的可靠性
-![](imgs/alert-history-page.webp)
+![告警历史页面](imgs/alert-history-page.webp)
 
 [如何管理警报](https://grafana.org.cn/docs/grafana/latest/alerting/monitor-status/)

@@ -1,7 +1,7 @@
 ---
 title: "Dockerfile"
-description: "在 KDO 上通过 Dockerfile 部署应用"
-sidebar_position: 7
+description: "介绍在 KDO 中使用 Dockerfile 构建应用镜像、配置构建参数和发布应用的步骤。"
+sidebar_position: 8
 doc_type: how-to
 audience: [developer]
 owner: docs-ops
@@ -21,7 +21,7 @@ status: migrated
 
 **Dockerfile** 是由一系列命令和参数构成的脚本，这些命令应用于基础镜像并最终创建一个新的镜像。
 
-KDO 在源码检测阶段会读取 [Dockerfile](https://docs.docker.com/engine/reference/builder/) 定义的如下参数：
+KDO 在源码检测阶段会读取 [Dockerfile](https://docs.docker.com/reference/dockerfile/) 定义的如下参数：
 
 | 参数类型   | 名称    | 说明              |
 |--------|-------|-----------------|

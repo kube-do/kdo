@@ -52,7 +52,7 @@ flowchart TD
 
 ## 有状态列表
 
-![](imgs/statefulsets.webp)
+![有状态应用列表](imgs/statefulsets.webp)
 
 :::note
 
@@ -87,7 +87,7 @@ flowchart TD
 
 :::
 
-![](imgs/actions.webp)
+![有状态应用操作菜单](imgs/actions.webp)
 
 ## 什么时候使用 StatefulSet
 

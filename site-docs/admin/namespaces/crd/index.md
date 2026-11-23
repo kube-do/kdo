@@ -1,7 +1,7 @@
 ---
 title: "自定义资源定义(CRD)"
 description: "Custom Resource Definitions (CRDs) 是 Kubernetes 中用于扩展 API 的一种机制，允许用户定义自己的资源类型。 CRD 是一种 API 对象，它代表了一类自定义资源。 当你创建一个 CRD 时，Kubernetes API 服务器会自动为你提供存储和访问该类型的自定义资源的"
-sidebar_position: 6
+sidebar_position: 5
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

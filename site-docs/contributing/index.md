@@ -1,6 +1,6 @@
 ---
 title: "贡献指南"
-description: "如何参与 KDO 文档与示例的编写、评审和发布。"
+description: "介绍 KDO 文档的内容源、目录结构、本地开发、frontmatter、写作规范、锚点与链接、图片视频、评审和提交要求。"
 sidebar_position: 1
 doc_type: how-to
 audience: [developer, admin]
@@ -51,7 +51,7 @@ pnpm approve-builds --all
 | `pnpm start` | 本地开发服务器 |
 | `pnpm build` | 生产构建，断链/断锚点会直接失败 |
 | `pnpm migrate` | 资源治理、下载同步、生成 301 |
-| `node migration/check-url-parity.mjs` | 校验 200/301/410 与 `vercel.json` |
+| `pnpm check:urls` | 校验 200/301/410 与 `vercel.json` |
 | `pnpm serve` | 预览生产构建 |
 
 ## 文件与路由
@@ -133,7 +133,7 @@ status: stable
 
    ```bash
    pnpm build
-   node migration/check-url-parity.mjs
+   pnpm check:urls
    ```
 
 3. PR 描述写清：改了什么、为什么改、影响哪些页面、是否涉及 URL/锚点。

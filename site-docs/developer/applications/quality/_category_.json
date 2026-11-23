@@ -1,5 +1,9 @@
 {
   "label": "代码质量",
-  "position": 999,
-  "collapsed": false
+  "position": 6,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "developer/applications/quality/index"
+  }
 }

@@ -1,5 +1,9 @@
 {
   "label": "开发环境",
-  "position": 999,
-  "collapsed": false
+  "position": 9,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "developer/dev-environments/index"
+  }
 }

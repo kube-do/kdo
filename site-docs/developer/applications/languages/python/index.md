@@ -1,7 +1,7 @@
 ---
 title: "Python 项目部署"
-description: "在 KDO 上通过源码部署 Python 项目"
-sidebar_position: 2
+description: "介绍 KDO 如何识别 Python 项目、安装 requirements、选择 Python 版本、配置启动命令并构建镜像。"
+sidebar_position: 3
 doc_type: explanation
 audience: [developer]
 owner: docs-ops

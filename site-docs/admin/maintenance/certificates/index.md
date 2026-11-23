@@ -1,7 +1,7 @@
 ---
 title: "证书管理(KdcCertificate)"
 description: "证书管理（KdcCertificate） 用于自动维护 Ingress 使用的 TLS 证书：把一份「权威证书」（保存在一个 kubernetes.io/tls Secret 中）自动分发到各集群、各命名空间的 Ingress TLS Secret，并在目标证书比来源证书更早过期时用来源证书替换，从而避免逐个命名空间手"
-sidebar_position: 8
+sidebar_position: 1
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

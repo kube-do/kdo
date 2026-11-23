@@ -1,7 +1,7 @@
 ---
 title: "静态HTML"
-description: "在 KDO 上通过源代码部署静态HTML项目"
-sidebar_position: 8
+description: "介绍 KDO 如何识别静态 HTML 项目、选择 Nginx 运行镜像、配置构建产物目录并发布为可访问的静态站点。"
+sidebar_position: 9
 doc_type: how-to
 audience: [developer]
 owner: docs-ops

@@ -1,6 +1,6 @@
 ---
 title: "应用模版持续交付"
-description: "本节将会介绍如何在 kdo 上实现应用模版持续交付"
+description: "介绍如何把应用发布为 KDO 应用模板，并通过内部组件库在多个环境中复用和交付。"
 sidebar_position: 2
 doc_type: explanation
 audience: [developer]
@@ -28,7 +28,7 @@ status: migrated
 4. 当 `3.0` 版本测试通过以后，我们就可以认为已经有了高质量可交付的版本。接下来可以在应用市场标记该版本已经 Release，后续在生产环境部署时，直接从应用市场部署 `3.0` 版本即可。
 
 <!-- ![ram-delivery](https://grstatic.oss-cn-shanghai.aliyuncs.com/docs/5.10/delivery/ram-delivery.jpg) -->
-![](https://static.goodrain.com/docs/5.11/delivery/continuous/source-code/template-delivery.png)
+![KDO 应用模板持续交付流程图](https://static.goodrain.com/docs/5.11/delivery/continuous/source-code/template-delivery.png)
 
 ## 版本演进与模板实例化
 

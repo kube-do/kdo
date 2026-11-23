@@ -1,7 +1,7 @@
 ---
 title: "日志(Logging)"
 description: "应用日志可以让你了解应用内部的运行状况。日志对调试问题和监控集群活动非常有用。 大部分现代化应用都有某种日志记录机制。同样地，容器引擎也被设计成支持日志记录。 针对容器化应用，最简单且最广泛采用的日志记录方式就是写入标准输出和标准错误流。"
-sidebar_position: 2
+sidebar_position: 4
 doc_type: explanation
 audience: [admin, developer]
 owner: docs-ops
@@ -154,7 +154,7 @@ flowchart TD
 
 :::
 
-<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" poster="/media/docs/observability/logging/imgs/pod-log-poster.webp"><source src="/media/docs/observability/logging/imgs/pod-log.mp4" type="video/mp4" /></video>
+<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" aria-label="查看 Pod 日志" poster="/media/docs/observability/logging/imgs/pod-log-poster.webp"><source src="/media/docs/observability/logging/imgs/pod-log.mp4" type="video/mp4" /></video>
 
 
 ### 观测平台访问
@@ -165,7 +165,7 @@ flowchart TD
 
 :::
 
-<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" poster="/media/docs/observability/logging/imgs/namespace-log-poster.webp"><source src="/media/docs/observability/logging/imgs/namespace-log.mp4" type="video/mp4" /></video>
+<video class="doc-video" controls muted loop autoplay playsinline preload="metadata" aria-label="在观测平台查看命名空间日志" poster="/media/docs/observability/logging/imgs/namespace-log-poster.webp"><source src="/media/docs/observability/logging/imgs/namespace-log.mp4" type="video/mp4" /></video>
 
 ## 常用 LogQL 查询
 

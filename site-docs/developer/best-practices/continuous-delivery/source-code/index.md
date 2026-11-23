@@ -1,6 +1,6 @@
 ---
 title: "源码持续交付"
-description: "本节将会介绍如何在 kdo 上实现源码持续交付"
+description: "介绍如何把 Git 仓库接入 KDO，通过流水线构建镜像、写回部署清单并自动部署到目标环境。"
 sidebar_position: 3
 doc_type: explanation
 audience: [developer]

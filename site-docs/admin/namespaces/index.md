@@ -1,7 +1,7 @@
 ---
 title: "命名空间(Namespace)"
 description: "在 Kubernetes 中，命名空间(Namespace)提供一种机制，将同一集群中的资源划分为相互隔离的组。 同一命名空间内的资源名称要唯一，但跨命名空间时没有这个要求。 命名空间作用域仅针对带有命名空间的对象(例如 Deployment 、 Service 等)，这种作用域对集群范围的对象(例如 StorageC"
-sidebar_position: 2
+sidebar_position: 3
 doc_type: explanation
 audience: [admin]
 owner: docs-admin
@@ -91,20 +91,20 @@ Kubernetes 启动时会创建四个初始命名空间：
 
 ### 命名空间概述
 命名空间概述页面的内容对应就是环境概要信息页面的内容。更多信息，请参考[环境概要信息](/docs/developer/overview/environments/)
-![](imgs/namespace.webp)
+![命名空间详情](imgs/namespace.webp)
 
 
 ### 命名空间工作负载
 命名空间概述页面的内容对应就是工作负载信息拓扑页面。更多信息，请参考[应用拓扑信息](/docs/developer/workloads/topology/)
-![](imgs/namespace-topology.webp)
+![命名空间工作负载拓扑](imgs/namespace-topology.webp)
 
 
 ### 命名空间访问控制
-![](imgs/namespace-access.webp)
+![命名空间访问控制](imgs/namespace-access.webp)
 
 
 ### 命名空间角色绑定
-![](imgs/namespace-roles.webp)
+![命名空间角色绑定](imgs/namespace-roles.webp)
 
 ## 命名空间生命周期
 

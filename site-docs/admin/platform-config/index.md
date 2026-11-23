@@ -1,7 +1,7 @@
 ---
 title: "平台配置编辑器"
 description: "平台配置编辑器 用于在控制台中图形化维护 Console 与 KDC 的平台配置，避免直接编辑 ConfigMap 时的格式错误与字段遗漏。"
-sidebar_position: 10
+sidebar_position: 9
 doc_type: explanation
 audience: [admin]
 owner: docs-admin

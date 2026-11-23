@@ -39,7 +39,7 @@ flowchart TD
 
 ## 无状态列表
 
-![](imgs/deployments.webp)
+![无状态应用列表](imgs/deployments.webp)
 
 :::note
 
@@ -63,7 +63,7 @@ flowchart TD
 
 :::
 
-![](imgs/deployment.webp)
+![访问无状态应用](imgs/deployment.webp)
 
 | 菜单   | 说明                                    |
 |:-----|:--------------------------------------|
@@ -79,7 +79,7 @@ flowchart TD
 
 - 点击列表右侧的`操作图标`或者点击无状态应用页面右上的`操作`，可以对当前无状态应用进行更多操作,其中大部分和[有状态应用](/docs/developer/workloads/statefulsets/)是相同的
 
-![](imgs/actions.webp)
+![无状态应用操作菜单](imgs/actions.webp)
 
 
 | 菜单                     | 说明                                                                 |
