@@ -98,6 +98,7 @@ flowchart TD
 - 访问 Token 需要使用 **Codeup 个人访问令牌**，并具备仓库读写权限与 Webhook 管理权限；建议设置 30 天过期并定期轮换。
 - Codeup 不允许浏览器直接调用其 Webhook 接口，因此 Webhook 由 Console 后端代理由创建（`/api/dev-console/webhooks/codeup`），不需要在 Codeup 控制台手工配置。
 - 支持的事件包括推送、Tag 推送、合并请求与评论事件；表单中可直接查看事件说明。
+- Pipelines as Code 侧的 Codeup 认证、Webhook 和手动 Repository 配置，见 [Codeup 集成](/docs/developer/delivery/pac/git-integration/codeup/)。
 
 ### 从 Git 导入应用 (/import)
 

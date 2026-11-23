@@ -20,6 +20,7 @@ status: stable
 | GitLab | 可选 | 通过 Webhook 集成 |
 | Bitbucket Cloud | 可选 | 通过 Webhook 集成 |
 | Bitbucket Data Center | 可选 | 通过 Webhook 集成 |
+| 阿里云 Codeup | 可选 | 通过控制台代理创建 Webhook，支持公有云 |
 
 ## 集成方式
 
@@ -30,6 +31,7 @@ status: stable
 | GitHub | [GitHub App 集成](/docs/developer/delivery/pac/git-integration/github-app/)（推荐）<br/>[GitHub Webhook 集成](/docs/developer/delivery/pac/git-integration/github-webhook/) |
 | GitLab | [GitLab 集成](/docs/developer/delivery/pac/git-integration/gitlab/) |
 | Bitbucket | [Bitbucket 集成](/docs/developer/delivery/pac/git-integration/bitbucket/) |
+| 阿里云 Codeup | [Codeup 集成](/docs/developer/delivery/pac/git-integration/codeup/) |
 
 ## 配置自定义证书
 
