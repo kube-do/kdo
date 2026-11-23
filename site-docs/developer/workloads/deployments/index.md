@@ -5,8 +5,8 @@ sidebar_position: 3
 doc_type: explanation
 audience: [developer]
 owner: docs-dev
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 介绍
@@ -93,3 +93,67 @@ flowchart TD
 | 编辑资源限制                 | 添加/编辑容器资源限制 [更多细节](/docs/developer/workload-operations/resource-limits/) |
 | 编辑Deployment           | 编辑这个无状态应用，支持图形化和YAML两种模式                                           |
 | 删除Deployment           | 删除这个无状态应用                                                          |
+
+## 发布与回滚
+
+Deployment 通过 ReplicaSet 保存版本历史。修改镜像、命令、环境变量或资源限制后，KDO 会按更新策略创建新的 ReplicaSet，并逐步替换旧 Pod。
+
+| 策略 | 行为 | 适用场景 |
+| --- | --- | --- |
+| RollingUpdate | 逐步创建新 Pod、终止旧 Pod，可设置 `maxSurge` 和 `maxUnavailable` | 大多数无状态服务 |
+| Recreate | 先终止所有旧 Pod，再创建新 Pod | 不能同时运行两个版本的应用 |
+
+发布过程中可以在详情页查看 ReplicaSet 和 Pod 状态。新版本未就绪时，旧版本会保留；确认异常后可以回滚到上一个 ReplicaSet。
+
+回滚前先确认：
+
+- 数据库或外部依赖是否兼容旧版本。
+- 是否需要同时回滚配置、Secret 或环境变量。
+- 是否有正在运行的构建或迁移任务。
+
+## 资源与健康检查
+
+- 为容器设置 `requests` 和 `limits`，避免节点资源被单个应用耗尽。
+- 配置 readinessProbe，确保只有就绪 Pod 接收流量。
+- 配置 livenessProbe，进程卡死时可以自动重启。
+- 为关键服务设置多个副本和 PodDisruptionBudget。
+- 需要自动扩缩时配置 [HPA](/docs/developer/workload-operations/hpa/)。
+
+## 常见问题
+
+### Pod 一直 Pending
+
+查看事件中的调度失败原因：节点资源不足、污点/容忍不匹配、亲和性规则过严或 PVC 未绑定。
+
+### ImagePullBackOff
+
+检查镜像地址、tag、镜像仓库凭据和网络；私有仓库需要正确的 `imagePullSecrets`。
+
+### CrashLoopBackOff
+
+查看容器日志和 `--previous` 日志，确认启动命令、配置文件、依赖服务和环境变量。
+
+### 发布后没有流量
+
+检查 readinessProbe、Service selector、Endpoints 和 Ingress 后端端口。
+
+### 回滚后仍是新版本
+
+确认回滚的是正确的 ReplicaSet，并检查是否有 HPA、GitOps 或流水线在持续覆盖副本数和镜像。
+
+## 最佳实践
+
+- 使用不可变镜像 tag 或 digest，不使用 `latest`。
+- 把配置放进 ConfigMap/Secret，镜像保持环境无关。
+- 为发布设置合理的 `maxUnavailable`，避免一次性下线过多实例。
+- 在 CI 中先构建、扫描和测试，再更新 Deployment。
+- 发布后观察错误率、延迟、重启次数和资源使用，再扩大流量。
+
+## 相关文档
+
+- [有状态应用（StatefulSet）](/docs/developer/workloads/statefulsets/)
+- [容器组（Pod）](/docs/developer/workloads/pods/)
+- [更新策略](/docs/developer/workload-operations/update-strategy/)
+- [健康检查](/docs/developer/workload-operations/health-checks/)
+- [资源限制](/docs/developer/workload-operations/resource-limits/)
+- [排障索引](/docs/reference/troubleshooting/)

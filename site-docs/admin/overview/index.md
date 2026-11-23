@@ -59,6 +59,13 @@ flowchart TD
 - [创建命名空间](/docs/admin/namespaces/) - 为新团队或环境隔离资源
 - [配置 AppProject](/docs/admin/namespaces/appprojects/) - 管理 KDO 项目模型与成员权限
 
+### 运维与安全
+
+- [升级与回滚](/docs/admin/maintenance/upgrade/) - 升级平台并准备回滚
+- [备份与恢复](/docs/admin/maintenance/backup-restore/) - 备份集群、配置和业务数据
+- [安全基线](/docs/admin/maintenance/security/) - 上线前的最小安全检查
+- [排障索引](/docs/reference/troubleshooting/) - 按现象定位问题
+
 ---
 
 ## 管理对象

@@ -18,6 +18,7 @@ status: migrated
 
 - **无现有 Kubernetes 集群**：先在 Linux 上安装 Kubernetes，再安装 KDO 平台。
 - **已有 Kubernetes 集群**：确认集群版本满足要求，配置 kube-apiserver 的 OIDC 参数后直接安装 KDO 平台。
+- **无法访问公网**：先准备镜像、Chart 和安装器，再按[离线安装](/docs/install/offline/)执行。
 
 
 ## 工作流程

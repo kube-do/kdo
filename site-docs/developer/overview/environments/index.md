@@ -19,7 +19,7 @@ status: migrated
 
 :::
 
-![namespace.jpg](imgs/namespace.jpg)
+![namespace.jpg](imgs/namespace.webp)
 
 ## 页面结构
 

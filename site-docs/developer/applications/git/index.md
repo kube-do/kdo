@@ -113,7 +113,7 @@ flowchart TD
 `Pipelines as Code` 是一种实践方法，它将CI/CD（持续集成/持续部署）流水线的定义与源代码一同存储在版本控制系统中，如`GitHub`或`GitLab`。
 这种方法使用[Tekton PipelineRuns和Tasks](/docs/developer/delivery/pipelines/#tekton的资源对象)来定义具体的`CI/CD`流程，并将其保存在一个文件里，该文件位于项目的源代码管理(SCM)系统中。
 
-![basic-devops.jpg](imgs/basic-devops.jpg)
+![basic-devops.jpg](imgs/basic-devops.webp)
 ### 主要特点
 1. **集中化定义：** 通过在一个文件中定义`CI/CD`流程，使得整个团队可以更容易地理解和修改这些流程。
 2. **版本控制：** 因为流水线定义是作为代码存储的，所以它可以像其他任何代码一样被版本化、审查和协作处理。

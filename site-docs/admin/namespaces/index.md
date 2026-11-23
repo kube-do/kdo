@@ -5,8 +5,8 @@ sidebar_position: 2
 doc_type: explanation
 audience: [admin]
 owner: docs-admin
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 介绍
@@ -124,3 +124,83 @@ flowchart TD
 ```
 
 命名空间删除是不可逆的级联操作；删除前应先确认配额、存储与工作负载的归属，避免误删其他团队仍在使用的资源。
+
+## 常用操作
+
+### 创建命名空间
+
+在管理员界面进入 **命名空间**，点击 **创建**，填写名称和显示名称。名称创建后不可修改，建议使用小写字母、数字和短横线。
+
+```bash
+kubectl create namespace team-demo
+kubectl get namespace team-demo
+```
+
+### 设置配额和限制
+
+为新命名空间设置 [ResourceQuota](/docs/admin/namespaces/resource-quotas/) 和 [LimitRange](/docs/admin/namespaces/limit-ranges/)，避免单个项目耗尽集群资源。
+
+```bash
+kubectl get resourcequota,limitrange -n team-demo
+```
+
+### 绑定权限
+
+通过 [RBAC](/docs/admin/access-control/rbac/) 为团队绑定角色。优先使用命名空间级 `RoleBinding`，不要为普通成员绑定集群级管理员权限。
+
+### 删除命名空间
+
+```bash
+kubectl get all,pvc,ingress -n team-demo
+kubectl delete namespace team-demo
+```
+
+删除前确认：
+
+- 没有其他团队或系统组件依赖该命名空间。
+- PVC 和外部存储中的数据已备份。
+- 相关 DNS、Ingress 和证书可以下线。
+- 没有正在运行的构建、部署或定时任务。
+
+## 常见问题
+
+### 命名空间一直 Terminating
+
+通常是有资源无法删除，例如 finalizer、CRD、PVC 或 APIService。查看命名空间状态和残留资源：
+
+```bash
+kubectl get namespace team-demo -o yaml
+kubectl api-resources --verbs=list --namespaced -o name | \
+  xargs -n1 kubectl get -n team-demo --ignore-not-found
+```
+
+不要直接删除 namespace 的 finalizer，先确认残留资源和数据归属。
+
+### Pod 创建被拒绝
+
+检查 ResourceQuota 是否已用尽、LimitRange 是否要求必须设置 requests/limits，以及准入 Webhook 是否拦截。
+
+### 跨命名空间访问失败
+
+同命名空间可以只用服务名，跨命名空间需要使用 `<service>.<namespace>.svc.cluster.local`，并确认 NetworkPolicy 允许访问。
+
+### 看不到系统命名空间
+
+控制台默认隐藏 `kube-*`、`kubedo-*` 等系统命名空间，可以在下拉中手动选择或通过 URL 访问。
+
+## 最佳实践
+
+- 按团队或环境划分命名空间，不要把生产和管理组件混在一起。
+- 为每个命名空间设置配额、限制和默认网络策略。
+- 命名空间名称保持稳定，不把随机后缀写进自动化脚本。
+- 删除前先做资源盘点，必要时先缩容和备份。
+- 使用标签记录 owner、环境和成本中心，便于审计和清理。
+
+## 相关文档
+
+- [资源配额](/docs/admin/namespaces/resource-quotas/)
+- [限制范围](/docs/admin/namespaces/limit-ranges/)
+- [RBAC](/docs/admin/access-control/rbac/)
+- [网络策略](/docs/admin/networking/network-policies/)
+- [AppProject](/docs/admin/namespaces/appprojects/)
+- [存储](/docs/admin/storage/)

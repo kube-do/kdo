@@ -5,8 +5,8 @@ sidebar_position: 4
 doc_type: explanation
 audience: [developer]
 owner: docs-dev
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 介绍
@@ -88,3 +88,87 @@ flowchart TD
 :::
 
 ![](imgs/actions.webp)
+
+## 什么时候使用 StatefulSet
+
+适合：
+
+- 数据库、消息队列、缓存集群等需要稳定身份的应用。
+- 每个实例需要独立持久卷，且重启后保持同一份数据。
+- 实例之间有启动顺序或主从关系。
+- 需要通过稳定 DNS 名称访问特定实例。
+
+不适合：
+
+- 完全无状态、实例可以随意替换的 Web 服务。
+- 不需要稳定网络标识的批处理任务。
+- 只需要共享存储、不需要实例身份的应用。
+
+## 网络身份与存储
+
+StatefulSet 通常配合 Headless Service 使用：
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-headless
+spec:
+  clusterIP: None
+  selector:
+    app: mysql
+  ports:
+    - name: mysql
+      port: 3306
+```
+
+每个 Pod 的 DNS 名称形如：
+
+```text
+<pod-name>.<headless-service>.<namespace>.svc.cluster.local
+```
+
+`volumeClaimTemplates` 会为每个副本创建独立 PVC，命名通常是 `<模板名>-<pod-name>`。删除 StatefulSet 不会自动删除 PVC；需要先确认数据不再使用，再手工清理。
+
+## 更新与扩缩容
+
+- 默认按序号从大到小滚动更新，前一个 Pod 就绪后才继续。
+- `podManagementPolicy: OrderedReady` 保证有序；`Parallel` 适合实例之间没有依赖的场景。
+- 缩容按序号从大到小终止 Pod，PVC 默认保留。
+- 扩容时新 Pod 会按序号创建，并绑定新的 PVC。
+
+更新前确认存储、备份和主从切换方案；数据库类应用不要直接依赖滚动更新完成版本升级。
+
+## 常见问题
+
+### Pod 一直 Pending
+
+检查 PVC 是否绑定、StorageClass 是否支持 `ReadWriteOnce`、节点是否有足够资源，以及 Pod 的亲和性和 tolerations。
+
+### 新 Pod 启动顺序卡住
+
+前一个 Pod 未 Ready 时，`OrderedReady` 不会继续创建后续 Pod。先排查前一个 Pod 的日志、探针和存储。
+
+### 删除后数据丢失
+
+删除 PVC 或 StatefulSet 时误删了持久卷。确认回收策略和备份；StatefulSet 本身不会自动删除 PVC。
+
+### 无法通过稳定域名访问
+
+确认 Headless Service 的 selector 与 Pod 标签一致，并检查 Pod 是否 Ready。
+
+## 最佳实践
+
+- 为每个实例使用独立 PVC，不要多个副本共享同一个 `ReadWriteOnce` 卷。
+- 为数据库配置备份、恢复演练和主从切换方案。
+- 使用反亲和性尽量分散副本，避免单节点故障。
+- 缩容前先迁移数据或确认副本角色。
+- 为关键实例配置 PDB，避免维护时同时中断多个副本。
+
+## 相关文档
+
+- [无状态应用（Deployment）](/docs/developer/workloads/deployments/)
+- [容器组（Pod）](/docs/developer/workloads/pods/)
+- [PVC](/docs/developer/network-storage/pvc/)
+- [存储](/docs/admin/storage/)
+- [排障索引](/docs/reference/troubleshooting/)

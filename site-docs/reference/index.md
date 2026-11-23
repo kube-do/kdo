@@ -70,6 +70,9 @@ status: stable
 ## 相关文档
 
 - [术语表](/docs/reference/glossary/)：平台、交付、运行时和访问控制术语。
+- [版本兼容性](/docs/reference/compatibility/)：Kubernetes、Keycloak、Tekton、Harbor 的兼容性判断。
+- [排障索引](/docs/reference/troubleshooting/)：按现象查找安装、登录、构建、部署和存储问题。
+- [任务索引](/docs/reference/task-index/)：按角色和任务查找入口。
 - [贡献指南](/docs/contributing/)：新增或修改参考页的约定。
 - [架构](/docs/architecture/)：对象之间的整体关系。
 - [发布说明](/docs/release-notes/)：版本变更与升级注意事项。
