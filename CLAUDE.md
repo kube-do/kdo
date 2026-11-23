@@ -76,7 +76,6 @@ site-docs/                     # 唯一内容源（Markdown + 图片）
 migration/                     # 迁移、资源治理、URL 校验脚本
 static/                        # 静态资源、下载文件、演示视频
 src/                           # 首页、404、样式
-docs/                          # 旧 Jekyll 内容，只读归档，不参与构建
 ```
 
 ## Content authoring conventions
@@ -109,7 +108,7 @@ pnpm optimize       # 去重、删除未引用图片、PNG/JPG→WebP、GIF→MP
 pnpm migrate        # optimize + sync-downloads + generate-vercel-redirects
 ```
 
-`pnpm migrate:legacy` 会从 `docs/` 重新生成 `site-docs/`，会覆盖现有内容，日常不要运行。
+旧 Jekyll 内容已归档到 tag `legacy-jekyll-archive-2026-11-23` 并从 `main` 删除；需要回溯迁移脚本时 checkout 该 tag。
 
 ## CI / deployment
 
@@ -123,4 +122,4 @@ pnpm migrate        # optimize + sync-downloads + generate-vercel-redirects
 - `docusaurus.config.ts`：`baseUrl: '/'`、`trailingSlash: true`、`onBrokenLinks: 'throw'`、`onBrokenAnchors: 'throw'`。
 - 搜索插件索引 `/docs`，中文分词；搜索回归见 `migration/check-search.mjs`。
 - Mermaid 使用 `neutral`/`dark` 主题。
-- `site-docs/` 是唯一内容源，`docs/` 仅作历史归档。
+- `site-docs/` 是唯一内容源；旧 Jekyll 内容归档在 tag `legacy-jekyll-archive-2026-11-23`。

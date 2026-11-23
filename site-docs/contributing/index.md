@@ -25,11 +25,11 @@ status: stable
 ## 内容源与目录
 
 - `site-docs/` 是**唯一内容源**，日常直接编辑。
-- `docs/` 是旧 Jekyll 归档，只用于回溯，不再作为内容源。
+- 旧 Jekyll 内容归档在 tag `legacy-jekyll-archive-2026-11-23`，`main` 不再包含 `docs/`。
 - `static/media/` 存放视频和 poster。
 - `migration/` 存放迁移、资源治理、URL 校验脚本。
 
-旧 Jekyll 构建配置和 GitHub Pages 工作流已移除，生产只使用 Vercel。不要运行 `pnpm migrate:legacy`，它会从 `docs/` 重建并覆盖 `site-docs/`。
+旧 Jekyll 构建配置和 GitHub Pages 工作流已移除，生产只使用 Vercel。需要回溯旧内容时 checkout 该 tag，不要把 `docs/` 恢复到主分支。
 
 ## 本地开发
 

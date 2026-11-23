@@ -44,7 +44,7 @@ pnpm migrate
 - `migration/sync-downloads.mjs`：把根目录的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 同步到 `static/`
 - `migration/generate-vercel-redirects.mjs`：从 `redirects.csv` 生成 `vercel.json` 的 301
 
-`docs/` 是旧 Jekyll 内容归档，仅用于回溯；`pnpm migrate:legacy` 会从 `docs/` 重新生成 `site-docs/`，会覆盖当前内容，日常不要运行。
+旧 Jekyll 内容已归档到 tag `legacy-jekyll-archive-2026-11-23`，并从 `main` 删除。需要回溯时 checkout 该 tag；`site-docs/` 是唯一内容源。
 
 `pnpm start`、`pnpm build` 也会先执行 `sync:downloads`。`kdo-developer.tar.gz` 和 `agent-setup*.sh` 仍以仓库根目录为唯一源文件，`static/` 下的副本是构建产物，不提交。
 
@@ -75,7 +75,6 @@ pnpm migrate
 │   └── contributing/        # 贡献指南
 ├── migration/               # URL 映射、迁移脚本、内容/搜索/URL 检查
 ├── api/                     # Vercel Function（410 Gone）
-├── docs/                    # 旧 Jekyll 内容归档（只读，不再作为内容源）
 ├── src/                     # 首页、404、样式
 ├── static/                  # 静态资源
 ├── docusaurus.config.ts
@@ -90,13 +89,13 @@ pnpm migrate
 当前已完成 **阶段 A：同构迁移** 和 **阶段 B：IA 重构 + 301**。
 
 - 旧站 113 个页面已全部登记在 `migration/url-map.csv`。
-- `site-docs/` 共 138 篇 Markdown，顶层收敛为 9 个栏目：`quick-start`、`install`、`developer`、`admin`、`observability`、`architecture`、`reference`、`release-notes`、`contributing`。
+- `site-docs/` 共 142 篇 Markdown，顶层收敛为 9 个栏目：`quick-start`、`install`、`developer`、`admin`、`observability`、`architecture`、`reference`、`release-notes`、`contributing`。
 - 19 个 URL 保持不变，91 个旧 URL 已配置 301，3 篇 `docs/analysis/*` 内部分析通过 `api/gone.js` 返回 410。
 - `vercel.json` 的 91 条重定向由 `migration/redirects.csv` 生成。
-- 旧 Jekyll 构建配置与 GitHub Pages 工作流已移除，生产只使用 Vercel；`docs/` 保留为只读归档。
+- 旧 Jekyll 构建配置、GitHub Pages 工作流和 `docs/` 内容已从 `main` 移除；历史内容归档在 tag `legacy-jekyll-archive-2026-11-23`。
 - 资源治理后构建产物约 **32 MB**（gzip 约 **14.5 MB**）：`site-docs/` 约 8.6 MB，`static/media/` 约 4.9 MB。
 
-> `site-docs/` 和 `static/media/` 是提交到仓库的构建输入。Vercel 只执行 `pnpm build`，不会在云端运行 `pnpm migrate`；`pnpm migrate` 只优化 `site-docs` 内已有资源，不会从 `docs/` 重建内容。`static/` 下的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 是 `pnpm build` 自动生成的副本，不提交。
+> `site-docs/` 和 `static/media/` 是提交到仓库的构建输入。Vercel 只执行 `pnpm build`，不会在云端运行 `pnpm migrate`；`pnpm migrate` 只优化 `site-docs` 内已有资源，不会从归档重建内容。`static/` 下的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 是 `pnpm build` 自动生成的副本，不提交。
 
 ---
 
@@ -112,8 +111,8 @@ description: 一句话说明
 doc_type: how-to
 audience: [developer]
 owner: docs-dev
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 ```
 
