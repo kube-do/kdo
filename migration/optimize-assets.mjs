@@ -4,7 +4,7 @@
  * 1. 删除站内未引用图片；
  * 2. 合并内容完全相同的图片；
  * 3. GIF 转 MP4 + WebP poster，存到 static/media，并把 Markdown 图片替换为 <video>；
- * 4. PNG 转 WebP 并限宽。
+ * 4. PNG/JPG 转 WebP 并限宽。
  *
  * 只处理 site-docs/ 和 static/media/，不会修改 docs/ 里的 Jekyll 源内容。
  * 依赖：ffmpeg、sharp。
@@ -254,18 +254,20 @@ function convertGifs(markdownFiles) {
   }
 }
 
-async function convertPngs(markdownFiles, refs) {
-  const pngs = walk(SITE_DIR).filter((file) => path.extname(file).toLowerCase() === '.png');
+async function convertRasterImages(markdownFiles, refs) {
+  const images = walk(SITE_DIR).filter((file) =>
+    ['.png', '.jpg', '.jpeg'].includes(path.extname(file).toLowerCase())
+  );
   let converted = 0;
   let beforeBytes = 0;
   let afterBytes = 0;
-  for (const file of pngs) {
+  for (const file of images) {
     if (!fs.existsSync(file)) continue;
     if (!refs.has(file)) continue;
     const before = fs.statSync(file).size;
     if (before < MIN_OPTIMIZE_BYTES) continue;
     try {
-      const webp = file.replace(/\.png$/i, '.webp');
+      const webp = file.replace(/\.(png|jpe?g)$/i, '.webp');
       const meta = await sharp(file, { failOn: 'none' }).metadata();
       let pipeline = sharp(file, { failOn: 'none' });
       if (meta.width && meta.width > IMAGE_MAX_WIDTH) {
@@ -280,11 +282,11 @@ async function convertPngs(markdownFiles, refs) {
       beforeBytes += before;
       afterBytes += buffer.length;
     } catch (error) {
-      console.warn(`[png] 跳过 ${path.relative(SITE_DIR, file)}：${error.message}`);
+      console.warn(`[image] 跳过 ${path.relative(SITE_DIR, file)}：${error.message}`);
     }
   }
   if (converted > 0) {
-    console.log(`[webp] 转换 ${converted} 个 PNG，${formatBytes(beforeBytes)} -> ${formatBytes(afterBytes)}`);
+    console.log(`[webp] 转换 ${converted} 个 PNG/JPG，${formatBytes(beforeBytes)} -> ${formatBytes(afterBytes)}`);
   }
 }
 
@@ -303,7 +305,7 @@ async function main() {
   removeUnreferenced(imageFiles, refs);
   convertGifs(markdownFiles);
   refs = collectMarkdownRefs(markdownFiles);
-  await convertPngs(markdownFiles, refs);
+  await convertRasterImages(markdownFiles, refs);
 
   const afterSize = walk(SITE_DIR).reduce((sum, file) => sum + fs.statSync(file).size, 0);
   const mediaSize = fs.existsSync(VIDEO_DIR)

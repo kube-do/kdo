@@ -461,5 +461,11 @@
       "destination": "/docs/developer/workload-operations/pdb/",
       "statusCode": 301
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/docs/analysis/:path*",
+      "destination": "/api/gone"
+    }
   ]
 }

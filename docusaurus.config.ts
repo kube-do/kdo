@@ -65,6 +65,20 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/logo.svg',
+    metadata: [
+      {
+        name: 'description',
+        content:
+          'KDO 是 Kubernetes DevOps 平台，提供应用交付、多环境管理、流水线、可观测性和平台运维能力。',
+      },
+      {
+        name: 'keywords',
+        content:
+          'KDO,Kubernetes,DevOps,云原生,应用交付,Pipelines as Code,Tekton,可观测性',
+      },
+      {property: 'og:type', content: 'website'},
+      {property: 'og:site_name', content: 'KDO 文档'},
+    ],
     navbar: {
       title: 'KDO 文档',
       logo: {

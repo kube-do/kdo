@@ -14,7 +14,10 @@
     "migrate:legacy": "node migration/migrate-stage-a.mjs && node migration/migrate-stage-b.mjs && node migration/optimize-assets.mjs && node migration/sync-downloads.mjs && node migration/generate-vercel-redirects.mjs",
     "optimize": "node migration/optimize-assets.mjs",
     "redirects": "node migration/generate-vercel-redirects.mjs",
-    "check:urls": "node migration/check-url-parity.mjs"
+    "check:content": "node migration/check-frontmatter.mjs",
+    "check:search": "node migration/check-search.mjs",
+    "check:urls": "node migration/check-url-parity.mjs",
+    "verify": "pnpm build && pnpm check:content && pnpm check:search && pnpm check:urls"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",
@@ -22,7 +25,7 @@
     "@docusaurus/theme-mermaid": "3.10.2",
     "@easyops-cn/docusaurus-search-local": "0.55.3",
     "@mdx-js/react": "^3.0.0",
-    "@mermaid-js/layout-elk": "^1.0.2",
+    "@mermaid-js/layout-elk": "1.0.2",
     "clsx": "^2.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

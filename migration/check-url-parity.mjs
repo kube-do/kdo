@@ -94,6 +94,20 @@ for (const source of redirects.keys()) {
   }
 }
 
+if (rows.some((row) => row.status === "410")) {
+  const goneRewrite = (config.rewrites || []).find(
+    (rewrite) =>
+      rewrite.source === "/docs/analysis/:path*" &&
+      rewrite.destination === "/api/gone"
+  );
+  if (!goneRewrite) {
+    problems.push("vercel.json 缺少 /docs/analysis/* 到 /api/gone 的 rewrite");
+  }
+  if (!fs.existsSync(path.join(ROOT, "api/gone.js"))) {
+    problems.push("缺少 api/gone.js，410 页面无法返回 Gone");
+  }
+}
+
 if (!exists(path.join(BUILD, "docs/index.html"))) {
   problems.push("缺少 /docs/ 入口页");
 }

@@ -6,19 +6,23 @@
 
 - `migrate-stage-a.mjs`：把 `docs/` 同构迁移到 `site-docs/`，保持旧 URL。
 - `migrate-stage-b.mjs`：按 `url-map.csv` 调整 IA，移动页面与资源、重写绝对/相对链接、重建分类、兼容旧锚点。
-- `optimize-assets.mjs`：资源治理，删除未引用图片、合并重复图片、GIF 转 MP4 + WebP poster、PNG 转 WebP。
+- `optimize-assets.mjs`：资源治理，删除未引用图片、合并重复图片、GIF 转 MP4 + WebP poster、PNG/JPG 转 WebP。
 - `sync-downloads.mjs`：把根目录的 `kdo-developer.tar.gz` 与 `agent-setup*.sh` 复制到 `static/`，保证站点根路径可下载。
-- `generate-vercel-redirects.mjs`：从 `redirects.csv` 生成 `vercel.json` 的 301 重定向。
+- `generate-vercel-redirects.mjs`：从 `redirects.csv` 生成 `vercel.json` 的 301 重定向；410 由 `api/gone.js` + rewrite 处理。
 - `check-url-parity.mjs`：构建后检查 200/301/410 与 `vercel.json` 重定向是否一致。
-- 当前结果：`site-docs/` 共 106 篇 Markdown，9 个顶层栏目；19 个保持页、91 个 301、3 个 410。
-- 图片治理后：`site-docs/` 约 11 MB，`static/media/` 约 8 MB，构建产物约 38 MB。
+- `check-frontmatter.mjs`：检查 `site-docs` 的 frontmatter 必填字段、枚举、日期和正文 H1。
+- `check-search.mjs`：读取 `build/search-index.json`，校验 50 个高频中文查询。
+- 当前结果：`site-docs/` 共 133 篇 Markdown，9 个顶层栏目；19 个保持页、91 个 301、3 个 410。
+- 资源治理后：`site-docs/` 约 8.6 MB，`static/media/` 约 4.9 MB，构建产物约 32 MB（gzip 约 14.5 MB）。
 
 **`site-docs/` 现在是唯一内容源，日常直接编辑。**
 
 ```bash
 pnpm migrate          # 资源治理 + 下载同步 + redirects 生成
 pnpm build
-node migration/check-url-parity.mjs
+pnpm check:content
+pnpm check:search
+pnpm check:urls
 ```
 
 `pnpm migrate` 等价于：
@@ -51,6 +55,8 @@ pnpm migrate:legacy
 | `sync-downloads.mjs` | 同步根目录下载文件到 `static/` |
 | `generate-vercel-redirects.mjs` | 从 `redirects.csv` 生成 301 |
 | `check-url-parity.mjs` | 构建产物 URL parity 与 redirects 一致性检查 |
+| `check-frontmatter.mjs` | frontmatter、字段枚举、正文 H1 检查 |
+| `check-search.mjs` | 高频中文搜索词回归检查 |
 | `prototype-docs/` | 首批 5 篇样板页，保留作设计参考 |
 
 ## 资源治理
@@ -58,7 +64,7 @@ pnpm migrate:legacy
 `optimize-assets.mjs` 需要：
 
 - `ffmpeg`（GIF -> MP4 + WebP poster）
-- `sharp`（PNG -> WebP）
+- `sharp`（PNG/JPG -> WebP）
 
 输出约定：
 
@@ -92,14 +98,14 @@ node migration/generate-url-map.mjs
 
 ## 后续
 
-1. 内容 PR 继续合并 `merge-into` 页面正文，当前阶段 B 只做跳转，未做正文合并。
-2. 410 页面确认已从构建中排除，并评估 git 历史清理。
-3. 上线前跑 URL parity：旧 URL 全部 301 到预期新 URL，新 URL 全部 200。
-4. 继续把构建体积压到 30 MB 以内。
+1. 内容 PR 继续补充高频页和新增主题；`merge-into` 正文合并已完成。
+2. 410 页面已从构建中排除，并由 `api/gone.js` 在 Vercel 返回 410；git 历史清理需单独评估。
+3. 上线前跑 `pnpm verify`：构建、frontmatter、搜索、URL parity 全部通过。
+4. 构建原始体积约 32 MB，gzip 约 14.5 MB；如继续压缩，优先处理搜索索引和视频码率。
 
 ## 注意
 
-- 映射表是“迁移后 URL”的约定，不代表页面内容已经合并完成。
-- 合并页（`merge-into`）需要确认新页面确实覆盖旧内容后再删除旧页。
+- 映射表是“迁移后 URL”的约定，用于 301/410 和回归检查。
+- `site-docs/` 已是唯一内容源，`docs/` 只读；不要运行 `migrate:legacy`，除非需要从旧源重建。
 - 阶段 B 会重写绝对链接和相对链接；新增页面如果引用旧目录，仍需手动检查。
-- `redirects.csv` 中 410 记录的目标为空，Vercel 原生 redirects 不直接支持 410；正式上线时需要用中间页或边缘函数实现，或在构建层排除并返回 404/410。
+- `redirects.csv` 中 410 记录的目标为空；`vercel.json` 使用 `/docs/analysis/:path*` -> `/api/gone` rewrite，静态 `pnpm serve` 不会执行该函数。

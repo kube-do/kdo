@@ -2,7 +2,7 @@
 /**
  * 从 migration/redirects.csv 生成 vercel.json 的 redirects。
  *
- * 只生成 301；Vercel 原生 redirects 不支持 410，410 页面由构建排除处理。
+ * 只生成 301；410 页面由 vercel.json 的 rewrite 转发到 api/gone.js 返回。
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -45,5 +45,5 @@ fs.writeFileSync(VERCEL, `${JSON.stringify(config, null, 2)}\n`);
 
 const skipped = rows.length - redirects.length;
 console.log(
-  `已生成 ${redirects.length} 条 301 重定向到 vercel.json；${skipped} 条 410 未写入（Vercel 不支持原生 410）。`
+  `已生成 ${redirects.length} 条 301 重定向到 vercel.json；${skipped} 条 410 由 /docs/analysis/* rewrite 返回。`
 );

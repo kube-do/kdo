@@ -40,7 +40,7 @@ pnpm migrate
 ```
 
 `site-docs/` 是当前唯一内容源，日常直接编辑。`pnpm migrate` 只做资源治理和构建辅助：
-- `migration/optimize-assets.mjs`：GIF 转 MP4 + WebP poster，PNG 转 WebP，删除未引用图片并合并重复图片
+- `migration/optimize-assets.mjs`：GIF 转 MP4 + WebP poster，PNG/JPG 转 WebP，删除未引用图片并合并重复图片
 - `migration/sync-downloads.mjs`：把根目录的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 同步到 `static/`
 - `migration/generate-vercel-redirects.mjs`：从 `redirects.csv` 生成 `vercel.json` 的 301
 
@@ -52,7 +52,10 @@ pnpm migrate
 
 - `onBrokenLinks: throw`
 - `onBrokenAnchors: throw`
-- 构建后运行 `node migration/check-url-parity.mjs`
+- `pnpm check:content`：frontmatter、正文 H1、字段枚举检查
+- `pnpm check:search`：构建后校验 50 个高频中文查询
+- `pnpm check:urls`：200/301/410 与 `vercel.json` 一致性检查
+- 一键执行：`pnpm verify`
 
 ---
 
@@ -70,9 +73,10 @@ pnpm migrate
 │   ├── reference/           # 参考手册
 │   ├── release-notes/       # 发布说明
 │   └── contributing/        # 贡献指南
-├── migration/               # URL 映射、迁移脚本、parity 检查
+├── migration/               # URL 映射、迁移脚本、内容/搜索/URL 检查
+├── api/                     # Vercel Function（410 Gone）
 ├── docs/                    # 旧 Jekyll 内容归档（只读，不再作为内容源）
-├── src/                     # 首页、样式
+├── src/                     # 首页、404、样式
 ├── static/                  # 静态资源
 ├── docusaurus.config.ts
 ├── sidebars.ts
@@ -86,14 +90,13 @@ pnpm migrate
 当前已完成 **阶段 A：同构迁移** 和 **阶段 B：IA 重构 + 301**。
 
 - 旧站 113 个页面已全部登记在 `migration/url-map.csv`。
-- `site-docs/` 共 106 篇 Markdown，顶层收敛为 9 个栏目：`quick-start`、`install`、`developer`、`admin`、`observability`、`architecture`、`reference`、`release-notes`、`contributing`。
-- 19 个 URL 保持不变，91 个旧 URL 已配置 301，3 篇 `docs/analysis/*` 内部分析不进入构建。
+- `site-docs/` 共 133 篇 Markdown，顶层收敛为 9 个栏目：`quick-start`、`install`、`developer`、`admin`、`observability`、`architecture`、`reference`、`release-notes`、`contributing`。
+- 19 个 URL 保持不变，91 个旧 URL 已配置 301，3 篇 `docs/analysis/*` 内部分析通过 `api/gone.js` 返回 410。
 - `vercel.json` 的 91 条重定向由 `migration/redirects.csv` 生成。
-- 旧 Jekyll 内容保留在 `docs/`，GitHub Pages 工作流改为手动回滚入口。
-- 图片治理后构建产物约 **38 MB**：`site-docs/` 约 11 MB，`static/media/` 约 8 MB。
-- 3 篇内部分析的 410 仍需在 Vercel 侧用中间页或边缘函数实现。
+- 旧 Jekyll 构建配置与 GitHub Pages 工作流已移除，生产只使用 Vercel；`docs/` 保留为只读归档。
+- 资源治理后构建产物约 **32 MB**（gzip 约 **14.5 MB**）：`site-docs/` 约 8.6 MB，`static/media/` 约 4.9 MB。
 
-> `site-docs/` 和 `static/media/` 是提交到仓库的构建输入。Vercel 只执行 `pnpm build`，不会在云端运行 `pnpm migrate`；修改 `docs/` 后请在本地执行 `pnpm migrate`，并提交生成结果。`static/` 下的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 是 `pnpm build` 自动生成的副本，不提交。
+> `site-docs/` 和 `static/media/` 是提交到仓库的构建输入。Vercel 只执行 `pnpm build`，不会在云端运行 `pnpm migrate`；`pnpm migrate` 只优化 `site-docs` 内已有资源，不会从 `docs/` 重建内容。`static/` 下的 `kdo-developer.tar.gz` 和 `agent-setup*.sh` 是 `pnpm build` 自动生成的副本，不提交。
 
 ---
 

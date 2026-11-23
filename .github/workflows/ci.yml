@@ -26,8 +26,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Check frontmatter
+        run: pnpm check:content
+
       - name: Build Docusaurus
         run: pnpm build
 
+      - name: Check search index
+        run: pnpm check:search
+
       - name: Check URL parity
-        run: node migration/check-url-parity.mjs
+        run: pnpm check:urls
