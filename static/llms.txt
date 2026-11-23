@@ -1,0 +1,54 @@
+# KDO 文档
+
+> KDO 是一站式云原生应用开发和运维平台，基于 Kubernetes，覆盖应用项目、环境、应用、流水线、工作负载、可观测性和平台管理。本文档站面向开发者、管理员和运维人员，默认语言为简体中文。
+
+## 快速开始
+
+- [快速开始](https://docs.kube-do.cn/docs/quick-start/): 从 Git 仓库到第一次构建和部署。
+- [安装 KDO](https://docs.kube-do.cn/docs/install/): Linux 安装、已有 Kubernetes 接入和 OIDC 配置。
+- [安装 Kubernetes](https://docs.kube-do.cn/docs/install/kubernetes/): 使用 KubeKey 安装单节点或多节点集群。
+- [安装 Keycloak](https://docs.kube-do.cn/docs/install/keycloak/): 内置或外部 OIDC 身份源。
+
+## 开发指南
+
+- [开发者界面](https://docs.kube-do.cn/docs/developer/): 项目、环境、应用三层模型。
+- [创建 Git 应用](https://docs.kube-do.cn/docs/developer/applications/git/): 从代码仓库创建应用并触发构建。
+- [语言应用](https://docs.kube-do.cn/docs/developer/applications/languages/): Go、Java、Node.js、Python、.NET 等语言模板。
+- [Pipelines as Code](https://docs.kube-do.cn/docs/developer/delivery/pac/): Git 事件驱动的流水线。
+- [流水线](https://docs.kube-do.cn/docs/developer/delivery/pipelines/): 标准流水线、嵌入流水线、审批任务。
+- [工作负载](https://docs.kube-do.cn/docs/developer/workloads/): Pod、Deployment、StatefulSet、Job、CronJob、HPA。
+- [网络与存储](https://docs.kube-do.cn/docs/developer/network-storage/): Service、Ingress、PVC。
+- [终端与开发环境](https://docs.kube-do.cn/docs/developer/dev-environments/terminal/): CloudShell、LocalShell。
+
+## 管理指南
+
+- [管理员概览](https://docs.kube-do.cn/docs/admin/overview/): 集群、命名空间、权限、存储和平台配置。
+- [集群](https://docs.kube-do.cn/docs/admin/clusters/): 节点和多集群管理。
+- [命名空间](https://docs.kube-do.cn/docs/admin/namespaces/): Namespace、ResourceQuota、LimitRange、AppProject、CRD。
+- [权限管理](https://docs.kube-do.cn/docs/admin/access-control/): RBAC、用户、Keycloak/OIDC。
+- [平台配置](https://docs.kube-do.cn/docs/admin/platform-config/): Console 配置、认证、镜像仓库、监控和证书。
+- [存储](https://docs.kube-do.cn/docs/admin/storage/): PV、PVC、StorageClass、快照和扩容。
+- [证书](https://docs.kube-do.cn/docs/admin/maintenance/certificates/): KdcCertificate 自动签发和替换。
+
+## 可观测性
+
+- [观测平台](https://docs.kube-do.cn/docs/observability/): 监控、日志、事件和告警。
+- [监控](https://docs.kube-do.cn/docs/observability/monitoring/): Prometheus、Grafana 和告警规则。
+- [仪表盘](https://docs.kube-do.cn/docs/observability/dashboards/): 集群、项目和应用视图。
+- [告警配置](https://docs.kube-do.cn/docs/observability/alerting/): 路由、接收器、抑制和静默。
+- [日志](https://docs.kube-do.cn/docs/observability/logging/): Loki、LogQL 和日志排障。
+- [事件](https://docs.kube-do.cn/docs/observability/events/): Kubernetes 事件和常见故障。
+
+## 参考与架构
+
+- [参考手册](https://docs.kube-do.cn/docs/reference/): 对象、配置、命令和版本兼容性。
+- [术语表](https://docs.kube-do.cn/docs/reference/glossary/): 平台、交付、运行时和访问控制术语。
+- [整体架构](https://docs.kube-do.cn/docs/architecture/): Console、PAC、KDC 和运行时组件。
+- [贡献指南](https://docs.kube-do.cn/docs/contributing/): 本地开发、写作规范、评审和提交。
+
+## 使用说明
+
+- 站内文档 URL 统一使用 `/docs/` 前缀和尾斜杠。
+- 旧版 Jekyll 页面通过 301 跳转到新地址。
+- 页面 frontmatter 中的 `doc_type` 表示教程、操作、参考、解释或排障。
+- 站内搜索支持中文分词，可直接搜索“工作负载”“创建应用”“命名空间”等术语。
