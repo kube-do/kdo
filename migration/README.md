@@ -12,7 +12,7 @@
 - `check-url-parity.mjs`：构建后检查 200/301/410 与 `vercel.json` 重定向是否一致。
 - `check-frontmatter.mjs`：检查 `site-docs` 的 frontmatter 必填字段、枚举、日期和正文 H1。
 - `check-search.mjs`：读取 `build/search-index.json`，校验 50 个高频中文查询。
-- 当前结果：`site-docs/` 共 133 篇 Markdown，9 个顶层栏目；19 个保持页、91 个 301、3 个 410。
+- 当前结果：`site-docs/` 共 138 篇 Markdown，9 个顶层栏目；19 个保持页、91 个 301、3 个 410。
 - 资源治理后：`site-docs/` 约 8.6 MB，`static/media/` 约 4.9 MB，构建产物约 32 MB（gzip 约 14.5 MB）。
 
 **`site-docs/` 现在是唯一内容源，日常直接编辑。**

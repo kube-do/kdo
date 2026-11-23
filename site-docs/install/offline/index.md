@@ -32,6 +32,15 @@ status: stable
 
 镜像清单应以目标版本实际使用的清单为准，不要手工猜测 tag。可以在联网环境执行一次安装或 `kdo-install status`，从 Pod 和 Deployment 中导出镜像列表。
 
+安装器可以打包清单、Chart 和版本文件，但不包含容器镜像：
+
+```bash
+kdo-install version
+kdo-install bundle -config kdo-install.yaml -output kdo-bundle.tar.gz
+```
+
+把 `kdo-bundle.tar.gz` 和镜像 tar 一起带入离线环境。`bundle` 只导出资源文件，镜像仍需按下节单独导出和导入。
+
 ## 导入镜像
 
 将镜像保存为 tar：

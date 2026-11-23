@@ -1,7 +1,7 @@
 ---
-title: "备份与恢复"
-description: "KDO 平台的备份范围、备份方法、恢复顺序和验证清单。"
-sidebar_position: 10
+title: "平台备份与恢复"
+description: "介绍 KDO 平台的备份范围、etcd 与资源导出方法、恢复顺序、验证步骤和常见问题。"
+sidebar_position: 3
 doc_type: how-to
 audience: [admin]
 owner: docs-admin

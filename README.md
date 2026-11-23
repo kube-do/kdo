@@ -90,7 +90,7 @@ pnpm migrate
 当前已完成 **阶段 A：同构迁移** 和 **阶段 B：IA 重构 + 301**。
 
 - 旧站 113 个页面已全部登记在 `migration/url-map.csv`。
-- `site-docs/` 共 133 篇 Markdown，顶层收敛为 9 个栏目：`quick-start`、`install`、`developer`、`admin`、`observability`、`architecture`、`reference`、`release-notes`、`contributing`。
+- `site-docs/` 共 138 篇 Markdown，顶层收敛为 9 个栏目：`quick-start`、`install`、`developer`、`admin`、`observability`、`architecture`、`reference`、`release-notes`、`contributing`。
 - 19 个 URL 保持不变，91 个旧 URL 已配置 301，3 篇 `docs/analysis/*` 内部分析通过 `api/gone.js` 返回 410。
 - `vercel.json` 的 91 条重定向由 `migration/redirects.csv` 生成。
 - 旧 Jekyll 构建配置与 GitHub Pages 工作流已移除，生产只使用 Vercel；`docs/` 保留为只读归档。

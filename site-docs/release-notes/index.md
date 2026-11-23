@@ -1,6 +1,6 @@
 ---
 title: "发布说明"
-description: "KDO 平台各版本的变更、升级注意事项与已知问题。"
+description: "记录 KDO 平台各版本的变更、升级注意事项、已知问题和回滚方式。"
 sidebar_position: 1
 doc_type: reference
 audience: [developer, admin]
@@ -20,7 +20,9 @@ status: stable
 
 ## 当前状态
 
-截至 2026-11-23，仓库尚未建立正式版本标签，因此暂无历史版本记录。首次正式发布时，按下面的模板补充。
+安装器发布清单当前为 **2026.11**，支持从 **2026.10** 升级。仓库尚未建立对应的 git 版本标签，也没有正式发布说明，因此本页暂不编造变更条目；正式发布后按下面的模板补充。
+
+当前冻结的第三方组件基线可从发布清单确认，包括 Keycloak、Harbor、Tekton、Prometheus、Logging、MinIO、cert-manager 等；具体版本以安装器 `release.yaml` 为准。
 
 ## 版本记录模板
 

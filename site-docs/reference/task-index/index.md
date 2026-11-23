@@ -1,6 +1,6 @@
 ---
 title: "任务索引"
-description: "按角色和任务查找 KDO 文档入口。"
+description: "按开发者、管理员和常见问题三条路径，汇总 KDO 文档中的安装、应用交付、工作负载、运维和排障入口。"
 sidebar_position: 5
 doc_type: reference
 audience: [developer, admin]

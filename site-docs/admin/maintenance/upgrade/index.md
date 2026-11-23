@@ -1,7 +1,7 @@
 ---
 title: "升级与回滚"
-description: "KDO 平台升级前的检查、升级步骤、验证方法和回滚策略。"
-sidebar_position: 9
+description: "介绍 KDO 平台升级前的兼容性检查、升级计划与执行、升级后验证，以及组件和数据回滚策略。"
+sidebar_position: 2
 doc_type: how-to
 audience: [admin]
 owner: docs-admin
@@ -13,9 +13,22 @@ status: stable
 
 ## 适用范围
 
-适用于使用 `kdo-install` 安装的 KDO 平台，包括 Console、KDC、Pipelines as Code、Tekton、Keycloak、Harbor、Prometheus、Logging 等组件。
+适用于使用 `kdo-install` 安装的 KDO 平台。当前发布基线为 `2026.11`，支持从 `2026.10` 升级；更早版本先按发布说明逐版本升级，不要直接跳到最新版本。
 
-第三方组件（Kubernetes、Keycloak、Harbor、Tekton 等）默认随平台版本冻结；如需单独升级，先确认版本兼容性。
+`kdo-install upgrade` **只升级 KDO 自有组件**：
+
+- KDC、Console、Pipelines as Code
+- 项目角色和示例资源
+- KDO CRD、Webhook、RBAC
+
+第三方组件（Kubernetes、Keycloak、Harbor、Prometheus、Grafana、Tekton、Kubeapps、Logging/Loki、MinIO、NFS、cert-manager、Shipwright、Lightspeed）保持冻结：
+
+- 升级前，preflight 会校验 Helm 管理的第三方组件实际版本与 `release.yaml` 中的 `thirdParty` 基线一致。
+- Tekton、Prometheus、Logging 由 `release.yaml` 与 `versions.env` 的一致性校验覆盖。
+- 任一版本漂移都会拒绝升级。
+- 升级过程不会调用第三方 Helm upgrade，也不会修改第三方 CR。
+
+需要单独升级第三方组件时，先确认目标版本在平台兼容范围内，并按对应组件的升级文档执行。
 
 ## 前置条件
 
@@ -29,8 +42,10 @@ status: stable
 ## 升级前检查
 
 ```bash
-# 当前安装状态
+# 安装器与当前安装状态
+kdo-install version
 kdo-install status -config kdo-install.yaml
+kdo-install doctor -config kdo-install.yaml
 
 # 查看升级计划，不执行变更
 kdo-install upgrade -config kdo-install.yaml --plan
@@ -40,6 +55,8 @@ kubectl get node
 kubectl get pod -A | grep -E 'kubedo|kdc|console|keycloak|harbor|tekton|pipelines-as-code'
 kubectl get pvc -A
 ```
+
+升级前安装器会把状态和 KDC/Console Deployment 备份到目标节点的 `/root/kdo-backup-<时间>/`，便于回滚工作负载。
 
 同时确认：
 
@@ -80,15 +97,22 @@ kubectl get ingress -A
 
 ## 回滚策略
 
-升级回滚分为三层，按影响范围从小到大选择：
+优先使用安装器自带的回滚：
 
-1. **组件回滚**：使用上一版本的 `kdo-install` 和原配置重新执行升级，把 KDO 组件恢复到上一版本。
-2. **配置回滚**：恢复升级前的 ConfigMap、Secret、Ingress 和 RBAC 清单。
+```bash
+kdo-install upgrade -config kdo-install.yaml --rollback -yes
+```
+
+`--rollback` 只恢复最近一次升级涉及的工作负载，**不会回滚 CRD**。如果升级还包含 CRD、数据库或存储变更，需要按影响范围继续处理：
+
+1. **组件回滚**：使用 `upgrade --rollback` 恢复 KDC、Console、PAC 等工作负载。
+2. **配置回滚**：从 `/root/kdo-backup-<时间>/` 或配置备份中恢复 ConfigMap、Secret、Ingress 和 RBAC。
 3. **数据回滚**：当升级包含数据库或存储迁移时，按[备份与恢复](/docs/admin/maintenance/backup-restore/)恢复 Keycloak、Harbor、MinIO、Prometheus/Loki 或 PVC 数据。
 
 注意事项：
 
 - 数据迁移通常不可逆；仅回滚镜像不一定会恢复数据结构。
+- CRD 不回滚；如果新版本已经写入新字段，旧版本组件可能无法识别，回滚前必须先确认兼容性。
 - 回滚前先停止写入流量，避免新旧版本同时写同一份数据。
 - 回滚后重新执行升级后验证清单。
 - 保留升级日志、失败 Pod 的日志和事件，便于定位问题。

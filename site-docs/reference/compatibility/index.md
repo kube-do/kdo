@@ -15,7 +15,7 @@ status: stable
 
 | 维度 | 说明 | 确认方式 |
 | --- | --- | --- |
-| KDO 平台 | Console、KDC、PAC、安装器 | 发布说明、`kdo-install --version` |
+| KDO 平台 | Console、KDC、PAC、安装器 | 发布说明、`kdo-install version` |
 | Kubernetes | API 版本、kubelet、etcd、CNI、CSI | `kubectl version`、`kubectl get node` |
 | 身份 | Keycloak/OIDC、realm、client | `kdo-install apiserver-check` |
 | 流水线 | Tekton、Pipelines as Code | `kubectl get pod -n tekton-pipelines` |
@@ -63,7 +63,7 @@ applies_to: ">= v2026.11"
 ## 升级路径
 
 1. 阅读目标版本发布说明和本页。
-2. 执行 `kdo-install upgrade --plan`，确认组件变更范围。
+2. 执行 `kdo-install upgrade -config kdo-install.yaml --plan`，确认组件变更范围。
 3. 完成[备份与恢复](/docs/admin/maintenance/backup-restore/)。
 4. 在维护窗口内升级，按[升级与回滚](/docs/admin/maintenance/upgrade/)验证。
 5. 如果跨多个版本，按发布说明要求逐版本升级，不直接跳到最新版本。

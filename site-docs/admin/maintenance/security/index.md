@@ -1,7 +1,7 @@
 ---
 title: "安全基线"
-description: "KDO 平台上线前应完成的最小安全检查清单。"
-sidebar_position: 11
+description: "从身份、网络、密钥、供应链、运行时和可观测性六个方面，给出 KDO 平台上线前应完成的最小安全检查清单与验证方法。"
+sidebar_position: 4
 doc_type: how-to
 audience: [admin]
 owner: docs-admin
