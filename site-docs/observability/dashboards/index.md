@@ -5,15 +5,12 @@ sidebar_position: 2
 doc_type: explanation
 audience: [admin, developer]
 owner: docs-ops
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
-
-:::note
 
 ## 介绍
 
-:::
 本页介绍 KDO 监控中 Grafana 仪表盘的浏览、筛选、查看、分享与权限。集群资源总览、健康巡检和指标口径请参阅 [监控概览](/docs/observability/monitoring/)；告警规则、联络点和通知策略请参阅 [监控](/docs/observability/monitoring/)。
 
 <video class="doc-video" controls muted loop autoplay playsinline preload="metadata" poster="/media/docs/observability/dashboards/imgs/dashboards-poster.webp" aria-label="dashboards.gif"><source src="/media/docs/observability/dashboards/imgs/dashboards.mp4" type="video/mp4" /></video>
