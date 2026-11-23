@@ -5,8 +5,8 @@ sidebar_position: 2
 doc_type: explanation
 audience: [developer]
 owner: docs-ops
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 持续交付是一种软件开发实践，通过持续交付，系统可以自动为将代码更改发布到生产环境做好准备。 
@@ -47,3 +47,11 @@ flowchart TD
     L -->|是| M[人工审批并晋级生产]
     M --> N[部署生产并可回滚]
 ```
+
+## 分册阅读
+
+- [源码持续交付](/docs/developer/best-practices/continuous-delivery/source-code/)：从 Git 仓库、流水线和 GitOps 写回端到端配置。
+- [多环境交付](/docs/developer/best-practices/continuous-delivery/multi-env/)：环境晋级、配置差异和发布策略。
+- [应用模板](/docs/developer/best-practices/continuous-delivery/application-templates/)：用模板沉淀常用应用与流水线配置。
+- [流水线](/docs/developer/delivery/pipelines/)：标准流水线、嵌入流水线和审批任务。
+- [Pipelines as Code](/docs/developer/delivery/pac/)：仓库级流水线、Git 事件触发和自动部署。

@@ -5,8 +5,8 @@ sidebar_position: 1
 doc_type: tutorial
 audience: [developer, admin]
 owner: docs-team
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 欢迎使用 KDO 平台

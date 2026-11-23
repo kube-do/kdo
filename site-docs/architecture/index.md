@@ -5,8 +5,8 @@ sidebar_position: 13
 doc_type: explanation
 audience: [developer, admin]
 owner: docs-team
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 KDO 是一站式云原生应用开发和运维平台，基于 Kubernetes，采用前后端分离架构。

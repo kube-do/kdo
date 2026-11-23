@@ -5,8 +5,8 @@ sidebar_position: 5
 doc_type: explanation
 audience: [developer]
 owner: docs-dev
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 User Preferences 是 Che Dashboard 中的个人设置页面，用于配置默认编辑器、编辑器主题、SSH 密钥、Git 身份以及 Git 访问令牌等开发环境偏好。设置保存后，对之后创建和启动的所有 Workspace 生效。

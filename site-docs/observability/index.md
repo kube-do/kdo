@@ -5,8 +5,8 @@ sidebar_position: 5
 doc_type: explanation
 audience: [admin, developer]
 owner: docs-ops
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 可观测性中心是 KDO 平台的核心组件之一，提供全面的监控、日志和事件管理能力，帮助您实时洞察应用和基础设施的运行状态。

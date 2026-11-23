@@ -5,8 +5,8 @@ sidebar_position: 3
 doc_type: explanation
 audience: [developer]
 owner: docs-ops
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 在软件开发过程中，项目、环境和应用这三个概念各自有着特定的意义，并且相互关联。

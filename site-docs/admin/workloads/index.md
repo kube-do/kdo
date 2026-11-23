@@ -5,8 +5,8 @@ sidebar_position: 4
 doc_type: explanation
 audience: [admin]
 owner: docs-admin
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 和开发者界面的区别
@@ -22,8 +22,8 @@ status: migrated
 2. [容器组(Pod)](/docs/developer/workloads/pods/)
 3. [无状态(Deployment)](/docs/developer/workloads/deployments/)
 4. [有状态(StatefulSet)](/docs/developer/workloads/statefulsets/)
-5. [守护进程集(DaemonSet)](daemonsets)
-6. [副本集(ReplicaSet)](replicaset)
+5. [守护进程集(DaemonSet)](/docs/admin/workloads/daemonsets/)
+6. [副本集(ReplicaSet)](/docs/admin/workloads/replicaset/)
 7. [定时任务(CronJob)](/docs/developer/workloads/cronjobs/)
 8. [任务(Job)](/docs/developer/workloads/jobs/)
 9. [保密字典(Secret)](/docs/developer/configuration/secrets/)

@@ -5,8 +5,8 @@ sidebar_position: 3
 doc_type: explanation
 audience: [admin]
 owner: docs-admin
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 本目录介绍 KDO 平台 Console 的部署配置方式，包括配置文件来源、部署清单组成以及访问入口。

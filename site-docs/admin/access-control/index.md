@@ -5,8 +5,8 @@ sidebar_position: 7
 doc_type: explanation
 audience: [admin]
 owner: docs-admin
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 :::note

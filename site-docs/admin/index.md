@@ -5,8 +5,8 @@ sidebar_position: 0
 doc_type: explanation
 audience: [admin]
 owner: docs-admin
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 介绍
@@ -25,17 +25,19 @@ status: migrated
 ```mermaid
 flowchart TD
     A[管理员界面] --> B[以命名空间管理资源]
-    A --> C[应用管理]
-    A --> D[工作负载]
-    A --> E[网络]
-    A --> F[存储]
-    A --> G[观测平台]
-    A --> H[流水线]
-    A --> I[管理]
-    A --> J[用户管理]
+    A --> C[集群与节点]
+    A --> D[命名空间与配额]
+    A --> E[应用项目]
+    A --> F[工作负载]
+    A --> G[网络]
+    A --> H[存储]
+    A --> I[可观测性]
+    A --> J[用户与权限]
     A --> K[通知中心]
     A --> L[平台配置]
-    M[开发者界面] --> N[以项目 + 环境 + 应用管理资源]
+    A --> M[Operator]
+    A --> N[运维与安全]
+    O[开发者界面] --> P[以项目 + 环境 + 应用管理资源]
 ```
 
 管理员与开发者面对同一套集群资源，但入口与资源组织方式不同：管理员直接操作命名空间级对象，开发者围绕项目、环境和应用展开。

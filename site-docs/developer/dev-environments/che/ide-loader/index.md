@@ -5,8 +5,8 @@ sidebar_position: 3
 doc_type: explanation
 audience: [developer]
 owner: docs-dev
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 **IDE 加载器（Loader）** 是启动工作区时显示的加载页面，承担两种职责：

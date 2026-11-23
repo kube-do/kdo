@@ -5,8 +5,8 @@ sidebar_position: 0
 doc_type: explanation
 audience: [developer, admin]
 owner: docs-team
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 KDO 是面向云原生应用开发与运维的一站式平台。

@@ -5,8 +5,8 @@ sidebar_position: 1
 doc_type: explanation
 audience: [developer]
 owner: docs-dev
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 Che Dashboard 的 **创建工作区** 页面（路由 `/create-workspace`）是创建云开发环境的统一入口。页面从上到下依次为：编辑器选择器 → AI 提供商选择器（平台启用 AI 能力时显示）→ 从 Git 导入 → 示例列表。

@@ -5,8 +5,8 @@ sidebar_position: 2
 doc_type: explanation
 audience: [developer]
 owner: docs-dev
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 Che Dashboard 的 **工作区** 页面（路由 `/workspaces`）集中管理你的全部云开发环境，支持查看状态、启动、停止、删除与备份恢复等操作。

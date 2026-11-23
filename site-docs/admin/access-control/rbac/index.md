@@ -5,8 +5,8 @@ sidebar_position: 2
 doc_type: explanation
 audience: [admin]
 owner: docs-admin
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 介绍
@@ -40,12 +40,9 @@ flowchart TD
     L -->|否| N[返回 403 Forbidden]
 ```
 
-:::note
+## Kubernetes 的访问控制
 
-## Kubernetes的访问控制
-
-:::
-Kubernetes的访问控制由三个核心环节组成：`认证`、`授权`和`准入`控制。这三个部分协同工作，犹如三道坚实的防线，全面守护您的集群安全。
+Kubernetes 的访问控制由三个核心环节组成：`认证`、`授权`和`准入`控制。这三个部分协同工作，犹如三道坚实的防线，全面守护您的集群安全。
 **认证：** 确认用户或服务的身份，确保他们确实是其所声称的角色。
 **授权：** 在认证通过后，授权步骤决定该用户或服务可以访问哪些资源，执行哪些操作。这一步骤基于设定的策略和角色来限制访问权限。
 **准入控制：** 作为最后一道防线，准入控制可以在对象被创建、更新或删除之前对请求进行更细致的检查和修改，进一步保障集群的安全性和完整性。

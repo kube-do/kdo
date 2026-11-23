@@ -5,8 +5,8 @@ sidebar_position: 1
 doc_type: how-to
 audience: [developer]
 owner: docs-dev
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 本页介绍在 KDO 平台上安装 Pipelines as Code、安装命令行工具，以及自定义控制器配置。

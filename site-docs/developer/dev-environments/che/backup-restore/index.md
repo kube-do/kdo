@@ -5,8 +5,8 @@ sidebar_position: 4
 doc_type: explanation
 audience: [developer]
 owner: docs-dev
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 Eclipse Che 的备份机制由 DevWorkspace Operator 根据集群配置自动创建，工作区停止时自动生成**备份镜像**。备份与恢复功能支持在同一集群恢复，也支持跨集群迁移。

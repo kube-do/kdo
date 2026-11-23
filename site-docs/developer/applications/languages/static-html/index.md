@@ -5,8 +5,8 @@ sidebar_position: 9
 doc_type: how-to
 audience: [developer]
 owner: docs-ops
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 概述

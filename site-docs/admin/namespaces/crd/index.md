@@ -5,8 +5,8 @@ sidebar_position: 5
 doc_type: explanation
 audience: [admin]
 owner: docs-admin
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 介绍
@@ -40,7 +40,7 @@ flowchart TD
 
 CRD 定义的是资源类型，真正承载配置的是该类型下的自定义资源实例；删除 CRD 会同时移除集群中所有同类型的自定义资源。
 
-## 操作CRD
+## 操作 CRD
 
 :::note
 
@@ -51,3 +51,59 @@ CRD 定义的是资源类型，真正承载配置的是该类型下的自定义�
 :::
 
 ![crd.png](imgs/crd.webp)
+
+## 查看 CRD
+
+在管理员界面的 CRD 列表中可以查看：
+
+| 字段 | 说明 |
+|---|---|
+| 名称 | CRD 的复数资源名，例如 `prometheusrules.monitoring.coreos.com` |
+| Group | API 组 |
+| Kind | 资源类型 |
+| Scope | `Namespaced` 或 `Cluster` |
+| Versions | 已提供服务的 API 版本 |
+| 自定义资源 | 该类型下已创建的实例数量 |
+
+进入详情页后，可以查看 YAML、版本、转换策略和该 CRD 下的自定义资源。
+
+## 管理自定义资源
+
+对于未出现在默认菜单中的资源，可以通过 CRD 进入对应的自定义资源列表，执行查看、创建、编辑和删除。
+
+创建自定义资源前应确认：
+
+1. 使用的 `apiVersion` 和 `kind` 与 CRD 定义一致。
+2. 资源作用域是命名空间级还是集群级。
+3. 必填字段和校验规则满足 CRD schema。
+4. 控制器已正常运行，能够处理新创建的实例。
+
+## 删除 CRD 的风险
+
+删除 CRD 会同时删除集群中所有同类型的自定义资源。该操作通常不可逆，执行前必须：
+
+- 导出所有自定义资源 YAML。
+- 确认没有控制器或应用依赖该 CRD。
+- 确认关联的 PVC、Secret 和外部资源不需要保留。
+- 在非生产环境先验证恢复流程。
+
+## 常见问题
+
+### CRD 存在但创建资源失败
+
+检查 CRD 的 `spec.versions` 是否包含提交的 `apiVersion`，以及 schema 是否拒绝必填字段。错误通常出现在 `kubectl apply` 的返回信息或资源事件中。
+
+### 自定义资源一直不 Ready
+
+CRD 只负责注册 API，不负责调和资源。自定义资源是否正常取决于对应 Operator 或控制器，请检查控制器 Pod、日志和事件。
+
+### 删除 CRD 后菜单仍有入口
+
+菜单或缓存可能尚未刷新。确认 CRD 已删除后刷新页面；如果入口仍存在，检查是否有其他同组资源或前端缓存。
+
+## 相关文档
+
+- [命名空间与配额](/docs/admin/namespaces/)
+- [已安装的 Operators](/docs/admin/operators/installed/)
+- [Operator 管理](/docs/admin/operators/)
+- [事件](/docs/observability/events/)
