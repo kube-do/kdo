@@ -98,7 +98,7 @@ if (rows.some((row) => row.status === "410")) {
   const goneRewrite = (config.rewrites || []).find(
     (rewrite) =>
       rewrite.source === "/docs/analysis/:path*" &&
-      rewrite.destination === "/api/gone"
+      rewrite.destination === "/api/gone/"
   );
   if (!goneRewrite) {
     problems.push("vercel.json 缺少 /docs/analysis/* 到 /api/gone 的 rewrite");

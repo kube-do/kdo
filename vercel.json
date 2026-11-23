@@ -465,7 +465,7 @@
   "rewrites": [
     {
       "source": "/docs/analysis/:path*",
-      "destination": "/api/gone"
+      "destination": "/api/gone/"
     }
   ]
 }

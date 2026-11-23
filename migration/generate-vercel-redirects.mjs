@@ -2,7 +2,7 @@
 /**
  * 从 migration/redirects.csv 生成 vercel.json 的 redirects。
  *
- * 只生成 301；410 页面由 vercel.json 的 rewrite 转发到 api/gone.js 返回。
+ * 只生成 301；410 页面由 vercel.json 的 rewrite 转发到 /api/gone/ 返回。
  */
 import fs from "node:fs";
 import path from "node:path";
