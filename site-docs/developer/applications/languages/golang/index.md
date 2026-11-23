@@ -5,91 +5,41 @@ sidebar_position: 3
 doc_type: explanation
 audience: [developer]
 owner: docs-ops
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 概述
-Go语言（Golang）因其简洁性、高效性和强大的并发支持，已成为现代软件开发中的热门选择。
 
-## 构建与部署流程
+Go（Golang）适合构建高并发、可静态编译的服务端应用。KDO 会根据仓库根目录的 `go.mod` 自动识别 Golang 项目，并使用 Golang 应用模板完成构建、镜像打包和部署。
 
-```mermaid
-flowchart TD
-    A[提交 Go 源码到 Git 仓库] --> B[检测根目录 go.mod]
-    B --> C[识别为 Golang 项目]
-    C --> D[选择分支 集群与环境]
-    D --> E[选择 Golang 应用模板]
-    E -->|手动触发| F[运行分支流水线]
-    E -->|push 或 pull request| F
-    F --> G[拉取代码]
-    G --> H[选择 Go 版本]
-    H --> I[通过 GOPROXY 拉取依赖]
-    I --> J[golang build 静态编译]
-    J --> K[构建镜像并推送仓库]
-    K --> L[生成 Deployment 与 Service]
-    L --> M[部署到环境并暴露 8080 端口]
-    M --> N[创建路由并访问]
-```
+## 识别与构建规则
 
-## 创建应用
+| 项目 | 说明 |
+|---|---|
+| 识别文件 | 仓库根目录的 `go.mod` |
+| 开发语言 | `golang` |
+| 应用模板 | Golang 应用模板 |
+| 默认端口 | `8080` |
+| 构建任务 | 拉取代码、Golang 构建、构建镜像、部署镜像 |
+| 默认 GOPROXY | `https://goproxy.cn,direct` |
+| 默认 Go 版本 | `1.24`，可选 `1.15`、`1.18`、`1.20`、`1.22`、`1.24` |
 
-### 应用基本信息
-1. 输入源码根目录，平台默认会根据源码根目录是否有 `go.mod` 文件来自动识别为`Golang`项目。
-2. 在`Git访问令牌`输入Git仓库的令牌，如果没有现存的令牌，通过访问`链接`到对应的仓库，创建一个新的令牌。
-3. 开发语言会自动识别为`golang`。
-4. 在`应用模板`中选择对应的 Golang 应用模板，选择对应的开发模块。
+## 语言特定配置
 
-![](../dotnet/imgs/create-repo.webp)
+1. **源码根目录**：填写包含 `go.mod` 的目录。多模块仓库不要把仓库根目录误填为模块子目录。
+2. **应用端口**：Gin 等常见框架默认监听 `8080`。如果应用监听其他端口，需要同步修改模板端口和 Service 端口。
+3. **Go 版本**：在 `golang-build` 任务中选择与项目 `go.mod` 兼容的版本。版本过低会导致泛型、标准库或依赖编译失败。
+4. **依赖代理**：默认使用 `https://goproxy.cn,direct`。私有模块需要在流水线中配置 `GOPRIVATE`、`GONOSUMDB` 和访问凭据。
+5. **构建缓存**：平台会在项目内创建持久卷，用于缓存 Go 模块和构建产物；首次构建较慢，后续会复用缓存。
+6. **静态编译**：模板通常使用静态编译生成二进制，再放入轻量运行镜像。需要 CGO 时，确认运行镜像包含对应系统库。
 
-### 应用扩展信息
-1. 应用端口为8080，这里**不要修改**，因为Golang Gin框架的默认端口为8080。
-2. 在自动分支流水线，选择对应的分支进行流水线构建，比如 `develop` 分支流水线构建，还有`部署集群`和`部署环境`。
-   流水线触发默认为手动触发，也可以选择自动触发，根据`触发事件`会自动触发，`触发事件`默认为`push`，也可以选择`pull request`等。
-   最后需要选择对应的流水线模板，点击`下箭头`按钮，会扩展图表，可以查看模板的组件组成。
-3. 可以选择多个分支进行管理，`分支`和`部署环境`的可以是多对多的关系，就是一个分支可以部署到多个环境上，一个环境也可以部署多个分支。
-4. 选择完成后，点击**添加**，应用创建就完成了。
+## 创建与运行
 
-![](../dotnet/imgs/repo-info.webp)
+按 [创建并运行语言应用](/docs/developer/applications/languages/create-application/) 完成创建应用、触发构建、查看工作负载和创建路由。
 
-## 管理应用
-应用创建完成后，就可以对应用进行管理了。[更多信息](/docs/developer/applications/git/#应用管理)
+## 相关链接
 
-![](imgs/repo-detail.webp)
-
-
-### 定制流水线
-1. Golang应用的基础流水线一般有四个[任务](/docs/developer/delivery/pipelines/#task)，分别是`拉取代码`、`golang build`、`构建镜像`、`部署镜像`。[更多信息](/docs/developer/delivery/pipelines/)
-2. 流水线可以根据需要进行定制。
-3. `GOPROXY`默认的参数为`https://goproxy.cn,direct` ，可以通过`流水线编辑`选择`golang-build`组件进行修改。
-4. 由于Golang的版本差异，在`golang-build`组件可以根据需要选择对应的Golang版本，默认为`1.24`，也可以选择`1.15`、`1.18`、`1.20`、`1.22`、`1.24` 等版本。
-
-![](imgs/edit-pipelinerun.webp)
-
-### 手动运行流水线
-1. 进入`分支流水线`页面，选择一个分支，点击**运行流水线**，就可以进行应用构建和部署了。
-
-![](../dotnet/imgs/manual-run.webp)
-
-
-### 查看流水线运行信息
-1. 进入`流水线运行`页面，选择对应的流水线运行，就可以查看流水线运行信息了。[更多信息](/docs/developer/delivery/pipelines/)
-
-![](../dotnet/imgs/pipelinerun-info.webp)
-
-### 查看应用运行信息
-进入`工作负载`菜单，选择`无状态`，选择对应的`应用名称`，就可以查看应用运行信息了。[更多信息](/docs/developer/workloads/deployments/)
-
-![](../dotnet/imgs/workload.webp)
-
-
-### 创建应用路由
-如应用属于 `web` 类型应用，可以创建对应的路由，通过路由访问到应用。[更多信息](/docs/developer/network-storage/ingress/#新增路由)
-
-![create-ingress.png](../dotnet/imgs/create-ingress.webp)
-
-
-### 访问应用
-路由创建完成后，就可以通过域名访问到应用了（需要确认已经配置了域名解析或设置hosts文件）。
-
-![](imgs/access-web.webp)
+- [流水线](/docs/developer/delivery/pipelines/)
+- [Git 应用](/docs/developer/applications/git/)
+- [无状态应用（Deployment）](/docs/developer/workloads/deployments/)

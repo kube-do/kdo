@@ -5,79 +5,41 @@ sidebar_position: 2
 doc_type: explanation
 audience: [developer]
 owner: docs-ops
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 概述
-Python 是一个高层次的结合了解释性、编译性、互动性和面向对象的脚本语言。
-代码主目录下有 `requirements.txt` 文件，KDO 会识别代码语言类型为 **Python** 。
 
-### requirements.txt 规范
-若无 `requirements.txt` 可用如下命令生成
+KDO 支持从 Python 源码构建应用。平台根据仓库根目录的 `requirements.txt` 自动识别 Python 项目，并提供 Django 等常用应用模板。
 
-```bash
-pip freeze > requirements.txt
-```
+## 识别与构建规则
 
+| 项目 | 说明 |
+|---|---|
+| 识别文件 | 仓库根目录的 `requirements.txt` |
+| 开发语言 | `Python` |
+| 应用模板 | `python-django` 等 Python 应用模板 |
+| 默认端口 | `8080` |
+| 构建任务 | 拉取代码、安装依赖、构建运行镜像、部署镜像 |
+| 依赖安装 | `pip install` |
+| Python 版本 | 在应用模板或构建任务中选择 |
 
-## 构建与部署流程
+## 语言特定配置
 
-```mermaid
-flowchart TD
-    A[提交 Python 源码] --> B[检测 requirements.txt]
-    B --> C[识别为 Python 项目]
-    C --> D[选择 Python 应用模板与版本]
-    D --> E[选择分支 集群与环境]
-    E -->|手动触发| F[运行分支流水线]
-    E -->|push 或 pull request| F
-    F --> G[拉取代码]
-    G --> H[pip install 安装依赖]
-    H --> I[按模板注入启动命令]
-    I --> J[构建运行镜像]
-    J --> K[推送镜像到仓库]
-    K --> L[生成 Deployment 与 Service]
-    L --> M[部署到环境并暴露端口]
-    M --> N[创建路由并访问]
-```
+1. **源码根目录**：填写包含 `requirements.txt` 的目录。如果依赖文件在子目录，需要调整源码根目录或构建命令。
+2. **应用模板**：Django 项目选择 `python-django` 等匹配模板；模板决定启动命令、WSGI/ASGI 入口和默认端口。
+3. **Python 版本**：选择与项目依赖兼容的版本。部分二进制依赖对 Python 小版本敏感，升级前先在本地验证。
+4. **依赖源**：默认使用公共 PyPI。内网或需要加速时，可在流水线中配置 `PIP_INDEX_URL` 和信任主机。
+5. **启动命令**：确认 `gunicorn`、`uvicorn` 或其他启动命令与模板一致，并监听 `0.0.0.0` 和配置的端口。
+6. **构建缓存**：平台会缓存 pip 依赖；首次构建较慢，后续会复用缓存。
 
-## 创建应用
+## 创建与运行
 
-### 应用基本信息
-![](imgs/create-repo.webp)
-1. 输入源码根目录，点击**创建**，平台默认会根据源码根目录是否有 `requirements.txt` 文件来自动识别为 `Python` 项目。
-2. 在`Git访问令牌`输入 `Git` 仓库的令牌，如果没有现存的令牌，通过访问`链接`到对应的仓库，创建一个新的令牌。
-3. 在应用模板中选择对应的 `Python` 应用模板，比如使用Django的应用，选择`python-django`，也选择不同的 `Python` 版本。
+按 [创建并运行语言应用](/docs/developer/applications/languages/create-application/) 完成创建应用、触发构建、查看工作负载和创建路由。
 
+## 相关链接
 
-### 应用扩展信息
-![](imgs/repo-info.webp)
-1. 应用端口默认为 `8080`，如果有需要，可以修改其他端口。
-2. 在自动分支流水线，选择对应的分支进行流水线构建，比如 `develop` 分支流水线构建，还有`部署集群`和`部署环境`。
-流水线触发默认为手动触发，也可以选择自动触发，根据`触发事件`，自动触发，`触发事件`默认为`push`，也可以选择`pull request`等。
-最后需要选择对应的流水线模板，点击`扩展`按钮，可以查看模板的详细介绍。
-3. 可以选择多个分支进行管理，`分支`和`部署环境`的可以是多对多的关系，就是一个分支可以部署到多个环境上，一个环境也可以部署多个分支。
-4. 选择完成后，点击**添加**，应用创建就完成了。
-
-
-## 管理应用
-应用创建完成后，就可以对应用进行管理了，[更多信息](/docs/developer/applications/git/)。
-
-### 手动运行流水线
-进入`分支流水线`页面，选择一个分支，点击**运行流水线**，就可以进行应用构建和部署了。
-![](imgs/manual-run.webp)
-
-### 查看流水线运行信息
-进入`流水线运行`页面，选择对应的流水线运行，就可以查看流水线运行信息了,[更多信息](/docs/developer/delivery/pipelines/)。
-![](imgs/pipelinerun-info.webp)
-
-### 查看应用运行信息
-进入`工作负载`菜单，选择`无状态`，选择对应的`应用名称`，就可以查看应用运行信息了，[更多信息](/docs/developer/workloads/deployments/)。
-![](imgs/workload.webp)
-
-### 创建应用路由
-如应用属于 `web` 类型应用，可以创建对应的路由，通过路由访问到应用，[更多信息](/docs/developer/network-storage/ingress/)
-![create-ingress.png](imgs/create-ingress.webp)
-
-### 访问应用
-路由创建完成后，就可以通过域名访问到应用了（需要确认已经配置了域名解析或设置hosts文件）。
+- [流水线](/docs/developer/delivery/pipelines/)
+- [Git 应用](/docs/developer/applications/git/)
+- [无状态应用（Deployment）](/docs/developer/workloads/deployments/)

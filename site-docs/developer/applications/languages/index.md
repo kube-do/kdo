@@ -1,7 +1,7 @@
 ---
 title: "部署应用"
 description: "在 KDO 上部署应用"
-sidebar_position: 5
+sidebar_position: 1
 doc_type: explanation
 audience: [developer]
 owner: docs-ops
@@ -9,7 +9,7 @@ last_reviewed: 2026-11-20
 status: migrated
 ---
 
-本篇文档介绍在 KDO 中创建组件的基础流程。
+本篇文档介绍在 KDO 中创建组件的基础流程。创建、构建、查看工作负载和创建路由的通用步骤见 [创建并运行语言应用](/docs/developer/applications/languages/create-application/)；各语言页面只保留识别规则和语言特定配置。
 
 ## 创建方式决策
 

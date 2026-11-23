@@ -65,3 +65,5 @@ flowchart TD
 | 代码版本   | master                                           |
 
 2. 识别为 Dockerfile 项目，点击构建启动。
+
+创建、构建、查看工作负载和创建路由的通用步骤见 [创建并运行语言应用](/docs/developer/applications/languages/create-application/)。

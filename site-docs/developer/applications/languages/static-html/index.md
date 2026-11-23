@@ -47,3 +47,5 @@ flowchart TD
 ## 部署示例
 
 进入到项目下，新建应用选择**基于源码示例**进行构建，选中 `2048 Demo` 并默认全部下一步即可。
+
+创建、构建、查看工作负载和创建路由的通用步骤见 [创建并运行语言应用](/docs/developer/applications/languages/create-application/)。

@@ -5,90 +5,41 @@ sidebar_position: 4
 doc_type: explanation
 audience: [developer]
 owner: docs-ops
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 概述
-`Node.js` 是一个基于 `Chrome V8` 引擎的 `JavaScript` 运行环境，它使得 `JavaScript` 可以脱离浏览器在服务端运行。
-这意味着开发者可以使用 `JavaScript` 来编写服务器端的代码，实现前后端编程语言的统一。
-在基于源码构建时，KDO 会识别项目根目录的 **package.json** 文件来判断为 `NodeJS` 项目。
-1. 支持在页面上选择为 `Node` 前端项目或者后端项目并自动添加下述文件，并选择使用 `npm` 还是 `yarn` 构建项目。
-2. 在源代码根目录根据下述描述添加文件来确定项目类型。
 
-## 构建与部署流程
+KDO 支持 Node.js 前端和后端项目。平台根据仓库根目录的 `package.json` 自动识别 Node.js 项目，可选择 `npm` 或 `yarn` 构建方式。
 
-```mermaid
-flowchart TD
-    A[提交 NodeJS 源码] --> B[检测 package.json]
-    B --> C[识别为 NodeJS 项目]
-    C --> D[选择前端或后端 Node 模板]
-    D --> E[拉取代码并安装依赖]
-    E --> F{是否前端项目}
-    F -->|是| G[执行 npm run build 或 yarn build]
-    F -->|否| H[使用模板启动命令]
-    G --> I[构建 Nginx 或 Node 运行镜像]
-    H --> I
-    I --> J[推送镜像到仓库]
-    J --> K[生成 Deployment 与 Service]
-    K --> L[部署到环境并暴露 8080 端口]
-    L --> M[创建路由并访问]
-```
+## 识别与构建规则
 
-## 创建应用
+| 项目 | 说明 |
+|---|---|
+| 识别文件 | 仓库根目录的 `package.json` |
+| 开发语言 | `nodejs` |
+| 应用模板 | Node.js 应用模板，按前端或后端选择 |
+| 默认端口 | `8080` |
+| 构建任务 | 拉取代码、安装依赖、构建、构建镜像、部署镜像 |
+| 默认 npm 源 | `https://registry.npmmirror.com` |
+| 默认 Node.js 版本 | `18`，可选 `12`、`14`、`16`、`20`、`22` |
 
-### 应用基本信息
-1. 输入源码根目录，平台默认会根据源码根目录是否有 `package.json` 文件来自动识别为`NodeJS`项目。
-2. 在`Git访问令牌`输入 `Git` 仓库的令牌，如果没有现存的令牌，通过访问`链接`到对应的仓库，创建一个新的令牌。
-3. 开发语言会自动识别为`nodejs`。
-4. 在`应用模板`中选择对应的 `NodeJS` 应用模板，选择对应的开发模块。
-![](imgs/create-repo.webp)
+## 语言特定配置
 
-### 应用扩展信息
-1. 应用端口为 `8080`，这里**不要修改**，因为平台的前端模板中 Nginx 监听 `8080` 端口。
-2. 在自动分支流水线，选择对应的分支进行流水线构建，比如 `develop` 分支流水线构建，还有`部署集群`和`部署环境`。
-   流水线触发默认为手动触发，也可以选择自动触发，根据`触发事件`会自动触发，`触发事件`默认为`push`，也可以选择`pull request`等。
-   最后需要选择对应的流水线模板(可以选择`npm`和 `yarn`两种构建方式)，点击`下箭头`按钮，会扩展图表，可以查看模板的组件组成。
-3. 可以选择多个分支进行管理，`分支`和`部署环境`的可以是多对多的关系，就是一个分支可以部署到多个环境上，一个环境也可以部署多个分支。
-4. 选择完成后，点击**添加**，应用创建就完成了。
+1. **源码根目录**：填写包含 `package.json` 的目录。Monorepo 需要把源码根目录指向具体应用子目录，或调整构建命令。
+2. **构建方式**：模板支持 `npm` 和 `yarn`。选择与仓库锁文件一致的包管理器，避免依赖版本漂移。
+3. **Node.js 版本**：在构建任务中选择与项目引擎要求一致的版本。版本不匹配可能导致依赖安装失败或构建产物无法运行。
+4. **前端项目**：Vue、React 等前端项目通常先执行 `npm run build` 生成静态文件，再由 Nginx 运行镜像提供服务。默认端口 `8080` 由模板中的 Nginx 监听。
+5. **后端项目**：Express、Koa 等后端项目直接运行 Node 进程。确认启动命令、端口和环境变量与模板一致。
+6. **依赖缓存**：平台会缓存 Node 模块和构建缓存；首次构建较慢，后续会复用缓存。
 
-![](imgs/repo-info.webp)
+## 创建与运行
 
+按 [创建并运行语言应用](/docs/developer/applications/languages/create-application/) 完成创建应用、触发构建、查看工作负载和创建路由。
 
-## 管理应用
-应用创建完成后，就可以对应用进行管理了。[更多信息](/docs/developer/applications/git/#应用管理)
+## 相关链接
 
-![](imgs/repo-detail.webp)
-
-### 定制流水线
-1. 基于npm构建应用的基础流水线一般有五个[任务](/docs/developer/delivery/pipelines/#task)，分别是`拉取代码`、`npm install`、`npm run build`、`构建镜像`、`部署镜像`。[更多信息](/docs/developer/delivery/pipelines/)
-2. 流水线可以根据需要进行定制。
-3. npm仓库默认为淘宝的镜像仓库`https://registry.npmmirror.com` ，可以通过`流水线编辑`选择npm组件进行修改。
-4. 由于Nodejs的版本差异，在npm组件可以根据需要选择对应的Nodejs版本，默认为`18`，也可以选择`12`、`14`、`16`、`20`、`22`等。
-
-![](imgs/edit-pipelinerun.webp)
-
-### 手动运行流水线
-1. 进入`分支流水线`页面，选择一个分支，点击**运行流水线**，就可以进行应用构建和部署了。
-
-![](imgs/manual-run.webp)
-
-
-### 查看流水线运行信息
-1. 进入`流水线运行`页面，选择对应的流水线运行，就可以查看流水线运行信息了。[更多信息](/docs/developer/delivery/pipelines/)
-
-![](imgs/pipelinerun-info.webp)
-
-### 查看应用运行信息
-进入`工作负载`菜单，选择`无状态`，选择对应的`应用名称`，就可以查看应用运行信息了。[更多信息](/docs/developer/workloads/deployments/)
-
-![](imgs/workload.webp)
-
-### 创建应用路由
-如应用属于 `web` 类型应用，可以创建对应的路由，通过路由访问到应用。[更多信息](/docs/developer/network-storage/ingress/#新增路由)
-![create-ingress.png](imgs/create-ingress.webp)
-
-### 访问应用
-路由创建完成后，就可以通过域名访问到应用了（需要确认已经配置了域名解析或设置hosts文件）。
-
-![](imgs/access-web.webp)
+- [流水线](/docs/developer/delivery/pipelines/)
+- [Git 应用](/docs/developer/applications/git/)
+- [无状态应用（Deployment）](/docs/developer/workloads/deployments/)

@@ -5,90 +5,41 @@ sidebar_position: 1
 doc_type: explanation
 audience: [developer]
 owner: docs-ops
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 概述
-`Java` 是Sun公司推出的能够跨越多平台的、可移植性最高的一种面向对象的编程语言，也是目前最先进、特征最丰富、功能最强大的计算机语言。
-KDO 支持构建 `Java` 单模块的项目，并自动识别。当源代码根目录下存在 `pom.xml` 文件，KDO 会将源代码识别为`Java Maven`单模块项目。
 
-## 构建与部署流程
+KDO 支持从 Maven 源码构建 Java 应用。平台根据仓库根目录的 `pom.xml` 自动识别 Java Maven 项目，使用 Java 应用模板完成依赖下载、编译、镜像构建和部署。
 
-```mermaid
-flowchart TD
-    A[提交 Java 源码到 Git 仓库] --> B[检测根目录 pom.xml]
-    B --> C[识别为 Java Maven 单模块项目]
-    C --> D[选择分支 集群与部署环境]
-    D -->|手动触发| E[运行分支流水线]
-    D -->|push 或 pull request| E
-    E --> F[拉取代码]
-    F --> G[按需选择 JDK 8 11 17 21]
-    G --> H[Maven 构建]
-    H --> I[复用 PVC 中的 Maven 依赖缓存]
-    I --> J[构建镜像并推送仓库]
-    J --> K[生成 Deployment 与 Service]
-    K --> L[部署到目标环境]
-    L --> M[创建应用路由]
-    M --> N[通过域名访问应用]
-```
+## 识别与构建规则
 
-## 创建应用
+| 项目 | 说明 |
+|---|---|
+| 识别文件 | 仓库根目录的 `pom.xml` |
+| 开发语言 | `Java` |
+| 应用模板 | Java 应用模板 |
+| 默认端口 | `8080` |
+| 构建任务 | 拉取代码、Maven 构建、构建镜像、部署镜像 |
+| 默认 Maven 仓库 | `https://maven.aliyun.com/repository/public` |
+| 默认 Java 版本 | `11`，可选 `8`、`17`、`21` |
 
-### 应用基本信息
-1. 输入源码根目录，平台默认会根据源码根目录是否有 `pom.xml` 文件来自动识别为`Java Maven`项目。
-2. 在`Git访问令牌`输入 `Git` 仓库的令牌，如果没有现存的令牌，通过访问`链接`到对应的仓库，创建一个新的令牌。
-3. 开发语言会自动识别为`Java`。
-4. 在`应用模板`中选择对应的 `Java` 应用模板，选择对应的 `Java` 版本。
+## 语言特定配置
 
-![](imgs/create-repo.webp)
+1. **源码根目录**：填写包含 `pom.xml` 的目录。多模块项目需要确认根 `pom.xml` 能正确聚合子模块。
+2. **Java 版本**：在 Maven 构建任务中选择与项目 `pom.xml` 的 `maven.compiler.source/target` 一致的版本。版本不匹配会导致编译失败或运行时 `UnsupportedClassVersionError`。
+3. **Maven 仓库**：默认使用阿里云公共仓库。使用私服或需要认证时，在流水线中配置 `settings.xml` 或仓库凭据。
+4. **应用端口**：Spring Boot 等框架默认监听 `8080`。如果修改了 `server.port`，需要同步调整模板端口和 Service 端口。
+5. **构建缓存**：平台会在项目内创建持久卷缓存 Maven 依赖，首次构建较慢，后续会明显加快。
+6. **产物类型**：默认构建可执行 Jar 并放入运行镜像；War 包部署需要确认运行镜像和容器运行时支持。
 
-### 应用扩展信息
-1. 应用端口默认为 `8080`，如果有需要，可以修改其他端口。
-2. 在自动分支流水线，选择对应的分支进行流水线构建，比如 `develop` 分支流水线构建，还有`部署集群`和`部署环境`。
-   流水线触发默认为手动触发，也可以选择自动触发，根据`触发事件`会自动触发，`触发事件`默认为`push`，也可以选择`pull request`等。
-   最后需要选择对应的流水线模板，点击`下箭头`按钮，会扩展图表，可以查看模板的组件组成。
-3. 可以选择多个分支进行管理，`分支`和`部署环境`的可以是多对多的关系，就是一个分支可以部署到多个环境上，一个环境也可以部署多个分支。
-4. 选择完成后，点击**添加**，应用创建就完成了。
+## 创建与运行
 
-![](imgs/repo-info.webp)
+按 [创建并运行语言应用](/docs/developer/applications/languages/create-application/) 完成创建应用、触发构建、查看工作负载和创建路由。
 
+## 相关链接
 
-## 管理应用
-应用创建完成后，就可以对应用进行管理了。[更多信息](/docs/developer/applications/git/#应用管理)
-
-![](imgs/repo-detail.webp)
-
-### 定制流水线
-1. `Java` 应用的流水线一般有四个[任务](/docs/developer/delivery/pipelines/#task)，分别是`拉取代码`、`Maven构建`、`构建镜像`、`部署镜像`。[更多信息](/docs/developer/delivery/pipelines/)
-2. 流水线可以根据需要进行定制。
-3. 默认 `maven` 仓库默认为`https://maven.aliyun.com/repository/public` ，可以通过`流水线编辑`选择 `Maven` 组件进行修改。
-4. 由于 `Java` 的版本差异，在 `Maven` 构建可以根据需要选择对应的 `Java` 版本，默认为`11`，也可以选择`8`、`17`、`21`等。
-
-![](imgs/maven-java-versions.webp)
-
-### 手动运行流水线
-1. 进入`分支流水线`页面，选择一个分支，点击**运行流水线**，就可以进行应用构建和部署了。
-
-![](imgs/manual-run.webp)
-
-
-### 查看流水线运行信息
-1. 进入`流水线运行`页面，选择对应的流水线运行，就可以查看流水线运行信息了。[更多信息](/docs/developer/delivery/pipelines/)
-2. KDO平台会在项目内创建一个[持久存储卷PVC](/docs/admin/storage/#存储概念)，用来缓存这个项目所有应用安装包(包括 `Java` )的依赖，所以只有第一次构建的时候，时间比较长，后续构建时间会比较短。
-
-![](imgs/pipelinerun-info.webp)
-
-### 查看应用运行信息
-进入`工作负载`菜单，选择`无状态`，选择对应的`应用名称`，就可以查看应用运行信息了。[更多信息](/docs/developer/workloads/deployments/)
-
-![](imgs/workload.webp)
-
-### 创建应用路由
-如应用属于 `web` 类型应用，可以创建对应的路由，通过路由访问到应用。[更多信息](/docs/developer/network-storage/ingress/#新增路由)
-
-![create-ingress.png](imgs/create-ingress.webp)
-
-### 访问应用
-路由创建完成后，就可以通过域名访问到应用了（需要确认已经配置了域名解析或设置 `hosts` 文件）。
-![](imgs/access-web.webp)
+- [流水线](/docs/developer/delivery/pipelines/)
+- [Git 应用](/docs/developer/applications/git/)
+- [无状态应用（Deployment）](/docs/developer/workloads/deployments/)
