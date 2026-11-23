@@ -5,8 +5,8 @@ sidebar_position: 2
 doc_type: explanation
 audience: [admin, developer]
 owner: docs-ops
-last_reviewed: 2026-11-20
-status: migrated
+last_reviewed: 2026-11-23
+status: stable
 ---
 
 ## 介绍
@@ -166,3 +166,93 @@ flowchart TD
 :::
 
 <video class="doc-video" controls muted loop autoplay playsinline preload="metadata" poster="/media/docs/observability/logging/imgs/namespace-log-poster.webp"><source src="/media/docs/observability/logging/imgs/namespace-log.mp4" type="video/mp4" /></video>
+
+## 常用 LogQL 查询
+
+Loki 使用 LogQL 查询日志。一个查询通常由**日志流选择器**和**过滤/聚合表达式**组成，例如 `{namespace="dev"} |= "error"`。
+
+### 选择日志流
+
+| 目标 | 示例 |
+|---|---|
+| 查看某个命名空间 | `{namespace="dev"}` |
+| 查看某个 Pod | `{namespace="dev", pod="web-7d9f8c6b5-abcde"}` |
+| 按 Pod 前缀匹配 | `{namespace="dev", pod=~"web-.*"}` |
+| 按容器过滤 | `{namespace="dev", container="app"}` |
+
+### 过滤日志内容
+
+| 目标 | 示例 | 说明 |
+|---|---|---|
+| 包含关键字 | `{namespace="dev"} |= "error"` | 大小写敏感 |
+| 排除关键字 | `{namespace="dev"} != "healthcheck"` | 过滤探针等噪声 |
+| 正则匹配 | `{namespace="dev"} \|~ "(?i)timeout\|deadline exceeded"` | `(?i)` 表示忽略大小写 |
+| JSON 字段过滤 | `{namespace="dev"} \| json \| level="error"` | 应用需输出 JSON 日志 |
+| logfmt 字段过滤 | `{namespace="dev"} \| logfmt \| status >= 500` | 应用需输出 logfmt |
+| 链路追踪 | `{namespace="dev"} \|= "trace-id"` | 结合应用日志中的 trace ID |
+
+### 聚合与统计
+
+```logql
+# 每个 Pod 每秒错误日志速率
+sum by (pod) (rate({namespace="dev"} |= "error" [5m]))
+
+# 错误日志最多的前 10 个 Pod
+topk(10, sum by (pod) (rate({namespace="dev"} |= "error" [5m])))
+
+# 统计 5 分钟内日志总量
+sum(count_over_time({namespace="dev"}[5m]))
+```
+
+:::tip
+先用标签缩小命名空间和时间范围，再加关键字或 JSON 过滤。尽量避免大范围正则和超长时间窗口，否则查询会变慢甚至超时。
+:::
+
+## 日志排障
+
+### 看不到日志
+
+1. 确认 Pod 处于 `Running` 状态，容器没有反复重启。
+2. 确认应用把日志写到标准输出或标准错误，而不是只写容器内文件。
+3. 检查命名空间、Pod、容器和时间范围是否选对。
+4. 在容器组详情页查看 `日志`，在观测平台查看 `聚合日志`；Pod 已销毁时优先使用观测平台。
+5. 如果所有应用都没有日志，检查 Vector/Promtail 采集组件和 Loki 是否正常。
+
+### 日志延迟
+
+- 日志从产生到可查询通常有秒级延迟；持续几分钟仍无日志时，检查采集组件和 Loki 写入链路。
+- 节点时间不同步会导致时间范围查询异常，确认节点 NTP 正常。
+
+### 日志被截断或多行日志被拆开
+
+- 单条日志过长时可能被截断，建议拆分大对象或只输出关键字段。
+- 多行堆栈建议输出为 JSON 字段，或使用支持的 multline 配置，避免每一行变成独立日志。
+
+### 查询慢或超时
+
+- 缩小时间范围，先按 `namespace`、`pod`、`container` 过滤。
+- 避免 `.*error.*` 这类大范围正则，优先使用 `|=` 精确子串。
+- 高频查询可以改为指标或告警规则，不要反复扫描大量原始日志。
+
+### 权限不足
+
+日志按命名空间隔离。只能查看有权限的项目和环境；需要跨命名空间排障时，联系管理员或使用管理员账号。
+
+## 最佳实践
+
+- **输出到标准输出/标准错误**：不要只写容器内文件，否则采集组件无法获取。
+- **使用结构化日志**：优先 JSON，至少包含 `level`、`time`、`service`、`trace_id` 等字段。
+- **统一级别**：使用 `debug`、`info`、`warn`、`error`，避免自定义级别导致过滤困难。
+- **不要记录敏感信息**：密码、Token、身份证号、完整请求体等必须脱敏。
+- **控制日志量**：高频健康检查、心跳等日志降级或采样，避免淹没错误日志。
+- **保留 trace ID**：在网关、应用和下游服务之间传递同一个 ID，便于跨服务检索。
+- **配置保留策略**：按合规和排障需求设置保留天数，定期评估存储成本。
+
+## 相关文档
+
+- [容器组（Pod）](/docs/developer/workloads/pods/)：查看单个 Pod 的日志、事件和终端
+- [事件（Event）](/docs/observability/events/)：排查调度、镜像、挂载和驱逐问题
+- [监控与告警](/docs/observability/monitoring/)：用指标和告警发现日志之外的异常
+- [仪表盘](/docs/observability/dashboards/)：查看日志相关的统计面板
+- [告警配置](/docs/observability/alerting/)：把错误日志转化为告警
+- [LocalShell](/docs/developer/dev-environments/terminal/localshell/)：使用 `kubectl logs` 在本地排查
