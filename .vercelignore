@@ -1,4 +1,4 @@
-docs/
-_site/
-.idea/
-migration/prototype-docs/
+/docs/
+/_site/
+/.idea/
+/migration/prototype-docs/
