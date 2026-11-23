@@ -74,7 +74,7 @@ metadata:
   name: my-repo
   namespace: target-namespace
 spec:
-  url: "https://bitbucket.com/workspace/repo"
+  url: "https://bitbucket.org/workspace/repo"
   branch: "main"
   git_provider:
     user: "<BITBUCKET_USERNAME>"
@@ -162,7 +162,7 @@ metadata:
   name: my-repo
   namespace: target-namespace
 spec:
-  url: "https://bitbucket.com/workspace/repo"
+  url: "https://bitbucket.org/workspace/repo"
   git_provider:
     url: "https://bitbucket.datacenter.api.url/rest"
     user: "<BITBUCKET_USERNAME>"
@@ -184,5 +184,5 @@ kubectl get repository -n <namespace>
 输出示例：
 ```
 NAME     URL                                            NAMESPACE          SUCCEEDED   REASON
-my-repo  https://bitbucket.com/workspace/repo           target-namespace   True        Succeeded
+my-repo  https://bitbucket.org/workspace/repo           target-namespace   True        Succeeded
 ```

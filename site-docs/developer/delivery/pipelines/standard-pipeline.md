@@ -11,9 +11,11 @@ status: stable
 
 上级：[流水线](/docs/developer/delivery/pipelines/)
 
+## 完整示例
+
 :::note
 
-标准流水线就是一个Kubernetes的[Pipeline对象](../#pipeline)，下面有个例子：
+标准流水线就是一个 Kubernetes 的 [Pipeline 对象](../#pipeline)。下面是一个包含拉取代码、Maven 构建、镜像构建和部署的完整示例：
 
 :::
 
@@ -110,3 +112,10 @@ spec:
     - name: maven-settings
     - name: empty-dir
 ```
+
+## 使用说明
+
+- `namespace` 要替换为实际运行流水线的命名空间；示例中的 `cc-dev` 只是占位。
+- `tasks` 按顺序执行：`git-clone` 拉取代码，`maven` 构建，`buildah` 构建并推送镜像，`kubernetes-actions` 应用部署清单。
+- `workspaces` 需要在 PipelineRun 中绑定到实际 PVC 或 `emptyDir`；`maven-settings` 可用于注入私服配置。
+- 需要修改构建命令或部署方式时，复制此 Pipeline 后调整对应 Task，不要直接修改平台预置 Task。

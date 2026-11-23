@@ -1,7 +1,7 @@
 ---
 title: "SonarQube 静态扫描"
 description: "利用 SonarScanner 静态扫描 KDO 上的 Maven 项目"
-sidebar_position: 10
+sidebar_position: 1
 doc_type: how-to
 audience: [developer]
 owner: docs-ops
@@ -33,7 +33,7 @@ mvn clean verify sonar:sonar -Dsonar.login=myAuthenticationToken
 
 了解 SonarScanner for Maven 的工作方式之后，我们就可以尝试将代码扫描这个过程，融入到 KDO 的自动化持续集成链条之中。**我们希望最终达成的效果，是在代码提交后自动触发项目的构建，在构建过程中进行代码的扫描分析，并生成相应的报告。**
 
-![](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-1.png)
+![SonarQube 持续集成流程图](https://static.goodrain.com/wechat/sonarqube/sonarqube-workflow-1.png)
 
 整个流程可以概括为如下几个阶段：
 
@@ -143,10 +143,10 @@ KDO 在针对 Java Maven 类型的项目进行构建时，提供入口配置全�
       </activation>
       <properties>
         <sonar.host.url>
-          http://9000.grba63fe.duaqtz0k.17f4cc.grapps.cn
+          https://sonarqube.example.com
         </sonar.host.url>
         <sonar.login>
-          c1041c2b4ac2e89d1fe3f5fa5bb5971bc8dc85b7
+          ${env.SONAR_TOKEN}
         </sonar.login>
       </properties>
     </profile>

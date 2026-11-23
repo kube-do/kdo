@@ -1,7 +1,7 @@
 ---
 title: "开发者界面"
 description: "开发者界面专注于优化应用的研发流程，使得开发者无需深入了解容器和Kubernetes的底层原理即可高效工作。 主要面向开发者和测试人员，开发者界面采用了 项目 、 环境 、 应用 三层模型，简化了复杂的应用管理任务："
-sidebar_position: 2
+sidebar_position: 0
 doc_type: explanation
 audience: [developer]
 owner: docs-dev
@@ -31,7 +31,7 @@ flowchart TD
     A --> G[配置管理]
     A --> H[观测平台]
     A --> I[全局资源搜索]
-    D --> J[Git应用 Helm 镜像构建 手动镜像]
+    D --> J[Git 应用 Helm 镜像构建 手动镜像]
     E --> K[容器组 无状态 有状态 任务 计划任务 拓扑]
     F --> L[服务 路由 持久卷声明]
     C --> M[环境概览与资源配额]

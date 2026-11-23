@@ -1,7 +1,7 @@
 ---
 title: "PHP 项目部署"
-description: "在 KDO 上通过源代码部署 PHP 项目"
-sidebar_position: 5
+description: "介绍 KDO 如何识别 PHP 项目、选择 PHP 版本、安装扩展、配置 Web 根目录并构建镜像，包含常见扩展说明。"
+sidebar_position: 6
 doc_type: explanation
 audience: [developer]
 owner: docs-ops
@@ -87,16 +87,16 @@ composer update --ignore-platform-reqs
 
 - [APCu](http://pecl.php.net/package/apcu) (`apcu`; provides an apc extension for compatibility with legacy software)
 - [Blackfire](http://blackfire.io/) (`blackfire`)
-- [Cassandra](http://datastax.github.io/php-driver/) (`cassandra`)
+- [Cassandra](https://github.com/datastax/php-driver) (`cassandra`)
 - [ev](http://php.net/manual/book.ev) (`ev`)
 - [event](http://php.net/manual/book.event) (`event`)
 - [ImageMagick](http://php.net/manual/book.imagick) (`imagick`)
 - [memcached](http://php.net/manual/book.memcached) (`memcached`; built against a version of libmemcached with SASL support)
-- [Mongo](http://php.net/manual/book.mongo) (`mongo`)
-- [MongoDB](http://php.net/manual/book.mongodb) (`mongodb`)
+- Mongo（旧扩展，仅用于兼容历史项目）(`mongo`)
+- [MongoDB](https://www.php.net/manual/en/book.mongodb.php) (`mongodb`)
 - [New Relic](http://newrelic.com/php) (`newrelic`; will automatically be enabled when the New Relic Add-On is detected during a build)
 - [OAuth](http://php.net/manual/book.oauth) (`oauth`)
-- [Phalcon](https://phalconphp.com/) (`phalcon`)
+- [Phalcon](https://phalcon.io/) (`phalcon`)
 - [pq](https://mdref.m6w6.name/pq) (`pq`)
 - [rdkafka](https://pecl.php.net/package/rdkafka) (`rdkafka`)
 - [PHPRedis](http://pecl.php.net/package/redis) (`redis`)
@@ -145,15 +145,15 @@ composer update --ignore-platform-reqs
 
 - [APCu](http://pecl.php.net/package/apcu) (`apcu`; provides an apc extension for compatibility with legacy software)
 - [Blackfire](http://blackfire.io/) (`blackfire`)
-- [Cassandra](http://datastax.github.io/php-driver/) (`cassandra`)
+- [Cassandra](https://github.com/datastax/php-driver) (`cassandra`)
 - [ev](http://php.net/manual/book.ev) (`ev`)
 - [event](http://php.net/manual/book.event) (`event`)
 - [ImageMagick](http://php.net/manual/book.imagick) (`imagick`)
 - [memcached](http://php.net/manual/book.memcached) (`memcached`; built against a version of libmemcached with SASL support)
-- [MongoDB](http://php.net/manual/book.mongodb) (`mongodb`)
+- [MongoDB](https://www.php.net/manual/en/book.mongodb.php) (`mongodb`)
 - [New Relic](http://newrelic.com/php) (`newrelic`; will automatically be enabled when the New Relic Add-On is detected during a build)
 - [OAuth](http://php.net/manual/book.oauth) (`oauth`)
-- [Phalcon](https://phalconphp.com/) (`phalcon`)
+- [Phalcon](https://phalcon.io/) (`phalcon`)
 - [pq](https://mdref.m6w6.name/pq) (`pq`)
 - [rdkafka](https://pecl.php.net/package/rdkafka) (`rdkafka`)
 - [PHPRedis](http://pecl.php.net/package/redis) (`redis`)
@@ -202,15 +202,15 @@ composer update --ignore-platform-reqs
 
 - [APCu](http://pecl.php.net/package/apcu) (`apcu`; provides an apc extension for compatibility with legacy software)
 - [Blackfire](http://blackfire.io/) (`blackfire`)
-- [Cassandra](http://datastax.github.io/php-driver/) (`cassandra`)
+- [Cassandra](https://github.com/datastax/php-driver) (`cassandra`)
 - [ev](http://php.net/manual/book.ev) (`ev`)
 - [event](http://php.net/manual/book.event) (`event`)
 - [ImageMagick](http://php.net/manual/book.imagick) (`imagick`)
 - [memcached](http://php.net/manual/book.memcached) (`memcached`; built against a version of libmemcached with SASL support)
-- [MongoDB](http://php.net/manual/book.mongodb) (`mongodb`)
+- [MongoDB](https://www.php.net/manual/en/book.mongodb.php) (`mongodb`)
 - [New Relic](http://newrelic.com/php) (`newrelic`; will automatically be enabled when the New Relic Add-On is detected during a build)
 - [OAuth](http://php.net/manual/book.oauth) (`oauth`)
-- [Phalcon](https://phalconphp.com/) (`phalcon`)
+- [Phalcon](https://phalcon.io/) (`phalcon`)
 - [pq](https://mdref.m6w6.name/pq) (`pq`)
 - [rdkafka](https://pecl.php.net/package/rdkafka) (`rdkafka`)
 - [PHPRedis](http://pecl.php.net/package/redis) (`redis`)

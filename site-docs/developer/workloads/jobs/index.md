@@ -239,6 +239,6 @@ spec:
 ## 相关链接
 
 - [Kubernetes Job 官方文档](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
-- [Kubernetes CronJob 官方文档](https://kubernetes.io/docs/concepts/workloads/controllers/cron-job/)
+- [Kubernetes CronJob 官方文档](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)
 - [工作负载操作（扩缩、更新、健康检查）](/docs/developer/workload-operations/)
 - [Pod 生命周期](/docs/developer/workloads/pods/)

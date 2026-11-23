@@ -15,7 +15,7 @@ KDO 平台支持多种方式创建和管理应用程序，满足不同场景的�
 
 | 方式                                          | 说明                       | 自动化程度 | 适用场景             |
 |---------------------------------------------|--------------------------|-------|------------------|
-| [Git应用](/docs/developer/applications/git/) | 基于 Git 仓库，自动生成 CI/CD 流水线 | ⭐⭐⭐⭐⭐ | 需要持续集成/持续部署的代码项目 |
+| [Git 应用](/docs/developer/applications/git/) | 基于 Git 仓库，自动生成 CI/CD 流水线 | ⭐⭐⭐⭐⭐ | 需要持续集成/持续部署的代码项目 |
 | [流水线](/docs/developer/delivery/pipelines/)    | Tekton 流水线配置与管理          | ⭐⭐⭐⭐  | 自定义 CI/CD 流程     |
 | [Helm 应用](/docs/developer/applications/helm/)     | 使用 Helm Chart 部署社区组件     | ⭐⭐⭐⭐  | 复杂应用、中间件、第三方服务   |
 | [镜像构建](/docs/developer/applications/image-builds/)      | 从 Dockerfile 构建镜像并部署     | ⭐⭐⭐   | 有源码需要构建，但无需完整流水线 |
@@ -27,7 +27,7 @@ KDO 平台支持多种方式创建和管理应用程序，满足不同场景的�
 
 ```mermaid
 flowchart TD
-    A[应用管理] --> B[Git应用]
+    A[应用管理] --> B[Git 应用]
     A --> C[流水线]
     A --> D[Helm 应用]
     A --> E[镜像构建]

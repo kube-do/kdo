@@ -11,7 +11,7 @@ status: stable
 
 本页介绍 PipelineRun 的验证、运行、监控与清理，并提供常用命令和配置参考。
 
-## 6.1 验证 PipelineRun 定义
+## 验证 PipelineRun 定义
 
 在本地验证 Pipelines as Code 解析器是否正确处理定义：
 
@@ -22,7 +22,7 @@ tkn pac resolve .tekton/pipeline-run-definition.yaml
 - 如果解析器找不到任何引用的资源，输出显示错误消息
 - 如果成功，输出显示包含所有引用资源（如远程任务定义）的 PipelineRun CR 定义
 
-## 6.2 运行 PipelineRun
+## 运行 PipelineRun
 
 默认配置下，Pipelines as Code 在仓库默认分支的 `.tekton/` 目录中运行匹配事件的 PipelineRun。
 
@@ -49,7 +49,7 @@ tkn pac logs -n <my_pipeline_ci>
 
 对于 GitHub App，PipelineRun URL 会显示在 GitHub 的 **Checks** 标签页中，点击即可跟踪执行。
 
-## 6.3 基于 Git 标签触发 PipelineRun
+## 基于 Git 标签触发 PipelineRun
 
 当创建或引用 Git 标签时，可以通过 GitOps 评论触发 PipelineRun，支持基于版本的发布工作流。
 
@@ -95,7 +95,7 @@ spec:
 4. 在提交评论字段中输入 GitOps 命令，如 `/test tag:v1.0.0`
 5. 验证 Pipelines as Code 处理了评论并触发了相应的 PipelineRun
 
-## 6.4 重启或取消 PipelineRun
+## 重启或取消 PipelineRun
 
 无需触发新事件（如推送新提交或创建 PR），即可通过评论重启或取消 PipelineRun。
 
@@ -136,7 +136,7 @@ This is a comment inside a commit.
 
 > 如果在多个分支中存在的提交上执行命令，Pipelines as Code 使用最新提交的分支。没有参数时（`/test`），默认在 `main` 分支上执行。可以包含分支指定：`/test branch:user-branch`。
 
-## 6.5 监控 PipelineRun 状态
+## 监控 PipelineRun 状态
 
 ### GitHub App 状态
 - PipelineRun 完成后，Pipelines as Code 在 **Check** 标签页中添加状态
@@ -185,7 +185,7 @@ tkn pac describe -n <namespace>
 ### 通知
 Pipelines as Code 不管理通知。如果需要通知功能，请使用流水线的 `finally` 功能。
 
-## 6.6 清理 PipelineRun
+## 清理 PipelineRun
 
 使用 `max-keep-runs` 注解限制保留的 PipelineRun 数量：
 
@@ -197,7 +197,7 @@ pipelinesascode.tekton.dev/max-keep-runs: "<max_number>"
 - 跳过清理运行中的 PipelineRun，但会清理状态未知的 PipelineRun
 - 跳过清理失败的 pull request
 
-## 6.7 传入 Webhook
+## 传入 Webhook
 
 通过传入 Webhook URL 和共享密钥触发 PipelineRun。
 

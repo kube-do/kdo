@@ -1,5 +1,5 @@
 ---
-title: "Git应用"
+title: "Git 应用"
 description: "应用是满足用户某些需求的程序代码的集合，可以是某个解耦的微服务或是某个单体应用，所有功能都会围绕应用服务进行。"
 sidebar_position: 1
 doc_type: explanation
@@ -41,7 +41,7 @@ flowchart TD
     N --> O[状态回报到 Git 提供商]
 ```
 
-## 创建Git应用
+## 创建 Git 应用
 
 - KDO支持多环境多分支的应用管理，在**应用项目**选择对应的项目，选择**应用管理 -> 应用**
 - KDO创建应用主要需要两个信息: **应用的Git地址、访问Git仓库的Token**, 其他信息根据应用进行选择，包括： `开发语言`、`应用模板`、`应用端口`等。
@@ -187,8 +187,8 @@ KDO Pipelines-as-Code相关的文件都是存储在应用的代码仓库，其�
 它定义了部署参数，一般就是[无状态(Deployment)](/docs/developer/workloads/deployments/)、[有状态(StatefulSet)](/docs/developer/workloads/statefulsets/)、
 [服务(Service)](/docs/developer/network-storage/service/)等这些资源对象。
 
-![](imgs/branch-main-repo-files.webp)
-![](imgs/branch-develop-repo-files.webp)
+![main 分支中 KDO 自动创建的应用文件](imgs/branch-main-repo-files.webp)
+![develop 分支中 KDO 自动创建的应用文件](imgs/branch-develop-repo-files.webp)
 
 
 

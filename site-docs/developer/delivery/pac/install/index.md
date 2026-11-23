@@ -11,11 +11,11 @@ status: migrated
 
 本页介绍在 KDO 平台上安装 Pipelines as Code、安装命令行工具，以及自定义控制器配置。
 
-## 2.1 在 KDO 上安装 Pipelines as Code
+## 在 KDO 上安装 Pipelines as Code
 
 Pipelines as Code 随 Tekton Pipelines Operator 一同安装，默认安装在 `pipelines-as-code` 命名空间中。
 
-## 2.2 安装 CLI（tkn pac / opc）
+## 安装 CLI（tkn pac / opc）
 
 集群管理员可以在本地机器上将 `tkn pac` 和 `opc` CLI 工具作为容器使用，或直接安装二进制文件。
 
@@ -32,7 +32,7 @@ Pipelines as Code 随 Tekton Pipelines Operator 一同安装，默认安装在 `
 | macOS | |
 | Windows | |
 
-## 2.3 自定义 Pipelines as Code 配置
+## 自定义 Pipelines as Code 配置
 
 集群管理员可以在 `TektonConfig` CR 的 `platforms.openshift.pipelinesAsCode.settings` spec 中配置以下参数：
 
@@ -92,7 +92,7 @@ spec:
           enable-cancel-in-progress-on-push: "false"
 ```
 
-## 2.4 配置额外的 Pipelines as Code 控制器以支持多个 GitHub App
+## 配置额外的 Pipelines as Code 控制器以支持多个 GitHub App
 
 默认情况下，Pipelines as Code 只能与一个 GitHub App 交互。如果需要使用多个 GitHub App（例如不同的 GitHub 账号，或 GitHub Enterprise + GitHub SaaS），必须为每个额外的 GitHub App 配置额外的 Pipelines as Code 控制器。
 
@@ -131,7 +131,7 @@ spec:
 - `tkn pac bootstrap github-app` 命令仅适用于主控制器。额外控制器的 GitHub App 必须使用手动方式创建。
 - 要为额外控制器配置 GitHub App，在 GitHub 中创建 App 时，使用对应的控制器路由 URL（替换 `pipelines-as-code-controller` 为控制器名称）。
 
-## 2.5 其他资源
+## 其他资源
 
 - [安装 Tekton Pipelines](https://tekton.dev/docs/installation/)
 - [安装 tkn CLI](https://tekton.dev/docs/cli/)

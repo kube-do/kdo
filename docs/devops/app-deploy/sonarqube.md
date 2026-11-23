@@ -142,10 +142,10 @@ KDO 在针对 Java Maven 类型的项目进行构建时，提供入口配置全�
       </activation>
       <properties>
         <sonar.host.url>
-          http://9000.grba63fe.duaqtz0k.17f4cc.grapps.cn
+          https://sonarqube.example.com
         </sonar.host.url>
         <sonar.login>
-          c1041c2b4ac2e89d1fe3f5fa5bb5971bc8dc85b7
+          ${env.SONAR_TOKEN}
         </sonar.login>
       </properties>
     </profile>

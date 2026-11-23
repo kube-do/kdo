@@ -31,14 +31,14 @@ status: stable
 | GitLab | [GitLab 集成](/docs/developer/delivery/pac/git-integration/gitlab/) |
 | Bitbucket | [Bitbucket 集成](/docs/developer/delivery/pac/git-integration/bitbucket/) |
 
-## 3.6 配置自定义证书
+## 配置自定义证书
 
 如需配置 Pipelines as Code 使用私有签名或自定义证书的 Git 仓库：
 
 - 如果使用 Tekton Pipelines Operator 安装，可以通过 `Proxy` 对象将自定义证书添加到集群
 - Operator 会自动将证书暴露给所有 Tekton Pipelines 组件和工作负载，包括 Pipelines as Code
 
-## 3.7 私有仓库支持
+## 私有仓库支持
 
 Pipelines as Code 通过在目标命名空间中创建或更新 Secret 来支持私有仓库。`git-clone` 任务使用此 token 克隆私有仓库。
 

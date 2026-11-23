@@ -70,7 +70,7 @@ tkn pac create repo
 1. 获取控制器公共 URL：
 
 ```bash
-echo https://$(kubectl get ingresss -n pipelines-as-code pipelines-as-code-controller -o jsonpath='{.spec.host}')
+echo https://$(kubectl get ingress -n pipelines-as-code pipelines-as-code-controller -o jsonpath='{.spec.host}')
 ```
 
 2. 在 GitHub 仓库中配置 Webhook（**Settings → Webhooks → Add webhook**）：

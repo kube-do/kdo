@@ -1,7 +1,7 @@
 ---
 title: "工作负载"
 description: "工作负载（Workloads） 是在 Kubernetes 上运行的应用程序单元。KDO 平台为开发者提供了简化的界面来管理各种类型的 workload，无需直接编写复杂的 YAML 清单。"
-sidebar_position: 3
+sidebar_position: 4
 doc_type: explanation
 audience: [developer]
 owner: docs-dev

@@ -1,7 +1,7 @@
 ---
 title: "工作负载操作"
-description: "工作负载操作 提供对运行中应用（Deployment、StatefulSet、Pod 等）的实时管理能力。无需编辑 YAML，通过控制台或 API 即可执行常见运维操作。"
-sidebar_position: 6
+description: "工作负载操作 提供对运行中应用（Deployment、StatefulSet、Pod 等）的实时管理能力。无需编辑 YAML，通过控制台或命令行即可执行常见运维操作。"
+sidebar_position: 7
 doc_type: explanation
 audience: [developer]
 owner: docs-dev
@@ -11,7 +11,7 @@ status: migrated
 
 ## 介绍
 
-**工作负载操作**提供对运行中应用（Deployment、StatefulSet、Pod 等）的实时管理能力。无需编辑 YAML，通过控制台或 API 即可执行常见运维操作。
+**工作负载操作**提供对运行中应用（Deployment、StatefulSet、Pod 等）的实时管理能力。无需编辑 YAML，通过控制台或命令行即可执行常见运维操作。
 
 ![工作负载操作菜单示意图](imgs/workload-actions-menu.svg)
 
@@ -145,20 +145,21 @@ flowchart TD
 
 ---
 
-## 脚本示例
+## 命令行示例
 
-通过 KDO API 执行操作的 curl 示例（仅作参考）：
+如果需要在脚本或终端中执行同样的操作，可以使用 `kubectl`：
 
 ```bash
 # 扩缩容 Deployment
-curl -X POST https://kdo.kube-do.cn/api/v1/workloads/deployments/myapp/scale \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"replicas": 3}'
+kubectl scale deployment myapp --replicas=3 -n <namespace>
 
-# 添加 HPA
-curl -X POST https://kdo.kube-do.cn/api/v1/workloads/deployments/myapp/hpa \
-  -H "Authorization: Bearer $TOKEN" \
-  -d '{"minReplicas":2,"maxReplicas":5,"targetCPUUtilization":80}'
+# 配置 HPA
+kubectl autoscale deployment myapp \
+  --min=2 --max=5 --cpu-percent=80 -n <namespace>
+
+# 查看操作结果
+kubectl get deployment myapp -n <namespace>
+kubectl get hpa myapp -n <namespace>
 ```
 
 ---
