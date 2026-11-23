@@ -167,6 +167,14 @@ const config: Config = {
     },
     mermaid: {
       theme: {light: 'neutral', dark: 'dark'},
+      options: {
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif',
+        flowchart: {
+          htmlLabels: true,
+          wrappingWidth: 240,
+        },
+      },
     },
   } satisfies Preset.ThemeConfig,
 };
